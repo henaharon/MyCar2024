@@ -1,13 +1,12 @@
 import React from 'react';
 
-import {BaseView, BodyBaseView} from './src/uiKit/BaseView';
-import {Header} from './src/uiKit/Header';
+import {BaseView} from './src/uiKit/BaseView';
+import TimerScreen from './src/screens/Timer/TimerScreen';
 
 function App(): React.JSX.Element {
   return (
     <BaseView>
-      <Header />
-      <BodyBaseView />
+      <TimerScreen />
     </BaseView>
   );
 }
