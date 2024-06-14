@@ -12,6 +12,9 @@ const fith = require('../../assets/images/fith.png');
 const six = require('../../assets/images/six.png');
 const seven = require('../../assets/images/seven.png');
 const Rental = require('../../assets/images/Rental.png');
+const arrow = require('../../assets/images/arrow.png');
+const cable = require('../../assets/images/cable.png');
+const accedent = require('../../assets/images/accedent.png');
 const DashedLine = () => {
     return (
         <View style={styles.dashedLineContainer}>
@@ -69,33 +72,33 @@ const SecondListComponent = () => {
         >
             <View style={styles.Sbox}>
             <Text style={styles.Secondname}>כותרת הודעה / קמפיין</Text>
-                <Image source={Rental} style={styles.SecondListlogo} />
+                <Image source={cable} style={styles.SecondListlogo} />
                
             </View>
             <View style={styles.Sbox}>
             <Text style={styles.Secondname}>כותרת הודעה / קמפיין</Text>
-                <Image source={Rental} style={styles.SecondListlogo} />
+                <Image source={cable} style={styles.SecondListlogo} />
                 
             </View>
             <View style={styles.Sbox}>
             <Text style={styles.Secondname}>כותרת הודעה / קמפיין</Text>
-                <Image source={Rental} style={styles.SecondListlogo} />
+                <Image source={cable} style={styles.SecondListlogo} />
                 
             </View>
             {/* Add more list items as needed */}
             <View style={styles.Sbox}>
             <Text style={styles.Secondname}>כותרת הודעה / קמפיין</Text>
-                <Image source={Rental} style={styles.SecondListlogo} />
+                <Image source={cable} style={styles.SecondListlogo} />
                 
             </View>
             <View style={styles.Sbox}>
             <Text style={styles.Secondname}>כותרת הודעה / קמפיין</Text>
-                <Image source={Rental} style={styles.SecondListlogo} />
+                <Image source={cable} style={styles.SecondListlogo} />
                 
             </View>
             <View style={styles.Sbox}>
             <Text style={styles.Secondname}>כותרת הודעה / קמפיין</Text>
-                <Image source={Rental} style={styles.SecondListlogo} />
+                <Image source={cable} style={styles.SecondListlogo} />
                 
             </View>
         </ScrollView>
@@ -124,13 +127,15 @@ const HomePage = () => {
                         <SecondListComponent />
                         <DashedLine />
                         <View style={styles.SbottomContainer}>
+                        <Image source={arrow} style={styles.logo} />
                             <Text style={styles.SbottomText}> השאלת רכבים</Text>
-                            <Image source={carImage} style={styles.carImage} />
+                            <Image source={Rental} style={styles.Image} />
                         </View>
                         <DashedLine />
                         <View style={styles.SbottomContainer}>
+                        <Image source={arrow} style={styles.logo} />
                             <Text style={styles.SbottomText}>  תאונות וחירום</Text>
-                            <Image source={carImage} style={styles.carImage} />
+                            <Image source={accedent} style={styles.Image} />
                         </View>
                         <Image source={sunImage} style={styles.sun} />
                     </View>
@@ -246,6 +251,7 @@ const styles = StyleSheet.create({
         width:'100%',
         fontWeight: 'bold',
         color:'black',
+        marginRight: 10,
        
 
     },
@@ -272,23 +278,33 @@ const styles = StyleSheet.create({
         fontSize: 18,
         fontWeight: 'bold',
         color: 'black',
+        marginright: 10,
     },
     SbottomContainer: {
         width: '95%',
-        alignItems: 'flex-end',
         padding: 10,
         backgroundColor: 'white',
         borderRadius: 10,
         marginVertical: 20,
         height: 200,
-        borderRadius: 10,
-        zIndex:1,
-        
+        zIndex: 1,
+        flexDirection: 'column',
+        alignItems: 'flex-start',
+        position: 'relative',
+    },
+    arrow: {
+        position: 'absolute',
+        top: 10,
+        right: 10,
+        width: 20,
+        height: 20,
     },
     SbottomText: {
         fontSize: 18,
         fontWeight: 'bold',
         color: 'black',
+        alignSelf: 'flex-end',
+        marginTop: -40,   
     },
     sun: {
         width: 245,
@@ -296,6 +312,14 @@ const styles = StyleSheet.create({
         bottom: 0,
         left: 0,
         position: 'absolute',
+    },
+    Image: {
+        width: 200,
+        height: 200,
+        resizeMode: 'contain',
+        alignSelf: 'center',
+        bottom: 30,
+        
     },
 });
 
