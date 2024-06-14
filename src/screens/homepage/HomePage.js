@@ -1,10 +1,17 @@
 import React, { useState, useRef } from 'react';
 import { View, Text, StyleSheet, ImageBackground, Image, ScrollView } from 'react-native';
-
 const backgroundShape = require('../../assets/images/backgorund3.png');
 const backgroundShape1 = require('../../assets/images/backgroundShape1.png');
 const carImage = require('../../assets/images/Car.png');
-
+const sunImage = require('../../assets/images/sun.png');
+const first = require('../../assets/images/f.png');
+const second = require('../../assets/images/s.png');
+const third = require('../../assets/images/t.png');
+const forth = require('../../assets/images/forth.png');
+const fith = require('../../assets/images/fith.png');
+const six = require('../../assets/images/six.png');
+const seven = require('../../assets/images/seven.png');
+const Rental = require('../../assets/images/Rental.png');
 const DashedLine = () => {
     return (
         <View style={styles.dashedLineContainer}>
@@ -14,185 +21,121 @@ const DashedLine = () => {
 };
 
 const ListComponent = () => {
-    const scrollViewRef = useRef(null);
-    const [scrollOffset, setScrollOffset] = useState(200);
-
-    const handleScroll = (event) => {
-        const offsetX = event.nativeEvent.contentOffset.x;
-        setScrollOffset(offsetX);
-    };
-
-    const scrollToOffset = (offset) => {
-        if (scrollViewRef.current) {
-            scrollViewRef.current.scrollTo({ x: offset, y: 0, animated: true });
-        }
-    };
-
     return (
         <ScrollView
-            ref={scrollViewRef}
-            contentContainerStyle={styles.scrollViewContent}
+            contentContainerStyle={styles.horizontalScrollViewContent}
             horizontal={true}
-            onScroll={handleScroll}
-            scrollEventThrottle={16} // Adjust the throttle value as needed
-        >
-            <View style={styles.boxContainer}>
-                {/* Your list items */}
-                <View style={styles.box}>
-                    {/* Logo */}
-                    <Image source={carImage} style={styles.logo} />
-                    {/* Name */}
-                    <Text style={styles.name}>שטיפת רכב</Text>
-                </View>
-                {/* Add more list items */}
-                <View style={styles.box}>
-                    {/* Logo */}
-                    <Image source={carImage} style={styles.logo} />
-                    {/* Name */}
-                    <Text style={styles.name}>שטיפת רכב</Text>
-                </View>
-                <View style={styles.box}>
-                    {/* Logo */}
-                    <Image source={carImage} style={styles.logo} />
-                    {/* Name */}
-                    <Text style={styles.name}>שטיפת רכב</Text>
-                </View>
-                <View style={styles.box}>
-                    {/* Logo */}
-                    <Image source={carImage} style={styles.logo} />
-                    {/* Name */}
-                    <Text style={styles.name}>שטיפת רכב</Text>
-                </View>
-                <View style={styles.box}>
-                    {/* Logo */}
-                    <Image source={carImage} style={styles.logo} />
-                    {/* Name */}
-                    <Text style={styles.name}>שטיפת רכב</Text>
-                </View>
-                <View style={styles.box}>
-                    {/* Logo */}
-                    <Image source={carImage} style={styles.logo} />
-                    {/* Name */}
-                    <Text style={styles.name}>שטיפת רכב</Text>
-                </View>
-                <View style={styles.box}>
-                    {/* Logo */}
-                    <Image source={carImage} style={styles.logo} />
-                    {/* Name */}
-                    <Text style={styles.name}>שטיפת רכב</Text>
-                </View>
+            showsHorizontalScrollIndicator={false}
+        >   
+             <View style={styles.box}>
+                <Image source={seven} style={styles.Listlogo} />
+                <Text style={styles.name}>שטיפת רכב</Text>
+            </View>
+             <View style={styles.box}>
+                <Image source={six} style={styles.Listlogo} />
+                <Text style={styles.name}> רכב חשמלי</Text>
+            </View>
+            <View style={styles.box}>
+                <Image source={fith} style={styles.Listlogo} />
+                <Text style={styles.name}>צמיגים ופנצריות</Text>
+            </View>
+            <View style={styles.box}>
+                <Image source={forth} style={styles.Listlogo} />
+                <Text style={styles.name}> אביזרים</Text>
+            </View>
+            <View style={styles.box}>
+                <Image source={third} style={styles.Listlogo} />
+                <Text style={styles.name}> זמן שירותי מוסך</Text>
+            </View>
+            {/* Add more list items as needed */}
+            <View style={styles.box}>
+                <Image source={second} style={styles.Listlogo} />
+                <Text style={styles.name}> תקלות בדרך</Text>
+            </View>
+            <View style={styles.box}>
+                <Image source={first} style={styles.Listlogo} />
+                <Text style={styles.name}>צאט עם נציג</Text>
             </View>
         </ScrollView>
     );
 };
+
 const SecondListComponent = () => {
-    const scrollViewRef = useRef(null);
-    const [scrollOffset, setScrollOffset] = useState(200);
-
-    const handleScroll = (event) => {
-        const offsetX = event.nativeEvent.contentOffset.x;
-        setScrollOffset(offsetX);
-    };
-
-    const scrollToOffset = (offset) => {
-        if (scrollViewRef.current) {
-            scrollViewRef.current.scrollTo({ x: offset, y: 0, animated: true });
-        }
-    };
-
     return (
         <ScrollView
-            ref={scrollViewRef}
-            contentContainerStyle={styles.scrollViewContent}
+            contentContainerStyle={styles.horizontalScrollViewContent}
             horizontal={true}
-            onScroll={handleScroll}
-            scrollEventThrottle={16} // Adjust the throttle value as needed
+            showsHorizontalScrollIndicator={false}
         >
-            <View style={styles.SboxContainer}>
-                {/* Your list items */}
-                <View style={styles.Sbox}>
-                    {/* Logo */}
-                    <Image source={carImage} style={styles.logo} />
-                    {/* Name */}
-                    <Text style={styles.name}>כותרת הודעה / קמפיין</Text>
-                </View>
-                {/* Add more list items */}
-                <View style={styles.Sbox}>
-                    {/* Logo */}
-                    <Image source={carImage} style={styles.logo} />
-                    {/* Name */}
-                    <Text style={styles.name}>כותרת הודעה / קמפיין</Text>
-                </View>
-                <View style={styles.Sbox}>
-                    {/* Logo */}
-                    <Image source={carImage} style={styles.logo} />
-                    {/* Name */}
-                    <Text style={styles.name}>כותרת הודעה / קמפיין</Text>
-                </View>
-                <View style={styles.Sbox}>
-                    {/* Logo */}
-                    <Image source={carImage} style={styles.logo} />
-                    {/* Name */}
-                    <Text style={styles.name}> כותרת הודעה / קמפיין</Text>
-                </View>
-                <View style={styles.Sbox}>
-                    {/* Logo */}
-                    <Image source={carImage} style={styles.logo} />
-                    {/* Name */}
-                    <Text style={styles.name}>כותרת הודעה / קמפיין</Text>
-                </View>
-                <View style={styles.Sbox}>
-                    {/* Logo */}
-                    <Image source={carImage} style={styles.logo} />
-                    {/* Name */}
-                    <Text style={styles.name}>כותרת הודעה / קמפיין</Text>
-                </View>
-                <View style={styles.Sbox}>
-                    {/* Logo */}
-                    <Image source={carImage} style={styles.logo} />
-                    {/* Name */}
-                    <Text style={styles.name}>כותרת הודעה / קמפיין</Text>
-                </View>
+            <View style={styles.Sbox}>
+            <Text style={styles.Secondname}>כותרת הודעה / קמפיין</Text>
+                <Image source={Rental} style={styles.SecondListlogo} />
+               
+            </View>
+            <View style={styles.Sbox}>
+            <Text style={styles.Secondname}>כותרת הודעה / קמפיין</Text>
+                <Image source={Rental} style={styles.SecondListlogo} />
+                
+            </View>
+            <View style={styles.Sbox}>
+            <Text style={styles.Secondname}>כותרת הודעה / קמפיין</Text>
+                <Image source={Rental} style={styles.SecondListlogo} />
+                
+            </View>
+            {/* Add more list items as needed */}
+            <View style={styles.Sbox}>
+            <Text style={styles.Secondname}>כותרת הודעה / קמפיין</Text>
+                <Image source={Rental} style={styles.SecondListlogo} />
+                
+            </View>
+            <View style={styles.Sbox}>
+            <Text style={styles.Secondname}>כותרת הודעה / קמפיין</Text>
+                <Image source={Rental} style={styles.SecondListlogo} />
+                
+            </View>
+            <View style={styles.Sbox}>
+            <Text style={styles.Secondname}>כותרת הודעה / קמפיין</Text>
+                <Image source={Rental} style={styles.SecondListlogo} />
+                
             </View>
         </ScrollView>
     );
 };
+
 const HomePage = () => {
     return (
-       
-        <ImageBackground source={backgroundShape} style={styles.backgroundImage}>
-            <View style={styles.container}>
-                {/* Side Menu Button */}
-                <View style={styles.sideMenuButton}>
-                    <Image source={require('../../assets/images/menu.png')} style={{ width: 24, height: 24 }} />
-                </View>
-                {/* Wrapper */}
-                <View style={styles.wrapper}>
-                    <View style={styles.textContainer}>
-                        <Text style={styles.text1}>קבלת שירות</Text>
-                        <Text style={styles.text2}>בחרו שירות לרכב שלכם</Text>
+        <ScrollView contentContainerStyle={styles.scrollViewContent}>
+                <ImageBackground source={backgroundShape} style={styles.backgroundImage}>
+                    <View style={styles.sideMenuButton}>
+                        <Image source={require('../../assets/images/menu.png')} style={{ width: 24, height: 24 }} />
                     </View>
-                    {/* ImageBackground */}
-                    <Image source={carImage} style={styles.carImage} />
-                    <ImageBackground
-                        source={backgroundShape1}
-                        style={[styles.backgroundShape1]}
-                    />
-                    {/* Render the list component */}
-                    <ListComponent />
-                    {/* Render the dashed line */}
-                    <DashedLine />
-                    {/* Add container with text */}
-                    <View style={styles.bottomContainer}>
-                        <Text style={styles.bottomText}>עדכונים וחדשות</Text>
+                    <View style={styles.wrapper}>
+                        <View style={styles.textContainer}>
+                            <Text style={styles.text1}>קבלת שירות</Text>
+                            <Text style={styles.text2}>בחרו שירות לרכב שלכם</Text>
+                        </View>
+                        <Image source={carImage} style={styles.carImage} />
+                        <ImageBackground source={backgroundShape1} style={styles.backgroundShape1} />
+                        <ListComponent />
+                        <DashedLine />
+                        <View style={styles.bottomContainer}>
+                            <Text style={styles.bottomText}>עדכונים וחדשות</Text>
+                        </View>
+                        <SecondListComponent />
+                        <DashedLine />
+                        <View style={styles.SbottomContainer}>
+                            <Text style={styles.SbottomText}> השאלת רכבים</Text>
+                            <Image source={carImage} style={styles.carImage} />
+                        </View>
+                        <DashedLine />
+                        <View style={styles.SbottomContainer}>
+                            <Text style={styles.SbottomText}>  תאונות וחירום</Text>
+                            <Image source={carImage} style={styles.carImage} />
+                        </View>
+                        <Image source={sunImage} style={styles.sun} />
                     </View>
-                    <SecondListComponent />
-                    <DashedLine />
-                    
-                </View>
-            </View>
-        </ImageBackground>
-       
+                </ImageBackground>
+        </ScrollView>
     );
 };
 
@@ -200,129 +143,159 @@ const styles = StyleSheet.create({
     scrollViewContent: {
         flexGrow: 1,
     },
+    horizontalScrollViewContent: {
+        flexDirection: 'row',
+    },
     backgroundImage: {
         flex: 1,
         resizeMode: 'cover',
-        position: 'fixed', // Set the position to fixed
-    },
-    container: {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
     },
     wrapper: {
         width: '100%',
+        height:'100%',
         alignItems: 'center',
+        
     },
     sideMenuButton: {
         position: 'absolute',
-        top: 0,
-        right: 0,
-        padding: 10,
+        right: 20,
+        top: 20,
     },
     textContainer: {
-        position: 'absolute',
-        top: '40%', // Move the text container closer to the top
-        right: 10,
-        alignItems: 'flex-end',
+        width: '100%',
+        top: 370,
+        right: 20,     
     },
     text1: {
-        fontSize: 20,
-        fontWeight: 'bold',
-        fontFamily: 'Arial',
         fontSize: 26,
+        fontWeight: 'bold',
     },
     text2: {
         fontSize: 16,
         fontStyle: 'italic',
     },
     backgroundShape1: {
-        position: 'absolute', // Move the background image to the top
-        width: '70%', // Reduce the width of the background image
+        width: '70%',
         aspectRatio: 1,
-        overflow: 'hidden',
-        justifyContent: 'center',
+        justifyContent: 'flex-start',
         alignItems: 'center',
-        bottom: 330,
-        right: 150,
-    },
-    carImage: {
-        width: '25%', // Adjust the width of the car image
-        height: '25%', // Adjust the height of the car image
-        resizeMode: 'contain',
-        alignSelf: 'center', // Center the image horizontally
-        marginTop: -40, // Move the image 20 units upward (adjust as needed)
+        marginRight: 290,
 
     },
+    carImage: {
+        width: 150,
+        height: 150,
+        resizeMode: 'contain',
+    },
     SboxContainer: {
-        flexDirection: 'row-reverse',
-        justifyContent: 'flex-end', // Change justifyContent to 'flex-start'
-        marginTop: 0, // Adjust the marginTop to move the list down
-        paddingLeft: 20, // Adjust the paddingLeft to move the list to the left
-        width: '100%', // Adjust the width of the container if needed
-        
+        flexDirection: 'row',
+        paddingLeft: 20,
+
         
     },
     boxContainer: {
-        flexDirection: 'row-reverse',
-        justifyContent: 'flex-end', // Change justifyContent to 'flex-start'
-        marginTop: 200, // Adjust the marginTop to move the list down
-        paddingLeft: 20, // Adjust the paddingLeft to move the list to the left
-        width: '100%', // Adjust the width of the container if needed
-        
-        
+        flexDirection: 'row',
+        paddingLeft: 20,
+        // height:100, 
+       
     },
     box: {
         alignItems: 'center',
         backgroundColor: 'white',
         borderRadius: 10,
-        width: 100, // Adjust the width of the box
-        height: 100, // Adjust the height of the box
-        marginRight: 50, // Adjust this value to create space between boxes
+        width: 190,
+        height: 190,
+        marginRight: 10,
+        justifyContent: 'center',
+        alignItems: 'center',
+        // marginBottom: 20,
     },
     Sbox: {
         alignItems: 'center',
         backgroundColor: 'white',
         borderRadius: 10,
-        width: 200, // Adjust the width of the box
-        height: 100, // Adjust the height of the box
-        marginRight: 50, // Adjust this value to create space between boxes
+        width: 350,
+        height: 350,
+        marginRight: 10,
+        
     },
     logo: {
-        width: 50, // Adjust the width of the logo
-        height: 50, // Adjust the height of the logo
+        width: 50,
+        height: 50,
+        resizeMode: 'contain',
+    },
+    Listlogo: {
+        width: 100,
+        height: 100,
+        resizeMode: 'contain',
+    },
+    SecondListlogo: {
+        width: 300,
+        height: 300,
         resizeMode: 'contain',
     },
     name: {
         marginTop: 5,
         fontSize: 16,
+        fontWeight: 'bold',
+        color:'black',
+    },
+    Secondname: {
+        marginTop: 5,
+        fontSize: 16,
+        width:'100%',
+        fontWeight: 'bold',
+        color:'black',
+       
+
     },
     dashedLineContainer: {
-        width: '100%', // Adjust the width to match the width of the list
+        width: '100%',
         alignItems: 'center',
-        bottom: 15, // Adjust the marginTop to move the dashed line closer to the list
+        marginVertical: 20,
     },
     dashedLine: {
-        width: '100%', // Set the width to 100% to match the container width
+        width: '100%',
         borderBottomWidth: 1,
-        borderBottomColor: '#dashedLineColor', // Adjust color as needed
+        borderBottomColor: '#000',
         borderStyle: 'dashed',
     },
     bottomContainer: {
-        flexDirection: 'row', // Align items in a row
-        justifyContent: 'flex-end', // Align items to the end of the row
-        width: '95%',
-        height: 50, // Adjust the height as needed
-        alignItems: 'center',
-        bottom: 10, // Adjust the marginTop as needed
-        backgroundColor: 'gray', // Adjust the background color as needed
-        borderRadius: 10, // Adjust the border radius as needed
+        width: '100%',
+        alignItems: 'flex-end',
+        padding: 10,
+        backgroundColor: 'gray',
+        borderRadius: 10,
+        marginVertical: 20,
     },
     bottomText: {
         fontSize: 18,
         fontWeight: 'bold',
-        color: 'black', // Adjust the color as needed
-        marginRight: 10, // Add right margin to the text to create space between the text and container edge
+        color: 'black',
+    },
+    SbottomContainer: {
+        width: '95%',
+        alignItems: 'flex-end',
+        padding: 10,
+        backgroundColor: 'white',
+        borderRadius: 10,
+        marginVertical: 20,
+        height: 200,
+        borderRadius: 10,
+        zIndex:1,
+        
+    },
+    SbottomText: {
+        fontSize: 18,
+        fontWeight: 'bold',
+        color: 'black',
+    },
+    sun: {
+        width: 245,
+        height: 245,
+        bottom: 0,
+        left: 0,
+        position: 'absolute',
     },
 });
 
