@@ -4,7 +4,7 @@ import backImage from '../../../assets/back.png';
 import lockImage from '../../../assets/lock.png';
 import LoginInput from '../components/LoginInput';
 import Footer from '../components/Footer';
-import CustomAlert from '../components/CustomAlert';
+import AlertModal from '../components/AlertModal';
 
 const A11Screen = ({ setProgress }) => {
     const [code, setCode] = useState('');
@@ -29,7 +29,7 @@ const A11Screen = ({ setProgress }) => {
         }
 
         console.log('Code:', code);
-        setProgress(1);
+        setProgress(2);
     }, [code]);
 
     return (
@@ -43,7 +43,7 @@ const A11Screen = ({ setProgress }) => {
             </View>
             <Footer handlePress={handleLogin} />
 
-            <CustomAlert
+            <AlertModal
                 isVisible={alertVisible}
                 title={alertTitle}
                 message={alertMessage}

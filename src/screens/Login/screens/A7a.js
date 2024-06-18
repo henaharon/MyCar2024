@@ -6,7 +6,7 @@ import carLogo from '../../../assets/carLogo.png';
 import LoginInput from '../components/LoginInput';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import CustomAlert from '../components/CustomAlert'; 
+import AlertModal from '../components/AlertModal'; 
 
 const A7aScreen = ({setProgress}) => {
     const [phone, setPhone] = useState('');
@@ -58,12 +58,12 @@ const A7aScreen = ({setProgress}) => {
 
     return (
         <View style={styles.container}>
-            <Header image={carLogo} text="להיתחברות לאפליקציות אמדוקס אנא הזינו את מספר הטלפון והמייל שלכם" />
+            <Header bold={false} size={16} image={carLogo} text="להיתחברות לאפליקציות אמדוקס אנא הזינו את מספר הטלפון והמייל שלכם" />
             <LoginInput onlyNumbers={true} text="מספר טלפון" image={phoneImage} val={phone} setVal={handleSetPhone} />
             <LoginInput onlyNumbers={false} text="כתובת מייל" image={mailImage} val={mail} setVal={handleSetMail} />
             <Footer handlePress={handleLogin} />
             
-            <CustomAlert
+            <AlertModal
                 isVisible={alertVisible}
                 title={alertTitle}
                 message={alertMessage}
