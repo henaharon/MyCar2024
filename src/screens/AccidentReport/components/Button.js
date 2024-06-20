@@ -5,17 +5,27 @@ import {
   StyleSheet,
   Text,
   View,
+  Linking,
 } from 'react-native';
 
 import LinearGradient from 'react-native-linear-gradient';
 
-export const Button = ({title,onPress}) => {
+export const Button = ({title,onPress,phoneNumber}) => {
     const [bgColor, setBgColor] = useState('transparent'); 
     const [txtColor, setTxtColor] = useState('black');
     const [brdrColor, setBorderColor] = useState('#e6e6e9');
 
+    const handlePress = () => {
+        if(phoneNumber){
+            Linking.openURL(`tel:${phoneNumber}`)
+        }
+        if(onPress){
+            onPress()
+        }
+    }
+    
     return (
-        <Pressable style={[styles.buttonContainer, {backgroundColor: bgColor, borderColor:brdrColor}]} onPress={onPress}
+        <Pressable style={[styles.buttonContainer, {backgroundColor: bgColor, borderColor:brdrColor}]} onPress={handlePress}
             onPressIn={()=> {
                 setBgColor('#F05C62')
                 setTxtColor('white')

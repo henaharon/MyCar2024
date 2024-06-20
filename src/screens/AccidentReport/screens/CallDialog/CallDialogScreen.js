@@ -14,9 +14,9 @@ const CallDialogScreen = () => {
         <Text style={styles.infoText}>התקשרות מהירה</Text>
         </View>
         <View style={styles.buttonsContainer}>
-        <Button title='משטרה' />
-        <Button title='מד"א' />
-        <Button title='מוקד שירות' />
+        <Button title='משטרה' phoneNumber={100}/>
+        <Button title='מד"א' phoneNumber={101}/>
+        <Button title='מוקד שירות' phoneNumber={1230}/>
         </View>
         <Pressable style={styles.backLink}>
         <Text style={styles.linkText}>סגירה</Text>
