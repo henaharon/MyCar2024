@@ -8,7 +8,6 @@ const AccidentReportIntro = () => {
     <View>
       <View>
         <Header />
-        <Image style={styles.headerImg} source={require('../../assets/i1-assets/elementsPageCoversAccidentReport3x.png')} />
       </View>
       <View>
         <Text>Timer Screen</Text>
@@ -27,11 +26,8 @@ const styles = StyleSheet.create({
   headerContainer: {
 
   },
-  headerImg: {
-    width: '100%',
-    height: windowHeight * 0.3,
-  },
-  bodyContainer: {
 
+  bodyContainer: {
+    width: windowWidth * 0.9,
   },
 });

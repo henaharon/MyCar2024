@@ -1,3 +1,5 @@
+/* eslint-disable prettier/prettier */
+
 import React from 'react';
 import {
   Dimensions,
@@ -11,12 +13,19 @@ import {
 export const Header = () => {
   return (
     <View style={styles.headerContainer}>
-      <Pressable>
-      </Pressable>
-      <View style={styles.headerTextContainer}>
-        <Text style={styles.headerContainerText}>דיווח תאונה</Text>
+      <View style={styles.logoContainer}>
+        <Image
+          style={styles.logo}
+          resizeMode={'contain'}
+          source={require('../assets/icons/logo.png')}
+        />
       </View>
-      <Pressable></Pressable>
+      <Pressable
+        // onPress={() => isAuthorized && setIsAuthorized(false)}
+        style={styles.headerTextContainer}>
+        <Text style={styles.logoText}>{'My Timer'}</Text>
+      </Pressable>
+      <View style={styles.rightContainer} />
     </View>
   );
 };
@@ -29,8 +38,13 @@ const styles = StyleSheet.create({
     height: windowHeight * 0.1,
     flexDirection: 'row',
     alignItems: 'center',
-    borderColor: 'transparent',
-    backgroundColor: 'transparent',
+    elevation: 2,
+    shadowColor: '#000',
+    shadowOffset: {width: 0, height: 1},
+    shadowOpacity: 0.1,
+    shadowRadius: 10,
+    borderColor: 'white',
+    backgroundColor: 'white',
   },
   headerTextContainer: {
     flex: 4,
@@ -42,14 +56,22 @@ const styles = StyleSheet.create({
     borderColor: 'green',
     borderWidth: 1,
   },
-  leftContainer: {
-    flex: 1,
-    borderColor: 'green',
-    borderWidth: 1,
-  },
-  headerContainerText: {
+  logoText: {
     color: 'black',
     fontSize: 35,
     fontWeight: '900',
+  },
+  logo: {
+    width: '100%',
+    height: '100%',
+  },
+  logoContainer: {
+    borderColor: 'green',
+    borderWidth: 1,
+    flex: 1,
+    width: 50,
+    height: 50,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });
