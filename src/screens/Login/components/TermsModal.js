@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, ScrollView, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import Modal from 'react-native-modal';
-import Button from './Button';
+import GradiantButton from './GradiantButton';
 
 const TermsModal = ({ isVisible, title = 'Alert', onClose, onBackdropPress }) => {
     return (
@@ -70,7 +70,7 @@ const TermsModal = ({ isVisible, title = 'Alert', onClose, onBackdropPress }) =>
                     <View style={styles.space} />
                 </ScrollView>
                 <View style={styles.button}>
-                    <Button text='סגור' onPress={onClose} />
+                    <GradiantButton text='סגור' onPress={onClose} />
                 </View>
             </View>
         </Modal>

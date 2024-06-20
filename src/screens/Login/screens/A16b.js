@@ -4,7 +4,7 @@ import exitImage from '../../../assets/exit.png';
 import carLogo from '../../../assets/carLogo.png';
 import Header from '../components/Header';
 import Inputs from '../components/Inputs';
-import Button from '../components/Button';
+import GradiantButton from '../components/GradiantButton';
 
 const A16bScreen = ({ setProgress }) => {
     const [isSecondOptionSelected, setIsSecondOptionSelected] = useState(false);
@@ -30,7 +30,7 @@ const A16bScreen = ({ setProgress }) => {
             <Text style={styles.text}>לפני שנתחיל אנא קראו את תנאי השימוש באפליקציה</Text>
             <Inputs onCheckSecondOption={(isSelected) => setIsSecondOptionSelected(isSelected)} />
             <View style={styles.Button}>
-                <Button text='אישור והמשך' onPress={() => handleEnter()} />
+                <GradiantButton text='אישור והמשך' onPress={() => handleEnter()} />
             </View>
         </View>
     );

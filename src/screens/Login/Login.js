@@ -6,7 +6,7 @@ import A11Screen from './screens/A11';
 import A16bScreen from './screens/A16b';
 
 const Login = () => {
-    const [progress, setProgress] = useState(2);
+    const [progress, setProgress] = useState(0);
 
     const setProgressCallback = useCallback(
         (value) => {

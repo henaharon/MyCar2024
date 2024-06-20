@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, ScrollView, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import Modal from 'react-native-modal';
-import Button from './Button';
+import GradiantButton from './GradiantButton';
 
 const AlertModal = ({ isVisible, title = 'Alert', message = '', onClose, onBackdropPress }) => {
     return (
@@ -10,7 +10,7 @@ const AlertModal = ({ isVisible, title = 'Alert', message = '', onClose, onBackd
                 <ScrollView contentContainerStyle={styles.scrollViewContent}>
                     <Text style={styles.title}>{title}</Text>
                     <Text style={styles.message}>{message}</Text>
-                    <Button text='סגור' onPress={onClose} />
+                    <GradiantButton text='סגור' onPress={onClose} />
                 </ScrollView>
             </View>
         </Modal>
