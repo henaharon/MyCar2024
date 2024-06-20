@@ -1,16 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import { Dimensions, StyleSheet, Text, View } from 'react-native';
+import { Dimensions, StyleSheet, Text, View, Image } from 'react-native';
 import { Header } from './components/Header';
 
 const AccidentReportIntro = () => {
-
-
 
   return (
     <View>
       <View>
         <Header />
-        <Image style={styles.headerImg} source={require('../assets/i1-assets/elementsPageCoversAccidentReport3x.png')} />
+        <Image style={styles.headerImg} source={require('../../assets/i1-assets/elementsPageCoversAccidentReport3x.png')} />
       </View>
       <View>
         <Text>Timer Screen</Text>
@@ -20,9 +18,10 @@ const AccidentReportIntro = () => {
   );
 };
 
-export default TimerScreen;
+export default AccidentReportIntro;
 
 const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
 
 const styles = StyleSheet.create({
   headerContainer: {
@@ -30,7 +29,7 @@ const styles = StyleSheet.create({
   },
   headerImg: {
     width: '100%',
-    height: '100%',
+    height: windowHeight * 0.3,
   },
   bodyContainer: {
 

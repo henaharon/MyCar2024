@@ -1,12 +1,12 @@
 import React from 'react';
 
 import {BaseView} from './src/uiKit/BaseView';
-import TimerScreen from './src/screens/Timer/TimerScreen';
+import AccidentReportIntro from './src/screens/AccidentReport/AccidentReportIntro';
 
 function App(): React.JSX.Element {
   return (
     <BaseView>
-      <TimerScreen />
+      <AccidentReportIntro />
     </BaseView>
   );
 }
