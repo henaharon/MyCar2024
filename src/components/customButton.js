@@ -1,10 +1,10 @@
 import React from "react";
-import { TouchableOpacity, Text, StyleSheet } from "react-native";
+import { TouchableOpacity, Text, View, Image, StyleSheet } from "react-native";
 
-const CustomButton = ({ onPress, title, buttonStyle, textStyle }) => {
+const CustomButton = ({ onPress, children, buttonStyle, textStyle }) => {
     return (
         <TouchableOpacity onPress={onPress} style={[styles.button, buttonStyle]}>
-            <Text style={[styles.buttonText, textStyle]}>{title}</Text>
+            {children}
         </TouchableOpacity>
     );
 };
@@ -15,10 +15,8 @@ const styles = StyleSheet.create({
         paddingVertical: 10,
         paddingHorizontal: 20,
         alignItems: 'center',
-    },
-    buttonText: {
-        fontSize: 16,
-        fontWeight: 'bold',
+        flexDirection: 'row',
+        backgroundColor: '#fff',
     },
 });
 
