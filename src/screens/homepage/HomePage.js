@@ -144,6 +144,11 @@ const HomePage = () => {
     );
 };
 
+import { Dimensions} from 'react-native';
+
+const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
+
 const styles = StyleSheet.create({
     scrollViewContent: {
         flexGrow: 1,
@@ -157,9 +162,8 @@ const styles = StyleSheet.create({
     },
     wrapper: {
         width: '100%',
-        height:'100%',
+        height: '100%',
         alignItems: 'center',
-        
     },
     sideMenuButton: {
         position: 'absolute',
@@ -169,7 +173,7 @@ const styles = StyleSheet.create({
     textContainer: {
         width: '100%',
         top: 370,
-        right: 20,     
+        right: 20,
     },
     text1: {
         fontSize: 26,
@@ -185,7 +189,6 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-start',
         alignItems: 'center',
         marginRight: 290,
-
     },
     carImage: {
         width: 150,
@@ -195,25 +198,20 @@ const styles = StyleSheet.create({
     SboxContainer: {
         flexDirection: 'row',
         paddingLeft: 20,
-
-        
     },
     boxContainer: {
         flexDirection: 'row',
         paddingLeft: 20,
-        // height:100, 
-       
     },
     box: {
         alignItems: 'center',
         backgroundColor: 'white',
         borderRadius: 10,
-        width: 190,
-        height: 190,
+        width: 0.4 * windowWidth, // Responsive width
+        height: 0.4 * windowWidth, // Responsive height
         marginRight: 10,
         justifyContent: 'center',
-        alignItems: 'center',
-        // marginBottom: 20,
+
     },
     Sbox: {
         alignItems: 'center',
@@ -222,7 +220,6 @@ const styles = StyleSheet.create({
         width: 350,
         height: 350,
         marginRight: 10,
-        
     },
     logo: {
         width: 50,
@@ -243,17 +240,15 @@ const styles = StyleSheet.create({
         marginTop: 5,
         fontSize: 16,
         fontWeight: 'bold',
-        color:'black',
+        color: 'black',
     },
     Secondname: {
         marginTop: 5,
         fontSize: 16,
-        width:'100%',
+        width: '100%',
         fontWeight: 'bold',
-        color:'black',
+        color: 'black',
         marginRight: 10,
-       
-
     },
     dashedLineContainer: {
         width: '100%',
@@ -278,7 +273,7 @@ const styles = StyleSheet.create({
         fontSize: 18,
         fontWeight: 'bold',
         color: 'black',
-        marginright: 10,
+        marginRight: 10,
     },
     SbottomContainer: {
         width: '95%',
@@ -304,7 +299,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         color: 'black',
         alignSelf: 'flex-end',
-        marginTop: -40,   
+        marginTop: -40,
     },
     sun: {
         width: 245,
@@ -319,8 +314,6 @@ const styles = StyleSheet.create({
         resizeMode: 'contain',
         alignSelf: 'center',
         bottom: 30,
-        
     },
 });
-
 export default HomePage;
