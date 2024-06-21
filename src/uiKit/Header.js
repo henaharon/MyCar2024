@@ -1,75 +1,53 @@
-import React from 'react';
-import {
-  Dimensions,
-  Image,
-  Pressable,
-  StyleSheet,
-  Text,
-  View,
-} from 'react-native';
+import React from "react";
+import { View, Text, TouchableOpacity, StyleSheet, Image } from "react-native";
+import CustomButton from "../components/customButton";
+import exitIcon from "../assets/icons/componentsNavBarXButtonsRoundedWhiteAlpha@3x.png"
 
-export const Header = () => {
+const Header = ({ title }) => {
   return (
     <View style={styles.headerContainer}>
-      <View style={styles.logoContainer}>
-        <Image
-          style={styles.logo}
-          resizeMode={'contain'}
-          source={require('../assets/icons/logo.png')}
-        />
-      </View>
-      <Pressable
-        // onPress={() => isAuthorized && setIsAuthorized(false)}
-        style={styles.headerTextContainer}>
-        <Text style={styles.logoText}>{'My Timer'}</Text>
-      </Pressable>
-      <View style={styles.rightContainer} />
+      <CustomButton 
+        onPress={ () => {}}
+        title="שמירה"
+        buttonStyle={styles.saveButton}
+        textStyle={styles.saveButtonText}/>
+      <Text stlye={styles.title}>הפרופיל שלי</Text>
+      <TouchableOpacity onPress={() => {}} style={styles.exitButton}>
+        <Image 
+        source={exitIcon}
+        style={styles.exitIcon} />
+      </TouchableOpacity>
     </View>
   );
 };
 
-const windowHeight = Dimensions.get('window').height;
-
 const styles = StyleSheet.create({
   headerContainer: {
-    width: '100%',
-    height: windowHeight * 0.1,
-    flexDirection: 'row',
-    alignItems: 'center',
-    elevation: 2,
-    shadowColor: '#000',
-    shadowOffset: {width: 0, height: 1},
-    shadowOpacity: 0.1,
-    shadowRadius: 10,
-    borderColor: 'white',
-    backgroundColor: 'white',
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    padding: 16,
+    backgroundColor: "#ff7979",
   },
-  headerTextContainer: {
-    flex: 4,
-    alignItems: 'center',
-    justifyContent: 'center',
+  title: {
+    color: '#fff',
+    fontSize: 18,
+    fontWeight: 'bold',
   },
-  rightContainer: {
-    flex: 1,
-    borderColor: 'green',
-    borderWidth: 1,
+  saveButton: {
+    backgroundColor: '#4a6cf7',
   },
-  logoText: {
-    color: 'black',
-    fontSize: 35,
-    fontWeight: '900',
+  saveButtonText: {
+    color: '#fff',
   },
-  logo: {
-    width: '100%',
-    height: '100%',
+  exitButton: {
+    backgroundColor: 'transparent',
   },
-  logoContainer: {
-    borderColor: 'green',
-    borderWidth: 1,
-    flex: 1,
-    width: 50,
-    height: 50,
-    alignItems: 'center',
-    justifyContent: 'center',
+  exitIcon: {
+    width: 24,
+    height: 24,
   },
 });
+
+export default Header;
+
