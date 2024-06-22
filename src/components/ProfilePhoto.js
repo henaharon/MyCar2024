@@ -2,13 +2,11 @@ import React, { useState } from "react";
 import { View, Image, TouchableOpacity, Text, StyleSheet, Modal, TouchableWithoutFeedback } from 'react-native';
 import { launchCamera, launchImageLibrary } from 'react-native-image-picker';
 import Icon from 'react-native-vector-icons/FontAwesome'; // Import FontAwesome
-import defaultAvatar from '../assets/icons/defaultavatar.png';
 import LightboxModal2 from "./LightboxModal2";
 
-const ProfilePhoto = () => {
+const ProfilePhoto = ({ setIsDirty, formData }) => {
     const [isModalVisible, setModalVisible] = useState(false);
-    const [profilePhoto, setProfilePhoto] = useState(defaultAvatar);
-
+    // const [profilePhoto, setProfilePhoto] = useState(formData.profilePicture || defaultAvatar);
     const toggleModal = () => {
         setModalVisible(!isModalVisible);
     };
@@ -19,7 +17,9 @@ const ProfilePhoto = () => {
         };
         launchImageLibrary(options, response => {
             if (response.uri) {
-                setProfilePhoto({ uri: response.uri });
+                // setProfilePhoto({ uri: response.uri });
+                formData.profilePicture = { uri: response.uri };
+                setIsDirty(true); // Notify parent component
                 toggleModal();
             }
         });
@@ -31,13 +31,17 @@ const ProfilePhoto = () => {
         };
         launchCamera(options, response => {
             if (response.assets && response.assets.length > 0) {
-                setProfilePhoto({ uri: response.assets[0].uri });
+                // setProfilePhoto({ uri: response.assets[0].uri });
+                formData.profilePicture = { uri: response.assets[0].uri };
+                setIsDirty(true); // Notify parent component
                 toggleModal();
             }
         });
     };
     const removePhoto = () => {
-        setProfilePhoto(defaultAvatar);
+        // setProfilePhoto(defaultAvatar);
+        formData.profilePicture = null;
+        setIsDirty(true); // Notify parent component
         toggleModal();
     };
 
@@ -79,7 +83,7 @@ const ProfilePhoto = () => {
     return (
         <View style={styles.photoContainer}>
             <TouchableOpacity onPress={toggleModal}>
-                <Image source={defaultAvatar} style={styles.profilePhoto} />
+                <Image source={formData.profilePicture} style={styles.profilePhoto} />
             </TouchableOpacity>
             <TouchableOpacity style={styles.cameraButton} onPress={toggleModal}>
                 <Icon name="photo" size={18} color="#fff" />
@@ -111,8 +115,8 @@ const styles = StyleSheet.create({
     cameraButton: {
         position: 'absolute',
         left: '33%',
-        backgroundColor: 'blue',
-        borderRadius: 8,
+        backgroundColor: '#4c54f4',
+        borderRadius: 12,
         width: 48,
         height: 48,
         justifyContent: 'center',

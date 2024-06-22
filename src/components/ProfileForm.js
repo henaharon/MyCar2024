@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, TextInput, Button, StyleSheet, Image } from "react-native";
+import { View, Text, TextInput, Button, Modal, StyleSheet, Image, ScrollView, TouchableWithoutFeedback } from "react-native";
 import { launchCamera, launchImageLibrary } from 'react-native-image-picker';
 import DocumentPicker from 'react-native-document-picker';
 import Divider from "./Divider";
@@ -11,24 +11,39 @@ import logoutIcon from "../assets/icons/logouticon.png";
 import checkmarkicon from "../assets/icons/checkmarkicon.png";
 import Icon from 'react-native-vector-icons/FontAwesome'; // Import FontAwesome
 import viewicon from '../assets/icons/viewicon.png';
+import LicenseTypeButton from "./LicenseTypeButton";
 
-const ProfileForm = ({ formData, onChange, setIsDirty, formIsValid, errors, documentStatus, saveTime }) => {
+const ProfileForm = ({ formData, onChange, setIsDirty, formIsValid, errors, documentStatus, saveTime, exitWithoutSave }) => {
 
-    const [licenseType, setLicenseType] = useState('');
+    const [licenseTypes, setLicenseTypes] = useState(formData.licenseTypes || []);
     const [isModalVisible, setModalVisible] = useState(false);
     const [showUploadDocumentModal, setShowUploadDocumentModal] = useState(false);
     const [showViewDocumentModal, setShowViewDocumentModal] = useState(false);
     const [document, setDocument] = useState(null);
     const [localDocumentStatus, setLocalDocumentStatus] = useState(documentStatus);
+    const [licenseModalVisible, setLicenseModalVisible] = useState(false);
 
     formData.document = document;
     useEffect(() => {
         setLocalDocumentStatus(documentStatus);
     }, [documentStatus]);
 
+    useEffect(() => {
+        setLicenseTypes(formData.licenseTypes || []);
+    }, [formData.licenseTypes]);
+
     const handleInputChange = (field, value) => {
         onChange(field, value);
         setIsDirty(true);   // Notify parent component that form is dirty
+    };
+
+    const handleLicenseTypePress = (type, isSelected) => {
+        const updatedLicenseTypes = isSelected
+            ? [...licenseTypes, type]
+            : licenseTypes.filter(licenseType => licenseType !== type);
+
+        setLicenseTypes(updatedLicenseTypes);
+        handleInputChange('licenseTypes', updatedLicenseTypes);
     };
 
     const toggleModal = () => {
@@ -165,6 +180,10 @@ const ProfileForm = ({ formData, onChange, setIsDirty, formIsValid, errors, docu
         },
     ];
 
+    toggleLicenseModal = () => {
+        setLicenseModalVisible(!licenseModalVisible);
+    }
+
 
     return (
         <View style={styles.formContainer}>
@@ -265,13 +284,9 @@ const ProfileForm = ({ formData, onChange, setIsDirty, formIsValid, errors, docu
             {errors.licenseExpiry && <Text style={styles.errorsText}>{errors.licenseExpiry}</Text>}
             <View style={styles.fieldSet}>
                 <Text style={styles.legend}>סוג רישיון נהיגה</Text>
-                <TextInput
-                    style={styles.input}
-                    value={licenseType}
-                    onChangeText={setLicenseType}
-                    placeholder=""
-                />
+                <Text style={styles.licenseTypeText} onPress={toggleLicenseModal}>{formData.licenseTypes.join(' ')}</Text>
             </View>
+            {errors.licenseTypes && <Text style={styles.errorsText}>{errors.licenseTypes}</Text>}
             {formIsValid ? (
                 <View style={styles.validationLabel}>
                     <Text style={styles.validationText}>פרטים נשמרו בהצלחה</Text>
@@ -319,8 +334,8 @@ const ProfileForm = ({ formData, onChange, setIsDirty, formIsValid, errors, docu
                     {
                         name: "התנתק",
                         onPress: () => {
-                            // add logout logic
                             toggleModal();
+                            exitWithoutSave();
                         },
                         backgroundColor: "red",
 
@@ -343,7 +358,36 @@ const ProfileForm = ({ formData, onChange, setIsDirty, formIsValid, errors, docu
                 title="העתק רישיון נהיגה"
                 buttons={modalButtonsSaved}
             />
-        </View>
+            {/* license type modal */}
+            <Modal
+                transparent={true}
+                visible={licenseModalVisible}
+                onRequestClose={toggleLicenseModal}
+                animationType={'none'}
+            >
+                <TouchableWithoutFeedback onPress={toggleLicenseModal}>
+                    <View style={styles.modalOverlay}>
+                        <TouchableWithoutFeedback>
+                            <View style={styles.modalContent}>
+                                <Text style={styles.modalTitle}>סוג רישיון נהיגה</Text>
+                                <Text style={styles.modalText}>בחרו את סוג רשיון הנהיגה שברשותכם</Text>
+                                <ScrollView justifyContent='flex-end' horizontal={true} style={styles.licenseButtonContainer}>
+                                    <LicenseTypeButton text="D" isSelected={licenseTypes.includes("D")} onPress={handleLicenseTypePress} />
+                                    <LicenseTypeButton text="D1" isSelected={licenseTypes.includes("D1")} onPress={handleLicenseTypePress} />
+                                    <LicenseTypeButton text="C" isSelected={licenseTypes.includes("C")} onPress={handleLicenseTypePress} />
+                                    <LicenseTypeButton text="C1" isSelected={licenseTypes.includes("C1")} onPress={handleLicenseTypePress} />
+                                    <LicenseTypeButton text="B" isSelected={licenseTypes.includes("B")} onPress={handleLicenseTypePress} />
+                                    <LicenseTypeButton text="B1" isSelected={licenseTypes.includes("B1")} onPress={handleLicenseTypePress} />
+                                    <LicenseTypeButton text="A" isSelected={licenseTypes.includes("A")} onPress={handleLicenseTypePress} />
+                                    <LicenseTypeButton text="A1" isSelected={licenseTypes.includes("A1")} onPress={handleLicenseTypePress} />
+                                    <LicenseTypeButton text="A2" isSelected={licenseTypes.includes("A2")} onPress={handleLicenseTypePress} />
+                                </ScrollView>
+                            </View>
+                        </TouchableWithoutFeedback>
+                    </View>
+                </TouchableWithoutFeedback>
+            </Modal >
+        </View >
     );
 };
 
@@ -382,6 +426,13 @@ const styles = StyleSheet.create({
         top: -10,
         right: 10,
         backgroundColor: '#FFFFFF',
+        color: 'black',
+    },
+    licenseTypeText: {
+        textAlign: 'right',
+        marginTop: 16,
+        width: '100%',
+        paddingHorizontal: 8,
         color: 'black',
     },
     buttonContainer: {
@@ -471,6 +522,35 @@ const styles = StyleSheet.create({
     },
     documentErrorText: {
         color: 'red',
+    },
+    modalOverlay: {
+        flex: 1,
+        justifyContent: 'flex-end',
+        backgroundColor: 'rgba(0,0,0,0.5)',
+        animationType: '',
+    },
+    modalContent: {
+        width: '100%',
+        backgroundColor: '#fff',
+        padding: 24,
+        borderTopLeftRadius: 40,
+        borderTopRightRadius: 40,
+        animationType: 'slide',
+    },
+    modalTitle: {
+        fontSize: 20,
+        fontWeight: 'bold',
+        color: 'black',
+    },
+    modalText: {
+        fontSize: 18,
+        color: 'gray',
+        textAlign: 'right',
+        marginBottom: 16,
+    },
+    licenseButtonContainer: {
+        width: '100%',
+        flexDirection: 'row-reverse',
     },
 });
 

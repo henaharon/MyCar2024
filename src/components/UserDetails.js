@@ -1,11 +1,11 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 
-const UserDetails = () => {
+const UserDetails = ( { formData }) => {
     return (
             <View style={styles.container}>
-                <Text style={styles.name}>אביב שרון</Text>
-                <Text style={styles.id}>מספר עובד: 537 221</Text>
+                <Text style={styles.name}>{(formData.name ? formData.name : 'אביב')} {(formData.surname ? formData.surname : 'שרון')}</Text>
+                <Text style={styles.id}>מספר עובד: {formData.idNumber ? formData.idNumber : '221 537'}</Text>
             </View>
     );
 };

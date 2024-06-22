@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     paddingHorizontal: 16,
-    paddingVertical: 32,
+    paddingTop: 16,
   },
   buttonContainer: {
     width:120,
@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
     zIndex: 1,
   },
   saveButton: {
-    backgroundColor: 'blue',
+    backgroundColor: '#4c54f4',
     paddingVertical: 12,
     paddingHorizontal: 32,
     borderRadius: 20,

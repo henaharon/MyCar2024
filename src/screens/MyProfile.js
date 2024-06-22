@@ -6,6 +6,7 @@ import ProfilePhoto from '../components/ProfilePhoto';
 import ProfileForm from '../components/ProfileForm';
 import UserDetails from '../components/UserDetails';
 import LightboxModal from "../components/LightboxModal";
+import defaultAvatar from '../assets/icons/defaultavatar.png';
 
 const MyProfile = () => {
     const initialFormData = {
@@ -17,8 +18,9 @@ const MyProfile = () => {
         phone: '',
         licenseNumber: '',
         licenseExpiry: '',
-        licenseType: '',
+        licenseTypes: [],
         document: null,
+        profilePicture: defaultAvatar,
     };
 
     const [isDirty, setIsDirty] = useState(false);
@@ -29,8 +31,18 @@ const MyProfile = () => {
     const [documentStatus, setDocumentStatus] = useState('noDocument');
     const [saveTime, setSaveTime] = useState(null);
 
+    formData.profilePicture = formData.profilePicture || defaultAvatar;
+
     useEffect(() => {
-        const dirty = Object.keys(formData).some(key => formData[key] !== '');
+        const dirty = Object.keys(formData).some(key => {
+            if(formData[key] !== initialFormData[key]) {
+                return true;
+            }
+            if(key === 'profilePicture' && formData[key] !== defaultAvatar) {
+                return true;
+            }
+            return false;
+        });
         setIsDirty(dirty);
     }, [formData]);
 
@@ -119,6 +131,12 @@ const MyProfile = () => {
             newErrors.licenseExpiry = 'פורמט רישיון לא תקין (DD.MM.YYYY)';
         }
 
+        // License type validation
+        licenseTypes = ['A', 'A1', 'A2', 'B', 'B1', 'C', 'C1', 'D', 'D1']
+        if (!formData.licenseTypes.some(type => licenseTypes.includes(type))) {
+            newErrors.licenseTypes = 'נדרש לבחור לפחות סוג רישיון אחד';
+        }
+
         if (formData.document === null) {
             newErrors.document = '*הוסף צילום ';
         }
@@ -136,14 +154,24 @@ const MyProfile = () => {
         setFormData({ ...formData, [field]: value });
     };
 
+    exitWithoutSave = () => {
+        setShowExitConfirmation(false);
+        setFormData(initialFormData);
+        setErrors({});
+    }
 
     return (
         <ScrollView contentContainerStyle={styles.scrollViewContent}>
             <View style={styles.container}>
                 <LinearGradient start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} colors={['#e40c78', '#f05464']}>
                     <Header isDirty={isDirty} onSave={handleSave} onExit={handleExit} />
-                    <ProfilePhoto />
-                    <UserDetails />
+                    <ProfilePhoto 
+                    setIsDirty={setIsDirty}
+                    formData={formData}
+                    />
+                    <UserDetails 
+                    formData={formData}
+                    />
                     <ProfileForm
                         formData={formData}
                         onChange={handleFormChange}
@@ -152,6 +180,7 @@ const MyProfile = () => {
                         errors={errors}
                         documentStatus={documentStatus}
                         saveTime={saveTime}
+                        exitWithoutSave={exitWithoutSave}
                     />
                     <LightboxModal
                         visible={showExitConfirmation}
@@ -170,8 +199,8 @@ const MyProfile = () => {
                             {
                                 name: "חזרה, ללא שמירה",
                                 backgroundColor: "#fff",
-                                onPress: closeModal,
-                                // implement exit logic without saving
+                                onPress: exitWithoutSave,
+                                
                             },
                         ]}
                     />
