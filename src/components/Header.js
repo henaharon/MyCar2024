@@ -4,48 +4,30 @@ import CustomButton from "./customButton";
 import exitButton from "../assets/icons/exiticon.png"
 import LightboxModal from "./LightboxModal";
 
-const Header = ({ title }) => {
-  const [isModalVisible, setModalVisible] = useState(false);
-
-  const toggleModal = () => {
-    setModalVisible(!isModalVisible);
+const Header = ({ onSave, onExit, isDirty }) => {
+  const [showModal, setShowModal] = useState(false);
+  
+  const handleExit = () => {
+      onExit();
+  };
+  
+  const closeModal = () => {
+    setShowModal(false);
   };
 
   return (
     <View style={styles.headerContainer}>
-      <CustomButton
-        onPress={() => { }}
-        title="שמירה"
-        buttonStyle={styles.saveButton}
-        textStyle={styles.saveButtonText} />
-      <Text style={styles.title}>פרופיל שלי</Text>
-      <TouchableOpacity onPress={toggleModal} style={styles.exitButton}>
-        <Image
-          source={exitButton}
-          style={styles.exitIcon} />
+      <TouchableOpacity style={[styles.button, styles.saveButton]} onPress={onSave}>
+        <Text style={styles.saveButtonText}>שמירה</Text>
       </TouchableOpacity>
-
-      <LightboxModal
-        visible={isModalVisible}
-        onClose={toggleModal}
-        title="שמירה"
-        text="האם ברצונך לשמור את השינויים שנעשו בפרופיל האישי?"
-        buttons={[
-          {
-            name: "שמור שינויים",
-            onPress: () => {
-              // add save logic
-              toggleModal();
-            },
-            gradient: true,
-          },
-          {
-            name: "חזרה, ללא שמירה",
-            backgroundColor: "#fff",
-            onPress: toggleModal,
-          },
-        ]}
-      />
+      <Text style={styles.title}>פרופיל שלי</Text>
+      <View style={styles.buttonContainer}>
+        <TouchableOpacity onPress={handleExit} style={[styles.button, styles.exitButton]}>
+          <Image
+            source={exitButton}
+            style={styles.exitIcon} />
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };
@@ -56,7 +38,11 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     paddingHorizontal: 16,
-    paddingTop: 32,
+    paddingVertical: 32,
+  },
+  buttonContainer: {
+    width:120,
+    alignItems: "flex-end",
   },
   title: {
     color: '#fff',
@@ -64,12 +50,19 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     flex: 1,
   },
+  button: {
+    zIndex: 1,
+  },
   saveButton: {
-    backgroundColor: '#4a6cf7',
-
+    backgroundColor: 'blue',
+    paddingVertical: 12,
+    paddingHorizontal: 32,
+    borderRadius: 20,
   },
   saveButtonText: {
     color: '#fff',
+    fontSize: 16,
+    fontWeight: 'bold',
   },
   exitButton: {
     backgroundColor: 'transparent',

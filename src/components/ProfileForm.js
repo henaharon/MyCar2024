@@ -1,26 +1,171 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { View, Text, TextInput, Button, StyleSheet, Image } from "react-native";
+import { launchCamera, launchImageLibrary } from 'react-native-image-picker';
+import DocumentPicker from 'react-native-document-picker';
 import Divider from "./Divider";
+import LightboxModal from "./LightboxModal";
+import LightboxModal2 from "./LightboxModal2";
 import CustomButton from "./customButton";
 import documentIcon from "../assets/icons/documenticon.png";
-import licenseStatusIcon from "../assets/icons/checkmarkicon.png";
+import logoutIcon from "../assets/icons/logouticon.png";
+import checkmarkicon from "../assets/icons/checkmarkicon.png";
+import Icon from 'react-native-vector-icons/FontAwesome'; // Import FontAwesome
+import viewicon from '../assets/icons/viewicon.png';
 
-const ProfileForm = () => {
-    const [name, setName] = useState('');
-    const [surname, setSurname] = useState('');
-    const [idNumber, setIdNumber] = useState('');
-    const [dob, setDob] = useState('');
-    const [email, setEmail] = useState('');
-    const [phone, setPhone] = useState('');
-    const [licenseNumber, setLicenseNumber] = useState('');
-    const [licenseExpiry, setLicenseExpiry] = useState('');
+const ProfileForm = ({ formData, onChange, setIsDirty, formIsValid, errors, documentStatus, saveTime }) => {
+
     const [licenseType, setLicenseType] = useState('');
+    const [isModalVisible, setModalVisible] = useState(false);
+    const [showUploadDocumentModal, setShowUploadDocumentModal] = useState(false);
+    const [showViewDocumentModal, setShowViewDocumentModal] = useState(false);
+    const [document, setDocument] = useState(null);
+    const [localDocumentStatus, setLocalDocumentStatus] = useState(documentStatus);
 
-    const saveProfile = () => {
-        // add save logic
+    formData.document = document;
+    useEffect(() => {
+        setLocalDocumentStatus(documentStatus);
+    }, [documentStatus]);
+
+    const handleInputChange = (field, value) => {
+        onChange(field, value);
+        setIsDirty(true);   // Notify parent component that form is dirty
     };
 
-    var bottomButtonText = 'עודכן 20.06.2020';
+    const toggleModal = () => {
+        setModalVisible(!isModalVisible);
+    };
+
+    let documentIconComponent = <Icon name="plus-circle" size={32} color='red' style={styles.leftIcon} />; // Default icon
+    let bottomButtonText = 'הוסף צילום';
+    bottomButtonTextValidStyle = {};
+    bottomButtonTextInvalidStyle = { color: 'black' };
+
+
+
+    if (documentStatus === 'unsavedDocument' || documentStatus === 'noDocument' || errors.document) {
+        documentIconComponent = <Icon name="plus-circle" size={32} color='pink' style={styles.leftIcon} />; // Default icon;
+        bottomButtonText = 'הוסף צילום';
+    }
+    else if (documentStatus === 'savedDocument' || documentStatus === 'initialSavedDocument') {
+        documentIconComponent = <Image source={checkmarkicon} style={styles.leftIcon} />;
+        bottomButtonText = 'עודכן ' + saveTime.toLocaleString();
+        bottomButtonTextValidStyle = { color: 'green' };
+    }
+
+    const toggleDocumentModal = () => {
+        if (localDocumentStatus === 'noDocument') {
+            setShowUploadDocumentModal(!showUploadDocumentModal);
+
+        } else {
+            setShowViewDocumentModal(!showViewDocumentModal);
+        }
+    };
+
+    const choosePhoto = () => {
+        const options = {
+            noData: true,
+        };
+        launchImageLibrary(options, response => {
+            if (response.uri) {
+                setDocument({ uri: response.uri });
+                return true;
+            }
+        });
+        return false;
+    };
+
+    const takePhoto = () => {
+        const options = {
+            noData: true,
+        };
+        launchCamera(options, response => {
+            if (response.assets && response.assets.length > 0) {
+                setDocument({ uri: response.assets[0].uri });
+                return true;
+            }
+        });
+        return false;
+    };
+
+    const handleTakePhoto = () => {
+        if (takePhoto()) {
+            setLocalDocumentStatus('unsavedDocument');
+            setIsDirty(true);
+        }
+        setShowUploadDocumentModal(false);
+    };
+
+    const handleChoosePhoto = () => {
+        if (choosePhoto()) {
+            setLocalDocumentStatus('unsavedDocument');
+            setIsDirty(true);
+        }
+        setShowUploadDocumentModal(false);
+    };
+
+    const handleChooseFile = async () => {
+        try {
+            const res = await DocumentPicker.pick({
+                type: [DocumentPicker.types.images],
+            });
+            setDocument(res);
+            setLocalDocumentStatus('unsavedDocument');
+            setIsDirty(true);
+        } catch (err) {
+            if (DocumentPicker.isCancel(err)) {
+                console.log('User cancelled the picker');
+            } else {
+                console.log(err);
+            }
+        }
+        setShowUploadDocumentModal(false);
+    };
+
+    const handleShowDocument = () => {
+        setShowViewDocumentModal(false);
+    };
+
+    const handleEraseDocument = () => {
+        setDocument(null);
+        setLocalDocumentStatus('noDocument');
+        setIsDirty(true);
+        setShowViewDocumentModal(false);
+    };
+
+    const modalButtonsUnsaved = [
+        {
+            text: 'צלם תמונה',
+            icon: 'camera',
+            onPress: handleTakePhoto,
+        },
+        {
+            text: 'בחר מגלריית תמונות',
+            icon: 'photo',
+            onPress: handleChoosePhoto,
+        },
+        {
+            text: 'בחר מתיקיית קבצים',
+            icon: 'folder-open',
+            onPress: handleChooseFile,
+        },
+    ];
+
+    const modalButtonsSaved = [
+        {
+            text: 'הצגת מסמך',
+            icon: 'eye',
+            onPress: handleShowDocument,
+
+        },
+        {
+            text: 'מחק מסמך',
+            icon: 'trash',
+            onPress: handleEraseDocument,
+            textColor: 'red',
+        },
+    ];
+
+
     return (
         <View style={styles.formContainer}>
             <Text style={styles.subHeader}>פרטים כלליים</Text>
@@ -28,78 +173,96 @@ const ProfileForm = () => {
                 <Text style={styles.legend}>שם פרטי</Text>
                 <TextInput
                     style={styles.input}
-                    value={name}
-                    onChangeText={setName}
+                    value={formData.name}
+                    onChangeText={(value) => handleInputChange('name', value)}
                     placeholder="שלמה"
                 />
             </View>
+            {errors.name && <Text style={styles.errorsText}>{errors.name}</Text>}
             <View style={styles.fieldSet}>
                 <Text style={styles.legend}>שם משפחה</Text>
                 <TextInput
                     style={styles.input}
-                    value={surname}
-                    onChangeText={setSurname}
+                    value={formData.surname}
+                    onChangeText={(value) => handleInputChange('surname', value)}
                     placeholder="ארצי"
                 />
             </View>
+            {errors.surname && <Text style={styles.errorsText}>{errors.surname}</Text>}
             <View style={styles.fieldSet}>
                 <Text style={styles.legend}>מספר עובד</Text>
                 <TextInput
                     style={styles.input}
-                    value={idNumber}
-                    onChangeText={setIdNumber}
+                    value={formData.idNumber}
+                    onChangeText={(value) => handleInputChange('idNumber', value)}
                     placeholder="123456"
                 />
             </View>
+            {errors.idNumber && <Text style={styles.errorsText}>{errors.idNumber}</Text>}
             <View style={styles.fieldSet}>
                 <Text style={styles.legend}>תאריך לידה</Text>
                 <TextInput
                     style={styles.input}
-                    value={dob}
-                    onChangeText={setDob}
+                    value={formData.dob}
+                    onChangeText={(value) => handleInputChange('dob', value)}
                     placeholder="1.1.1990"
                 />
             </View>
+            {formIsValid ? (
+                <View style={styles.validationLabel}>
+                    <Text style={styles.validationText}>פרטים נשמרו בהצלחה</Text>
+                </View>
+            ) : null}
+            {errors.dob && <Text style={styles.errorsText}>{errors.dob}</Text>}
             <Divider />
             <Text style={styles.subHeader}>פרטי התקשורת</Text>
             <View style={styles.fieldSet}>
                 <Text style={styles.legend}>כתובת מייל</Text>
                 <TextInput
                     style={styles.input}
-                    value={email}
-                    onChangeText={setEmail}
+                    value={formData.email}
+                    onChangeText={(value) => handleInputChange('email', value)}
                     placeholder="example@gmail.com"
                 />
             </View>
+            {errors.email && <Text style={styles.errorsText}>{errors.email}</Text>}
             <View style={styles.fieldSet}>
                 <Text style={styles.legend}>טלפון</Text>
                 <TextInput
                     style={styles.input}
-                    value={phone}
-                    onChangeText={setPhone}
+                    value={formData.phone}
+                    onChangeText={(value) => handleInputChange('phone', value)}
                     placeholder="0547883116"
                 />
             </View>
+            {formIsValid ? (
+                <View style={styles.validationLabel}>
+                    <Text style={styles.validationText}>פרטים נשמרו בהצלחה</Text>
+                </View>
+            ) : null}
+            {errors.phone && <Text style={styles.errorsText}>{errors.phone}</Text>}
             <Divider />
             <Text style={styles.subHeader}>פרטי רישיון נהיגה</Text>
             <View style={styles.fieldSet}>
                 <Text style={styles.legend}>מספר רישיון נהיגה</Text>
                 <TextInput
                     style={styles.input}
-                    value={licenseNumber}
-                    onChangeText={setLicenseNumber}
+                    value={formData.licenseNumber}
+                    onChangeText={(value) => handleInputChange('licenseNumber', value)}
                     placeholder="8427081"
                 />
             </View>
+            {errors.licenseNumber && <Text style={styles.errorsText}>{errors.licenseNumber}</Text>}
             <View style={styles.fieldSet}>
                 <Text style={styles.legend}>תוקף רישיון נהיגה</Text>
                 <TextInput
                     style={styles.input}
-                    value={licenseExpiry}
-                    onChangeText={setLicenseExpiry}
+                    value={formData.licenseExpiry}
+                    onChangeText={(value) => handleInputChange('licenseExpiry', value)}
                     placeholder="23.5.2025"
                 />
             </View>
+            {errors.licenseExpiry && <Text style={styles.errorsText}>{errors.licenseExpiry}</Text>}
             <View style={styles.fieldSet}>
                 <Text style={styles.legend}>סוג רישיון נהיגה</Text>
                 <TextInput
@@ -109,23 +272,77 @@ const ProfileForm = () => {
                     placeholder=""
                 />
             </View>
+            {formIsValid ? (
+                <View style={styles.validationLabel}>
+                    <Text style={styles.validationText}>פרטים נשמרו בהצלחה</Text>
+                </View>
+            ) : null}
             <Divider />
+            {/* document button */}
             <Text style={styles.subHeader}>מסמכים</Text>
             <View style={styles.buttonContainer}>
                 <CustomButton
-                    onPress={() => { }}
-                    buttonStyle={styles.customButton}
-                    textStyle={styles.customButtonText}
+                    onPress={toggleDocumentModal}
+                    buttonStyle={styles.documentButton}
+                    textStyle={styles.documentButtonText}
                 >
-                    <Image source={documentIcon} style={styles.rightIcon} />
-                    <View style={styles.buttonTextContainer}>
-                        <Text style={styles.buttonTextTop}>צילום העתק רישיון נהיגה</Text>
-                        <Text style={styles.buttonTextBottom}>{bottomButtonText}</Text>
+                    <View style={styles.iconAndTextContainer}>
+                        <View style={styles.rightIconContainer}>
+                            <Image source={documentIcon} style={styles.rightIcon} />
+                        </View>
+                        <View style={styles.buttonTextContainer}>
+                            <Text style={styles.buttonTextTop}>צילום העתק רישיון נהיגה</Text>
+                            <View style={styles.textAndErrorContainer}>
+                                {errors.document && <Text style={styles.documentErrorText}>*</Text>}
+                                <Text style={[styles.buttonTextBottom, (errors.document ? bottomButtonTextInvalidStyle : bottomButtonTextValidStyle)]}>{bottomButtonText}</Text>
+                            </View>
+                        </View>
                     </View>
-                    <Image source={licenseStatusIcon} style={styles.leftIcon} />
+                    {documentIconComponent}
+                    {localDocumentStatus === 'savedDocument' && <Image source={viewicon} style={styles.leftIcon} />}
                 </CustomButton>
             </View>
             <Divider />
+            <CustomButton
+                onPress={toggleModal}
+                buttonStyle={styles.logoutButton}
+            >
+                <Image source={logoutIcon} style={styles.logoutIcon} />
+                <Text style={styles.logoutButtonText}>התנתק</Text>
+            </CustomButton>
+            <LightboxModal
+                visible={isModalVisible}
+                onClose={toggleModal}
+                title="התנתק"
+                text="האם ברצונך להתנתק?"
+                buttons={[
+                    {
+                        name: "התנתק",
+                        onPress: () => {
+                            // add logout logic
+                            toggleModal();
+                        },
+                        backgroundColor: "red",
+
+                    },
+                    {
+                        name: "סגור",
+                        onPress: toggleModal,
+                    },
+                ]}
+            />
+            <LightboxModal2
+                visible={showUploadDocumentModal}
+                onClose={() => setShowUploadDocumentModal(false)}
+                title="הוספת העתק רישיון נהיגה"
+                buttons={modalButtonsUnsaved}
+            />
+            <LightboxModal2
+                visible={showViewDocumentModal}
+                onClose={() => setShowViewDocumentModal(false)}
+                title="העתק רישיון נהיגה"
+                buttons={modalButtonsSaved}
+            />
         </View>
     );
 };
@@ -169,37 +386,91 @@ const styles = StyleSheet.create({
     },
     buttonContainer: {
         width: '100%',
-        marginBottom: 24,
     },
-    customButton: {
+    documentButton: {
         flexDirection: 'row-reverse',
         backgroundColor: 'transparent',
         paddingVertical: 10,
-        paddingHorizontal: 20,
+        // paddingHorizontal: 20,
 
     },
-    customButtonText: {
+    documentButtonText: {
         color: 'black',
         fontSize: 16,
         fontWeight: 'bold',
     },
+    iconAndTextContainer: {
+        flexDirection: 'row-reverse',
+        alignItems: 'center',
+    },
+    rightIconContainer: {
+        borderWidth: 2,
+        borderColor: '#000',
+        borderRadius: 8,
+        padding: 15,
+        marginLeft: 8,
+    },
     buttonTextTop: {
-        fontSize: 16,
+        fontSize: 18,
         fontWeight: 'bold',
         color: 'black',
     },
     buttonTextBottom: {
-        fontSize: 12,
-        color: 'green',
+        fontSize: 16,
     },
     rightIcon: {
         width: 32,
         height: 32,
-        marginLeft: 25,
     },
     leftIcon: {
-        width: 12,
-        height: 12,
+        width: 32,
+        height: 32,
+    },
+    logoutButton: {
+        flexDirection: 'row-reverse',
+        justifyContent: 'center',
+        backgroundColor: 'transparent',
+        borderWidth: 1,
+        borderColor: 'red',
+        borderRadius: 50,
+        paddingVertical: 20,
+        marginBottom: 24,
+    },
+    logoutButtonText: {
+        color: 'red',
+        fontSize: 18,
+        fontWeight: 'bold',
+    },
+    logoutIcon: {
+        width: 28,
+        height: 28,
+        marginLeft: 16,
+    },
+    validationLabel: {
+        backgroundColor: '#c7edca',
+        marginTop: -32,
+        paddingHorizontal: 32,
+        paddingVertical: 8,
+        borderRadius: 50,
+        alignSelf: 'center',
+    },
+    validationText: {
+        color: 'green',
+        fontWeight: 'bold',
+    },
+    errorsText: {
+        color: 'red',
+        fontSize: 12,
+        textAlign: 'right',
+        marginTop: -24,
+        marginBottom: 24,
+    },
+    textAndErrorContainer: {
+        flexDirection: 'row-reverse',
+        alignItems: 'center',
+    },
+    documentErrorText: {
+        color: 'red',
     },
 });
 

@@ -21,9 +21,9 @@ const LightboxModal = ({ visible, onClose, title, text, buttons }) => {
                                     <TouchableOpacity
                                         key={index}
                                         onPress={button.onPress}
-                                        style={[styles.button, button.gradient && styles.gradientButton]}
+                                        style={[styles.button, (button.gradient || button.backgroundColor) && styles.gradientButton]}
                                     >
-                                        {button.gradient ? (
+                                        {index === 0 && button.gradient ? (
                                             <LinearGradient
                                                 colors={['#e40c78', '#f05464']}
                                                 start={{ x: 0, y: 0 }}
@@ -32,6 +32,10 @@ const LightboxModal = ({ visible, onClose, title, text, buttons }) => {
                                             >
                                                 <Text style={styles.gradientButtonText}>{button.name}</Text>
                                             </LinearGradient>
+                                        ) : index === 0 && button.backgroundColor ? (
+                                            <View style={[styles.buttonGradient, { backgroundColor: button.backgroundColor }]}>
+                                                <Text style={styles.gradientButtonText}>{button.name}</Text>
+                                            </View>
                                         ) : (
                                             <Text style={styles.buttonText}>{button.name}</Text>
                                         )}
@@ -98,7 +102,7 @@ const styles = StyleSheet.create({
     },
     buttonText: {
         color: 'blue',
-        fontWeight:'normal',
+        fontWeight: 'normal',
         fontSize: 18,
     },
     gradientButtonText: {

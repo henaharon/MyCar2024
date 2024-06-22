@@ -11,12 +11,11 @@ const CustomButton = ({ onPress, children, buttonStyle, textStyle }) => {
 
 const styles = StyleSheet.create({
     button: {
-        borderRadius: 20,
-        paddingVertical: 10,
-        paddingHorizontal: 20,
         alignItems: 'center',
         flexDirection: 'row',
         backgroundColor: '#fff',
+        justifyContent: 'space-between',
+
     },
 });
 
