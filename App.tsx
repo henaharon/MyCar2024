@@ -9,8 +9,8 @@ function App(): React.JSX.Element {
   return (
     <BaseView>
       {/* <AccidentReportIntro /> */}
-      <AccidentReportIntro />
-      {/* <CallDialogScreen /> */}
+      {/* <AccidentReportIntro /> */}
+      <CallDialogScreen />
     </BaseView>
   );
 }
