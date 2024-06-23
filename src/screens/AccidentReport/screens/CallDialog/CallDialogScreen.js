@@ -1,25 +1,25 @@
-import {Dimensions, StyleSheet, Text, View, Image, Pressable} from 'react-native';
-import {BaseView, BodyBaseView} from '../../../../uiKit/BaseView';
-import {Button} from '../../components/Button'
+import { Dimensions, StyleSheet, Text, View, Image, Pressable } from 'react-native';
+import { BaseView, BodyBaseView } from '../../../../uiKit/BaseView';
+import { Button } from '../../components/Button'
 
 const CallDialogScreen = () => {
   return (
     <BaseView>
-      <BodyBaseView style={{alignItems: 'center'}}>
+      <BodyBaseView style={{ alignItems: 'center' }}>
         <View style={styles.iconContainer}>
-        <Image style={styles.iconDisplay} source={require('../../../../assets/i1-assets/calldialogicon.png')} />
+          <Image style={styles.iconDisplay} source={require('../../../../assets/i1-assets/calldialogicon.png')} />
         </View>
         <View style={styles.textContainer}>
-        <Text style={styles.headerTitle}>סיוע טלפוני</Text>
-        <Text style={styles.infoText}>התקשרות מהירה</Text>
+          <Text style={styles.headerTitle}>סיוע טלפוני</Text>
+          <Text style={styles.infoText}>התקשרות מהירה</Text>
         </View>
         <View style={styles.buttonsContainer}>
-        <Button title='משטרה' phoneNumber={100}/>
-        <Button title='מד"א' phoneNumber={101}/>
-        <Button title='מוקד שירות' phoneNumber={1230}/>
+          <Button title='משטרה' phoneNumber={100} />
+          <Button title='מד"א' phoneNumber={101} />
+          <Button title='מוקד שירות' phoneNumber={1230} />
         </View>
         <Pressable style={styles.backLink}>
-        <Text style={styles.linkText}>סגירה</Text>
+          <Text style={styles.linkText}>סגירה</Text>
         </Pressable>
       </BodyBaseView>
     </BaseView>
@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
     height: windowHeight * 0.18,
     width: windowWidth * 0.35,
     elevation: 1,
-    shadowOffset: {width: 0, height: 1},
+    shadowOffset: { width: 0, height: 1 },
     shadowOpacity: 0.1,
     shadowRadius: 10,
   },

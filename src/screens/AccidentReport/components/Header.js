@@ -7,7 +7,6 @@ import {
   Text,
   View,
 } from 'react-native';
-
 import LinearGradient from 'react-native-linear-gradient';
 
 export const Header = () => {
@@ -18,13 +17,14 @@ export const Header = () => {
         source={require('../../../assets/i1-assets/elementsPageCoversAccidentReport3x.png')}
       />
       <View style={styles.headerContainer}>
-        <View style={styles.headerContent} >
+        <View style={styles.headerContent}>
           <Pressable>
             <LinearGradient
               colors={['#E50075', '#F05C62']}
               style={styles.helpButton}
               start={{ x: 0, y: 0 }}
-              end={{ x: 1, y: 0 }}>
+              end={{ x: 1, y: 0 }}
+            >
               <Text style={styles.helpText}>עזרה</Text>
               <Image
                 style={styles.iconPhone}
@@ -33,7 +33,7 @@ export const Header = () => {
             </LinearGradient>
           </Pressable>
           <View style={styles.headerTextContainer}>
-            <Text style={styles.headerContainerText}>דיווח תאונה</Text>
+            <Text style={styles.textStyle}>דיווח תאונה</Text>
           </View>
           <Pressable style={styles.xButtonContainer}>
             <Image
@@ -61,7 +61,6 @@ const styles = StyleSheet.create({
     height: windowHeight * 0.3,
     position: 'relative',
     zIndex: 1,
-    
   },
   headerContainer: {
     ...StyleSheet.absoluteFillObject,
@@ -82,8 +81,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   iconX: {
-    width: windowWidth * 0.07,
-    height: windowWidth * 0.07,
+    width: windowWidth * 0.08,
+    height: windowWidth * 0.08,
   },
   iconPhone: {
     width: windowWidth * 0.04,
@@ -109,7 +108,10 @@ const styles = StyleSheet.create({
   },
   helpText: {
     fontWeight: 'bold',
-  }
+  },
+  textStyle: { 
+    fontSize: 16,
+  },
 });
 
 export default Header;

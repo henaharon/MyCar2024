@@ -1,11 +1,11 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import {
-  Dimensions,
-  Pressable,
-  StyleSheet,
-  Text,
-  View,
-  Linking,
+    Dimensions,
+    Pressable,
+    StyleSheet,
+    Text,
+    View,
+    Linking,
 } from 'react-native';
 
 import LinearGradient from 'react-native-linear-gradient';
