@@ -1,51 +1,51 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import {
-  Dimensions,
-  Pressable,
-  StyleSheet,
-  Text,
-  View,
-  Linking,
+    Dimensions,
+    Pressable,
+    StyleSheet,
+    Text,
+    View,
+    Linking,
 } from 'react-native';
 
 import LinearGradient from 'react-native-linear-gradient';
 
-export const Button = ({title,onPress,phoneNumber}) => {
-    const [bgColor, setBgColor] = useState('transparent'); 
+export const Button = ({ title, onPress, phoneNumber }) => {
+    const [bgColor, setBgColor] = useState('transparent');
     const [txtColor, setTxtColor] = useState('black');
     const [brdrColor, setBorderColor] = useState('#e6e6e9');
 
     const handlePress = () => {
-        if(phoneNumber){
+        if (phoneNumber) {
             Linking.openURL(`tel:${phoneNumber}`)
         }
-        if(onPress){
+        if (onPress) {
             onPress()
         }
     }
-    
+
     return (
-        <Pressable style={[styles.buttonContainer, {backgroundColor: bgColor, borderColor:brdrColor}]} onPress={handlePress}
-            onPressIn={()=> {
+        <Pressable style={[styles.buttonContainer, { backgroundColor: bgColor, borderColor: brdrColor }]} onPress={handlePress}
+            onPressIn={() => {
                 setBgColor('#F05C62')
                 setTxtColor('white')
                 setBorderColor('#F05C62')
             }}
-            onPressOut={()=> {
+            onPressOut={() => {
                 setBgColor('transparent')
                 setTxtColor('black')
                 setBorderColor('#e6e6e9')
             }}>
-            {/* <LinearGradient
-            colors={['#E50075', '#F05C62']}
-            start={{ x: 0, y: 0 }}
-            end={{ x: 1, y: 0 }}
-            style={styles.buttonContainer}
-        > */}
-            <View style={styles.buttonTextContainer}>
-            <Text style={[styles.buttonContainerText, {color:txtColor}]}>{title}</Text>
-            </View>
-        {/* </LinearGradient> */}
+            <LinearGradient
+                colors={['#E50075', '#F05C62']}
+                start={{ x: 0, y: 0 }}
+                end={{ x: 1, y: 0 }}
+                style={styles.buttonContainer}
+            >
+                <View style={styles.buttonTextContainer}>
+                    <Text style={[styles.buttonContainerText, { color: txtColor }]}>{title}</Text>
+                </View>
+            </LinearGradient>
         </Pressable>
     );
 };
