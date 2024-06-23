@@ -1,4 +1,4 @@
-import { Text, View, StyleSheet } from 'react-native';
+import {Dimensions, Text, View, StyleSheet } from 'react-native';
 import {BaseView, BodyBaseView} from '../../../../uiKit/BaseView';
 import {Button} from '../../components/Button'
 
@@ -23,6 +23,10 @@ const SuccessScreen = () => {
 
 export default SuccessScreen;
 
+const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
+
+
 const styles = StyleSheet.create({
     headerText: {
         fontSize: 20,
@@ -36,17 +40,17 @@ const styles = StyleSheet.create({
     textContainer: {
         alignItems: 'center',
         position: 'relative',
-        top: '30%',
+        top: windowHeight * 0.3,
         gap: 20,
     },
     buttonContainer: {
-        width: '100%',
+        width: windowWidth,
         position: 'relative',
         alignItems: 'center',
-        top: '35%',
+        top: windowHeight * 0.35,
     },
     centerText: {
-        width: '90%',
+        width: windowWidth * 0.9,
         alignItems: 'center',
     }
 });
