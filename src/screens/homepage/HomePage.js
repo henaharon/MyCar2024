@@ -1,5 +1,7 @@
-import React, { useState, useRef } from 'react';
+import React from 'react';
 import { View, Text, StyleSheet, ImageBackground, Image, ScrollView } from 'react-native';
+import BaseView from '../../uiKit/BaseView';
+
 const backgroundShape = require('../../assets/images/backgorund3.png');
 const backgroundShape1 = require('../../assets/images/backgroundShape1.png');
 const carImage = require('../../assets/images/Car.png');
@@ -15,6 +17,26 @@ const Rental = require('../../assets/images/Rental.png');
 const arrow = require('../../assets/images/arrow.png');
 const cable = require('../../assets/images/cable.png');
 const accedent = require('../../assets/images/accedent.png');
+const menuIcon = require('../../assets/images/menu.png');
+
+const texts = {
+    serviceTitle: 'קבלת שירות',
+    serviceSubtitle: 'בחרו שירות לרכב שלכם',
+    services: [
+        'שטיפת רכב',
+        'רכב חשמלי',
+        'צמיגים ופנצריות',
+        'אביזרים',
+        'זמן שירותי מוסך',
+        'תקלות בדרך',
+        'צאט עם נציג'
+    ],
+    updatesTitle: 'עדכונים וחדשות',
+    campaignTitle: 'כותרת הודעה / קמפיין',
+    rental: 'השאלת רכבים',
+    emergency: 'תאונות וחירום',
+};
+
 const DashedLine = () => {
     return (
         <View style={styles.dashedLineContainer}>
@@ -23,84 +45,36 @@ const DashedLine = () => {
     );
 };
 
-const ListComponent = () => {
+const ServiceList = () => {
     return (
         <ScrollView
             contentContainerStyle={styles.horizontalScrollViewContent}
             horizontal={true}
             showsHorizontalScrollIndicator={false}
         >   
-             <View style={styles.box}>
-                <Image source={seven} style={styles.Listlogo} />
-                <Text style={styles.name}>שטיפת רכב</Text>
-            </View>
-             <View style={styles.box}>
-                <Image source={six} style={styles.Listlogo} />
-                <Text style={styles.name}> רכב חשמלי</Text>
-            </View>
-            <View style={styles.box}>
-                <Image source={fith} style={styles.Listlogo} />
-                <Text style={styles.name}>צמיגים ופנצריות</Text>
-            </View>
-            <View style={styles.box}>
-                <Image source={forth} style={styles.Listlogo} />
-                <Text style={styles.name}> אביזרים</Text>
-            </View>
-            <View style={styles.box}>
-                <Image source={third} style={styles.Listlogo} />
-                <Text style={styles.name}> זמן שירותי מוסך</Text>
-            </View>
-            {/* Add more list items as needed */}
-            <View style={styles.box}>
-                <Image source={second} style={styles.Listlogo} />
-                <Text style={styles.name}> תקלות בדרך</Text>
-            </View>
-            <View style={styles.box}>
-                <Image source={first} style={styles.Listlogo} />
-                <Text style={styles.name}>צאט עם נציג</Text>
-            </View>
+            {texts.services.map((service, index) => (
+                <View style={styles.box} key={index}>
+                    <Image source={[seven, six, fith, forth, third, second, first][index]} style={styles.Listlogo} />
+                    <Text style={styles.name}>{service}</Text>
+                </View>
+            ))}
         </ScrollView>
     );
 };
 
-const SecondListComponent = () => {
+const CampainsList = () => {
     return (
         <ScrollView
             contentContainerStyle={styles.horizontalScrollViewContent}
             horizontal={true}
             showsHorizontalScrollIndicator={false}
         >
-            <View style={styles.Sbox}>
-            <Text style={styles.Secondname}>כותרת הודעה / קמפיין</Text>
-                <Image source={cable} style={styles.SecondListlogo} />
-               
-            </View>
-            <View style={styles.Sbox}>
-            <Text style={styles.Secondname}>כותרת הודעה / קמפיין</Text>
-                <Image source={cable} style={styles.SecondListlogo} />
-                
-            </View>
-            <View style={styles.Sbox}>
-            <Text style={styles.Secondname}>כותרת הודעה / קמפיין</Text>
-                <Image source={cable} style={styles.SecondListlogo} />
-                
-            </View>
-            {/* Add more list items as needed */}
-            <View style={styles.Sbox}>
-            <Text style={styles.Secondname}>כותרת הודעה / קמפיין</Text>
-                <Image source={cable} style={styles.SecondListlogo} />
-                
-            </View>
-            <View style={styles.Sbox}>
-            <Text style={styles.Secondname}>כותרת הודעה / קמפיין</Text>
-                <Image source={cable} style={styles.SecondListlogo} />
-                
-            </View>
-            <View style={styles.Sbox}>
-            <Text style={styles.Secondname}>כותרת הודעה / קמפיין</Text>
-                <Image source={cable} style={styles.SecondListlogo} />
-                
-            </View>
+            {[...Array(6)].map((_, index) => (
+                <View style={styles.Sbox} key={index}>
+                    <Text style={styles.Secondname}>{texts.campaignTitle}</Text>
+                    <Image source={cable} style={styles.SecondListlogo} />
+                </View>
+            ))}
         </ScrollView>
     );
 };
@@ -108,43 +82,43 @@ const SecondListComponent = () => {
 const HomePage = () => {
     return (
         <ScrollView contentContainerStyle={styles.scrollViewContent}>
-                <ImageBackground source={backgroundShape} style={styles.backgroundImage}>
-                    <View style={styles.sideMenuButton}>
-                        <Image source={require('../../assets/images/menu.png')} style={{ width: 24, height: 24 }} />
+            <ImageBackground source={backgroundShape} style={styles.backgroundImage}>
+                <View style={styles.sideMenuButton}>
+                    <Image source={menuIcon} style={styles.menuIcon} />
+                </View>
+                <View style={styles.wrapper}>
+                    <View style={styles.textContainer}>
+                        <Text style={styles.text1}>{texts.serviceTitle}</Text>
+                        <Text style={styles.text2}>{texts.serviceSubtitle}</Text>
                     </View>
-                    <View style={styles.wrapper}>
-                        <View style={styles.textContainer}>
-                            <Text style={styles.text1}>קבלת שירות</Text>
-                            <Text style={styles.text2}>בחרו שירות לרכב שלכם</Text>
-                        </View>
-                        <Image source={carImage} style={styles.carImage} />
-                        <ImageBackground source={backgroundShape1} style={styles.backgroundShape1} />
-                        <ListComponent />
-                        <DashedLine />
-                        <View style={styles.bottomContainer}>
-                            <Text style={styles.bottomText}>עדכונים וחדשות</Text>
-                        </View>
-                        <SecondListComponent />
-                        <DashedLine />
-                        <View style={styles.SbottomContainer}>
-                        <Image source={arrow} style={styles.logo} />
-                            <Text style={styles.SbottomText}> השאלת רכבים</Text>
-                            <Image source={Rental} style={styles.Image} />
-                        </View>
-                        <DashedLine />
-                        <View style={styles.SbottomContainer}>
-                        <Image source={arrow} style={styles.logo} />
-                            <Text style={styles.SbottomText}>  תאונות וחירום</Text>
-                            <Image source={accedent} style={styles.Image} />
-                        </View>
-                        <Image source={sunImage} style={styles.sun} />
+                    <Image source={carImage} style={styles.carImage} />
+                    <ImageBackground source={backgroundShape1} style={styles.backgroundShape1} />
+                    <ServiceList />
+                    <DashedLine />
+                    <View style={styles.bottomContainer}>
+                        <Text style={styles.bottomText}>{texts.updatesTitle}</Text>
                     </View>
-                </ImageBackground>
+                    <CampainsList />
+                    <DashedLine />
+                    <View style={styles.SbottomContainer}>
+                        <Image source={arrow} style={styles.logo} />
+                        <Text style={styles.SbottomText}>{texts.rental}</Text>
+                        <Image source={Rental} style={styles.Image} />
+                    </View>
+                    <DashedLine />
+                    <View style={styles.SbottomContainer}>
+                        <Image source={arrow} style={styles.logo} />
+                        <Text style={styles.SbottomText}>{texts.emergency}</Text>
+                        <Image source={accedent} style={styles.Image} />
+                    </View>
+                    <Image source={sunImage} style={styles.sun} />
+                </View>
+            </ImageBackground>
         </ScrollView>
     );
 };
 
-import { Dimensions} from 'react-native';
+import { Dimensions } from 'react-native';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -169,6 +143,10 @@ const styles = StyleSheet.create({
         position: 'absolute',
         right: 20,
         top: 20,
+    },
+    menuIcon: {
+        width: 24,
+        height: 24,
     },
     textContainer: {
         width: '100%',
@@ -207,11 +185,10 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: 'white',
         borderRadius: 10,
-        width: 0.4 * windowWidth, // Responsive width
-        height: 0.4 * windowWidth, // Responsive height
+        width: 0.4 * windowWidth,
+        height: 0.4 * windowWidth,
         marginRight: 10,
         justifyContent: 'center',
-
     },
     Sbox: {
         alignItems: 'center',
@@ -316,4 +293,5 @@ const styles = StyleSheet.create({
         bottom: 30,
     },
 });
+
 export default HomePage;
