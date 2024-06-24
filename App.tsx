@@ -1,14 +1,20 @@
 import React from 'react';
-
-import {BaseView} from './src/uiKit/BaseView';
-import TimerScreen from './src/screens/Timer/TimerScreen';
+import { StyleSheet } from 'react-native';
+import { BaseView } from './src/uiKit/BaseView';
+import DriversSideMenu from './src/screens/DriversSideMenu/DriverSideMenu';
 
 function App(): React.JSX.Element {
   return (
-    <BaseView>
-      <TimerScreen />
+    <BaseView style={styles.baseView}>
+      <DriversSideMenu />
     </BaseView>
   );
 }
+
+const styles = StyleSheet.create({
+  baseView: {
+    flex: 1,
+  },
+});
 
 export default App;
