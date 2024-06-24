@@ -1,3 +1,4 @@
+import React, {useState, useCallback} from 'react';
 import {Dimensions, Text, View, StyleSheet } from 'react-native';
 import {BaseView, BodyBaseView} from '../../../../uiKit/BaseView';
 import {Button} from '../../components/Button'
@@ -17,7 +18,7 @@ const SuccessScreen = () => {
         <View style={styles.buttonContainer}>
             <Button title={"אישור"}/>
         </View>
-        <Input placeholder={"טקסט"} required={false} width={0.5} type={"number"}/>
+        <Input placeholder={"טקסט"} required={true} width={0.5} type={""}/>
         </BodyBaseView>
         </BaseView>
     );

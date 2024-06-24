@@ -7,6 +7,7 @@ import {
     TextInput,
 } from 'react-native';
 
+
 export const Input = ({type, placeholder, required, width}) => {
     const [value, setValue] = useState('');
 
@@ -45,8 +46,6 @@ export const Input = ({type, placeholder, required, width}) => {
     );
 }
 
-
-const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
 const styles = StyleSheet.create({
@@ -58,13 +57,13 @@ const styles = StyleSheet.create({
         display: 'flex',
     },
     input: {
-        height: windowHeight * 0.1,
+        height: windowHeight * 0.07,
         borderRadius: 10,
         backgroundColor: 'white',
         borderRadius: 10,
         borderColor: '#E5E5E5',
         borderWidth: 1,
-        fontSize: 20,
+        fontSize: 18,
         paddingRight: 27,
         position: 'relative',
         fontWeight: '400',
@@ -74,6 +73,6 @@ const styles = StyleSheet.create({
         position: 'absolute',
         color: 'red',
         right: 15,
-        fontSize: 20,
+        fontSize: 18,
     },
 });
