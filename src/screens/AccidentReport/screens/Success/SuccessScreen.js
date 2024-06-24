@@ -1,6 +1,7 @@
 import {Dimensions, Text, View, StyleSheet } from 'react-native';
 import {BaseView, BodyBaseView} from '../../../../uiKit/BaseView';
 import {Button} from '../../components/Button'
+import {Input} from '../../components/Input'
 
 const SuccessScreen = () => {
     return (
@@ -16,6 +17,7 @@ const SuccessScreen = () => {
         <View style={styles.buttonContainer}>
             <Button title={"אישור"}/>
         </View>
+        <Input placeholder={"טקסט"} required={false} width={0.5} type={"number"}/>
         </BodyBaseView>
         </BaseView>
     );
