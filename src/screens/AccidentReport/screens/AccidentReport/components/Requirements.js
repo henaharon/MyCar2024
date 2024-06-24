@@ -3,24 +3,34 @@ import { Dimensions, StyleSheet, View, } from 'react-native';
 import Title from '../../../components/Title';
 import Requirement from './Requirement';
 
+const policeIcon = require('../../../../../assets/i1-assets/elements24PxIconsPolice3x.png');
+const handshakeIcon = require('../../../../../assets/i1-assets/elements24PxIconsHandshake3x.png');
+const cameraIcon = require('../../../../../assets/i1-assets/elements24PxIconsCamera3x.png');
+const toolIcon = require('../../../../../assets/i1-assets/elements24PxIconsTool3x.png');
+const messageIcon = require('../../../../../assets/i1-assets/elements24PxIconsMessageExclamation3x.png');
+
+const policeParagraph = 'במקרה של תאונה עם נפגעים, יש לדווח למוקד 100 של המשטרה.';
+const handshakeParagraph = 'אין לתת התחייבות כלשהי בכתב או בעל פה.';
+const cameraParagraph = 'יש למלא ולצלם את הפרטים בעזרת האפליקציה.';
+const toolParagraph = 'תיקון הרכב יעשה אחרי קבלת אישור חברת הביטוח.';
+const messageParagraph = 'נא להודיע למוקד השרות על התאונה בהקדם האפשרי.';
+const pageTitle = 'דגשים חשובים למקרי תאונה';
+
+
 export const Requirements = () => {
     return (
         <View>
-            <Title title="דגשים חשובים למקרי תאונה" />
+            <Title title={pageTitle} />
             <View>
-                <Requirement icon={require('../../../../../assets/i1-assets/elements24PxIconsPolice3x.png')} paragraph="במקרה של תאונה עם נפגעים, יש לדווח למוקד 100 של המשטרה." />
-                <Requirement icon={require('../../../../../assets/i1-assets/elements24PxIconsHandshake3x.png')} paragraph="אין לתת התחייבות כלשהי בכתב או בעל פה." />
-                <Requirement icon={require('../../../../../assets/i1-assets/elements24PxIconsCamera3x.png')} paragraph="יש למלא ולצלם את הפרטים בעזרת האפליקציה." />
-                <Requirement icon={require('../../../../../assets/i1-assets/elements24PxIconsTool3x.png')} paragraph="תיקון הרכב יעשה אחרי קבלת אישור חברת הביטוח." />
-                <Requirement icon={require('../../../../../assets/i1-assets/elements24PxIconsMessageExclamation3x.png')} paragraph="נא להודיע למוקד השרות על התאונה בהקדם האפשרי." />
+                <Requirement icon={policeIcon} paragraph={policeParagraph} />
+                <Requirement icon={handshakeIcon} paragraph={handshakeParagraph} />
+                <Requirement icon={cameraIcon} paragraph={cameraParagraph} />
+                <Requirement icon={toolIcon} paragraph={toolParagraph} />
+                <Requirement icon={messageIcon} paragraph={messageParagraph} />
             </View>
         </View>
     );
 };
 
-const windowHeight = Dimensions.get('window').height;
-
-const styles = StyleSheet.create({
-});
 
 export default Requirements;

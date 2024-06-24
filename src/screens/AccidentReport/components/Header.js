@@ -9,14 +9,19 @@ import {
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import { TitleHeader } from './TitleHeader';
-import { TitleButton } from './TitleButton';
+import { HeaderButton } from './HeaderButton';
+
+const headerImage = require('../../../assets/i1-assets/elementsPageCoversAccidentReport3x.png');
+const phoneIcon = require('../../../assets/i1-assets/elements24PxIconsCall3x.png');
+const xIcon = require('../../../assets/i1-assets/componentsNavBarXButtonsRoundedWhiteAlpha3x.png');
+const headerTitle = 'דיווח תאונה';
 
 export const Header = () => {
   return (
     <View style={styles.headerImgContainter}>
       <Image
         style={styles.headerImg}
-        source={require('../../../assets/i1-assets/elementsPageCoversAccidentReport3x.png')}
+        source={headerImage}
       />
       <View style={styles.headerContainer}>
         <View style={styles.headerContent}>
@@ -25,18 +30,18 @@ export const Header = () => {
               colors={['#E50075', '#F05C62']}
               style={styles.helpButton}
               start={{ x: 0, y: 0 }}
-              end={{ x: 1, y: 0 }}
-            >
+              end={{ x: 1, y: 0 }}>
               <Text style={styles.helpText}>עזרה</Text>
               <Image
                 style={styles.iconPhone}
-                source={require('../../../assets/i1-assets/elements24PxIconsCall3x.png')}
+                source={phoneIcon}
               />
             </LinearGradient>
           </Pressable>
-          <TitleHeader title="דיווח תאונה" />
-          <TitleButton container={styles.xButtonContainer}
-            imageSource={require('../../../assets/i1-assets/componentsNavBarXButtonsRoundedWhiteAlpha3x.png')}
+          <TitleHeader title={headerTitle} />
+          <HeaderButton
+            container={styles.xButtonContainer}
+            imageSource={xIcon}
           />
         </View>
       </View>

@@ -2,12 +2,14 @@ import { Dimensions, StyleSheet, Text, View, Image, Pressable } from 'react-nati
 import { BaseView, BodyBaseView } from '../../../../uiKit/BaseView';
 import { GradientButton } from '../../components/GradientButton'
 
+const callIcon = require('../../../../assets/i1-assets/calldialogicon.png');
+
 const CallDialogScreen = () => {
   return (
     <BaseView>
       <BodyBaseView style={{ alignItems: 'center' }}>
         <View style={styles.iconContainer}>
-          <Image style={styles.iconDisplay} source={require('../../../../assets/i1-assets/calldialogicon.png')} />
+          <Image style={styles.iconDisplay} source={callIcon} />
         </View>
         <View style={styles.textContainer}>
           <Text style={styles.headerTitle}>סיוע טלפוני</Text>

@@ -8,7 +8,7 @@ import {
   View,
 } from 'react-native';
 
-export const TitleButton = ({container, imageSource}) => {
+export const HeaderButton = ({container, imageSource}) => {
   return (
     <Pressable style={container}>
       <Image style={styles.icon} source={imageSource} />

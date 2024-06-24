@@ -36,16 +36,9 @@ export const GradientButton = ({ title, onPress, phoneNumber }) => {
                 setTxtColor('black')
                 setBorderColor('#e6e6e9')
             }}>
-            <LinearGradient
-                colors={['#E50075', '#F05C62']}
-                start={{ x: 0, y: 0 }}
-                end={{ x: 1, y: 0 }}
-                style={styles.buttonContainer}
-            >
-                <View style={styles.buttonTextContainer}>
-                    <Text style={[styles.buttonContainerText, { color: txtColor }]}>{title}</Text>
-                </View>
-            </LinearGradient>
+            <View style={styles.buttonTextContainer}>
+                <Text style={[styles.buttonContainerText, { color: txtColor }]}>{title}</Text>
+            </View>
         </Pressable>
     );
 };
