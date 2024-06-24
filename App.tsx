@@ -1,14 +1,20 @@
+// App.tsx
 import React from 'react';
+import { SafeAreaView, StyleSheet } from 'react-native';
+import HomePage from './src/screens/homepage/HomePage';
 
-import {BaseView} from './src/uiKit/BaseView';
-import TimerScreen from './src/screens/Timer/TimerScreen';
-
-function App(): React.JSX.Element {
+const App = () => {
   return (
-    <BaseView>
-      <TimerScreen />
-    </BaseView>
+    <SafeAreaView style={styles.container}>
+      <HomePage />
+    </SafeAreaView>
   );
-}
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+});
 
 export default App;
