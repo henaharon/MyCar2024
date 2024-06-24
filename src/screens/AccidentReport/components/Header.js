@@ -35,7 +35,9 @@ export const Header = () => {
             </LinearGradient>
           </Pressable>
           <TitleHeader title="דיווח תאונה" />
-          <TitleButton container={styles.xButtonContainer} image={require('../../../assets/i1-assets/componentsNavBarXButtonsRoundedWhiteAlpha3x.png')} />
+          <TitleButton container={styles.xButtonContainer}
+            imageSource={require('../../../assets/i1-assets/componentsNavBarXButtonsRoundedWhiteAlpha3x.png')}
+          />
         </View>
       </View>
     </View>
