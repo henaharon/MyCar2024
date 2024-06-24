@@ -1,6 +1,6 @@
 import { Text, View, StyleSheet } from 'react-native';
 import {BaseView, BodyBaseView} from '../../../../uiKit/BaseView';
-import {Button} from '../../components/Button'
+import {Button} from '../../components/GradientButton'
 
 const SuccessScreen = () => {
     return (

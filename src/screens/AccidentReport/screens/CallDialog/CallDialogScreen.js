@@ -1,6 +1,6 @@
 import { Dimensions, StyleSheet, Text, View, Image, Pressable } from 'react-native';
 import { BaseView, BodyBaseView } from '../../../../uiKit/BaseView';
-import { Button } from '../../components/Button'
+import { GradientButton } from '../../components/GradientButton'
 
 const CallDialogScreen = () => {
   return (
@@ -14,9 +14,9 @@ const CallDialogScreen = () => {
           <Text style={styles.infoText}>התקשרות מהירה</Text>
         </View>
         <View style={styles.buttonsContainer}>
-          <Button title='משטרה' phoneNumber={100} />
-          <Button title='מד"א' phoneNumber={101} />
-          <Button title='מוקד שירות' phoneNumber={1230} />
+          <GradientButton title='משטרה' phoneNumber={100} />
+          <GradientButton title='מד"א' phoneNumber={101} />
+          <GradientButton title='מוקד שירות' phoneNumber={1230} />
         </View>
         <Pressable style={styles.backLink}>
           <Text style={styles.linkText}>סגירה</Text>

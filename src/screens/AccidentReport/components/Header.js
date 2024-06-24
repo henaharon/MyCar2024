@@ -8,6 +8,8 @@ import {
   View,
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
+import { TitleHeader } from './TitleHeader';
+import { TitleButton } from './TitleButton';
 
 export const Header = () => {
   return (
@@ -32,15 +34,8 @@ export const Header = () => {
               />
             </LinearGradient>
           </Pressable>
-          <View style={styles.headerTextContainer}>
-            <Text style={styles.textStyle}>דיווח תאונה</Text>
-          </View>
-          <Pressable style={styles.xButtonContainer}>
-            <Image
-              style={styles.iconX}
-              source={require('../../../assets/i1-assets/componentsNavBarXButtonsRoundedWhiteAlpha3x.png')}
-            />
-          </Pressable>
+          <TitleHeader title="דיווח תאונה" />
+          <TitleButton container={styles.xButtonContainer} image={require('../../../assets/i1-assets/componentsNavBarXButtonsRoundedWhiteAlpha3x.png')} />
         </View>
       </View>
     </View>
@@ -75,11 +70,6 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     width: windowWidth * 0.93,
   },
-  headerTextContainer: {
-    flex: 4,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
   iconX: {
     width: windowWidth * 0.08,
     height: windowWidth * 0.08,
@@ -109,7 +99,7 @@ const styles = StyleSheet.create({
   helpText: {
     fontWeight: 'bold',
   },
-  textStyle: { 
+  textStyle: {
     fontSize: 16,
   },
 });
