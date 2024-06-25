@@ -90,27 +90,22 @@ const ProfileForm = ({ formData, onChange, setIsDirty, formIsValid, errors, docu
         return false;
     };
 
-    const takePhoto = async () => {
+    const takePhoto = () => {
         const options = {
             noData: true,
         };
-        return new Promise((resolve) => {
-            launchCamera(options, response => {
-                if (response.assets && response.assets.length > 0) {
-                    resolve({ uri: response.assets[0].uri });
-                } else {
-                    resolve(null);
-                }
-            });
+        launchCamera(options, response => {
+            if (response.assets && response.assets.length > 0) {
+                setDocument({ uri: response.assets[0].uri });
+                return true;
+            }
         });
+        return false;
     };
 
-    const handleTakePhoto = async () => {
-        const photo = await takePhoto();
-        if (photo) {
-            setDocument(photo);
+    const handleTakePhoto = () => {
+        if (takePhoto()) {
             setLocalDocumentStatus('unsavedDocument');
-            onChange('document', photo);
             setIsDirty(true);
         }
         setShowUploadDocumentModal(false);
@@ -194,84 +189,107 @@ const ProfileForm = ({ formData, onChange, setIsDirty, formIsValid, errors, docu
     return (
         <View style={styles.formContainer}>
             <Text style={styles.subHeader}>פרטים כלליים</Text>
+            {/* <View style={styles.fieldSet}>
+                <Text style={styles.legend}>שם פרטי</Text>
+                <TextInput
+                    style={styles.input}
+                    value={formData.name}
+                    onChangeText={(value) => handleInputChange('name', value)}
+                    placeholder="שלמה"
+                />
+            </View>
+            {errors.name && <Text style={styles.errorsText}>{errors.name}</Text>} */}
             <FormInput
                 label="שם פרטי"
                 value={formData.name}
                 onChangeText={(value) => handleInputChange('name', value)}
                 placeholder="שלמה"
                 error={errors.name}
-                formIsValid={false}
             />
-            <FormInput
-                label="שם משפחה"
-                value={formData.surname}
-                onChangeText={(value) => handleInputChange('surname', value)}
-                placeholder="ארצי"
-                error={errors.surname}
-                formIsValid={false}
-            />
-            <FormInput
-                label="מספר עובד"
-                value={formData.idNumber}
-                onChangeText={(value) => handleInputChange('idNumber', value)}
-                placeholder="123456"
-                error={errors.idNumber}
-                formIsValid={false}
-            />
-            <FormInput
-                label="תאריך לידה"
-                value={formData.dob}
-                onChangeText={(value) => handleInputChange('dob', value)}
-                placeholder="1.1.1990"
-                error={errors.dob}
-                formIsValid={formIsValid}
-            />
-            {/* {formIsValid ? (
+            <View style={styles.fieldSet}>
+                <Text style={styles.legend}>שם משפחה</Text>
+                <TextInput
+                    style={styles.input}
+                    value={formData.surname}
+                    onChangeText={(value) => handleInputChange('surname', value)}
+                    placeholder="ארצי"
+                />
+            </View>
+            {errors.surname && <Text style={styles.errorsText}>{errors.surname}</Text>}
+            <View style={styles.fieldSet}>
+                <Text style={styles.legend}>מספר עובד</Text>
+                <TextInput
+                    style={styles.input}
+                    value={formData.idNumber}
+                    onChangeText={(value) => handleInputChange('idNumber', value)}
+                    placeholder="123456"
+                />
+            </View>
+            {errors.idNumber && <Text style={styles.errorsText}>{errors.idNumber}</Text>}
+            <View style={styles.fieldSet}>
+                <Text style={styles.legend}>תאריך לידה</Text>
+                <TextInput
+                    style={styles.input}
+                    value={formData.dob}
+                    onChangeText={(value) => handleInputChange('dob', value)}
+                    placeholder="1.1.1990"
+                />
+            </View>
+            {formIsValid ? (
                 <View style={styles.validationLabel}>
                     <Text style={styles.validationText}>פרטים נשמרו בהצלחה</Text>
                 </View>
-            ) : null} */}
+            ) : null}
+            {errors.dob && <Text style={styles.errorsText}>{errors.dob}</Text>}
             <Divider />
             <Text style={styles.subHeader}>פרטי התקשורת</Text>
-            <FormInput
-                label="כתובת מייל"
-                value={formData.email}
-                onChangeText={(value) => handleInputChange('email', value)}
-                placeholder="example@gmail.com"
-                error={errors.email}
-                formIsValid={false}
-            />
-            <FormInput
-                label="טלפון"
-                value={formData.phone}
-                onChangeText={(value) => handleInputChange('phone', value)}
-                placeholder="0547883116"
-                error={errors.phone}
-                formIsValid={formIsValid}
-            />
-            {/* {formIsValid ? (
+            <View style={styles.fieldSet}>
+                <Text style={styles.legend}>כתובת מייל</Text>
+                <TextInput
+                    style={styles.input}
+                    value={formData.email}
+                    onChangeText={(value) => handleInputChange('email', value)}
+                    placeholder="example@gmail.com"
+                />
+            </View>
+            {errors.email && <Text style={styles.errorsText}>{errors.email}</Text>}
+            <View style={styles.fieldSet}>
+                <Text style={styles.legend}>טלפון</Text>
+                <TextInput
+                    style={styles.input}
+                    value={formData.phone}
+                    onChangeText={(value) => handleInputChange('phone', value)}
+                    placeholder="0547883116"
+                />
+            </View>
+            {formIsValid ? (
                 <View style={styles.validationLabel}>
                     <Text style={styles.validationText}>פרטים נשמרו בהצלחה</Text>
                 </View>
-            ) : null} */}
+            ) : null}
+            {errors.phone && <Text style={styles.errorsText}>{errors.phone}</Text>}
             <Divider />
             <Text style={styles.subHeader}>פרטי רישיון נהיגה</Text>
-            <FormInput
-                label="מספר רישיון נהיגה"
-                value={formData.licenseNumber}
-                onChangeText={(value) => handleInputChange('licenseNumber', value)}
-                placeholder="8427081"
-                error={errors.licenseNumber}
-                formIsValid={false}
-            />
-            <FormInput
-                label="תוקף רישיון נהיגה"
-                value={formData.licenseExpiry}
-                onChangeText={(value) => handleInputChange('licenseExpiry', value)}
-                placeholder="23.5.2025"
-                error={errors.licenseExpiry}
-                formIsValid={false}
-            />
+            <View style={styles.fieldSet}>
+                <Text style={styles.legend}>מספר רישיון נהיגה</Text>
+                <TextInput
+                    style={styles.input}
+                    value={formData.licenseNumber}
+                    onChangeText={(value) => handleInputChange('licenseNumber', value)}
+                    placeholder="8427081"
+                />
+            </View>
+            {errors.licenseNumber && <Text style={styles.errorsText}>{errors.licenseNumber}</Text>}
+            <View style={styles.fieldSet}>
+                <Text style={styles.legend}>תוקף רישיון נהיגה</Text>
+                <TextInput
+                    style={styles.input}
+                    value={formData.licenseExpiry}
+                    onChangeText={(value) => handleInputChange('licenseExpiry', value)}
+                    placeholder="23.5.2025"
+                />
+            </View>
+            {errors.licenseExpiry && <Text style={styles.errorsText}>{errors.licenseExpiry}</Text>}
             <View style={styles.fieldSet}>
                 <Text style={styles.legend}>סוג רישיון נהיגה</Text>
                 <Text style={styles.licenseTypeText} onPress={toggleLicenseModal}>{formData.licenseTypes.join(' ')}</Text>
@@ -489,7 +507,7 @@ const styles = StyleSheet.create({
     },
     validationLabel: {
         backgroundColor: '#c7edca',
-        marginTop: -40,
+        marginTop: -32,
         paddingHorizontal: 32,
         paddingVertical: 8,
         borderRadius: 50,

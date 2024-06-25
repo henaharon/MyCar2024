@@ -35,10 +35,10 @@ const MyProfile = () => {
 
     useEffect(() => {
         const dirty = Object.keys(formData).some(key => {
-            if(formData[key] !== initialFormData[key]) {
+            if (formData[key] !== initialFormData[key]) {
                 return true;
             }
-            if(key === 'profilePicture' && formData[key] !== defaultAvatar) {
+            if (key === 'profilePicture' && formData[key] !== defaultAvatar) {
                 return true;
             }
             return false;
@@ -103,8 +103,14 @@ const MyProfile = () => {
             const now = new Date();
             const minDate = new Date(now.getFullYear() - 16, now.getMonth(), now.getDate());
 
-            if (date > minDate || date.getMonth() !== month - 1 || date.getDay() !== day) {
+            // Check if the date is valid and at least 16 years old
+            if (isNaN(date.getTime()) || date > minDate) {
                 newErrors.dob = 'תאריך לידה לא תקין או גיל מתחת ל-16';
+            } else {
+                // Additional check to ensure day and month are correct (handles invalid dates like 31.02.2000)
+                if (date.getFullYear() !== year || date.getMonth() !== month - 1 || date.getDate() !== day) {
+                    newErrors.dob = 'תאריך לידה לא תקין';
+                }
             }
         } else {
             newErrors.dob = 'פורמט תאריך לא תקין (DD.MM.YYYY)';
@@ -157,6 +163,8 @@ const MyProfile = () => {
     exitWithoutSave = () => {
         setShowExitConfirmation(false);
         setFormData(initialFormData);
+        setDocumentStatus('noDocument');
+        setFormIsValid(false);
         setErrors({});
     }
 
@@ -165,12 +173,12 @@ const MyProfile = () => {
             <View style={styles.container}>
                 <LinearGradient start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} colors={['#e40c78', '#f05464']}>
                     <Header isDirty={isDirty} onSave={handleSave} onExit={handleExit} />
-                    <ProfilePhoto 
-                    setIsDirty={setIsDirty}
-                    formData={formData}
+                    <ProfilePhoto
+                        setIsDirty={setIsDirty}
+                        formData={formData}
                     />
-                    <UserDetails 
-                    formData={formData}
+                    <UserDetails
+                        formData={formData}
                     />
                     <ProfileForm
                         formData={formData}
@@ -200,7 +208,7 @@ const MyProfile = () => {
                                 name: "חזרה, ללא שמירה",
                                 backgroundColor: "#fff",
                                 onPress: exitWithoutSave,
-                                
+
                             },
                         ]}
                     />

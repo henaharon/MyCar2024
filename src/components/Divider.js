@@ -8,7 +8,8 @@ const Divider = ({ color = 'lightgray', height = 1, style }) => {
 const styles = StyleSheet.create({
   divider: {
     width: '100%',
-    marginVertical:24,
+    marginBottom:24,
+    marginTop:12,
   },
 });
 

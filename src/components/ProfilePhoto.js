@@ -3,6 +3,8 @@ import { View, Image, TouchableOpacity, Text, StyleSheet, Modal, TouchableWithou
 import { launchCamera, launchImageLibrary } from 'react-native-image-picker';
 import Icon from 'react-native-vector-icons/FontAwesome'; // Import FontAwesome
 import LightboxModal2 from "./LightboxModal2";
+import defaultAvatar from '../assets/icons/defaultavatar.png';
+
 
 const ProfilePhoto = ({ setIsDirty, formData }) => {
     const [isModalVisible, setModalVisible] = useState(false);
@@ -39,8 +41,7 @@ const ProfilePhoto = ({ setIsDirty, formData }) => {
         });
     };
     const removePhoto = () => {
-        // setProfilePhoto(defaultAvatar);
-        formData.profilePicture = null;
+        formData.profilePicture = defaultAvatar;
         setIsDirty(true); // Notify parent component
         toggleModal();
     };
