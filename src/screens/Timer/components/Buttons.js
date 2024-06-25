@@ -1,12 +1,13 @@
 import React from 'react';
-import {Pressable, StyleSheet, Text, View} from 'react-native';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
 
-export const Buttons = ({isOn, setIsOn, onReset}) => {
+export const Buttons = ({ isOn, setIsOn, onReset }) => {
   return (
     <View style={styles.buttonsContainer}>
       <Pressable onPress={() => setIsOn(!isOn)}>
         <Text
-          style={[styles.buttonStyle, buttonTextsStyles({isOn}).buttonStyle]}>
+          style={[styles.buttonStyle, buttonTextsStyles({ isOn }).buttonStyle]}
+        >
           {isOn ? 'Pause' : 'Resume'}
         </Text>
       </Pressable>
@@ -17,7 +18,7 @@ export const Buttons = ({isOn, setIsOn, onReset}) => {
   );
 };
 
-const buttonTextsStyles = props =>
+const buttonTextsStyles = (props) =>
   StyleSheet.create({
     buttonStyle: {
       color: props?.isOn ? 'black' : 'red',

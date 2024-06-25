@@ -20,7 +20,8 @@ export const Header = () => {
       </View>
       <Pressable
         // onPress={() => isAuthorized && setIsAuthorized(false)}
-        style={styles.headerTextContainer}>
+        style={styles.headerTextContainer}
+      >
         <Text style={styles.logoText}>{'My Timer'}</Text>
       </Pressable>
       <View style={styles.rightContainer} />
@@ -38,7 +39,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     elevation: 2,
     shadowColor: '#000',
-    shadowOffset: {width: 0, height: 1},
+    shadowOffset: { width: 0, height: 1 },
     shadowOpacity: 0.1,
     shadowRadius: 10,
     borderColor: 'white',
