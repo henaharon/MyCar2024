@@ -1,12 +1,15 @@
-// MenuItem.js
 import React from 'react';
-import { View, Text, Image, StyleSheet } from 'react-native';
+import { View, Text, Image, StyleSheet, Dimensions } from 'react-native';
+
+const windowWidth = Dimensions.get('window').width;
+
 
 const MenuItem = ({ icon, text }) => {
   return (
     <View style={styles.menuItem}>
+        <Text style={styles.text}>{text}</Text>
       <Image source={icon} style={styles.icon} />
-      <Text style={styles.text}>{text}</Text>
+     
     </View>
   );
 };
@@ -15,15 +18,18 @@ const styles = StyleSheet.create({
   menuItem: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 10,
+    justifyContent: 'flex-end', // Align items to the end of container (right side)
+    marginBottom: 0.03 * windowWidth,
   },
   icon: {
     width: 30,
     height: 30,
-    marginRight: 10,
+    marginLeft:0.03 * windowWidth,
   },
   text: {
     fontSize: 16,
+    textAlign: 'right', // Align text to the right
+    color: 'white',
   },
 });
 

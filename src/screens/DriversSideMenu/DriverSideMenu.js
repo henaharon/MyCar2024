@@ -6,6 +6,7 @@ import MenuSection from './components/MenuSection';
 import ContactSection from './components/ContactSection';
 import LogoSection from './components/LogoSection';
 
+
 const SideMenu = () => {
   return (
     <ScrollView contentContainerStyle={styles.container}>

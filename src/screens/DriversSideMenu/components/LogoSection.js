@@ -1,6 +1,8 @@
 // LogoSection.js
 import React from 'react';
-import { View, Image, StyleSheet } from 'react-native';
+import { View, Image, StyleSheet, Dimensions } from 'react-native';
+const windowWidth = Dimensions.get('window').width;
+
 
 const LogoSection = () => {
   return (
@@ -17,9 +19,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   logo: {
-    width: 100,
-    height: 50,
-    marginBottom: 10,
+    width: 0.5 * windowWidth,
+    height: 0.07 * windowWidth,
+    marginBottom: 0.1 * windowWidth,
   },
 });
 

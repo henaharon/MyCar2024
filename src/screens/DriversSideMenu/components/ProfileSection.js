@@ -1,12 +1,16 @@
-// ProfileSection.js
 import React from 'react';
-import { View, Text, Image, StyleSheet } from 'react-native';
+import { View, Text, Image, StyleSheet, Dimensions } from 'react-native';
+
+const windowWidth = Dimensions.get('window').width;
 
 const ProfileSection = () => {
   return (
     <View style={styles.profileSection}>
+      <View style={styles.textContainer}>
+        <Text style={styles.smallText}>שלום,</Text>
+        <Text style={styles.text}>עומר פורטנוי</Text>
+      </View>
       <Image source={require('../../../assets/k1_icons/my_profile.png')} style={styles.icon} />
-      <Text style={styles.text}>My Profile</Text>
     </View>
   );
 };
@@ -15,15 +19,26 @@ const styles = StyleSheet.create({
   profileSection: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 20,
+    marginBottom: 0.2 * windowWidth,
+    justifyContent: 'flex-end', // Align items to the end of container (right side)
+  },
+  textContainer: {
+    flexDirection: 'column',
+    alignItems: 'flex-end', // Align items to the end of container (right side)
+    marginRight: 0.05 * windowWidth,
   },
   icon: {
-    width: 30,
-    height: 30,
-    marginRight: 10,
+    width: 80,
+    height: 80,
+    marginRight: 0.01 * windowWidth,
   },
   text: {
-    fontSize: 16,
+    fontSize: 24,
+    color: 'white',
+  },
+  smallText: {
+    fontSize: 16, // Set the size for the additional text
+    color: 'white',
   },
 });
 
