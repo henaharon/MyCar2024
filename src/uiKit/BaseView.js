@@ -26,3 +26,7 @@ const styles = StyleSheet.create({
     // alignItems: 'center',
   },
 });
+
+BaseView.defaultProps = {
+  style: {},
+};
