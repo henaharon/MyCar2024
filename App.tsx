@@ -7,6 +7,8 @@ import HardwareIntro from "./src/screens/E1/HardwareIntro";
 import ConnectToChat from "./src/screens/E1/HardwareConnectToChat";
 import HomePage from "./src/screens/homepage/HomePage";
 import RoadsideAssistance from "./src/screens/E1/RoadsideAssistance";
+import DriversCall from "./src/screens/DriversCall/DriversCall";
+import DriversContactUs from "./src/screens/DriversContactUs/components/DriversContactUs";
 
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -31,6 +33,8 @@ function MyDrawer() {
   return (
     <Drawer.Navigator screenOptions={{ headerShown: false }}>
       <Drawer.Screen name="HomeStack" component={HomeStack} />
+      <Drawer.Screen name="DriversContactUs" component={DriversContactUs} />
+      <Drawer.Screen name="DriversCall" component={DriversCall} />
       <Drawer.Screen name="TimerScreen" component={TimerScreen} />
       <Drawer.Screen name="Profile" component={TimerScreen} />
       <Drawer.Screen name="HardwareIntro" component={HardwareIntro} />
