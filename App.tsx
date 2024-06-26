@@ -3,7 +3,10 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import TimerScreen from "./src/screens/Timer/TimerScreen";
+import HardwareIntro from "./src/screens/E1/HardwareIntro";
+import ConnectToChat from "./src/screens/E1/HardwareConnectToChat";
 import HomePage from "./src/screens/homepage/HomePage";
+import RoadsideAssistance from "./src/screens/E1/RoadsideAssistance";
 import DriversCall from "./src/screens/DriversCall/DriversCall";
 import DriversContactUs from "./src/screens/DriversContactUs/components/DriversContactUs";
 
@@ -34,8 +37,10 @@ function MyDrawer() {
       <Drawer.Screen name="DriversCall" component={DriversCall} />
       <Drawer.Screen name="TimerScreen" component={TimerScreen} />
       <Drawer.Screen name="Profile" component={TimerScreen} />
-
-    </Drawer.Navigator >
+      <Drawer.Screen name="HardwareIntro" component={HardwareIntro} />
+      <Drawer.Screen name="ConnectToChat" component={ConnectToChat} />
+      <Drawer.Screen name="RoadsideAssistance" component={RoadsideAssistance} />
+    </Drawer.Navigator>
   );
 }
 

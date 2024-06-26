@@ -34,7 +34,7 @@ const texts = {
     { title: "שטיפת רכב", image: first, navigateTo: "TimerScreen" },
     { title: "רכב חשמלי", image: second, navigateTo: "TimerScreen" },
     { title: "צמיגים ופנצריות", image: third, navigateTo: "TimerScreen" },
-    { title: "אביזרים", image: forth, navigateTo: "TimerScreen" },
+    { title: "אביזרים", image: forth, navigateTo: "HardwareIntro" },
     { title: "זימון שירותי מוסך", image: fith, navigateTo: "TimerScreen" },
     { title: "תקלות בדרך", image: six, navigateTo: "TimerScreen" },
     { title: "צאט עם נציג", image: seven, navigateTo: "TimerScreen" },
