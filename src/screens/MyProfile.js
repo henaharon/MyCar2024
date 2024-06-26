@@ -1,7 +1,7 @@
 import { React, useEffect, useState } from "react";
 import { ScrollView, View, StyleSheet } from "react-native";
 import { LinearGradient } from "react-native-linear-gradient";
-import Header from '../components/Header';
+import Header from '../components/MyProfileHeader';
 import ProfilePhoto from '../components/ProfilePhoto';
 import ProfileForm from '../components/ProfileForm';
 import UserDetails from '../components/UserDetails';
