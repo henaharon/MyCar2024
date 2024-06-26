@@ -6,7 +6,7 @@ const ServiceCenter = ({ navigation }) => {
     return (
         <ScrollView contentContainerStyle={styles.scrollViewContent}>
             <ImageBackground
-                source={require('./D1-2-assets/tim-mossholder-unsplash.jpg')}
+                source={require('./D1-2-assets/images/tim-mossholder-unsplash.jpg')}
                 style={styles.imageBackground}>
                 <SafeAreaView style={styles.safeArea}>
                     <View style={styles.header}>
@@ -14,7 +14,7 @@ const ServiceCenter = ({ navigation }) => {
                             <Text style={styles.headerText}>זימון שירותי מוסך</Text>
                         </View>
                         <TouchableOpacity style={styles.touchable}>
-                            <Image source={require('./D1-2-assets/Close.png')} style={styles.closeButtonImage} />
+                            <Image source={require('./D1-2-assets/icons/Close.png')} style={styles.closeButtonImage} />
                         </TouchableOpacity>
                     </View>
                 </SafeAreaView>
@@ -26,31 +26,31 @@ const ServiceCenter = ({ navigation }) => {
                 </View>
                 <View style={styles.buttonContainer}>
                     <ServiceButton
-                        icon={require('./D1-2-assets/Car.png')}
+                        icon={require('./D1-2-assets/icons/Car.png')}
                         text="תקלת רכב"
                         style={styles.serviceButton}
                     // onPress={() => navigation.navigate('CarIssue')}
                     />
                     <ServiceButton
-                        icon={require('./D1-2-assets/RoutineService.png')}
+                        icon={require('./D1-2-assets/icons/RoutineService.png')}
                         text="טיפול תקופתי"
                         style={styles.serviceButton}
                     // onPress={() => navigation.navigate('RoutineMaintenance')}
                     />
                     <ServiceButton
-                        icon={require('./D1-2-assets/Warning.png')}
+                        icon={require('./D1-2-assets/icons/Warning.png')}
                         text="תאונה / נזק"
                         style={styles.serviceButton}
                     // onPress={() => navigation.navigate('AccidentDamage')}
                     />
                     <ServiceButton
-                        icon={require('./D1-2-assets/Brakes.png')}
+                        icon={require('./D1-2-assets/icons/Brakes.png')}
                         text="ביקורת בטיחות"
                         style={styles.serviceButton}
                     // onPress={() => navigation.navigate('SafetyCheck')}
                     />
                     <ServiceButton
-                        icon={require('./D1-2-assets/Brakes.png')}
+                        icon={require('./D1-2-assets/icons/Brakes.png')}
                         text="אחר"
                         style={styles.serviceButton}
                     // onPress={() => navigation.navigate('SafetyCheck')}
