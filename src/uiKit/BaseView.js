@@ -1,5 +1,5 @@
-import React from 'react';
-import { SafeAreaView, StyleSheet, View } from 'react-native';
+import React from "react";
+import { SafeAreaView, StyleSheet, View } from "react-native";
 
 export const BaseView = ({ children, style }) => {
   return (
@@ -16,12 +16,14 @@ export const BodyBaseView = ({ children, style }) => {
 const styles = StyleSheet.create({
   safeAreaViewBase: {
     flex: 1,
-    backgroundColor: 'green',
+    backgroundColor: "green",
   },
   bodyView: {
     paddingHorizontal: 50,
     flex: 9,
-    backgroundColor: 'yellow',
+    backgroundColor: "yellow",
+    // justifyContent: 'center',
+    // alignItems: 'center',
   },
 });
 
