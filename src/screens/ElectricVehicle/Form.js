@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   FlatList,
   Image,
@@ -7,11 +7,68 @@ import {
   Text,
   TextInput,
   View,
+  TouchableOpacity,
+  PermissionsAndroid,
+  Platform,
 } from "react-native";
+import LinearGradient from 'react-native-linear-gradient';
+import DocumentPicker from 'react-native-document-picker';
 
 export default function Form() {
   const [description, setDescription] = useState("");
   const [location, setLocation] = useState("");
+  const [images, setImages] = useState([]);
+
+  useEffect(() => {
+    requestExternalStoragePermission();
+  }, []);
+
+  const requestExternalStoragePermission = async () => {
+    if (Platform.OS === 'android') {
+      try {
+        const granted = await PermissionsAndroid.request(
+          PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE,
+          {
+            title: "Access to Pictures",
+            message: "This app needs access to your pictures",
+            buttonNeutral: "Ask Me Later",
+            buttonNegative: "Cancel",
+            buttonPositive: "OK",
+          }
+        );
+        if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+          console.log("You can use the pictures");
+        } else {
+          console.log("Permission denied");
+        }
+      } catch (err) {
+        console.warn(err);
+      }
+    }
+  };
+
+  const handleImagePress = async () => {
+    try {
+      const result = await DocumentPicker.pick({
+        type: [DocumentPicker.types.images],
+      });
+      if (result) {
+        setImages([...images, result[0].uri]);
+      }
+    } catch (err) {
+      if (DocumentPicker.isCancel(err)) {
+        console.log("Canceled");
+      } else {
+        throw err;
+      }
+    }
+  };
+
+  const handleDeleteImage = (index) => {
+    const newImages = [...images];
+    newImages.splice(index, 1);
+    setImages(newImages);
+  };
 
   return (
     <ScrollView style={styles.scrollView}>
@@ -35,15 +92,32 @@ export default function Form() {
           horizontal
           showsHorizontalScrollIndicator={false}
           style={styles.flatList}
-          data={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}
-          renderItem={({ item }) => (
-            <Image
-              source={require("../../assets/icons/elements24PxIconsPlaceHolderImage2.png")}
-              style={styles.flatListImage}
-            />
+          data={images}
+          renderItem={({ item, index }) => (
+            <View style={styles.imageContainer}>
+              <Image
+                source={{ uri: item }}
+                style={styles.flatListImage}
+              />
+              <TouchableOpacity
+                style={styles.deleteButton}
+                onPress={() => handleDeleteImage(index)}
+              >
+                <Text style={styles.deleteButtonText}>X</Text>
+              </TouchableOpacity>
+            </View>
           )}
-          keyExtractor={(item) => item.toString()}
+          keyExtractor={(item, index) => index.toString()}
         />
+        <LinearGradient
+          colors={["#E60C73", "#FF7E5F"]}
+          style={styles.gradient}
+          start={{ x: 0, y: 0 }}
+          end={{ x: 1, y: 1 }}>
+          <TouchableOpacity onPress={handleImagePress} style={styles.button}>
+            <Text style={styles.buttonText}>הוסף תמונה</Text>
+          </TouchableOpacity>
+        </LinearGradient>
         <TextInput
           value={location}
           onChangeText={setLocation}
@@ -70,7 +144,7 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 40,
     borderTopRightRadius: 40,
     padding: 20,
-    marginTop: 10, // Add some margin to the top
+    marginTop: 10, 
   },
   image: {
     width: 120,
@@ -102,18 +176,55 @@ const styles = StyleSheet.create({
     borderColor: "#000",
     borderRadius: 10,
     padding: 10,
-    color: "#000", // Ensure text color is black
+    color: "#000", 
   },
   flatList: {
     marginBottom: 10,
     width: "100%",
     height: 150,
   },
+  imageContainer: {
+    position: 'relative',
+    marginRight: 10,
+  },
   flatListImage: {
     width: 100,
     height: 150,
     borderRadius: 10,
-    marginRight: 5,
     backgroundColor: "#000",
+  },
+  deleteButton: {
+    position: 'absolute',
+    top: 5, 
+    right: 5,
+    backgroundColor: 'rgba(255, 0, 0, 0.7)',
+    borderRadius: 15,
+    width: 20,
+    height: 20,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  deleteButtonText: {
+    color: '#fff',
+    fontSize: 12,
+    fontWeight: 'bold',
+  },
+  gradient: {
+    width: "100%",
+    borderRadius: 30,
+    marginTop: 10,
+  },
+  button: {
+    alignItems: "center",
+    justifyContent: "center",
+    paddingVertical: 15,
+    borderRadius: 20,
+  },
+  buttonText: {
+    fontSize: 16,
+    lineHeight: 21,
+    fontWeight: "bold",
+    letterSpacing: 0.25,
+    color: "white",
   },
 });
