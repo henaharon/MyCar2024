@@ -4,6 +4,9 @@ import { View, Text, StyleSheet, Image, ScrollView, Pressable, Dimensions, Modal
 const rightButtonImage = require('../../assets/images/greyRightArrow.png');
 const batteryImage = require('../../assets/images/Battery.png'); 
 const uploadImage1 = require('../../assets/images/cable.png');
+const carIcon = require('../../assets/icons/car.png');
+const locationIcon = require('../../assets/icons/location.png');
+const infoIcon = require('../../assets/icons/info.png');
 
 const SummaryScreen = ({ navigation }) => {
   const [modalVisible, setModalVisible] = useState(false);
@@ -21,9 +24,9 @@ const SummaryScreen = ({ navigation }) => {
         <Text style={styles.sectionDescription}>לפניכם פרטי הקריאה אנא בדקו שכל הפרטים נכונים לפני שליחה.</Text>
       </View>
       <View style={styles.section}>
-        <Text style={styles.subsectionTitle}>מצבר</Text>
-        <View style={styles.imageContainer}>
-          <Image source={batteryImage} style={styles.batteryImage} />
+        <View style={styles.inlineContainer}>
+          <Image source={batteryImage} style={styles.inlineImage} />
+          <Text style={styles.subsectionTitle}>מצבר</Text>
         </View>
         <View style={styles.detailsContainer}>
           <Text style={styles.detailsTitle}>תיאור / הערות</Text>
@@ -50,21 +53,29 @@ const SummaryScreen = ({ navigation }) => {
             </View>
           </ScrollView>
         </View>
+        <Text style={styles.line}></Text>
         <View style={styles.detailsContainer}>
           <Text style={styles.detailsTitle}>פרטים כללים</Text>
           <View style={styles.generalDetails}>
-            <Text style={styles.generalDetailsText}>Hyundai IONIQ</Text>
-            <Text style={styles.generalDetailsSubText}>23 441 32</Text>
+            <Image source={carIcon} style={styles.icon} />
+            <View>
+              <Text style={styles.generalDetailsText}>Hyundai IONIQ</Text>
+              <Text style={styles.generalDetailsSubText}>23 441 32</Text>
+            </View>
           </View>
         </View>
         <View style={styles.detailsContainer}>
           <Text style={styles.detailsTitle}>מיקום</Text>
           <View style={styles.locationDetails}>
+            <Image source={locationIcon} style={styles.icon} />
             <Text style={styles.locationDetailsText}>צומת יקום לכיוון צפון</Text>
           </View>
         </View>
         <View style={styles.notificationBox}>
-          <Text style={styles.notificationTitle}>לידיעתך</Text>
+          <View style={styles.notificationHeader}>
+            <Image source={infoIcon} style={styles.infoIcon} />
+            <Text style={styles.notificationTitle}>לידיעתך</Text>
+          </View>
           <Text style={styles.notificationText}>ניתן להתעדכן בכל רגע נתון בסטטוס הבקשה שלך ישירות מהאפליקציה דרך מסך סטטוס הקריאות שלי.</Text>
         </View>
       </View>
@@ -147,34 +158,47 @@ const styles = StyleSheet.create({
   },
   sectionTitle: {
     fontSize: 18,
-    fontWeight: 'bold',
+    fontWeight: '900',
     marginBottom: 8,
+    color: 'black',
   },
   sectionDescription: {
     fontSize: 14,
     color: '#666',
   },
   subsectionTitle: {
-    fontSize: 18,
+    fontSize: 14,
     fontWeight: 'bold',
-    marginBottom: 8,
+    marginBottom: 0,
   },
-  imageContainer: {
+  inlineContainer: {
+    flexDirection: 'row-reverse',
     alignItems: 'center',
     marginBottom: 16,
   },
-  batteryImage: {
-    width: 100,
-    height: 100,
+  inlineImage: {
+    width: 40,
+    height: 40,
+    marginLeft: 10,
     resizeMode: 'contain',
   },
+  line: {
+    width: windowWidth - 50,
+    height: 2,
+    backgroundColor: '#D3D3D3',
+    marginLeft: 5,
+    marginBottom: 20,
+    marginTop: 20,
+  },
+
   detailsContainer: {
     marginBottom: 16,
   },
   detailsTitle: {
     fontSize: 16,
-    fontWeight: 'bold',
+    fontWeight: '900',
     marginBottom: 8,
+    color: 'black',
   },
   detailsText: {
     fontSize: 14,
@@ -200,8 +224,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
   },
   generalDetails: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    flexDirection: 'row-reverse',
     alignItems: 'center',
   },
   generalDetailsText: {
@@ -213,8 +236,7 @@ const styles = StyleSheet.create({
     color: '#666',
   },
   locationDetails: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    flexDirection: 'row-reverse',
     alignItems: 'center',
   },
   locationDetailsText: {
@@ -227,10 +249,16 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     marginBottom: 16,
   },
+  notificationHeader: {
+    flexDirection: 'row-reverse',
+    alignItems: 'center',
+    marginBottom: 8,
+  },
   notificationTitle: {
     fontSize: 16,
     fontWeight: 'bold',
     color: '#856404',
+    marginRight: 8,
   },
   notificationText: {
     fontSize: 14,
@@ -286,6 +314,20 @@ const styles = StyleSheet.create({
   closeButtonText: {
     fontSize: 16,
     color: '#1a73e8',
+  },
+  icon: {
+    width: 50,
+    height: 50,
+    marginLeft: 10, 
+    backgroundColor: '#F6E8E8',
+    borderRadius: 25, // Half of the width/height to make it a circle
+    justifyContent: 'center',
+    alignItems: 'center', // To center the image inside the circle
+  },  
+  infoIcon: {
+    width: 50,
+    height: 50,
+    marginRight: -10,
   },
 });
 
