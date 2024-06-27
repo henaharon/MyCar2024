@@ -36,7 +36,7 @@ const texts = {
     { title: "צמיגים ופנצריות", image: third, navigateTo: "TimerScreen" },
     { title: "אביזרים", image: forth, navigateTo: "TimerScreen" },
     { title: "זימון שירותי מוסך", image: fith, navigateTo: "TimerScreen" },
-    { title: "תקלות בדרך", image: six, navigateTo: "TimerScreen" },
+    { title: "תקלות בדרך", image: six, navigateTo: "SelectService" },
     { title: "צאט עם נציג", image: seven, navigateTo: "TimerScreen" },
   ],
   updatesTitle: "עדכונים וחדשות",
