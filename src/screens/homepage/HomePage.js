@@ -10,6 +10,7 @@ import {
   Dimensions,
 } from "react-native";
 
+
 const backgroundShape = require("../../assets/images/backgorund3.png");
 const backgroundShape1 = require("../../assets/images/backgroundShape1.png");
 const carImage = require("../../assets/images/Car.png");
@@ -36,7 +37,11 @@ const texts = {
     { title: "צמיגים ופנצריות", image: third, navigateTo: "TimerScreen" },
     { title: "אביזרים", image: forth, navigateTo: "TimerScreen" },
     { title: "זימון שירותי מוסך", image: fith, navigateTo: "TimerScreen" },
+<<<<<<< HEAD
     { title: "תקלות בדרך", image: six, navigateTo: "SelectService" },
+=======
+    { title: "תקלות בדרך", image: six, navigateTo: "ServiceDetailsScreen" }, 
+>>>>>>> 30b5389ca936006cc1ace70636d8ad7a3a4778bd
     { title: "צאט עם נציג", image: seven, navigateTo: "TimerScreen" },
   ],
   updatesTitle: "עדכונים וחדשות",
