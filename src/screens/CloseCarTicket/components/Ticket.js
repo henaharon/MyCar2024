@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { View, Image, Pressable, StyleSheet, Text } from 'react-native';
 
 const Ticket = ({
+id,
   ticketName,
   icon,
   ticketStatus,
@@ -20,17 +21,20 @@ const Ticket = ({
   return (
     <Pressable onPress={handlePress} style={[styles.card]}>
       <View style={styles.header}>
-        <View>
-          <Text style={styles.ticketName}>{ticketName}</Text>
+        <View style={styles.ticketTitle}>
           <Image source={icon} style={styles.icon} />
+          <View>
+            <Text style={styles.ticketName}>{ticketName}</Text>
+            <Text style={styles.date}>
+              {date} | מספר קריאה {seqNum}
+            </Text>
+          </View>
         </View>
-        <View>
+        <View style={[styles.status,ticketStatus === 'פתוח' ? styles.green : styles.gray]}>
           <Text>{ticketStatus}</Text>
         </View>
       </View>
-      <Text style={styles.date}>
-        {date} | {seqNum}
-      </Text>
+
       <View style={styles.line}></View>
       <View style={styles.details}>
         <View style={styles.detailRow}>
@@ -49,8 +53,8 @@ const Ticket = ({
 const styles = StyleSheet.create({
   card: {
     backgroundColor: '#f2f3f5',
-    padding: 10,
-
+    padding: 3,
+    marginBottom: 10,
     borderRadius: 5,
   },
 
@@ -58,14 +62,28 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
+    flexDirection: 'row-reverse',
+  },
+  ticketTitle: {
+    flexDirection: 'row',
+    padding: 5,
+    flexDirection: 'row-reverse',
   },
   ticketName: {
     fontSize: 18,
     fontWeight: 'bold',
   },
   icon: {
-    width: 20,
-    height: 20,
+    width: 40,
+    height: 40,
+    marginHorizontal: 12,
+  },
+  status: {
+    padding: 8,
+    borderRadius: 20,
+    justifyContent:'center',
+    alignItems:'center',
+    width:'15%'
   },
   date: {
     color: '#888',
@@ -73,10 +91,15 @@ const styles = StyleSheet.create({
   },
   details: {
     marginTop: 10,
+    flexDirection:'row-reverse',
+    justifyContent:'space-between',
+    alignItems:'center',
+    paddingLeft: 50
   },
   detailRow: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems:'center',
     marginBottom: 5,
   },
   carName: {
@@ -88,15 +111,22 @@ const styles = StyleSheet.create({
   },
   name: {
     fontSize: 16,
+    fontWeight: 'bold',
   },
   phoneNum: {
     fontSize: 16,
-    color: '#007BFF',
+    color: '#888',
   },
   line: {
     backgroundColor: '#dfe3eb',
     height: 4,
   },
+  green:{
+    backgroundColor:'#bccfa3',
+    color: '#8ac240'
+  },
+  gray:{
+  backgroundColor: '#bbbdb5',}
 });
 
 export default Ticket;

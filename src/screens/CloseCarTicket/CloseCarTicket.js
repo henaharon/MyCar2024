@@ -6,93 +6,129 @@ import Ticket from './components/Ticket';
 const openTicketsData = [
   {
     id: '1',
-    title: 'Item 1',
-    subtitle: 'Details about item 1',
-    status: 'completed',
+    ticketName: 'טיפול תקופתי',
+    icon: require('../../assets/O1-assets/calendar.png'),
+    ticketStatus: 'פתוח',
+    date: '18.09.2022',
+    seqNum: '82221',
+    carName: 'יונדאי איוניק 2022',
+    name: 'תמיר דב',
+    carNum: '682 24 301',
+    phoneNum: '054 7725112',
   },
   {
     id: '2',
-    title: 'Item 2',
-    subtitle: 'Details about item 2',
-    status: 'pending',
+    ticketName: 'שירותי מכון רישוי (טסט)',
+    icon: require('../../assets/O1-assets/clipboard.png'),
+    ticketStatus: 'פתוח',
+    date: '18.09.2022',
+    seqNum: '82221',
+    carName: 'קאיה פיקנטו',
+    name: 'אביב שרון',
+    carNum: '931 23124',
+    phoneNum: '050 3921941',
   },
   {
     id: '3',
-    title: 'Item 3',
-    subtitle: 'Details about item 3',
-    status: 'completed',
+    ticketName: 'החלפת מגבים',
+    icon: require('../../assets/O1-assets/carBlade.png'),
+    ticketStatus: 'פתוח',
+    date: '18.09.2022',
+    seqNum: '82221',
+    carName: 'וינדאי איי 20',
+    name: 'אלון דוד',
+    carNum: '932 14 923',
+    phoneNum: '054 7725112',
   },
 ];
 const closeTicketsData = [
-  {
-    id: '1',
-    title: 'Item',
-    subtitle: 'Details about item 1',
-    status: 'completed',
-  },
-  {
-    id: '2',
-    title: 'Item',
-    subtitle: 'Details about item 2',
-    status: 'pending',
-  },
-  {
-    id: '3',
-    title: 'Item',
-    subtitle: 'Details about item 3',
-    status: 'completed',
-  },
+   {
+     id: '1',
+     ticketName: 'טיפול תקופתי',
+     icon: require('../../assets/O1-assets/calendar.png'),
+     ticketStatus: 'סגור',
+     date: '18.09.2022',
+     seqNum: '82221',
+     carName: 'יונדאי איוניק 2022',
+     name: 'תמיר דב',
+     carNum: '682 24 301',
+     phoneNum: '054 7725112',
+   },
+   {
+     id: '2',
+     ticketName: 'שירותי מכון רישוי (טסט)',
+     icon: require('../../assets/O1-assets/clipboard.png'),
+     ticketStatus: 'סגור',
+     date: '18.09.2022',
+     seqNum: '82221',
+     carName: 'קאיה פיקנטו',
+     name: 'אביב שרון',
+     carNum: '931 23124',
+     phoneNum: '050 3921941',
+   },
+   {
+     id: '3',
+     ticketName: 'החלפת מגבים',
+     icon: require('../../assets/O1-assets/carBlade.png'),
+     ticketStatus: 'סגור',
+     date: '18.09.2022',
+     seqNum: '82221',
+     carName: 'וינדאי איי 20',
+     name: 'אלון דוד',
+     carNum: '932 14 923',
+     phoneNum: '054 7725112',
+   },
 ];
 
 const CloseCarTicket = () => {
   const [selectedButton, setSelectedButton] = useState('open'); // State to track selected button
   const [showTickets, setShowTickets] = useState('open'); // State to track showing open tickets
 
-  const handleOpenTicketsPress = () => {
-    setShowOpenTickets(true); // Show open tickets when button is pressed
-  };
 
-  const handleAllTicketsPress = () => {
-    setShowOpenTickets(false); // Show all tickets when button is pressed
-  };
   const handlePress = (buttonId) => {
     setSelectedButton(buttonId); // Set the currently pressed button
   };
   const showTicketsData = () => {
     if (selectedButton === 'open') {
-      return openTicketsData.map((item) => (
-        <View style={styles.itemContainer} key={item.id}>
-          <Image
-            source={
-              item.status === 'completed'
-                ? require('../../assets/O1-assets/car_wash_icon.png')
-                : require('../../assets/O1-assets/car_wash_icon.png')
-            }
-            style={styles.itemIcon}
-          />
-          <View style={styles.itemTextContainer}>
-            <Text style={styles.itemTitle}>{item.title}</Text>
-            <Text style={styles.itemSubtitle}>{item.subtitle}</Text>
-          </View>
-        </View>
-      ));
+      return (
+                <>
+                  <Text style={styles.subtitle}>קריאות פתוחות</Text>
+                  {openTicketsData.map((item) => (
+                    <Ticket
+                      key={item.id}
+                      ticketName={item.ticketName}
+                      icon={item.icon}
+                      ticketStatus={item.ticketStatus}
+                      date={item.date}
+                      seqNum={item.seqNum}
+                      carName={item.carName}
+                      name={item.name}
+                      carNum={item.carNum}
+                      phoneNum={item.phoneNum}
+                    />
+                  ))}
+                </>
+              );
     } else if (selectedButton === 'close') {
-      return closeTicketsData.map((item) => (
-        <View style={styles.itemContainer} key={item.id}>
-          <Image
-            source={
-              item.status === 'completed'
-                ? require('../../assets/O1-assets/car_wash_icon.png')
-                : require('../../assets/O1-assets/car_wash_icon.png')
-            }
-            style={styles.itemIcon}
-          />
-          <View style={styles.itemTextContainer}>
-            <Text style={styles.itemTitle}>{item.title}</Text>
-            <Text style={styles.itemSubtitle}>{item.subtitle}</Text>
-          </View>
-        </View>
-      ));
+       return (
+           <>
+             <Text style={styles.subtitle}>קריאות סגורות</Text>
+             {closeTicketsData.map((item) => (
+               <Ticket
+                 key={item.id}
+                 ticketName={item.ticketName}
+                 icon={item.icon}
+                 ticketStatus={item.ticketStatus}
+                 date={item.date}
+                 seqNum={item.seqNum}
+                 carName={item.carName}
+                 name={item.name}
+                 carNum={item.carNum}
+                 phoneNum={item.phoneNum}
+               />
+             ))}
+           </>
+         );
     }
   };
 
@@ -105,9 +141,9 @@ const CloseCarTicket = () => {
         />
         <Text style={styles.cardText}>הקריאות שלי</Text>
         <Text style={styles.cardNumber}>24</Text>
-        <Text style={styles.cardText}>קריאות פתוחים</Text>
+        <Text style={styles.cardText}>קריאות פתוחות</Text>
       </View>
-      <View style={styles.bottomContainer}>
+      <View style={[styles.bottomContainer, selectedButton === 'open' ? styles.openBottomContainer : styles.closeBottomContainer]}>
         <View style={styles.buttonContainer}>
           <Button
             text="פתוחות"
@@ -137,19 +173,8 @@ const CloseCarTicket = () => {
             }
           />
         </View>
-        <View style={styles.ticketsContainer}>
-          <Ticket
-            ticketName="ticketName"
-            icon = {require('../../assets/O1-assets/componentsNavBarXButtonsRoundedBlack.png')}
-            ticketStatus="closed"
-            date="dd/mm/yyyy"
-            seqNum="1234555"
-            carName="car name"
-            name="name"
-            carNum="123456"
-            phoneNum="045754"
-          />
-        </View>
+
+        <View style={styles.ticketsContainer}>{showTicketsData()}</View>
       </View>
     </View>
   );
@@ -172,8 +197,10 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-end',
   },
   cardNumber: {
-    fontSize: 48,
+    fontSize: 54,
     color: '#fff',
+    fontWeight:'bold',
+
     marginBottom: 8,
   },
   cardText: {
@@ -190,7 +217,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   buttonContainer: {
-    flexDirection: 'row',
+    flexDirection: 'row-reverse',
     justifyContent: 'center',
     marginTop: 20,
     marginBottom: 20,
@@ -242,7 +269,18 @@ const styles = StyleSheet.create({
   },
   ticketsContainer: {
     paddingHorizontal: 10,
+
+    height:'100%'
+
   },
+  openBottomContainer:{},
+  closeBottomContainer:{
+    marginTop:'-30%',
+  },
+  subtitle:{
+  fontSize:20,
+  fontWeight:'bold',
+  marginBottom:15}
 });
 
 export default CloseCarTicket;
