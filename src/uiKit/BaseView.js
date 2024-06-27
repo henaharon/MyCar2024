@@ -1,7 +1,7 @@
-import React from 'react';
-import {SafeAreaView, StyleSheet, View} from 'react-native';
+import React from "react";
+import { SafeAreaView, StyleSheet, View } from "react-native";
 
-export const BaseView = ({children, style}) => {
+export const BaseView = ({ children, style }) => {
   return (
     <SafeAreaView style={[styles.safeAreaViewBase, style]}>
       {children}
@@ -9,7 +9,7 @@ export const BaseView = ({children, style}) => {
   );
 };
 
-export const BodyBaseView = ({children, style}) => {
+export const BodyBaseView = ({ children, style }) => {
   return <View style={[styles.bodyView, style]}>{children}</View>;
 };
 
