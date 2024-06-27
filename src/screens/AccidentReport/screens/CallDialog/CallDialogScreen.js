@@ -31,14 +31,15 @@ const CallDialogScreen = () => {
 export default CallDialogScreen;
 
 const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
 
 const styles = StyleSheet.create({
   iconContainer: {
     position: 'absolute',
-    top: '10%',
+    top: windowHeight * 0.07,
   },
   iconDisplay: {
-    height: windowWidth * 0.35,
+    height: windowHeight * 0.18,
     width: windowWidth * 0.35,
     elevation: 1,
     shadowOffset: { width: 0, height: 1 },
@@ -46,9 +47,9 @@ const styles = StyleSheet.create({
     shadowRadius: 10,
   },
   buttonsContainer: {
-    width: '100%',
+    width: windowWidth,
     position: 'relative',
-    bottom: '22%',
+    bottom: windowHeight * 0.23,
     alignItems: 'center',
     gap: 12,
   },
@@ -65,13 +66,13 @@ const styles = StyleSheet.create({
     flex: 1,
     position: 'relative',
     alignItems: 'center',
-    top: '32%',
+    top: windowHeight * 0.3,
     gap: 10,
   },
   backLink: {
-    width: '100%',
+    width: windowWidth,
     position: 'relative',
-    bottom: '19%',
+    bottom: windowHeight * 0.18,
   },
   linkText: {
     color: 'blue',
