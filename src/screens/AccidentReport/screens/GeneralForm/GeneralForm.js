@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
     GeneralFormContainer: {
         display: 'flex',
         flexDirection: 'column',
-        gap: 20,
+        gap: 30,
         position: 'relative',
         top: windowHeight * 0.05,
     },
