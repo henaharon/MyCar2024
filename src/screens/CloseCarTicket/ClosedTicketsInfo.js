@@ -155,7 +155,7 @@ const ClosedTicketsInfo = () => {
               נשמח לשמוע ממך על חווית השירות שלך
             </Text>
             <TouchableOpacity style={styles.timelineStatusButton} onPress={handleSendFeedback}>
-              <Text style={styles.timelineStatusButtonText}>send feed back</Text>
+              <Text style={styles.timelineStatusButtonText}>שליחת משוב</Text>
             </TouchableOpacity>
           </View>
           <View style={styles.timelineDotActive} />
@@ -242,6 +242,12 @@ const styles = StyleSheet.create({
   vehicleInfo: {
     alignItems: "center",
     paddingVertical: 20,
+    borderBottomWidth: 1, // Adjust the width as needed
+    borderBottomColor: 'gray',
+    marginBottom:15,
+        marginHorizontal: 20, // Adjust to make the line shorter on both sides
+
+
   },
   vehicleIcon: {
     width: 50,
@@ -264,6 +270,12 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     paddingHorizontal: 20,
     marginBottom: 20,
+  },
+  CommentsImagesSection: {
+  borderBottomWidth: 0.3, // Adjust the width as needed
+   borderBottomColor: 'gray',
+   marginBottom:15,
+   marginHorizontal: 20, // Adjust to make the line shorter on both sides
   },
   moreInfoText: {
     fontSize: 16,
@@ -295,6 +307,10 @@ const styles = StyleSheet.create({
   },
   generalDetails: {
     marginBottom: 20,
+    borderBottomWidth: 0.3, // Adjust the width as needed
+       borderBottomColor: 'gray',
+       marginBottom:15,
+       marginHorizontal: 20, // Adjust to make the line shorter on both sides
   },
   detailItem: {
     flexDirection: "row",
@@ -416,6 +432,7 @@ const styles = StyleSheet.create({
     width: "80%",
   },
   timelineStatusButtonText: {
+    
     fontSize: 22,
     fontWeight: "bold",
 
