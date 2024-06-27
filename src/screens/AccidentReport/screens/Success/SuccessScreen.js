@@ -1,8 +1,9 @@
-import React, {useState, useCallback} from 'react';
-import {Dimensions, Text, View, StyleSheet } from 'react-native';
+import React from 'react';
+import { Dimensions, Text, View, StyleSheet } from 'react-native';
 import {BaseView, BodyBaseView} from '../../../../uiKit/BaseView';
 import {Button} from '../../components/Button'
 import {Input} from '../../components/Input'
+import DateTimeInput from '../../components/DateTimeInput'
 
 const SuccessScreen = () => {
     return (
@@ -18,7 +19,8 @@ const SuccessScreen = () => {
         <View style={styles.buttonContainer}>
             <Button title={"אישור"}/>
         </View>
-        <Input placeholder={"טקסט"} required={true} width={0.5} type={""}/>
+        {/* <DateTimeInput text={"תאריך"} width={0.5} type={"date"} required={true}/> */}
+        {/* <Input placeholder={"טקסט"} required={true} width={0.5} type={""}/> */}
         </BodyBaseView>
         </BaseView>
     );

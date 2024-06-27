@@ -22,6 +22,8 @@ export const Input = ({type, placeholder, required, width}) => {
     };
 
     const inputWidth = width * Dimensions.get('window').width;
+    const inputHeight = type === 'textarea' ? 0.2 * Dimensions.get('window').height : undefined;
+    const textarea = type === 'textarea' ? true : false;
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
     const validateEmail = (email) => {
@@ -31,13 +33,17 @@ export const Input = ({type, placeholder, required, width}) => {
     return (
         <View style={[styles.inputContainer, {width:inputWidth}]}>
             <TextInput
-                style={[styles.input, {width:inputWidth}]}
+                style={[styles.input, {width:inputWidth, height:inputHeight},
+                    type === 'textarea' ? {textAlignVertical: 'top'} : {}
+                ]}
                 placeholder={placeholder}
                 onChangeText={handleChange}
                 placeholderTextColor={'#393939'}
                 keyboardType={type === 'number' ? 'numeric' : 
                               type === 'email' ? 'email-address' : 
                               'default'}
+                multiline={textarea}
+                numberOfLines={4}
             />
             {required && !value && (
                 <Text style={styles.asterisk}>*</Text>
@@ -75,4 +81,7 @@ const styles = StyleSheet.create({
         right: 15,
         fontSize: 18,
     },
+    textarea: {
+        textAlignVertical: 'top',
+    }
 });
