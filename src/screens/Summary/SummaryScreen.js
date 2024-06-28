@@ -320,15 +320,9 @@ const styles = StyleSheet.create({
     height: 50,
     marginLeft: 10, 
     backgroundColor: '#F6E8E8',
-<<<<<<< HEAD
     borderRadius: 25, 
     justifyContent: 'center',
     alignItems: 'center', 
-=======
-    borderRadius: 25, // Half of the width/height to make it a circle
-    justifyContent: 'center',
-    alignItems: 'center', // To center the image inside the circle
->>>>>>> 30b5389ca936006cc1ace70636d8ad7a3a4778bd
   },  
   infoIcon: {
     width: 50,
