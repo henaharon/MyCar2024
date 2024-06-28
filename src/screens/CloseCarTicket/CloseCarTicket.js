@@ -42,93 +42,93 @@ const openTicketsData = [
   },
 ];
 const closeTicketsData = [
-   {
-     id: '1',
-     ticketName: 'טיפול תקופתי',
-     icon: require('../../assets/O1-assets/calendar.png'),
-     ticketStatus: 'סגור',
-     date: '18.09.2022',
-     seqNum: '82221',
-     carName: 'יונדאי איוניק 2022',
-     name: 'תמיר דב',
-     carNum: '682 24 301',
-     phoneNum: '054 7725112',
-   },
-   {
-     id: '2',
-     ticketName: 'שירותי מכון רישוי (טסט)',
-     icon: require('../../assets/O1-assets/clipboard.png'),
-     ticketStatus: 'סגור',
-     date: '18.09.2022',
-     seqNum: '82221',
-     carName: 'קאיה פיקנטו',
-     name: 'אביב שרון',
-     carNum: '931 23124',
-     phoneNum: '050 3921941',
-   },
-   {
-     id: '3',
-     ticketName: 'החלפת מגבים',
-     icon: require('../../assets/O1-assets/carBlade.png'),
-     ticketStatus: 'סגור',
-     date: '18.09.2022',
-     seqNum: '82221',
-     carName: 'וינדאי איי 20',
-     name: 'אלון דוד',
-     carNum: '932 14 923',
-     phoneNum: '054 7725112',
-   },
+  {
+    id: '1',
+    ticketName: 'טיפול תקופתי',
+    icon: require('../../assets/O1-assets/calendar.png'),
+    ticketStatus: 'סגור',
+    date: '18.09.2022',
+    seqNum: '82221',
+    carName: 'יונדאי איוניק 2022',
+    name: 'תמיר דב',
+    carNum: '682 24 301',
+    phoneNum: '054 7725112',
+  },
+  {
+    id: '2',
+    ticketName: 'שירותי מכון רישוי (טסט)',
+    icon: require('../../assets/O1-assets/clipboard.png'),
+    ticketStatus: 'סגור',
+    date: '18.09.2022',
+    seqNum: '82221',
+    carName: 'קאיה פיקנטו',
+    name: 'אביב שרון',
+    carNum: '931 23124',
+    phoneNum: '050 3921941',
+  },
+  {
+    id: '3',
+    ticketName: 'החלפת מגבים',
+    icon: require('../../assets/O1-assets/carBlade.png'),
+    ticketStatus: 'סגור',
+    date: '18.09.2022',
+    seqNum: '82221',
+    carName: 'וינדאי איי 20',
+    name: 'אלון דוד',
+    carNum: '932 14 923',
+    phoneNum: '054 7725112',
+  },
 ];
 
-const CloseCarTicket = () => {
+const CloseCarTicket = ({navigation}) => {
   const [selectedButton, setSelectedButton] = useState('open'); // State to track selected button
   const [showTickets, setShowTickets] = useState('open'); // State to track showing open tickets
-
-
   const handlePress = (buttonId) => {
     setSelectedButton(buttonId); // Set the currently pressed button
   };
   const showTicketsData = () => {
     if (selectedButton === 'open') {
       return (
-                <>
-                  <Text style={styles.subtitle}>קריאות פתוחות</Text>
-                  {openTicketsData.map((item) => (
-                    <Ticket
-                      key={item.id}
-                      ticketName={item.ticketName}
-                      icon={item.icon}
-                      ticketStatus={item.ticketStatus}
-                      date={item.date}
-                      seqNum={item.seqNum}
-                      carName={item.carName}
-                      name={item.name}
-                      carNum={item.carNum}
-                      phoneNum={item.phoneNum}
-                    />
-                  ))}
-                </>
-              );
+        <>
+          <Text style={styles.subtitle}>קריאות פתוחות</Text>
+          {openTicketsData.map((item) => (
+            <Ticket
+              key={item.id}
+              ticketName={item.ticketName}
+              icon={item.icon}
+              ticketStatus={item.ticketStatus}
+              date={item.date}
+              seqNum={item.seqNum}
+              carName={item.carName}
+              name={item.name}
+              carNum={item.carNum}
+              phoneNum={item.phoneNum}
+              onPress={() =>navigation.navigate('ClosedTicketsInfo')}
+            />
+          ))}
+        </>
+      );
     } else if (selectedButton === 'close') {
-       return (
-           <>
-             <Text style={styles.subtitle}>קריאות סגורות</Text>
-             {closeTicketsData.map((item) => (
-               <Ticket
-                 key={item.id}
-                 ticketName={item.ticketName}
-                 icon={item.icon}
-                 ticketStatus={item.ticketStatus}
-                 date={item.date}
-                 seqNum={item.seqNum}
-                 carName={item.carName}
-                 name={item.name}
-                 carNum={item.carNum}
-                 phoneNum={item.phoneNum}
-               />
-             ))}
-           </>
-         );
+      return (
+        <>
+          <Text style={styles.subtitle}>קריאות סגורות</Text>
+          {closeTicketsData.map((item) => (
+            <Ticket
+              key={item.id}
+              ticketName={item.ticketName}
+              icon={item.icon}
+              ticketStatus={item.ticketStatus}
+              date={item.date}
+              seqNum={item.seqNum}
+              carName={item.carName}
+              name={item.name}
+              carNum={item.carNum}
+              phoneNum={item.phoneNum}
+              onPress={() =>navigation.navigate("ClosedTicketsInfo")}
+            />
+          ))}
+        </>
+      );
     }
   };
 
@@ -143,7 +143,14 @@ const CloseCarTicket = () => {
         <Text style={styles.cardNumber}>24</Text>
         <Text style={styles.cardText}>קריאות פתוחות</Text>
       </View>
-      <View style={[styles.bottomContainer, selectedButton === 'open' ? styles.openBottomContainer : styles.closeBottomContainer]}>
+      <View
+        style={[
+          styles.bottomContainer,
+          selectedButton === 'open'
+            ? styles.openBottomContainer
+            : styles.closeBottomContainer,
+        ]}
+      >
         <View style={styles.buttonContainer}>
           <Button
             text="פתוחות"
@@ -199,7 +206,7 @@ const styles = StyleSheet.create({
   cardNumber: {
     fontSize: 54,
     color: '#fff',
-    fontWeight:'bold',
+    fontWeight: 'bold',
 
     marginBottom: 8,
   },
@@ -270,17 +277,17 @@ const styles = StyleSheet.create({
   ticketsContainer: {
     paddingHorizontal: 10,
 
-    height:'100%'
-
+    height: '100%',
   },
-  openBottomContainer:{},
-  closeBottomContainer:{
-    marginTop:'-30%',
+  openBottomContainer: {},
+  closeBottomContainer: {
+    marginTop: '-30%',
   },
-  subtitle:{
-  fontSize:20,
-  fontWeight:'bold',
-  marginBottom:15}
+  subtitle: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    marginBottom: 15,
+  },
 });
 
 export default CloseCarTicket;

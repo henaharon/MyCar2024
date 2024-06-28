@@ -23,25 +23,22 @@ const styles = StyleSheet.create({
   },
   iconContainer: {
     marginRight: 10,
-    backgroundColor:'#E5E4E2',
+    backgroundColor: '#E5E4E2',
     borderRadius: 30,
-    width:50,
+    width: 50,
     height: 50,
-
-
-
   },
   icon: {
     width: 36,
-    height: 36,
-    marginLeft:7,
-    marginTop:8
+      height: 36,
+    marginLeft: 7,
+    marginTop: 8,
   },
   textContainer: {
     flex: 1,
     flexDirection: 'column',
     alignItems: 'flex-end', // Align text to the right
-    marginRight:10
+    marginRight: 10,
   },
   status: {
     fontSize: 16,

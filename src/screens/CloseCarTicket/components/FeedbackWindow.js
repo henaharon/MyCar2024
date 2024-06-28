@@ -1,5 +1,14 @@
 import React, { useState } from 'react';
-import { Image, View, Text, TextInput, TouchableOpacity, StyleSheet, Modal, KeyboardAvoidingView } from 'react-native';
+import {
+  Image,
+  View,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  StyleSheet,
+  Modal,
+  KeyboardAvoidingView,
+} from 'react-native';
 import { BlurView } from '@react-native-community/blur';
 
 const FeedbackWindow = ({ onSubmit }) => {
@@ -25,13 +34,30 @@ const FeedbackWindow = ({ onSubmit }) => {
             <View style={styles.modalWrapper}>
               <View style={styles.modalContainer}>
                 <Text style={styles.title}>משוב</Text>
-                <Text style={styles.subtitle}>אנא דרגו את חווית השירות שקיבלתם</Text>
+                <Text style={styles.subtitle}>
+                  אנא דרגו את חווית השירות שקיבלתם
+                </Text>
                 <View style={styles.starsContainer}>
-                        <Image source={require("../../../assets/O1-assets/selectedStar.png")} style={styles.starIcon} />
-                        <Image source={require("../../../assets/O1-assets/selectedStar.png")} style={styles.starIcon} />
-                        <Image source={require("../../../assets/O1-assets/selectedStar.png")} style={styles.starIcon} />
-                        <Image source={require("../../../assets/O1-assets/selectedStar.png")} style={styles.starIcon} />
-                        <Image source={require("../../../assets/O1-assets/selectedStar.png")} style={styles.starIcon} />
+                  <Image
+                    source={require('../../../assets/O1-assets/selectedStar.png')}
+                    style={styles.starIcon}
+                  />
+                  <Image
+                    source={require('../../../assets/O1-assets/selectedStar.png')}
+                    style={styles.starIcon}
+                  />
+                  <Image
+                    source={require('../../../assets/O1-assets/selectedStar.png')}
+                    style={styles.starIcon}
+                  />
+                  <Image
+                    source={require('../../../assets/O1-assets/selectedStar.png')}
+                    style={styles.starIcon}
+                  />
+                  <Image
+                    source={require('../../../assets/O1-assets/selectedStar.png')}
+                    style={styles.starIcon}
+                  />
                 </View>
                 <Text style={styles.excellentText}>"מעולה"</Text>
                 <View style={styles.commentsContainer}>
@@ -81,7 +107,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     paddingHorizontal: 20,
-    width:'100%'
+    width: '100%',
   },
   modalContainer: {
     width: '100%',
@@ -106,7 +132,7 @@ const styles = StyleSheet.create({
   starIcon: {
     width: 50,
     height: 50,
-    marginRight: 10
+    marginRight: 10,
   },
   excellentText: {
     fontSize: 18,
@@ -128,7 +154,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     paddingHorizontal: 5,
     fontSize: 14,
-    color: 'blue'
+    color: 'blue',
   },
   commentsInput: {
     height: 100,

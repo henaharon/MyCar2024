@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, Image, Pressable, StyleSheet, Text } from 'react-native';
 
 const Ticket = ({
-id,
+  id,
   ticketName,
   icon,
   ticketStatus,
@@ -16,10 +16,10 @@ id,
 }) => {
   const [isPressed, setIsPressed] = useState(false);
 
-  const handlePress = () => {};
+
 
   return (
-    <Pressable onPress={handlePress} style={[styles.card]}>
+    <Pressable onPress={onPress} style={[styles.card]}>
       <View style={styles.header}>
         <View style={styles.ticketTitle}>
           <Image source={icon} style={styles.icon} />
@@ -30,7 +30,12 @@ id,
             </Text>
           </View>
         </View>
-        <View style={[styles.status,ticketStatus === 'פתוח' ? styles.green : styles.gray]}>
+        <View
+          style={[
+            styles.status,
+            ticketStatus === 'פתוח' ? styles.green : styles.gray,
+          ]}
+        >
           <Text>{ticketStatus}</Text>
         </View>
       </View>
@@ -81,9 +86,9 @@ const styles = StyleSheet.create({
   status: {
     padding: 8,
     borderRadius: 20,
-    justifyContent:'center',
-    alignItems:'center',
-    width:'15%'
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '15%',
   },
   date: {
     color: '#888',
@@ -91,15 +96,15 @@ const styles = StyleSheet.create({
   },
   details: {
     marginTop: 10,
-    flexDirection:'row-reverse',
-    justifyContent:'space-between',
-    alignItems:'center',
-    paddingLeft: 50
+    flexDirection: 'row-reverse',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingLeft: 50,
   },
   detailRow: {
     flexDirection: 'column',
     justifyContent: 'center',
-    alignItems:'center',
+    alignItems: 'center',
     marginBottom: 5,
   },
   carName: {
@@ -121,12 +126,13 @@ const styles = StyleSheet.create({
     backgroundColor: '#dfe3eb',
     height: 4,
   },
-  green:{
-    backgroundColor:'#bccfa3',
-    color: '#8ac240'
+  green: {
+    backgroundColor: '#bccfa3',
+    color: '#8ac240',
   },
-  gray:{
-  backgroundColor: '#bbbdb5',}
+  gray: {
+    backgroundColor: '#bbbdb5',
+  },
 });
 
 export default Ticket;

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import {
   View,
   Text,
@@ -6,12 +6,13 @@ import {
   Image,
   ScrollView,
   TouchableOpacity,
-} from "react-native";
-import GeneralDetail from "./components/GeneralDetail";
-import FeedbackWindow from "./components/FeedbackWindow";
-import ConfirmMessage from "./components/ConfirmMessage";
+  Dimensions,
+} from 'react-native';
+import GeneralDetail from './components/GeneralDetail';
+import FeedbackWindow from './components/FeedbackWindow';
+import ConfirmMessage from './components/ConfirmMessage';
 
-const ClosedTicketsInfo = () => {
+const ClosedTicketsInfo = ({navigation }) => {
   const [showDetails, setShowDetails] = useState(false);
   const [showFeedback, setShowFeedback] = useState(false);
   const [showConfirmMessage, setShowConfirmMessage] = useState(false);
@@ -40,14 +41,14 @@ const ClosedTicketsInfo = () => {
         <View style={styles.header}>
           <TouchableOpacity style={styles.iconLeft}>
             <Image
-              source={require("../../assets/O1-assets/three-points.png")}
-              style={styles.icon}
+              source={require('../../assets/O1-assets/three-points.png')}
+              style={styles.threeDots}
             />
           </TouchableOpacity>
           <Text style={styles.headerText}>קריאה סגורה</Text>
           <TouchableOpacity style={styles.iconRight}>
             <Image
-              source={require("../../assets/O1-assets/componentsNavBarXButtonsRoundedWhiteAlpha@.png")}
+              source={require('../../assets/O1-assets/componentsNavBarXButtonsRoundedWhiteAlpha@.png')}
               style={styles.icon}
             />
           </TouchableOpacity>
@@ -56,7 +57,7 @@ const ClosedTicketsInfo = () => {
         {/* Vehicle Info */}
         <View style={styles.vehicleInfo}>
           <Image
-            source={require("../../assets/O1-assets/elementsServiceIconsCar.png")}
+            source={require('../../assets/O1-assets/elementsServiceIconsCar.png')}
             style={styles.vehicleIcon}
           />
           <Text style={styles.vehicleText}>שטיפת רכב</Text>
@@ -81,15 +82,11 @@ const ClosedTicketsInfo = () => {
             <Text style={styles.sectionTitle}>תמונות</Text>
             <View style={styles.imagesContainer}>
               <Image
-                source={{
-                  uri: "../../assets/O1-assets/elementsServiceIconsCar.png",
-                }}
+                source={require('../../assets/O1-assets/elementsServiceIconsCar.png')}
                 style={styles.detailImage}
               />
               <Image
-                source={{
-                  uri: "../../assets/O1-assets/elementsServiceIconsCar.png",
-                }}
+                source={require('../../assets/O1-assets/elementsServiceIconsCar.png')}
                 style={styles.detailImage}
               />
             </View>
@@ -99,27 +96,27 @@ const ClosedTicketsInfo = () => {
             <Text style={styles.sectionTitle}>פרטים כללים</Text>
 
             <GeneralDetail
-              iconSource={require("../../assets/O1-assets/locationIcon.png")}
+              iconSource={require('../../assets/O1-assets/locationIcon.png')}
               status="אתר שטיפה"
               description="אמדוקס נצרת"
             />
             <GeneralDetail
-              iconSource={require("../../assets/O1-assets/parkingIcon.png")}
+              iconSource={require('../../assets/O1-assets/parkingIcon.png')}
               status="פרטי חניון"
               description=" חניון בניין אורן, קומה -1 "
             />
             <GeneralDetail
-              iconSource={require("../../assets/O1-assets/keyIcon.png")}
+              iconSource={require('../../assets/O1-assets/keyIcon.png')}
               status="מיקום המפתח"
               description="אצל מחלקת הרכב"
             />
             <GeneralDetail
-              iconSource={require("../../assets/O1-assets/-lock-.png")}
+              iconSource={require('../../assets/O1-assets/-lock-.png')}
               status="קוד הנעה"
               description="#1314"
             />
             <GeneralDetail
-              iconSource={require("../../assets/O1-assets/stopwatch.png")}
+              iconSource={require('../../assets/O1-assets/stopwatch.png')}
               status="מועד החזרת רכב"
               description="17:00"
             />
@@ -129,12 +126,12 @@ const ClosedTicketsInfo = () => {
           <Text style={styles.sectionTitle}>חשוב לדעת</Text>
 
           <GeneralDetail
-            iconSource={require("../../assets/O1-assets/yellow-shekel.png")}
+            iconSource={require('../../assets/O1-assets/yellow-shekel.png')}
             status="Status 3"
             description="Description 3"
           />
           <GeneralDetail
-            iconSource={require("../../assets/O1-assets/info-icon.png")}
+            iconSource={require('../../assets/O1-assets/info-icon.png')}
             status="Status 3"
             description="Description 3"
           />
@@ -154,11 +151,17 @@ const ClosedTicketsInfo = () => {
             <Text style={styles.timelineDescription}>
               נשמח לשמוע ממך על חווית השירות שלך
             </Text>
-            <TouchableOpacity style={styles.timelineStatusButton} onPress={handleSendFeedback}>
+            <TouchableOpacity
+              style={styles.timelineStatusButton}
+              onPress={handleSendFeedback}
+            >
               <Text style={styles.timelineStatusButtonText}>שליחת משוב</Text>
             </TouchableOpacity>
           </View>
-          <View style={styles.timelineDotActive} />
+          <View style={styles.timelineDot} >
+            <View style={styles.timelineDotActive} />
+          </View>
+
         </View>
 
         {/* Timeline Item */}
@@ -197,9 +200,7 @@ const ClosedTicketsInfo = () => {
         </View>
       </View>
 
-      {showFeedback && (
-        <FeedbackWindow onSubmit={handleFeedbackSubmit} />
-      )}
+      {showFeedback && <FeedbackWindow onSubmit={handleFeedbackSubmit} />}
 
       {showConfirmMessage && (
         <ConfirmMessage onClose={handleCloseConfirmMessage} />
@@ -208,46 +209,51 @@ const ClosedTicketsInfo = () => {
   );
 };
 
+const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#f8f8f8",
+    backgroundColor: '#f8f8f8',
   },
   header: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
     paddingHorizontal: 10,
     paddingVertical: 10,
   },
   headerText: {
     fontSize: 20,
-    fontWeight: "bold",
-    textAlign: "center",
+    fontWeight: 'bold',
+    textAlign: 'center',
   },
   iconLeft: {
-    position: "absolute",
+    position: 'absolute',
     left: 10,
-    height: "20%",
-    width: "10%",
+    height: '20%',
+    width: '10%',
   },
   iconRight: {
-    position: "absolute",
+    position: 'absolute',
     right: 10,
   },
   icon: {
-    width: 24,
-    height: 24,
+    width: windowWidth * 0.09,
+    height: windowHeight * 0.04,
+    marginTop: 5,
+  },
+  threeDots: {
+    width: windowWidth * 0.026,
+    height: windowHeight * 0.045,
   },
   vehicleInfo: {
-    alignItems: "center",
+    alignItems: 'center',
     paddingVertical: 20,
     borderBottomWidth: 1, // Adjust the width as needed
     borderBottomColor: 'gray',
-    marginBottom:15,
-        marginHorizontal: 20, // Adjust to make the line shorter on both sides
-
-
+    marginBottom: 15,
+    marginHorizontal: 20, // Adjust to make the line shorter on both sides
   },
   vehicleIcon: {
     width: 50,
@@ -256,30 +262,30 @@ const styles = StyleSheet.create({
   },
   vehicleText: {
     fontSize: 18,
-    fontWeight: "bold",
+    fontWeight: 'bold',
     marginBottom: 5,
   },
   vehicleNumber: {
     fontSize: 16,
-    color: "#666",
+    color: '#666',
   },
   moreInfoButton: {
-    alignSelf: "center",
-    backgroundColor: "#e0e0e0",
+    alignSelf: 'center',
+    backgroundColor: '#e0e0e0',
     borderRadius: 20,
     paddingVertical: 10,
     paddingHorizontal: 20,
     marginBottom: 20,
   },
   CommentsImagesSection: {
-  borderBottomWidth: 0.3, // Adjust the width as needed
-   borderBottomColor: 'gray',
-   marginBottom:15,
-   marginHorizontal: 20, // Adjust to make the line shorter on both sides
+    borderBottomWidth: 0.3, // Adjust the width as needed
+    borderBottomColor: 'gray',
+    marginBottom: 15,
+    marginHorizontal: 20, // Adjust to make the line shorter on both sides
   },
   moreInfoText: {
     fontSize: 16,
-    color: "#333",
+    color: '#333',
   },
   additionalDetails: {
     paddingHorizontal: 20,
@@ -287,17 +293,17 @@ const styles = StyleSheet.create({
   },
   sectionTitle: {
     fontSize: 18,
-    fontWeight: "bold",
+    fontWeight: 'bold',
     marginBottom: 10,
   },
   notesText: {
     fontSize: 14,
-    color: "#666",
+    color: '#666',
     marginBottom: 20,
   },
   imagesContainer: {
-    flexDirection: "row",
-    justifyContent: "space-between",
+    flexDirection: 'row',
+    justifyContent: 'space-between',
     marginBottom: 20,
   },
   detailImage: {
@@ -308,16 +314,16 @@ const styles = StyleSheet.create({
   generalDetails: {
     marginBottom: 20,
     borderBottomWidth: 0.3, // Adjust the width as needed
-       borderBottomColor: 'gray',
-       marginBottom:15,
-       marginHorizontal: 20, // Adjust to make the line shorter on both sides
+    borderBottomColor: 'gray',
+    marginBottom: 15,
+    marginHorizontal: 20, // Adjust to make the line shorter on both sides
   },
   detailItem: {
-    flexDirection: "row",
-    textAlign: "right", // Align text to the right
-    alignItems: "right",
-    alignSelf: "right",
-    alignContent: "right",
+    flexDirection: 'row',
+    textAlign: 'right', // Align text to the right
+    alignItems: 'right',
+    alignSelf: 'right',
+    alignContent: 'right',
     marginBottom: 40,
   },
   detailIcon: {
@@ -327,47 +333,47 @@ const styles = StyleSheet.create({
   },
   detailText: {
     fontSize: 14,
-    color: "#666",
-    textAlign: "right", // Align text to the right
-    alignItems: "right",
-    alignSelf: "right",
-    alignContent: "right",
+    color: '#666',
+    textAlign: 'right', // Align text to the right
+    alignItems: 'right',
+    alignSelf: 'right',
+    alignContent: 'right',
   },
   detailItemStatus: {
     fontSize: 18,
-    fontWeight: "bold",
+    fontWeight: 'bold',
     marginBottom: 5,
-    textAlign: "right", // Align text to the right
+    textAlign: 'right', // Align text to the right
     marginRight: 10, // Adjust as needed for spacing
   },
   detailItemDescription: {
     fontSize: 14,
-    color: "#666",
-    textAlign: "right", // Align text to the right
+    color: '#666',
+    textAlign: 'right', // Align text to the right
   },
 
   detailItemContent: {
-    textAlign: "right", // Align text to the right
-    alignItems: "right",
-    alignSelf: "right",
-    alignContent: "right",
+    textAlign: 'right', // Align text to the right
+    alignItems: 'right',
+    alignSelf: 'right',
+    alignContent: 'right',
   },
   timelineContainer: {
     paddingHorizontal: 20,
-    backgroundColor: "#ffffff",
+    backgroundColor: '#ffffff',
     borderRadius: 30,
-    height: "100%",
+    height: '100%',
   },
   timelineTitle: {
     fontSize: 35,
-    fontWeight: "bold",
+    fontWeight: 'bold',
     marginBottom: 20,
   },
   timelineItem: {
-    flexDirection: "row",
-    alignItems: "flex-start",
-    position: "relative",
-    font: "#000000",
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    position: 'relative',
+    font: '#000000',
     fontSize: 30,
     marginBottom: 40,
   },
@@ -375,68 +381,73 @@ const styles = StyleSheet.create({
     marginTop: 30,
     width: 80,
     height: 80,
+
     borderRadius: 50,
     borderWidth: 15,
-    borderColor: "#ccc",
+    borderColor: '#ccc',
     marginLeft: 20,
+    justifyContent: 'center',
+        alignItems:'center',
   },
   timelineDotActive: {
-    marginTop: 30,
-    width: 80,
-    height: 80,
-    borderRadius: 50,
-    borderWidth: 15,
-    borderColor: "#89CFF0",
-    marginLeft: 20,
+
+    width: '80%',
+    height: '80%',
+    borderRadius: 40,
+    backgroundColor: 'blue',
+
   },
 
   timelineLine: {
-    position: "absolute",
+    position: 'absolute',
     width: 1,
     top: 96, // Adjust this value to position the line vertically
     bottom: -80, // Adjust this value to extend the line to the bottom
     right: 35, // Adjust this value to position the line correctly
     zIndex: 0, // Ensure the line is below the dots
     borderWidth: 5,
-    borderColor: "#ccc",
+    borderColor: '#ccc',
+
   },
+
 
   timelineContent: {
     flex: 1,
   },
   timelineDate: {
     fontSize: 18,
-    color: "#999",
+    color: '#999',
     marginBottom: 5,
-    textAlign: "left", // Adjust text alignment to right
+    textAlign: 'left', // Adjust text alignment to right
   },
   timelineStatus: {
     fontSize: 18,
-    fontWeight: "bold",
+    fontWeight: 'bold',
     marginBottom: 5,
-    textAlign: "right", // Adjust text alignment to right
+    textAlign: 'right', // Adjust text alignment to right
   },
   timelineDescription: {
     fontSize: 14,
-    color: "#666",
-    textAlign: "right", // Adjust text alignment to right
+    color: '#666',
+    textAlign: 'right', // Adjust text alignment to right
   },
 
   timelineStatusButton: {
-    backgroundColor: "#ffcc00",
+    backgroundColor: '#ffcc00',
     borderRadius: 20,
-    alignSelf: "flex-start",
-    alignItems: "center",
+    alignSelf: 'flex-start',
+    alignItems: 'center',
+    justifyContent:'center',
 
-    font: "#000000",
-    width: "80%",
+    font: '#000000',
+    width: '80%',
+
   },
   timelineStatusButtonText: {
-    
     fontSize: 22,
-    fontWeight: "bold",
+    fontWeight: 'bold',
+    color: '#000000',
 
-    color: "#000000",
   },
 });
 

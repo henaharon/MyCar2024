@@ -11,11 +11,7 @@ const ConfirmMessage = ({ onClose }) => {
         visible={true}
         onRequestClose={onClose}
       >
-        <BlurView
-          style={styles.blurContainer}
-          blurType="light"
-          blurAmount={10}
-        >
+        <BlurView style={styles.blurContainer} blurType="light" blurAmount={10}>
           <View style={styles.modalWrapper}>
             <View style={styles.modalContainer}>
               <Text style={styles.title}>תודה</Text>
@@ -48,7 +44,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     paddingHorizontal: 20,
-    width: '100%'
+    width: '100%',
   },
   modalContainer: {
     width: '100%',
@@ -61,12 +57,12 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: '700',
     marginBottom: 20,
-    color: '#000000'
+    color: '#000000',
   },
   subtitle: {
     fontSize: 18,
     marginBottom: 20,
-    color: '#000000'
+    color: '#000000',
   },
   sendButton: {
     width: '100%',
