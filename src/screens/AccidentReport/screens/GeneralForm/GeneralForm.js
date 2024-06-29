@@ -5,6 +5,7 @@ import {Button} from '../../components/Button'
 import {Input} from '../../components/Input'
 import DateTimeInput from '../../components/DateTimeInput'
 import Title from '../../components/Title'
+import ChoiceInput from '../../components/ChoiceInput'
 
 const GeneralForm = () => {
     return (
@@ -27,6 +28,7 @@ const GeneralForm = () => {
                 <View style={styles.EvidenceContainer}>
                 <Title title={"הוספת תמונות האירוע"}/>
                 <Title title={"האם הייתה מעורבות משטרה באירוע?"}/>
+                <ChoiceInput option1={"לא היתה"} option2={"כן, היתה"}/>
                 </View>
 
             </View>
