@@ -6,6 +6,7 @@ import {Input} from '../../components/Input'
 import DateTimeInput from '../../components/DateTimeInput'
 import Title from '../../components/Title'
 import ChoiceInput from '../../components/ChoiceInput'
+import ImageInput from '../../components/ImageInput'
 
 const GeneralForm = () => {
     return (
@@ -22,15 +23,15 @@ const GeneralForm = () => {
                 <Input placeholder={"מ.בית"} required={false} width={0.3} type={"number"}/>
                 <Input placeholder={"כתובת"} required={false} width={0.6} type={""}/>
                 </View>
-                <View style={styles.TextareaContainer}>
+                {/* <View style={styles.TextareaContainer}>
                 <Input placeholder={"תיאור האירוע"} required={false} width={0.92} type={"textarea"}/>
-                </View>
+                </View> */}
                 <View style={styles.EvidenceContainer}>
                 <Title title={"הוספת תמונות האירוע"}/>
-                <Title title={"האם הייתה מעורבות משטרה באירוע?"}/>
-                <ChoiceInput option1={"לא היתה"} option2={"כן, היתה"}/>
+                <ImageInput />
+                {/* <Title title={"האם הייתה מעורבות משטרה באירוע?"}/>
+                <ChoiceInput option1={"לא היתה"} option2={"כן, היתה"}/> */}
                 </View>
-
             </View>
         </BodyBaseView>
         </BaseView>
@@ -58,6 +59,7 @@ const styles = StyleSheet.create({
         gap: 30,
         position: 'relative',
         top: windowHeight * 0.05,
+        width: windowWidth * 0.9,
     },
     EvidenceContainer: {
         position: 'relative',
