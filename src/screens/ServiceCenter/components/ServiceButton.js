@@ -1,18 +1,27 @@
 import React, { useState } from 'react';
-import { TouchableOpacity, Text, StyleSheet, Image } from 'react-native';
+import { TouchableOpacity, Text, StyleSheet, Image, Dimensions } from 'react-native';
+
+const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
 
 const ServiceButton = ({ icon, text, onPress, style }) => {
-    const [isPressed, setIsPressed] = useState(false);
+    const [isActive, setIsActive] = useState(false);
+
+    const handlePress = () => {
+        setIsActive(true);
+        onPress();
+        setTimeout(() => {
+            setIsActive(false);
+        }, 200);
+    };
 
     return (
         <TouchableOpacity
-            style={[styles.button, isPressed && styles.buttonPressed, style]}
-            onPressIn={() => setIsPressed(true)}
-            onPressOut={() => setIsPressed(false)}
-            onPress={onPress}
+            style={[styles.button, isActive && styles.buttonPressed, style]}
+            onPress={handlePress}
         >
             <Image source={icon} style={styles.icon} />
-            <Text style={[styles.text, isPressed && styles.textPressed]}>{text}</Text>
+            <Text style={[styles.text, isActive && styles.textPressed]}>{text}</Text>
         </TouchableOpacity>
     );
 };
@@ -26,11 +35,11 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         backgroundColor: '#F5F5F5',
-        padding: 10,
-        margin: 5,
+        padding: windowWidth * 0.02,
+        margin: windowWidth * 0.01,
         borderRadius: 10,
-        minWidth: 150,
-        height: 150,
+        minWidth: windowWidth * 0.2,
+        height: windowHeight * 0.2,
         borderWidth: 1,
         borderColor: '#E0E0E2',
     },
@@ -40,11 +49,11 @@ const styles = StyleSheet.create({
     icon: {
         width: 60,
         height: 60,
-        marginBottom: 20,
+        marginBottom: windowWidth * 0.02,
     },
     text: {
         color: '#000',
-        fontSize: 16,
+        fontSize: windowWidth * 0.04,
         fontWeight: 'bold',
         textAlign: 'center',
     },
@@ -52,4 +61,3 @@ const styles = StyleSheet.create({
         color: '#FFF',
     },
 });
-

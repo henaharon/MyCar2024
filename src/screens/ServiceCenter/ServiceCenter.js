@@ -1,14 +1,25 @@
-import React from 'react';
-import { ScrollView, ImageBackground, Image, SafeAreaView, View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import React, { useState } from 'react';
+import { ScrollView, ImageBackground, Image, View, Text, TouchableOpacity, StyleSheet, Dimensions } from 'react-native';
 import ServiceButton from './components/ServiceButton';
 
+const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
+
 const ServiceCenter = ({ navigation }) => {
+    const handleServiceSelection = (service) => {
+        if (service === 'VehicleRepair') {
+            navigation.navigate('ServiceCenterProcess', { startStep: 0 });
+        } else {
+            navigation.navigate('ServiceCenterProcess', { startStep: 1 });
+        }
+    };
+
     return (
         <ScrollView contentContainerStyle={styles.scrollViewContent}>
             <ImageBackground
                 source={require('./D1-2-assets/images/tim-mossholder-unsplash.jpg')}
                 style={styles.imageBackground}>
-                <SafeAreaView style={styles.safeArea}>
+                <View style={styles.viewhead}>
                     <View style={styles.header}>
                         <View style={styles.headerContent}>
                             <Text style={styles.headerText}>זימון שירותי מוסך</Text>
@@ -17,7 +28,7 @@ const ServiceCenter = ({ navigation }) => {
                             <Image source={require('./D1-2-assets/icons/Close.png')} style={styles.closeButtonImage} />
                         </TouchableOpacity>
                     </View>
-                </SafeAreaView>
+                </View>
             </ImageBackground>
             <View style={styles.content}>
                 <View style={styles.textContainer}>
@@ -27,33 +38,33 @@ const ServiceCenter = ({ navigation }) => {
                 <View style={styles.buttonContainer}>
                     <ServiceButton
                         icon={require('./D1-2-assets/icons/Car.png')}
-                        text="תקלת רכב"
+                        text="תקלת ברכב"
                         style={styles.serviceButton}
-                    // onPress={() => navigation.navigate('CarIssue')}
+                        onPress={() => handleServiceSelection('VehicleRepair')}
                     />
                     <ServiceButton
                         icon={require('./D1-2-assets/icons/RoutineService.png')}
                         text="טיפול תקופתי"
                         style={styles.serviceButton}
-                    // onPress={() => navigation.navigate('RoutineMaintenance')}
+                        onPress={() => handleServiceSelection('RoutineService')}
                     />
                     <ServiceButton
                         icon={require('./D1-2-assets/icons/Warning.png')}
                         text="תאונה / נזק"
                         style={styles.serviceButton}
-                    // onPress={() => navigation.navigate('AccidentDamage')}
+                        onPress={() => handleServiceSelection('Accident')}
                     />
                     <ServiceButton
                         icon={require('./D1-2-assets/icons/Brakes.png')}
                         text="ביקורת בטיחות"
                         style={styles.serviceButton}
-                    // onPress={() => navigation.navigate('SafetyCheck')}
+                        onPress={() => handleServiceSelection('SafetyCheck')}
                     />
                     <ServiceButton
                         icon={require('./D1-2-assets/icons/Brakes.png')}
                         text="אחר"
                         style={styles.serviceButton}
-                    // onPress={() => navigation.navigate('SafetyCheck')}
+                        onPress={() => handleServiceSelection('Other')}
                     />
                 </View>
             </View>
@@ -68,18 +79,17 @@ const styles = StyleSheet.create({
         flexGrow: 1,
     },
     imageBackground: {
-        width: "100%",
-        height: 250,
+        width: '100%',
+        height: windowHeight * 0.35,
     },
-    safeArea: {
+    viewhead: {
         flex: 1,
     },
     header: {
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        paddingHorizontal: 20,
-        paddingVertical: 20
+        padding: '5%',
     },
     headerContent: {
         flex: 1,
@@ -90,14 +100,14 @@ const styles = StyleSheet.create({
         color: '#FFF',
     },
     touchable: {
-        width: 40,
-        height: 40,
+        width: windowWidth * 0.1,
+        height: windowWidth * 0.1,
     },
     closeButtonImage: {
         width: '100%',
         height: '100%',
         resizeMode: 'contain',
-        margin: 10,
+        margin: '5%',
     },
     content: {
         flex: 1,
@@ -105,12 +115,12 @@ const styles = StyleSheet.create({
         borderTopLeftRadius: 30,
         borderTopRightRadius: 30,
         padding: 20,
-        marginTop: -30,
+        marginTop: '-15%',
     },
     textContainer: {
         alignItems: 'flex-end',
         width: '90%',
-        margin: 15,
+        margin: windowHeight * 0.02
     },
     title: {
         fontSize: 20,
@@ -130,6 +140,6 @@ const styles = StyleSheet.create({
     serviceButton: {
         flex: 1,
         minWidth: '40%',
-        marginBottom: 10,
+        marginBottom: windowHeight * 0.01,
     },
 });
