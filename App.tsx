@@ -7,6 +7,7 @@ import TimerScreen from "./src/screens/Timer/TimerScreen";
 import HomePage from "./src/screens/homepage/HomePage";
 import DriversCall from "./src/screens/DriversCall/DriversCall";
 import DriversContactUs from "./src/screens/DriversContactUs/components/DriversContactUs";
+import ElectricVehicle from "./src/screens/ElectricVehicle/ElectricVehicle";
 import DriversSideMenu from "./src/screens/DriversSideMenu/DriverSideMenu";
 
 const Stack = createNativeStackNavigator();
@@ -16,6 +17,7 @@ function HomeStack() {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name="HomePage" component={HomePage} />
+      <Stack.Screen name="ElectricVehicle" component={ElectricVehicle} />
     </Stack.Navigator>
   );
 }
