@@ -182,7 +182,8 @@ const ClosedTicketsInfo = ({navigation }) => {
             <Text style={styles.timelineStatus}>קריאה הושלמה</Text>
             <Text style={styles.timelineDescription}>קריאה טופלה בהצלחה</Text>
           </View>
-          <View style={styles.timelineDot} />
+          <View style={styles.timelineDot} >
+           <View style={styles.timelineDotNotActive} /></View>
           <View style={styles.timelineLine} />
         </View>
 
@@ -196,7 +197,8 @@ const ClosedTicketsInfo = ({navigation }) => {
             </Text>
           </View>
 
-          <View style={styles.timelineDot} />
+          <View style={styles.timelineDot} >
+          <View style={styles.timelineDotNotActive} /></View>
           <View style={styles.timelineLine} />
         </View>
 
@@ -207,7 +209,8 @@ const ClosedTicketsInfo = ({navigation }) => {
             <Text style={styles.timelineStatus}>קריאה נוצרה</Text>
             <Text style={styles.timelineDescription}>קריאה חדשה נוצרה</Text>
           </View>
-          <View style={styles.timelineDot} />
+          <View style={styles.timelineDot} >
+          <View style={styles.timelineDotNotActive} /></View>
         </View>
       </View>
 
@@ -408,6 +411,14 @@ const styles = StyleSheet.create({
     backgroundColor: 'blue',
 
   },
+   timelineDotNotActive: {
+
+      width: '80%',
+      height: '80%',
+      borderRadius: 40,
+      backgroundColor: '#ccc',
+
+    },
 
   timelineLine: {
     position: 'absolute',
