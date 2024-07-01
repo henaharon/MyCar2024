@@ -65,12 +65,14 @@ const ClosedTicketsInfo = ({navigation }) => {
         </View>
 
         {/* More Info Button */}
-        <TouchableOpacity
+        <View>
+        {!showDetails && <TouchableOpacity
           style={styles.moreInfoButton}
           onPress={handleToggleDetails}
         >
           <Text style={styles.moreInfoText}>הצג פרטים נוספים</Text>
-        </TouchableOpacity>
+        </TouchableOpacity>}
+        </View>
       </View>
 
       {showDetails && (
@@ -135,7 +137,16 @@ const ClosedTicketsInfo = ({navigation }) => {
             status="Status 3"
             description="Description 3"
           />
+           <View>
+                  {showDetails && <TouchableOpacity
+                    style={styles.moreInfoButton}
+                    onPress={handleToggleDetails}
+                  >
+                    <Text style={styles.moreInfoText}>הצג פחות פרטים</Text>
+                  </TouchableOpacity>}
+                </View>
         </View>
+
       )}
 
       {/* Status Timeline */}

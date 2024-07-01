@@ -16,8 +16,6 @@ const Ticket = ({
 }) => {
   const [isPressed, setIsPressed] = useState(false);
 
-
-
   return (
     <Pressable onPress={onPress} style={[styles.card]}>
       <View style={styles.header}>

@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
   },
   icon: {
     width: 36,
-      height: 36,
+    height: 36,
     marginLeft: 7,
     marginTop: 8,
   },

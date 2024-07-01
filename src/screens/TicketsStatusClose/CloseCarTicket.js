@@ -80,7 +80,7 @@ const closeTicketsData = [
   },
 ];
 
-const CloseCarTicket = ({navigation}) => {
+const CloseCarTicket = ({ navigation }) => {
   const [selectedButton, setSelectedButton] = useState('open'); // State to track selected button
   const [showTickets, setShowTickets] = useState('open'); // State to track showing open tickets
   const handlePress = (buttonId) => {
@@ -103,7 +103,7 @@ const CloseCarTicket = ({navigation}) => {
               name={item.name}
               carNum={item.carNum}
               phoneNum={item.phoneNum}
-              onPress={() =>navigation.navigate('ClosedTicketsInfo')}
+              onPress={() => navigation.navigate('ClosedTicketsInfo')}
             />
           ))}
         </>
@@ -124,7 +124,7 @@ const CloseCarTicket = ({navigation}) => {
               name={item.name}
               carNum={item.carNum}
               phoneNum={item.phoneNum}
-              onPress={() =>navigation.navigate("ClosedTicketsInfo")}
+              onPress={() => navigation.navigate('ClosedTicketsInfo')}
             />
           ))}
         </>
