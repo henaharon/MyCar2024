@@ -52,5 +52,4 @@ function App(): React.JSX.Element {
     </NavigationContainer>
   );
 }
-
 export default App;
