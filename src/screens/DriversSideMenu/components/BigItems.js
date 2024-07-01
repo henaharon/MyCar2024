@@ -20,21 +20,28 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderColor: 'white',
         borderRadius: 10,
-        overflow: 'hidden', // Clip the rounded corners
+        // overflow: 'hidden', 
         marginBottom: 0.03 * windowWidth,
+        // width: 0.40 * windowWidth,
+        // justifyContent: 'space-between',
+
       },
   menuItem: {
     alignItems: 'center',
     margin:0.07 * windowWidth,
+    // width: 0.2 * windowWidth
+    justifyContent: 'space-between',
+    marginHorizontal: 0.065 * windowWidth,
+    
   },
   icon: {
     width: 0.15 * windowWidth,
     height: 0.15 * windowWidth,
-    marginBottom: 0.05 * windowWidth, // Adjust spacing between icon and text
+    marginBottom: 0.05 * windowWidth, 
   },
   text: {
     fontSize: 16,
-    textAlign: 'center', // Center the text horizontally
+    textAlign: 'center', 
     color: 'white',
   },
 });

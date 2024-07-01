@@ -19,6 +19,7 @@ const ContactSection = () => {
 const styles = StyleSheet.create({
   contactSection: {
     marginBottom: 0.05 * windowWidth,
+    paddingRight: 0.025 * windowWidth
   },
   header: {
     fontSize: 18,
@@ -26,7 +27,7 @@ const styles = StyleSheet.create({
     marginBottom: 0.05 * windowWidth,
   },
   headerRight: {
-    textAlign: 'right', // Aligns the header text to the right
+    textAlign: 'right', 
     color: 'white',
   },
 });
