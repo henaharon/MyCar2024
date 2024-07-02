@@ -9,6 +9,7 @@ import DriversCall from "./src/screens/DriversCall/DriversCall";
 import DriversContactUs from "./src/screens/DriversContactUs/components/DriversContactUs";
 import ElectricVehicle from "./src/screens/ElectricVehicle/ElectricVehicle";
 import DriversSideMenu from "./src/screens/DriversSideMenu/DriverSideMenu";
+import GuidesScreen from "./src/screens/Guides/GuidesScreen";
 
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -41,6 +42,8 @@ function MyDrawer() {
       <Drawer.Screen name="DriversCall" component={DriversCall} />
       <Drawer.Screen name="TimerScreen" component={TimerScreen} />
       <Drawer.Screen name="Profile" component={TimerScreen} />
+      <Drawer.Screen name="Guides" component={GuidesScreen} />
+
     </Drawer.Navigator>
   );
 }
