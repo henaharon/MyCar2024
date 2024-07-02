@@ -9,6 +9,7 @@ import DriversCall from "./src/screens/DriversCall/DriversCall";
 import DriversContactUs from "./src/screens/DriversContactUs/components/DriversContactUs";
 import ElectricVehicle from "./src/screens/ElectricVehicle/ElectricVehicle";
 import DriversSideMenu from "./src/screens/DriversSideMenu/DriverSideMenu";
+import SearchAndGo from "./src/screens/SearchAndGo/SearchAndGo";
 
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -17,7 +18,7 @@ function HomeStack() {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name="HomePage" component={HomePage} />
-      <Stack.Screen name="ElectricVehicle" component={ElectricVehicle} />
+      <Stack.Screen name="SearchAndGo" component={SearchAndGo} />
     </Stack.Navigator>
   );
 }
@@ -36,6 +37,7 @@ function MyDrawer() {
       drawerContent={(props) => <DriversSideMenu {...props} />}
       screenOptions={{ headerShown: false }}
     >
+      <Drawer.Screen name="SearchAndGo" component={SearchAndGo} />
       <Drawer.Screen name="HomeStack" component={HomeStack} />
       <Drawer.Screen name="DriversContactUs" component={DriversContactUs} />
       <Drawer.Screen name="DriversCall" component={DriversCall} />
