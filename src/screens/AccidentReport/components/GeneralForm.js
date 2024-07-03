@@ -1,71 +1,68 @@
 import React from 'react';
-import {Dimensions, Text, View, StyleSheet, ScrollView} from 'react-native';
-import {BaseView, BodyBaseView} from '../../../uiKit/BaseView';
-// import {Button} from '../../components/Button'
+import {Dimensions, Text, View, StyleSheet} from 'react-native';
 import {Input} from './Input';
+import {TextareaInput} from './TextareaInput';
 import DateTimeInput from './DateTimeInput';
 import Title from './Title';
-// import ChoiceInput from './ChoiceInput'
 import ImageInput from './ImageInput';
+// import {BaseView, BodyBaseView} from '../../../uiKit/BaseView';
+// import {GradientButton} from '../../components/GradientButton';
+// import ChoiceInput from './ChoiceInput';
+
+const generalInputTitle = 'פרטים כלליים';
+const hourPlaceholder = 'שעה';
+const datePlaceholder = 'תאריך';
+const cityPlaceholder = 'עיר / כביש מרכזי';
+const houseNumberPlaceholder = 'מ.בית';
+const addressPlaceholder = 'כתובת';
+const descriptionTitle = 'תיאור האירוע';
+const descriptionPlaceholder = 'תיאור התרחשות האירוע';
+const imageTitle = 'הוספת תמונות האירוע';
 
 const GeneralForm = () => {
   return (
-    <BaseView>
-      <BodyBaseView style={{alignItems: 'center'}}>
-        <View style={styles.GeneralFormContainer}>
-          <Title title={'פרטים כלליים'} />
-          <View style={styles.rowInputsContainer}>
-            <DateTimeInput
-              text={'שעה'}
-              width={0.4}
-              type={'time'}
-              required={true}
-            />
-            <DateTimeInput
-              text={'תאריך'}
-              width={0.5}
-              type={'date'}
-              required={true}
-            />
-          </View>
-          <Input
-            placeholder={'עיר / כביש מרכזי'}
-            required={false}
-            width={0.92}
-            type={''}
-          />
-          <View style={styles.rowInputsContainer}>
-            <Input
-              placeholder={'מ.בית'}
-              required={false}
-              width={0.3}
-              type={'number'}
-            />
-            <Input
-              placeholder={'כתובת'}
-              required={false}
-              width={0.6}
-              type={''}
-            />
-          </View>
-          <View style={styles.TextareaContainer}>
-            <View style={styles.TextBoxLabel}>
-              <Text style={styles.TextboxBackground}>תיאור האירוע</Text>
-            </View>
-            <Input
-              placeholder={'תיאור התרחשות האירוע'}
-              required={false}
-              width={0.92}
-              type={'textarea'}
-            />
-          </View>
-          <View style={styles.EvidenceContainer}>
-            <Title title={'הוספת תמונות האירוע'} />
-            <ImageInput />
-          </View>
-        </View>
-      </BodyBaseView>
-    </BaseView>
+    <View style={styles.GeneralFormContainer}>
+      <Title title={generalInputTitle} />
+      <View style={styles.rowInputsContainer}>
+        <DateTimeInput
+          text={hourPlaceholder}
+          width={0.4}
+          type={'time'}
+          required={true}
+        />
+        <DateTimeInput
+          text={datePlaceholder}
+          width={0.5}
+          type={'date'}
+          required={true}
+        />
+      </View>
+      <Input
+        placeholder={cityPlaceholder}
+        required={false}
+        width={0.92}
+        type={''}
+      />
+      <View style={styles.rowInputsContainer}>
+        <Input
+          placeholder={houseNumberPlaceholder}
+          required={false}
+          width={0.3}
+          type={'number'}
+        />
+        <Input
+          placeholder={addressPlaceholder}
+          required={false}
+          width={0.6}
+          type={''}
+        />
+      </View>
+      <TextareaInput
+        title={descriptionTitle}
+        placeholder={descriptionPlaceholder}
+      />
+      <ImageInput title={imageTitle} />
+    </View>
   );
 };
 
@@ -80,21 +77,13 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  TextareaContainer: {
-    position: 'relative',
-    top: windowHeight * 0.05,
-  },
   GeneralFormContainer: {
     display: 'flex',
     flexDirection: 'column',
-    gap: 30,
+    gap: 20,
     position: 'relative',
-    top: windowHeight * 0.05,
     width: windowWidth * 0.9,
-  },
-  EvidenceContainer: {
-    position: 'relative',
-    top: windowHeight * 0.1,
+    marginTop: -windowHeight * 0.1,
   },
   TextBoxLabel: {
     position: 'relative',

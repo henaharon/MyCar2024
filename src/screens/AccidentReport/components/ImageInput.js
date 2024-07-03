@@ -8,8 +8,14 @@ import {
   ScrollView,
 } from 'react-native';
 import {launchImageLibrary} from 'react-native-image-picker';
+import Title from './Title';
 
-const ImageInput = () => {
+const firstCar = require('../../../assets/i1-assets/car1.jpeg');
+const secondCar = require('../../../assets/i1-assets/car2.jpg');
+const thirdCar = require('../../../assets/i1-assets/car3.png');
+const uploadPhotoIcon = require('../../../assets/i1-assets/uploadPhoto.png');
+
+const ImageInput = ({title}) => {
   const ImagePicker = () => {
     let options = {
       storageOptions: {
@@ -22,32 +28,23 @@ const ImageInput = () => {
   };
 
   return (
-    <ScrollView horizontal={true}>
-    <View style={styles.photoInputContainer}>
-      <Image
-        style={styles.photoContainer}
-        source={require('../../../assets/i1-assets/car3.png')}
-      />
-      <Image
-        style={styles.photoContainer}
-        source={require('../../../assets/i1-assets/car2.jpg')}
-      />
-    <Image
-        style={styles.photoContainer}
-        source={require('../../../assets/i1-assets/car1.jpeg')}
-      />
-      <TouchableOpacity
-        style={styles.uploadPhotoButton}
-        onPress={() => {
-          ImagePicker();
-        }}>
-        <Image
-          style={styles.uploadPhotoIcon}
-          source={require('../../../assets/i1-assets/uploadPhoto.png')}
-        />
-      </TouchableOpacity>
+    <View style={styles.EvidenceContainer}>
+      <Title title={title} />
+      <ScrollView horizontal={true}>
+        <View style={styles.photoInputContainer}>
+          <Image style={styles.photoContainer} source={firstCar} />
+          <Image style={styles.photoContainer} source={secondCar} />
+          <Image style={styles.photoContainer} source={thirdCar} />
+          <TouchableOpacity
+            style={styles.uploadPhotoButton}
+            onPress={() => {
+              ImagePicker();
+            }}>
+            <Image style={styles.uploadPhotoIcon} source={uploadPhotoIcon} />
+          </TouchableOpacity>
+        </View>
+      </ScrollView>
     </View>
-    </ScrollView>
   );
 };
 
@@ -55,6 +52,10 @@ const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
 const styles = StyleSheet.create({
+  EvidenceContainer: {
+    position: 'relative',
+    top: windowHeight * 0.1,
+  },
   photoInputContainer: {
     display: 'flex',
     flexDirection: 'row-reverse',
@@ -63,7 +64,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   photoContainer: {
-    width: windowWidth * 0.30,
+    width: windowWidth * 0.3,
     height: windowHeight * 0.23,
     borderRadius: 10,
   },

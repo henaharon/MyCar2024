@@ -11,11 +11,10 @@ import LinearGradient from 'react-native-linear-gradient';
 import { TitleHeader } from './TitleHeader';
 import { HeaderButton } from './HeaderButton';
 
-const headerImage = require('../../../assets/i1-assets/elementsPageCoversAccidentReport3x.png');
-const phoneIcon = require('../../../assets/i1-assets/elements24PxIconsCall3x.png');
-const xIcon = require('../../../assets/i1-assets/componentsNavBarXButtonsRoundedWhiteAlpha3x.png');
+const headerImage = require('../../../assets/images/elementsPageCoversAccidentReport3x.png');
+const phoneIcon = require('../../../assets/icons/elements24PxIconsCall3x.png');
+const xIcon = require('../../../assets/icons/componentsNavBarXButtonsRoundedWhiteAlpha3x.png');
 const headerTitle = 'דיווח תאונה';
-
 export const Header = () => {
   return (
     <View style={styles.headerImgContainter}>
