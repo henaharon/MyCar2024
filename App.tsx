@@ -6,14 +6,14 @@ import CallDialogScreen from './src/screens/AccidentReport/screens/CallDialog/Ca
 import SuccessScreen from './src/screens/AccidentReport/screens/Success/SuccessScreen';
 import GeneralForm from './src/screens/AccidentReport/components/GeneralForm';
 import I10 from './src/screens/AccidentReport/screens/DamageReport/I10';
-import I4 from './src/screens/AccidentReport/screens/AccidentReportForm/I4';
+import I5 from './src/screens/AccidentReport/screens/AccidentReportForm/I5';
 
 function App(): React.JSX.Element {
   return (
     <BaseView>
       {/* <AccidentReportIntro /> */}
       {/* <AccidentReportIntro /> */}
-      <I4 />
+      <I5 />
     </BaseView>
   );
 }

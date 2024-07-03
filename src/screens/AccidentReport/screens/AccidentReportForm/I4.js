@@ -14,7 +14,7 @@ const driverInvolvementTitle = 'מי נהג ברכב בזמן הארוע?';
 const driverInfoTitle = 'פרטי הנהג/ת';
 const driverNamePlaceholder = 'שם הנהג';
 const IDNumberPlaceholder = 'מספר ת.ז';
-const licenceNumberPlaceholder = 'מספר רשיון נהיגה';
+const licenseNumberPlaceholder = 'מספר רשיון נהיגה';
 const phonePlaceholder = 'טלפון';
 
 const I4 = () => {
@@ -44,7 +44,7 @@ const I4 = () => {
                     type={'number'}
                   />
                   <Input
-                    placeholder={licenceNumberPlaceholder}
+                    placeholder={licenseNumberPlaceholder}
                     required={true}
                     width={0.9}
                     type={'number'}
