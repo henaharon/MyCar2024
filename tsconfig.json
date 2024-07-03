@@ -1,6 +1,27 @@
 {
   "compilerOptions": {
-    "jsx": "react"
+    "target": "esnext",
+    "module": "commonjs",
+    "lib": ["esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react-native"
   },
-  "extends": "@react-native/typescript-config/tsconfig.json"
+  "include": ["src", "index.js"],
+  "exclude": ["node_modules", "babel.config.js", "metro.config.js", "jest.config.js"]
 }
+
+// before merge
+// {
+//   "compilerOptions": {
+//     "jsx": "react"
+//   },
+//   "extends": "@react-native/typescript-config/tsconfig.json"
+// }
