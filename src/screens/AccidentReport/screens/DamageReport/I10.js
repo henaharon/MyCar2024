@@ -3,18 +3,16 @@ import {
   Dimensions,
   StyleSheet,
   View,
-  Text,
   ScrollView,
-  SafeAreaView,
 } from 'react-native';
 
-import EventHeader from '../../uiKit/EventHeader';
+import EventHeader from '../../components/EventHeader';
 import {FormHeader} from '../../components/FormHeader';
 import GeneralForm from '../../components/GeneralForm';
 
 import {BaseView, BodyBaseView} from '../../../../uiKit/BaseView';
 
-const EventInfo = () => {
+const I10 = () => {
   return (
     <BaseView>
       <ScrollView contentContainerStyle={styles.scrollViewContent}>
@@ -31,7 +29,7 @@ const EventInfo = () => {
   );
 };
 
-export default EventInfo;
+export default I10;
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -51,8 +49,8 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     borderRadius: 25,
     marginTop: -windowHeight * 0.1,
-    paddingTop: windowHeight * 0.04,
-    paddingBottom: windowHeight * 0.05,
+    paddingTop: windowHeight * 0.15,
+    paddingBottom: windowHeight * 0.2,
     zIndex: 2,
     gap: 15,
   },
