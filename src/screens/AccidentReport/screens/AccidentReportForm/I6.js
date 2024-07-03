@@ -45,9 +45,9 @@ const I6 = () => {
           <BodyBaseView style={styles.bodyContainer}>
             <Title title={affectedTitle} />
             <View style={{marginLeft: windowWidth * 0.08}}>
-                <ChoiceInput optionF={'לא היו נפגעים'} optionT={'כן, היו נפגעים'}/>
+                <ChoiceInput optionF={'לא היו נפגעים'} optionT={'כן, היו נפגעים'} setChoice={setInjured}/>
             </View>
-            { injured && (<View>
+            { injured && (<View style={styles.InfoContainer}>
                 <Title title={injuredTitle} />
                 <View style={styles.witnessForm}>
                     <Input
@@ -85,7 +85,7 @@ const I6 = () => {
             <ChoiceInput optionF={'לא היו עדים'} optionT={'כן, היו עדים'} setChoice={setWitnesses}/>
             </View>
             {witnesses && (
-                <View>
+                <View style={styles.InfoContainer}>
                 <Title title={witnessInfoTitle} />
                 <View style={styles.witnessForm}>
                     <Input
@@ -164,5 +164,8 @@ const styles = StyleSheet.create({
   },
   witnessForm: {
     gap: 25,
-  }
+  },
+    InfoContainer: {
+        height: windowHeight,
+    },
 });
