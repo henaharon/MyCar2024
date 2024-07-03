@@ -1,17 +1,17 @@
 import React, {useState} from 'react';
 import {Dimensions, StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 
-const ChoiceInput = ({option1, option2}) => {
+const ChoiceInput = ({optionF, optionT, setChoice}) => {
   const options = [
     {
       id: '1',
-      label: option1,
-      value: option1,
+      label: optionF,
+      value: false,
     },
     {
       id: '2',
-      label: option2,
-      value: option2,
+      label: optionT,
+      value: true,
     },
   ];
 
@@ -19,6 +19,7 @@ const ChoiceInput = ({option1, option2}) => {
 
   const onSelect = id => {
     setSelectedId(id);
+    setChoice(options.find(option => option.id === id).value);
   };
 
   return (
