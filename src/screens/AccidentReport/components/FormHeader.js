@@ -1,20 +1,13 @@
 import React from 'react';
-import {
-  Dimensions,
-  Image,
-  Pressable,
-  StyleSheet,
-  Text,
-  View,
-} from 'react-native';
+import { Dimensions, StyleSheet, View } from 'react-native';
 
-import {TitleHeader} from './TitleHeader';
-import {HeaderButton} from './HeaderButton';
+import { TitleHeader } from './TitleHeader';
+import { HeaderButton } from './HeaderButton';
 
 const arrowRightGrey = require('../../../assets/icons/componentsNavBarXButtonsRoundedWhiteAlpha.png');
 const arrowLeftGradient = require('../../../assets/icons/componentsNavBarXButtonsRoundedBlack.png');
 
-export const FormHeader = ({title}) => {
+export const FormHeader = ({ title }) => {
   return (
     <View style={styles.headerContainer}>
       <View style={styles.headerContent}>

@@ -1,9 +1,9 @@
 import React from 'react';
-import {Dimensions, StyleSheet, View, ScrollView} from 'react-native';
+import { Dimensions, StyleSheet, View, ScrollView } from 'react-native';
 
 import EventHeader from '../../components/EventHeader';
-import {FormHeader} from '../../components/FormHeader';
-import {BaseView, BodyBaseView} from '../../../../uiKit/BaseView';
+import { FormHeader } from '../../components/FormHeader';
+import { BaseView, BodyBaseView } from '../../../../uiKit/BaseView';
 import FinalConfirm from '../../components/FinalConfirm';
 
 const headerTitle = 'אישור פרטי הדוח';
@@ -13,9 +13,9 @@ const signTitle = 'חתימה';
 const signParagraph = 'אני מאשר שכל המידע שמסרתי הוא מדויק';
 const signPlaceholder = 'החתימה שלך';
 const informationTitle = 'המלצה';
-const paragraphs = [ 'לאחר קבלת המסמך במייל אנחנו ממליצים להעביר אותו כפי שהוא לחברת הביטוח.'];
+const paragraphs = ['לאחר קבלת המסמך במייל אנחנו ממליצים להעביר אותו כפי שהוא לחברת הביטוח.'];
 
-const I12 = () => {
+const I12 = ({ setProgress }) => {
   return (
     <BaseView>
       <ScrollView contentContainerStyle={styles.scrollViewContent}>
@@ -50,14 +50,14 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
   },
   contentWrapper: {
-    flex: 9,
+    flex: 1, 
   },
   bodyContainer: {
     flex: 1,
     backgroundColor: 'white',
     borderRadius: 25,
     marginTop: -windowHeight * 0.1,
-    paddingTop: windowHeight * 0.05,
+    paddingTop: windowHeight * 0.04,
     marginBottom: windowHeight * 0.1,
     zIndex: 2,
     gap: 15,
