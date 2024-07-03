@@ -1,27 +1,21 @@
 import React from 'react';
-import {
-  Dimensions,
-  StyleSheet,
-  View,
-  ScrollView,
-} from 'react-native';
+import { Dimensions, StyleSheet, View, ScrollView } from 'react-native';
 
 import EventHeader from '../../components/EventHeader';
-import {FormHeader} from '../../components/FormHeader';
+import { FormHeader } from '../../components/FormHeader';
 import GeneralForm from '../../components/GeneralForm';
 
-import {BaseView, BodyBaseView} from '../../../../uiKit/BaseView';
+import { BaseView, BodyBaseView } from '../../../../uiKit/BaseView';
 
 const headerTitle = 'פרטי האירוע';
 
-
-const I10 = () => {
+const I10 = ({ setProgress }) => {
   return (
     <BaseView>
       <ScrollView contentContainerStyle={styles.scrollViewContent}>
         <View style={styles.contentWrapper}>
           <EventHeader>
-            <FormHeader title={headerTitle}/>
+            <FormHeader title={headerTitle} />
           </EventHeader>
           <BodyBaseView style={styles.bodyContainer}>
             <GeneralForm />
@@ -43,7 +37,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   contentWrapper: {
-    flex: 9,
+    flex: 1, 
   },
   bodyContainer: {
     flex: 1,
