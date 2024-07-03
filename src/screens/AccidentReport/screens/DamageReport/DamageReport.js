@@ -35,11 +35,11 @@ const DamageReport = ({ navigation }) => {
     <BaseView>
       <ScrollView contentContainerStyle={styles.scrollViewContent}>
         <View style={styles.contentWrapper}>
-          <EventHeader>
+          {/* <EventHeader>
             {progress === 0 && <FormHeader title={pages[0].headerTitle} />}
             {progress === 1 && <FormHeader title={pages[1].headerTitle} />}
             {progress === 2 && <FormHeader title={pages[2].headerTitle} />}
-          </EventHeader>
+          </EventHeader> */}
           {progress === 0 && <I10 setProgress={setProgressCallback} />}
           {progress === 1 && <I11 setProgress={setProgressCallback} />}
           {progress === 2 && <I12 setProgress={setProgressCallback} />}

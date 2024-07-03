@@ -1,17 +1,18 @@
 import React from 'react';
-import {Dimensions, StyleSheet, View, ScrollView} from 'react-native';
+import { Dimensions, StyleSheet, View, ScrollView } from 'react-native';
 
 import EventHeader from '../../components/EventHeader';
-import {FormHeader} from '../../components/FormHeader';
-import {BaseView, BodyBaseView} from '../../../../uiKit/BaseView';
-import {CarDamageInputs} from '../../components/CarDamageInputs';
+import { FormHeader } from '../../components/FormHeader';
+import { CarDamageInputs } from '../../components/CarDamageInputs';
+
+import { BaseView, BodyBaseView } from '../../../../uiKit/BaseView';
 
 const headerTitle = 'נזקים';
 const damageInfoTitle = 'פרטי הנזק לרכב שלי';
 const textareaPlaceholder = 'תיאור הנזק';
 const imagesTitle = 'הוספת תמונות מהאירוע';
 
-const I11 = ({setProgress}) => {
+const I11 = ({ setProgress }) => {
   return (
     <BaseView>
       <ScrollView contentContainerStyle={styles.scrollViewContent}>
@@ -20,7 +21,7 @@ const I11 = ({setProgress}) => {
             <FormHeader title={headerTitle} />
           </EventHeader>
           <BodyBaseView style={styles.bodyContainer}>
-          <CarDamageInputs
+            <CarDamageInputs
               infoTitle={damageInfoTitle}
               infoPlaceholder={textareaPlaceholder}
               imageTitle={imagesTitle}
@@ -32,8 +33,8 @@ const I11 = ({setProgress}) => {
   );
 };
 
-
 export default I11;
+
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
@@ -43,7 +44,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   contentWrapper: {
-    flex: 9,
+    flex: 1, 
   },
   bodyContainer: {
     flex: 1,
