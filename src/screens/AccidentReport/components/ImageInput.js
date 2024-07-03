@@ -26,15 +26,15 @@ const ImageInput = () => {
     <View style={styles.photoInputContainer}>
       <Image
         style={styles.photoContainer}
-        source={require('../../../assets/i1-assets/car3.png')}
+        source={require('../../../assets/images/car3.png')}
       />
       <Image
         style={styles.photoContainer}
-        source={require('../../../assets/i1-assets/car2.jpg')}
+        source={require('../../../assets/images/car2.jpg')}
       />
     <Image
         style={styles.photoContainer}
-        source={require('../../../assets/i1-assets/car1.jpeg')}
+        source={require('../../../assets/images/car1.jpeg')}
       />
       <TouchableOpacity
         style={styles.uploadPhotoButton}
@@ -43,7 +43,7 @@ const ImageInput = () => {
         }}>
         <Image
           style={styles.uploadPhotoIcon}
-          source={require('../../../assets/i1-assets/uploadPhoto.png')}
+          source={require('../../../assets/icons/uploadPhoto.png')}
         />
       </TouchableOpacity>
     </View>

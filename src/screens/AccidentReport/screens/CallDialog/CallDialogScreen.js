@@ -2,7 +2,7 @@ import { Dimensions, StyleSheet, Text, View, Image, Pressable } from 'react-nati
 import { BaseView, BodyBaseView } from '../../../../uiKit/BaseView';
 import { GradientButton } from '../../components/GradientButton'
 
-const callIcon = require('../../../../assets/i1-assets/calldialogicon.png');
+const callIcon = require('../../../../assets/icons/calldialogicon.png');
 
 const CallDialogScreen = () => {
   return (

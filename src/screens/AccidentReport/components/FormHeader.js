@@ -11,9 +11,8 @@ import {
 import {TitleHeader} from './TitleHeader';
 import {HeaderButton} from './HeaderButton';
 
-const arrowRightGrey = require('../../../assets/i1-assets/rightArrowGray.png');
-const arrowRightGradient = require('../../../assets/i1-assets/rightArrowGradient.png');
-const arrowLeftGradient = require('../../../assets/i1-assets/leftArrowGradient.png');
+const arrowRightGrey = require('../../../assets/icons/componentsNavBarXButtonsRoundedWhiteAlpha.png');
+const arrowLeftGradient = require('../../../assets/icons/componentsNavBarXButtonsRoundedBlack.png');
 
 export const FormHeader = () => {
   return (

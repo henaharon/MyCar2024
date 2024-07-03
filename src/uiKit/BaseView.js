@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
   bodyView: {
     paddingHorizontal: 50,
     flex: 9,
-    backgroundColor: "yellow",
+    backgroundColor: "white",
     // justifyContent: 'center',
     // alignItems: 'center',
   },

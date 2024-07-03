@@ -11,6 +11,8 @@ import {Header} from '../../components/Header';
 import Requirements from './components/Requirements';
 import Information from '../../components/Information';
 import {GradientButton} from '../../components/GradientButton';
+import CallDialogScreen from '../CallDialog/CallDialogScreen';
+import HomePage from '../../../homepage/HomePage';
 
 const informationTitle = 'לפני מילוי הדוח חשוב לדעת:';
 const paragraphs = [
@@ -30,8 +32,12 @@ const AccidentReportIntro = () => {
           <Information title={informationTitle} paragraph={paragraphs} />
           <View style={styles.eventContainer}>
             <Text style={styles.eventType}>אנא בחרו את סוג האירוע</Text>
-            <GradientButton title={"תאונת דרכים עם צד ג'"} />
-            <GradientButton title={'דיווח נזק לרכב'} />
+            <GradientButton
+              title={"תאונת דרכים עם צד ג'"}
+            />
+            <GradientButton
+              title={'דיווח נזק לרכב'}
+            />
           </View>
         </View>
       </ScrollView>

@@ -8,6 +8,7 @@ import {
   SafeAreaView,
 } from 'react-native';
 import {FormHeader} from '../../components/FormHeader';
+import GeneralForm from '../../components/GeneralForm';
 
 const EventInfo = () => {
   return (
@@ -17,7 +18,7 @@ const EventInfo = () => {
           <FormHeader />
         </View>
         <View style={styles.bodyContainer}>
-            
+          <GeneralForm />
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -37,7 +38,7 @@ const styles = StyleSheet.create({
     flexGrow: 1,
   },
   headerContainer: {
-    height: windowHeight * 0.3,
+    height: windowHeight * 0.15,
     zIndex: 1,
   },
   bodyContainer: {
@@ -52,16 +53,5 @@ const styles = StyleSheet.create({
     zIndex: 2,
     gap: 15,
   },
-  eventContainer: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    gap: 15,
-    marginTop: windowHeight * 0.01,
-    width: windowWidth * 0.9,
-  },
-  eventType: {
-    color: 'black',
-    fontSize: 18,
-    fontWeight: 'bold',
-  },
+
 });

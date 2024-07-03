@@ -9,12 +9,9 @@ import DriversCall from './src/screens/DriversCall/DriversCall';
 import DriversContactUs from './src/screens/DriversContactUs/components/DriversContactUs';
 import ElectricVehicle from './src/screens/ElectricVehicle/ElectricVehicle';
 import DriversSideMenu from './src/screens/DriversSideMenu/DriverSideMenu';
+// import AccidentReportIntro from './src/screens/AccidentReport/screens/AccidentReport/AccidentReportIntro';
+import EventInfo from './src/screens/AccidentReport/screens/DamageReport/I10';
 
-import {BaseView} from './src/uiKit/BaseView';
-import AccidentReportIntro from './src/screens/AccidentReport/screens/AccidentReport/AccidentReportIntro';
-import CallDialogScreen from './src/screens/AccidentReport/screens/CallDialog/CallDialogScreen';
-import SuccessScreen from './src/screens/AccidentReport/screens/Success/SuccessScreen';
-import GeneralForm from './src/screens/AccidentReport/components/GeneralForm';
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
 
@@ -25,7 +22,7 @@ function HomeStack() {
       <Stack.Screen name="ElectricVehicle" component={ElectricVehicle} />
       <Stack.Screen
         name="AccidentReportIntro"
-        component={AccidentReportIntro}
+        component={EventInfo}
       />
     </Stack.Navigator>
   );
