@@ -10,10 +10,10 @@ import {
 import {launchImageLibrary} from 'react-native-image-picker';
 import Title from './Title';
 
-const firstCar = require('../../../assets/i1-assets/car1.jpeg');
-const secondCar = require('../../../assets/i1-assets/car2.jpg');
-const thirdCar = require('../../../assets/i1-assets/car3.png');
-const uploadPhotoIcon = require('../../../assets/i1-assets/uploadPhoto.png');
+const firstCar = require('../../../assets/images/car1.jpeg');
+const secondCar = require('../../../assets/images/car2.jpg');
+const thirdCar = require('../../../assets/images/car3.png');
+const uploadPhotoIcon = require('../../../assets/icons/uploadPhoto.png');
 
 const ImageInput = ({title}) => {
   const ImagePicker = () => {
