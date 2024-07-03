@@ -12,7 +12,7 @@ export const TextareaInput = ({title, placeholder}) => {
       <Input
         placeholder={placeholder}
         required={false}
-        width={0.92}
+        width={0.90}
         type={'textarea'}
       />
     </View>
