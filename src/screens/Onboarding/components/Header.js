@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { StyleSheet, Image, Text, View, TouchableOpacity, Alert } from 'react-native';
-import imageProfileDefault from '../../../assets/profile-modified.png';
-import galleryImage from '../../../assets/gallery.png';
+import imageProfileDefault from '../../../assets/a1ab-onboarding-login-assets/profile-modified.png';
+import galleryImage from '../../../assets/a1ab-onboarding-login-assets/gallery.png';
 import { launchImageLibrary } from 'react-native-image-picker';
 
 const Header = () => {

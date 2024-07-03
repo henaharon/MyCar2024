@@ -16,12 +16,12 @@ export const BodyBaseView = ({ children, style }) => {
 const styles = StyleSheet.create({
   safeAreaViewBase: {
     flex: 1,
-    backgroundColor: 'white',
+    backgroundColor: "#ee4666",
   },
   bodyView: {
     paddingHorizontal: 50,
     flex: 9,
-    backgroundColor: 'white',
+    backgroundColor: "yellow",
     // justifyContent: 'center',
     // alignItems: 'center',
   },

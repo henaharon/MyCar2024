@@ -6,12 +6,16 @@ import slides from './Slides';
 import Paginator from './components/Paginator';
 import Button from './components/Button';
 
-const Walkthrough = () => {
+const Walkthrough = ({ navigation }) => {
   const scrollX = useRef(new Animated.Value(0)).current;
   const slidesRef = useRef(null);
 
   const viewConfig = useRef({ viewAreaCoveragePercentThreshold: 50 }).current;
 
+  const handlePress = () => {
+    navigation.navigate('Login');
+  };
+  
   return (
     <LinearGradient
       colors={['#DD0370', '#E22D66', '#E7525F']}
@@ -39,7 +43,7 @@ const Walkthrough = () => {
       />
       <View style={styles.footer}>
         <Paginator data={slides} scrollX={scrollX} />
-        <Button text="בואו נתחיל!" />
+        <Button text="בואו נתחיל!" onPress={handlePress} />
       </View>
     </LinearGradient>
   );

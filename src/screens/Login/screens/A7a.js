@@ -1,8 +1,8 @@
 import React, { useCallback, useState } from 'react';
 import { View, StyleSheet } from 'react-native';
-import phoneImage from '../../../assets/phone.png';
-import mailImage from '../../../assets/mail.png';
-import carLogo from '../../../assets/carLogo.png';
+import phoneImage from '../../../assets/a1ab-onboarding-login-assets/phone.png';
+import mailImage from '../../../assets/a1ab-onboarding-login-assets/mail.png';
+import carLogo from '../../../assets/a1ab-onboarding-login-assets/carLogo.png';
 import LoginInput from '../components/LoginInput';
 import Header from '../components/Header';
 import Footer from '../components/Footer';

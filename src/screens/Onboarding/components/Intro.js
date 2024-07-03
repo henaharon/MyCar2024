@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Image, Text, StyleSheet } from 'react-native';
-import imageProfile from '../../../assets/profile.png';
+import imageProfile from '../../../assets/a1ab-onboarding-login-assets/profile.png';
 import Button from './Button';
 
 const Intro = ({ setProgress }) => {

@@ -1,21 +1,20 @@
 import React, { useState } from 'react';
 import { View, TouchableOpacity, Image, Text, StyleSheet } from 'react-native';
-import exitImage from '../../../assets/exit.png';
-import carLogo from '../../../assets/carLogo.png';
+import exitImage from '../../../assets/a1ab-onboarding-login-assets/exit.png';
+import carLogo from '../../../assets/a1ab-onboarding-login-assets/carLogo.png';
 import Header from '../components/Header';
 import Inputs from '../components/Inputs';
 import GradiantButton from '../components/GradiantButton';
 
-const A16bScreen = ({ setProgress }) => {
+const A16bScreen = ({ setProgress,navigation, route }) => {
     const [isSecondOptionSelected, setIsSecondOptionSelected] = useState(false);
 
     const handleEnter = () => {
         // Check if only the second option is selected
         if (isSecondOptionSelected) {
             console.log('Only the second option is checked');
-            setProgress(3);
-        }
-        
+            navigation.navigate('Onboarding');
+        }    
     }
 
     return (

@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native';
 import DocumentPicker from 'react-native-document-picker';
 import PropTypes from 'prop-types';
-import fileImage from '../../../assets/file.png';
-import plusImage from '../../../assets/plus.png';
+import fileImage from '../../../assets/a1ab-onboarding-login-assets/file.png';
+import plusImage from '../../../assets/a1ab-onboarding-login-assets/plus.png';
 
 const FileInput = ({ text, onFileSelect }) => {
     const [fileName, setFileName] = useState('');

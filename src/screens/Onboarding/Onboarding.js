@@ -5,7 +5,7 @@ import Intro from './components/Intro';
 import Header from './components/Header';
 import Form from './components/Form';
 
-const Onboarding = () => {
+const Onboarding = ({navigation, setIsLoggedIn  }) => {
     const [progress, setProgress] = useState(false);
 
     const setProgressCallback = useCallback(
@@ -25,7 +25,7 @@ const Onboarding = () => {
                 {progress && (<ScrollView>
                     {/* Add the rest of the screens here */}
                     <Header />
-                    <Form />
+                    <Form navigation={navigation} setIsLoggedIn={setIsLoggedIn} />
                 </ScrollView>
                 )}
             </View>

@@ -7,7 +7,7 @@ import GradiantButton from '../../Login/components/GradiantButton';
 import FileInput from './FileInput';
 import AlertModal from '../../Login/components/AlertModal';
 
-const Form = () => {
+const Form = ({navigation, setIsLoggedIn }) => {
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [employeeId, setEmployeeId] = useState('');
@@ -83,7 +83,8 @@ const Form = () => {
             setAlertVisible(true);
             return;
         }
-        console.log('continue to the home page')
+        setIsLoggedIn(true);
+        navigation.navigate('HomePage');
     }, [firstName, lastName, employeeId, birthDate, email, phone, drivingLicense, drivingLicenseDate, drivingLicenseType, files]);
 
     return (

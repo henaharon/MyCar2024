@@ -1,7 +1,7 @@
 import React,{useState,useCallback} from 'react';
 import { View, Image, StyleSheet,Text, TouchableOpacity } from 'react-native';
-import backImage from '../../../assets/back.png';
-import lockImage from '../../../assets/lock.png';
+import backImage from '../../../assets/a1ab-onboarding-login-assets/back.png';
+import lockImage from '../../../assets/a1ab-onboarding-login-assets/lock.png';
 import LoginInput from '../components/LoginInput';
 import Footer from '../components/Footer';
 import AlertModal from '../components/AlertModal';
