@@ -42,7 +42,7 @@ const texts = {
   updatesTitle: "עדכונים וחדשות",
   campaignTitle: "כותרת הודעה / קמפיין",
   rental: "השאלת רכבים",
-  emergency: "תאונות וחירום",
+  emergency: { title: "תאונות וחירום", navigateTo: "AccidentReportIntro" },
 };
 
 const DashedLine = () => {
@@ -124,11 +124,13 @@ const HomePage = ({ navigation }) => {
             <Image source={Rental} style={styles.Image} />
           </View>
           <DashedLine />
-          <View style={styles.SbottomContainer}>
+          <Pressable style={styles.SbottomContainer}
+            onPress={() => navigation.navigate(texts.emergency.navigateTo)}
+          >
             <Image source={arrow} style={styles.logo} />
-            <Text style={styles.SbottomText}>{texts.emergency}</Text>
+            <Text style={styles.SbottomText}>{texts.emergency.title}</Text>
             <Image source={accedent} style={styles.Image} />
-          </View>
+          </Pressable>
           <Image source={sunImage} style={styles.sun} />
         </View>
       </ImageBackground>
