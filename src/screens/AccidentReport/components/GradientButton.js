@@ -10,7 +10,7 @@ import {
 
 import LinearGradient from 'react-native-linear-gradient';
 
-export const Button = ({title, onPress, phoneNumber}) => {
+export const GradientButton = ({title, onPress, phoneNumber}) => {
   const [bgColor, setBgColor] = useState('transparent');
   const [txtColor, setTxtColor] = useState('black');
   const [brdrColor, setBorderColor] = useState('#e6e6e9');

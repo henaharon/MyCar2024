@@ -7,39 +7,24 @@ import {
   ScrollView,
   SafeAreaView,
 } from 'react-native';
-import {Header} from '../../components/Header';
-import Requirements from './components/Requirements';
-import Information from '../../components/Information';
-import {GradientButton} from '../../components/GradientButton';
+import {FormHeader} from '../../components/FormHeader';
 
-const informationTitle = 'לפני מילוי הדוח חשוב לדעת:';
-const paragraphs = [
-  'דוח תאונת הדרכים נשלח למספר גורמים בקבוצת אמדוקס ולגורמים חיצויים כמו חברת ביטוח.',
-  'נא להקפיד על מילוי מדוייק ונכון של דוח התאונה.',
-  'ניתן לקבל עזרה טלפונית בלחיצה על כפתור ה"עזרה" בראש המסך.',
-];
-const AccidentReportIntro = () => {
+const EventInfo = () => {
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView contentContainerStyle={styles.scrollViewContent}>
         <View style={styles.headerContainer}>
-          <Header />
+          <FormHeader />
         </View>
         <View style={styles.bodyContainer}>
-          <Requirements />
-          <Information title={informationTitle} paragraph={paragraphs} />
-          <View style={styles.eventContainer}>
-            <Text style={styles.eventType}>אנא בחרו את סוג האירוע</Text>
-            <GradientButton title={"תאונת דרכים עם צד ג'"} />
-            <GradientButton title={'דיווח נזק לרכב'} />
-          </View>
+            
         </View>
       </ScrollView>
     </SafeAreaView>
   );
 };
 
-export default AccidentReportIntro;
+export default EventInfo;
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
