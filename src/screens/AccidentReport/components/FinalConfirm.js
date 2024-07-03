@@ -1,7 +1,7 @@
 import React from 'react';
-import {Dimensions, StyleSheet, View, ScrollView} from 'react-native';
+import { Dimensions, StyleSheet, View, ScrollView } from 'react-native';
 import Title from './Title';
-import {Input} from './Input';
+import { Input } from './Input';
 import Information from './Information';
 import Signature from './Signature';
 import { GradientButton } from './GradientButton';
@@ -19,21 +19,25 @@ const FinalConfirm = ({
 }) => {
   return (
     <View style={styles.viewContent}>
-      <Title title={pageTitle} />
-      <Input
-        type="email"
-        placeholder={inputPlaceholder}
-        required={true}
-        width={0.92}
-      />
-      <Title title={signatureTitle} />
-      <Signature />
+      <View>
+        <Title title={pageTitle} />
+        <Input
+          type="email"
+          placeholder={inputPlaceholder}
+          required={true}
+          width={0.92}
+        />
+      </View>
+      <View>
+        <Title title={signatureTitle} />
+        <Signature />
+      </View>
+      <Information title={informationTitle} paragraph={paragraphs} />
       <GradientButton
         title={confirm}
-        // onPress={}
+      // onPress={}
       />
 
-      <Information title={informationTitle} paragraph={paragraphs} />
     </View>
   );
 };
@@ -48,6 +52,6 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    gap: windowHeight * 0.01,
+    gap: windowHeight * 0.02,
   },
 });

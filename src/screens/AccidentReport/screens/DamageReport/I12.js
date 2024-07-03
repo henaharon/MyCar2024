@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     borderRadius: 25,
     marginTop: -windowHeight * 0.1,
-    paddingTop: windowHeight * 0.05,
+    paddingTop: windowHeight * 0.04,
     marginBottom: windowHeight * 0.1,
     zIndex: 2,
     gap: 15,
