@@ -72,6 +72,7 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         fontSize: 16,
         paddingRight: 27,
+        paddingLeft: 27,
         position: 'relative',
         fontWeight: '400',
         color: 'black',

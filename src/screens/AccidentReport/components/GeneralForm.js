@@ -50,10 +50,10 @@ const GeneralForm = () => {
           </View>
           <View style={styles.TextareaContainer}>
             <View style={styles.TextBoxLabel}>
-            <Text style={styles.TextboxBackground}>תיאור האירוע</Text>
+              <Text style={styles.TextboxBackground}>תיאור האירוע</Text>
             </View>
             <Input
-              placeholder={'תיאור התרחשות האירוע (סיפור מקרה אירוע)'}
+              placeholder={'תיאור התרחשות האירוע'}
               required={false}
               width={0.92}
               type={'textarea'}
