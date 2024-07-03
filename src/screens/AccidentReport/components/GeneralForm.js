@@ -1,6 +1,7 @@
 import React from 'react';
-import { Dimensions, Text, View, StyleSheet } from 'react-native';
-import { Input } from './Input';
+import {Dimensions, Text, View, StyleSheet} from 'react-native';
+import {Input} from './Input';
+import {TextareaInput} from './TextareaInput';
 import DateTimeInput from './DateTimeInput';
 import Title from './Title';
 import ImageInput from './ImageInput';
@@ -14,7 +15,8 @@ const datePlaceholder = 'תאריך';
 const cityPlaceholder = 'עיר / כביש מרכזי';
 const houseNumberPlaceholder = 'מ.בית';
 const addressPlaceholder = 'כתובת';
-const descriptionPlaceholder = 'תיאור האירוע';
+const descriptionTitle = 'תיאור האירוע';
+const descriptionPlaceholder = 'תיאור התרחשות האירוע';
 const imageTitle = 'הוספת תמונות האירוע';
 
 const GeneralForm = () => {
@@ -22,7 +24,12 @@ const GeneralForm = () => {
     <View style={styles.GeneralFormContainer}>
       <Title title={generalInputTitle} />
       <View style={styles.rowInputsContainer}>
-        <DateTimeInput text={hourPlaceholder} width={0.4} type={'time'} required={true} />
+        <DateTimeInput
+          text={hourPlaceholder}
+          width={0.4}
+          type={'time'}
+          required={true}
+        />
         <DateTimeInput
           text={datePlaceholder}
           width={0.5}
@@ -43,14 +50,18 @@ const GeneralForm = () => {
           width={0.3}
           type={'number'}
         />
-        <Input placeholder={addressPlaceholder} required={false} width={0.6} type={''} />
+        <Input
+          placeholder={addressPlaceholder}
+          required={false}
+          width={0.6}
+          type={''}
+        />
       </View>
-      <View style={styles.TextareaContainer}>
-        <Input placeholder={descriptionPlaceholder} required={false} width={0.92} type={"textarea"} />
-      </View>
+      <TextareaInput
+        title={descriptionTitle}
+        placeholder={descriptionPlaceholder}
+      />
       <ImageInput title={imageTitle} />
-      {/* <Title title={"האם הייתה מעורבות משטרה באירוע?"}/>
-                <ChoiceInput option1={"לא היתה"} option2={"כן, היתה"}/> */}
     </View>
   );
 };
@@ -66,10 +77,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  TextareaContainer: {
-    position: 'relative',
-    top: windowHeight * 0.05,
-  },
   GeneralFormContainer: {
     display: 'flex',
     flexDirection: 'column',
@@ -78,7 +85,18 @@ const styles = StyleSheet.create({
     width: windowWidth * 0.9,
     marginTop: -windowHeight * 0.1,
   },
-
+  TextBoxLabel: {
+    position: 'relative',
+    bottom: windowHeight * 0.039,
+    left: windowWidth * 0.59,
+    zIndex: 1,
+    width: windowWidth * 0.27,
+    alignItems: 'center',
+  },
+  TextboxBackground: {
+    color: '#000000',
+    backgroundColor: '#FFFFFF',
+  },
 });
 
 export default GeneralForm;
