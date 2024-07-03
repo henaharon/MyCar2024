@@ -15,7 +15,7 @@ const windowHeight = Dimensions.get('window').height;
 const styles = StyleSheet.create({
     titleContainer: {
         width: windowWidth * 0.9,
-        marginBottom: windowHeight * 0.02,
+        marginBottom: windowHeight * 0.01,
     },
     titleStyle: {
         fontSize: 18,
