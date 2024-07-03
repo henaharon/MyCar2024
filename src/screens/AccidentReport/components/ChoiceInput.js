@@ -19,7 +19,10 @@ const ChoiceInput = ({optionF, optionT, setChoice}) => {
 
   const onSelect = id => {
     setSelectedId(id);
-    setChoice(options.find(option => option.id === id).value);
+    
+    if (setChoice){
+      setChoice(options.find(option => option.id === id).value);
+    }
   };
 
   return (
