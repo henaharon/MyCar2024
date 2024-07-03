@@ -16,7 +16,7 @@ const arrowLeftGradient = require('../../../assets/icons/componentsNavBarXButton
 
 export const FormHeader = () => {
   return (
-    <View style={styles.headerContainter}>
+    <View style={styles.headerContainer}>
       <View style={styles.headerContent}>
         <HeaderButton
           container={styles.ButtonContainer}
@@ -37,18 +37,21 @@ const windowHeight = Dimensions.get('window').height;
 
 const styles = StyleSheet.create({
   headerContainer: {
-    flexFlow: 'row',
+    height: windowHeight * 0.15,
+    zIndex: 2,
+    ...StyleSheet.absoluteFillObject,
     justifyContent: 'center',
     width: '100%',
     alignItems: 'center',
     backgroundColor: 'black',
-    height: windowHeight * 0.1,
   },
   headerContent: {
     alignContent: 'center',
-    flexFlow: 'row',
+    flexDirection: 'row',
     justifyContent: 'space-between',
+    height: windowHeight * 0.1,
     width: windowWidth * 0.93,
+    alignItems: 'flex-start',
   },
   ButtonContainer: {
     width: windowWidth * 0.08,
