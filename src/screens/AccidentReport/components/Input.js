@@ -25,6 +25,7 @@ export const Input = ({type, placeholder, required, width}) => {
     const inputHeight = type === 'textarea' ? 0.2 * Dimensions.get('window').height : undefined;
     const textarea = type === 'textarea' ? true : false;
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+    const placeholderColor = type === 'textarea' ? '#bbbac5' : '#393939';
 
     const validateEmail = (email) => {
         return emailRegex.test(email);
@@ -38,7 +39,7 @@ export const Input = ({type, placeholder, required, width}) => {
                 ]}
                 placeholder={placeholder}
                 onChangeText={handleChange}
-                placeholderTextColor={'#393939'}
+                placeholderTextColor={placeholderColor}
                 keyboardType={type === 'number' ? 'numeric' : 
                               type === 'email' ? 'email-address' : 
                               'default'}
@@ -69,8 +70,9 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         borderColor: '#E5E5E5',
         borderWidth: 1,
-        fontSize: 18,
+        fontSize: 16,
         paddingRight: 27,
+        paddingLeft: 27,
         position: 'relative',
         fontWeight: '400',
         color: 'black',
