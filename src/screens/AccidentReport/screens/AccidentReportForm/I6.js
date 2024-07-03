@@ -26,9 +26,15 @@ const addressPlaceholder = 'כתובת';
 const additionalWitnessesTitle = 'עדים נוספים';
 const additionalWitnessesPlaceholder = 'במידה ויש עדים נוספים אנא עדכן כאן, יש להקפיד למלא את שמם המלא, ת.ז, כתובת וטלפון של כל העדים הנוספים.';
 const witnessPhotosTitle = 'הוספת תמונות עדים';
+const injuredTitle = 'פרטי נפגע';
+const injuredNamePlaceholder = 'שם הנפגע';
+const additionalInjuredTitle = 'נפגעים נוספים';
+const additionalInjuredPlaceholder = 'במידה ויש נפגעים נוספים אנא עדכן כאן, יש להקפיד למלא את שמם המלא, ת.ז, כתובת וטלפון של כל הנפגעים הנוספים.';
+const injuredPhotosTitle = 'הוספת תמונות נפגעים';
 
 const I6 = () => {
     const [witnesses, setWitnesses] = useState(false);
+    const [injured, setInjured] = useState(false);
   return (
     <BaseView>
       <ScrollView contentContainerStyle={styles.scrollViewContent}>
@@ -41,6 +47,38 @@ const I6 = () => {
             <View style={{marginLeft: windowWidth * 0.08}}>
                 <ChoiceInput optionF={'לא היו נפגעים'} optionT={'כן, היו נפגעים'}/>
             </View>
+            { injured && (<View>
+                <Title title={injuredTitle} />
+                <View style={styles.witnessForm}>
+                    <Input
+                        placeholder={injuredNamePlaceholder}
+                        required={false}
+                        width={0.9}
+                        type={''}
+                    />
+                     <Input
+                        placeholder={IDNumberPlaceholder}
+                        required={false}
+                        width={0.9}
+                        type={'number'}
+                    />
+                    <Input
+                        placeholder={addressPlaceholder}
+                        required={false}
+                        width={0.9}
+                        type={''}
+                    />
+                    <TextareaInput title={additionalInjuredTitle} placeholder={additionalInjuredPlaceholder} />
+                </View>
+                <View style={styles.witnessPhotos}>
+                <Title title={injuredPhotosTitle} />
+                <View style={styles.photosInput}>
+                <ImageInput/>
+                </View>
+                </View>
+            </View>
+            )}
+
             <View style={styles.DecorativeLine} />
             <Title title={witnessTitle} />
             <View style={{marginLeft: windowWidth * 0.08}}>
