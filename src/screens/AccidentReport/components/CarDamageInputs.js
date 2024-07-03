@@ -1,5 +1,5 @@
 import React from 'react';
-import {Dimensions, Text, View, StyleSheet} from 'react-native';
+import {Dimensions, View, StyleSheet} from 'react-native';
 import Title from './Title';
 import ImageInput from './ImageInput';
 import {TextareaInput} from './TextareaInput';
