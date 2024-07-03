@@ -1,12 +1,12 @@
 import React from 'react';
 import { Dimensions, Text, View, StyleSheet } from 'react-native'
-import {BaseView, BodyBaseView} from '../../../../uiKit/BaseView'
+import {BaseView, BodyBaseView} from '../../../uiKit/BaseView'
 import {Button} from '../../components/Button'
-import {Input} from '../../components/Input'
-import DateTimeInput from '../../components/DateTimeInput'
-import Title from '../../components/Title'
-import ChoiceInput from '../../components/ChoiceInput'
-import ImageInput from '../../components/ImageInput'
+import {Input} from './Input'
+import DateTimeInput from './DateTimeInput'
+import Title from './Title'
+import ChoiceInput from './ChoiceInput'
+import ImageInput from './ImageInput'
 
 const GeneralForm = () => {
     return (
