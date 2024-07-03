@@ -1,41 +1,40 @@
 import React, { useRef } from 'react';
 import { View, StyleSheet, Dimensions, Text, TouchableOpacity } from 'react-native';
 import SignatureCanvas from 'react-native-signature-canvas';
-import { GradientButton } from './GradientButton';
 
 const clear = 'נקה';
-const confirm = 'אישור ושליחה';
 const yourSignature = 'החתימה שלך';
 
 const Signature = () => {
     const signatureRef = useRef(null);
 
-    const handleOK = signature => {
-        console.log(signature);
-    };
+    // const handleOK = signature => {
+    //     console.log(signature);
+    // };
 
     const handleClear = () => {
         signatureRef.current.clearSignature();
     };
 
-    const handleConfirm = () => {
-        signatureRef.current.readSignature();
-    };
+    // const handleConfirm = () => {
+    //     signatureRef.current.readSignature();
+    // };
 
     return (
         <View style={styles.container}>
             <View style={styles.signatureWrapper}>
                 <SignatureCanvas
                     ref={signatureRef}
-                    onOK={handleOK}
+                    // onOK={handleOK}
                     webStyle={styles.webStyle}
                     style={styles.signatureContainer}
                 />
-                <TouchableOpacity style={styles.clearButton} onPress={handleClear}>
+                <TouchableOpacity style={styles.clearButton} 
+                onPress={handleClear}
+                >
                     <Text style={styles.clearButtonText}>{clear}</Text>
                 </TouchableOpacity>
             </View>
-            <GradientButton title={confirm} onPress={handleConfirm} />
         </View>
     );
 };
@@ -47,7 +46,6 @@ const styles = StyleSheet.create({
     container: {
         alignItems: 'center',
         justifyContent: 'center',
-        flex: 1,
     },
     signatureWrapper: {
         position: 'relative',

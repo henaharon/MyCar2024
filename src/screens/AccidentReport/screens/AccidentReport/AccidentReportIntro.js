@@ -15,11 +15,15 @@ import CallDialogScreen from '../CallDialog/CallDialogScreen';
 import HomePage from '../../../homepage/HomePage';
 
 const informationTitle = 'לפני מילוי הדוח חשוב לדעת:';
+const accidentTitle = 'תאונת דרכים עם צד ג';
+const damageTitle = 'דיווח נזק לרכב';
 const paragraphs = [
   'דוח תאונת הדרכים נשלח למספר גורמים בקבוצת אמדוקס ולגורמים חיצויים כמו חברת ביטוח.',
   'נא להקפיד על מילוי מדוייק ונכון של דוח התאונה.',
   'ניתן לקבל עזרה טלפונית בלחיצה על כפתור ה"עזרה" בראש המסך.',
 ];
+
+
 const AccidentReportIntro = () => {
   return (
     <SafeAreaView style={styles.container}>
@@ -33,10 +37,10 @@ const AccidentReportIntro = () => {
           <View style={styles.eventContainer}>
             <Text style={styles.eventType}>אנא בחרו את סוג האירוע</Text>
             <GradientButton
-              title={"תאונת דרכים עם צד ג'"}
+              title={accidentTitle}
             />
             <GradientButton
-              title={'דיווח נזק לרכב'}
+              title={damageTitle}
             />
           </View>
         </View>
