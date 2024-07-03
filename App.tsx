@@ -9,7 +9,8 @@ import DriversCall from "./src/screens/DriversCall/DriversCall";
 import DriversContactUs from "./src/screens/DriversContactUs/components/DriversContactUs";
 import ElectricVehicle from "./src/screens/ElectricVehicle/ElectricVehicle";
 import DriversSideMenu from "./src/screens/DriversSideMenu/DriverSideMenu";
-import TicketStatus from "./src/screens/TicketStatus/TicketStatus"; // Import TicketStatus
+import TicketStatus from "./src/screens/TicketStatus/TicketStatus";
+import OpenCarTicket from "./src/screens/OpenCarTicket/OpenCarTicket";
 
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -20,6 +21,7 @@ function HomeStack() {
       <Stack.Screen name="TicketStatus" component={TicketStatus} />
       <Stack.Screen name="HomePage" component={HomePage} />
       <Stack.Screen name="ElectricVehicle" component={ElectricVehicle} />
+      <Stack.Screen name="OpenCarTicket" component={OpenCarTicket} />
     </Stack.Navigator>
   );
 }

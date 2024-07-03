@@ -1,57 +1,83 @@
-// src/screens/OpenCarTicket/OpenCarTicket.js
 import React from 'react';
 import { View, Text, StyleSheet, ScrollView, Pressable, Image } from 'react-native';
+import LinearGradient from 'react-native-linear-gradient';
 import verticalThreeDotsIcon from '../../assets/icons/verticalThreeDots.png';
 import XButtonIcon from '../../assets/icons/componentsNavBarXButtonsRoundedWhiteAlpha.png';
+import carWashIcon from '../../assets/icons/elementsServiceIconsCar.png';
+import OpenCarTicketItem from './compenents/OpenCarTicketItem';
 
 const OpenCarTicket = () => {
-  return (
-    <View style={styles.container}>
-      <View style={styles.header}>
-        <Pressable style={styles.leftIcon}>
-          <Image source={verticalThreeDotsIcon} style={styles.icon} />
-        </Pressable>
-        <Text style={styles.headerText}>קריאה פתוחה</Text>
-        <Pressable style={styles.rightIcon}>
-          <Image source={XButtonIcon} style={styles.icon} />
-        </Pressable>
-      </View>
-      <View style={styles.ticketInfo}>
-        <Image source={routineServiceIcon} style={styles.ticketIcon} />
-        <Text style={styles.ticketType}>טיפול בתקלה ברכב</Text>
-        <Text style={styles.ticketNumber}>82225</Text>
-        <Pressable style={styles.moreDetailsButton}>
-          <Text style={styles.moreDetailsButtonText}>פרטים נוספים</Text>
-        </Pressable>
-      </View>
-      <ScrollView contentContainerStyle={styles.statusList}>
-        <View style={styles.statusItem}>
-          <Text style={styles.statusDate}>04.11.2022 - 15:32</Text>
-          <Text style={styles.statusType}>משוב</Text>
-          <Text style={styles.statusDescription}>נשמח לשמוע ממך על חווית השירות שלך</Text>
-          <Pressable style={styles.responseButton}>
-            <Text style={styles.responseButtonText}>שליחת משוב</Text>
+    const ticketItems = [
+        {
+          date: '04.11.2022 - 15:32',
+          type: 'משוב',
+          description: 'נשמח לשמוע ממך על חווית השירות שלך',
+          showFeedbackButton: true,
+          isActive: true,
+        },
+        {
+          date: '04.11.2022 - 15:32',
+          type: 'קריאה הושלמה',
+          description: 'קריאה טופלה בהצלחה',
+          showFeedbackButton: false,
+          isActive: false,
+        },
+        {
+          date: '04.11.2022 - 15:32',
+          type: 'פנייה נקלטה',
+          description: 'קריאה התקבלה במרכז השירות',
+          showFeedbackButton: false,
+          isActive: false,
+        },
+        {
+          date: '04.11.2022 - 15:32',
+          type: 'קריאה נוצרה',
+          description: 'קריאה חדשה נוצרה',
+          showFeedbackButton: false,
+          isActive: false,
+        },
+      ];
+  
+    return (
+      <View style={styles.container}>
+        <LinearGradient
+          colors={['#05AC2F', '#05AC2F']}
+          style={styles.header}
+        >
+          <Pressable style={styles.leftIcon}>
+            <Image source={verticalThreeDotsIcon} style={styles.icon} />
           </Pressable>
-        </View>
-        <View style={styles.statusItem}>
-          <Text style={styles.statusDate}>04.11.2022 - 15:32</Text>
-          <Text style={styles.statusType}>קריאה הושלמה</Text>
-          <Text style={styles.statusDescription}>קריאה טופלה בהצלחה</Text>
-        </View>
-        <View style={styles.statusItem}>
-          <Text style={styles.statusDate}>04.11.2022 - 15:32</Text>
-          <Text style={styles.statusType}>פניה נקלטה</Text>
-          <Text style={styles.statusDescription}>קריאה התקבלה במרכז השירות</Text>
-        </View>
-        <View style={styles.statusItem}>
-          <Text style={styles.statusDate}>04.11.2022 - 15:32</Text>
-          <Text style={styles.statusType}>קריאה נוצרה</Text>
-          <Text style={styles.statusDescription}>קריאה חדשה נוצרה</Text>
-        </View>
-      </ScrollView>
-    </View>
-  );
-};
+          <Text style={styles.headerText}>קריאה פתוחה</Text>
+          <Pressable style={styles.rightIcon}>
+            <Image source={XButtonIcon} style={styles.icon} />
+          </Pressable>
+          <View style={styles.ticketInfo}>
+            <Image source={carWashIcon} style={styles.ticketIcon} />
+            <Text style={styles.ticketType}>טיפול בתקלה ברכב</Text>
+            <Text style={styles.ticketNumber}>82225</Text>
+            <Pressable style={styles.moreDetailsButton}>
+              <Text style={styles.moreDetailsButtonText}>פרטים נוספים</Text>
+            </Pressable>
+          </View>
+        </LinearGradient>
+        <View style={styles.contentContainer}>
+        <Text style={styles.sectionTitle}>סטטוס הקריאה</Text>
+        <ScrollView contentContainerStyle={styles.statusList}>
+          {ticketItems.map((item, index) => (
+            <OpenCarTicketItem
+              key={index}
+              date={item.date}
+              type={item.type}
+              description={item.description}
+              showFeedbackButton={item.showFeedbackButton}
+              isActive={item.isActive}
+            />
+          ))}
+        </ScrollView>
+      </View>
+      </View>
+    );
+  };
 
 const styles = StyleSheet.create({
   container: {
@@ -59,96 +85,118 @@ const styles = StyleSheet.create({
     backgroundColor: '#ffffff',
   },
   header: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    paddingVertical: 20,
-    paddingHorizontal: 15,
-    backgroundColor: '#4CAF50',
+    paddingTop: 40,
+    paddingBottom: 40,
   },
   leftIcon: {
-    width: 30,
-    height: 30,
-    justifyContent: 'center',
-    alignItems: 'center',
+    position: 'absolute',
+    left: 15,
+    top: 40,
   },
   rightIcon: {
-    width: 30,
-    height: 30,
-    justifyContent: 'center',
-    alignItems: 'center',
+    position: 'absolute',
+    right: 15,
+    top: 40,
   },
   icon: {
-    width: 20,
-    height: 20,
+    width: 24,
+    height: 24,
     resizeMode: 'contain',
   },
   headerText: {
     fontSize: 18,
     fontWeight: 'bold',
     color: '#fff',
+    textAlign: 'center',
   },
   ticketInfo: {
     alignItems: 'center',
-    paddingVertical: 20,
-    backgroundColor: '#4CAF50',
-    borderBottomLeftRadius: 20,
-    borderBottomRightRadius: 20,
-    marginBottom: 20,
+    marginTop: 20,
   },
   ticketIcon: {
-    width: 50,
-    height: 50,
+    width: 60,
+    height: 60,
     resizeMode: 'contain',
     marginBottom: 10,
   },
   ticketType: {
-    fontSize: 18,
+    fontSize: 20,
     fontWeight: 'bold',
     color: '#fff',
+    textAlign: 'center',
   },
   ticketNumber: {
-    fontSize: 16,
-    color: '#fff',
-    marginBottom: 10,
+    fontSize: 18,
+    color: '#65CD81',
+    marginBottom: 15,
   },
   moreDetailsButton: {
-    backgroundColor: '#DFF6FC',
+    backgroundColor: '#7FD598',
     borderRadius: 20,
-    paddingVertical: 5,
+    paddingVertical: 8,
     paddingHorizontal: 20,
   },
   moreDetailsButtonText: {
-    color: '#3651F1',
+    color: '#ffffff',
     fontWeight: 'bold',
   },
-  statusList: {
+  contentContainer: {
+    flex: 1,
+    backgroundColor: '#ffffff',
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
+    marginTop: -20,
+    paddingTop: 20,
     paddingHorizontal: 20,
+  },
+  sectionTitle: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginBottom: 15,
+    textAlign: 'right',
+  },
+  statusList: {
     paddingBottom: 20,
   },
   statusItem: {
+    flexDirection: 'row',
     marginBottom: 20,
+  },
+  timelineIndicator: {
+    width: 12,
+    height: 12,
+    borderRadius: 6,
+    backgroundColor: '#4CAF50',
+    marginRight: 10,
+    marginTop: 5,
+  },
+  statusContent: {
+    flex: 1,
   },
   statusDate: {
     fontSize: 14,
     color: '#888',
     marginBottom: 5,
+    textAlign: 'right',
   },
   statusType: {
     fontSize: 16,
     fontWeight: 'bold',
     marginBottom: 5,
+    textAlign: 'right',
   },
   statusDescription: {
     fontSize: 14,
     color: '#555',
+    textAlign: 'right',
   },
   responseButton: {
     backgroundColor: '#FFC107',
-    borderRadius: 20,
-    paddingVertical: 5,
+    borderRadius: 25,
+    paddingVertical: 8,
     paddingHorizontal: 20,
     marginTop: 10,
+    alignSelf: 'flex-start',
   },
   responseButtonText: {
     color: '#000',
