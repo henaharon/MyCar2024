@@ -14,7 +14,7 @@ import {HeaderButton} from './HeaderButton';
 const arrowRightGrey = require('../../../assets/icons/componentsNavBarXButtonsRoundedWhiteAlpha.png');
 const arrowLeftGradient = require('../../../assets/icons/componentsNavBarXButtonsRoundedBlack.png');
 
-export const FormHeader = () => {
+export const FormHeader = ({title}) => {
   return (
     <View style={styles.headerContainer}>
       <View style={styles.headerContent}>
@@ -22,7 +22,7 @@ export const FormHeader = () => {
           container={styles.ButtonContainer}
           imageSource={arrowLeftGradient}
         />
-        <TitleHeader title={'פרטי התאונה'} />
+        <TitleHeader title={title} />
         <HeaderButton
           container={styles.ButtonContainer}
           imageSource={arrowRightGrey}
