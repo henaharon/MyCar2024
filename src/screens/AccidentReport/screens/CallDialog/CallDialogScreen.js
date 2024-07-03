@@ -1,5 +1,5 @@
 import { Dimensions, StyleSheet, Text, View, Image, Pressable } from 'react-native';
-import { BaseView, BodyBaseView } from '../../../../uiKit/BaseView';
+import { BaseView, BodyBaseView } from '../../../../uiKit/BaseView.js';
 import { GradientButton } from '../../components/GradientButton'
 
 const callIcon = require('../../../../assets/icons/calldialogicon.png');

@@ -16,7 +16,7 @@ export const BodyBaseView = ({ children, style }) => {
 const styles = StyleSheet.create({
   safeAreaViewBase: {
     flex: 1,
-    backgroundColor: "#ee4666",
+    backgroundColor: "white",
   },
   bodyView: {
     paddingHorizontal: 50,

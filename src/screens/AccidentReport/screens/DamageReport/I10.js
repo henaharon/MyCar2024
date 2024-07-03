@@ -7,21 +7,27 @@ import {
   ScrollView,
   SafeAreaView,
 } from 'react-native';
+
+import EventHeader from '../../uiKit/EventHeader';
 import {FormHeader} from '../../components/FormHeader';
 import GeneralForm from '../../components/GeneralForm';
 
+import {BaseView, BodyBaseView} from '../../../../uiKit/BaseView';
+
 const EventInfo = () => {
   return (
-    <SafeAreaView style={styles.container}>
+    <BaseView>
       <ScrollView contentContainerStyle={styles.scrollViewContent}>
-        <View style={styles.headerContainer}>
-          <FormHeader />
-        </View>
-        <View style={styles.bodyContainer}>
-          <GeneralForm />
+        <View style={styles.contentWrapper}>
+          <EventHeader>
+            <FormHeader title="Event Information" />
+          </EventHeader>
+          <BodyBaseView style={styles.bodyContainer}>
+            <GeneralForm />
+          </BodyBaseView>
         </View>
       </ScrollView>
-    </SafeAreaView>
+    </BaseView>
   );
 };
 
@@ -31,15 +37,12 @@ const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
   scrollViewContent: {
     flexGrow: 1,
+    justifyContent: 'center',
   },
-  headerContainer: {
-    height: windowHeight * 0.15,
-    zIndex: 1,
+  contentWrapper: {
+    flex: 9,
   },
   bodyContainer: {
     flex: 1,
@@ -47,11 +50,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: 'white',
     borderRadius: 25,
-    marginTop: -windowHeight * 0.05,
-    paddingTop: windowHeight * 0.03,
+    marginTop: -windowHeight * 0.1,
+    paddingTop: windowHeight * 0.04,
     paddingBottom: windowHeight * 0.05,
     zIndex: 2,
     gap: 15,
   },
-
 });
