@@ -12,13 +12,16 @@ import GeneralForm from '../../components/GeneralForm';
 
 import {BaseView, BodyBaseView} from '../../../../uiKit/BaseView';
 
+const headerTitle = 'פרטי האירוע';
+
+
 const I10 = () => {
   return (
     <BaseView>
       <ScrollView contentContainerStyle={styles.scrollViewContent}>
         <View style={styles.contentWrapper}>
           <EventHeader>
-            <FormHeader title="Event Information" />
+            <FormHeader title={headerTitle}/>
           </EventHeader>
           <BodyBaseView style={styles.bodyContainer}>
             <GeneralForm />
