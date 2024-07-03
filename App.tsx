@@ -23,6 +23,7 @@ function HomeStack() {
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name="HomePage" component={HomePage} />
       <Stack.Screen name="ElectricVehicle" component={ElectricVehicle} />
+      <Stack.Screen name="AccidentReportIntro" component={AccidentReportIntro} />
     </Stack.Navigator>
   );
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 import {Dimensions, StyleSheet, Text, View, Image} from 'react-native';
 
-const infoIcon = require('../../../assets/i1-assets/elements24PxIconsInfo3x.png');
+const infoIcon = require('../../../assets/icons/elements24PxIconsInfo3x.png');
 
 const Information = ({title, paragraph}) => {
   return (
