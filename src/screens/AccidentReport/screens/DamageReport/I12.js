@@ -15,7 +15,7 @@ const signPlaceholder = 'החתימה שלך';
 const informationTitle = 'המלצה';
 const paragraphs = [ 'לאחר קבלת המסמך במייל אנחנו ממליצים להעביר אותו כפי שהוא לחברת הביטוח.'];
 
-const I12 = () => {
+const I12 = ({setProgress}) => {
   return (
     <BaseView>
       <ScrollView contentContainerStyle={styles.scrollViewContent}>

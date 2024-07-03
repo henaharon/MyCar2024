@@ -15,7 +15,7 @@ import {BaseView, BodyBaseView} from '../../../../uiKit/BaseView';
 const headerTitle = 'פרטי האירוע';
 
 
-const I10 = () => {
+const I10 = ({setProgress}) => {
   return (
     <BaseView>
       <ScrollView contentContainerStyle={styles.scrollViewContent}>

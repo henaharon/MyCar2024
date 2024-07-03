@@ -11,7 +11,7 @@ const damageInfoTitle = 'פרטי הנזק לרכב שלי';
 const textareaPlaceholder = 'תיאור הנזק';
 const imagesTitle = 'הוספת תמונות מהאירוע';
 
-const I11 = () => {
+const I11 = ({setProgress}) => {
   return (
     <BaseView>
       <ScrollView contentContainerStyle={styles.scrollViewContent}>

@@ -10,6 +10,7 @@ import {
 
 import {TitleHeader} from './TitleHeader';
 import {HeaderButton} from './HeaderButton';
+import Paginator from './Paginator';
 
 const arrowRightGrey = require('../../../assets/icons/componentsNavBarXButtonsRoundedWhiteAlpha.png');
 const arrowLeftGradient = require('../../../assets/icons/componentsNavBarXButtonsRoundedBlack.png');

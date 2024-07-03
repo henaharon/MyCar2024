@@ -12,7 +12,8 @@ import DriversSideMenu from './src/screens/DriversSideMenu/DriverSideMenu';
 // import AccidentReportIntro from './src/screens/AccidentReport/screens/AccidentReport/AccidentReportIntro';
 // import I10 from './src/screens/AccidentReport/screens/DamageReport/I10';
 // import I11 from './src/screens/AccidentReport/screens/DamageReport/I11';
-import I12 from './src/screens/AccidentReport/screens/DamageReport/I12';
+// import I12 from './src/screens/AccidentReport/screens/DamageReport/I12';
+import DamageReport from './src/screens/AccidentReport/screens/DamageReport/DamageReport';
 
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -24,7 +25,7 @@ function HomeStack() {
       <Stack.Screen name="ElectricVehicle" component={ElectricVehicle} />
       <Stack.Screen
         name="AccidentReportIntro"
-        component={I12}
+        component={DamageReport}
       />
     </Stack.Navigator>
   );
