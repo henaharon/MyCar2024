@@ -30,7 +30,7 @@ const LocationOption = ({ locationName, isSelected, onPress }) => {
                 onPress={onPress}
             >
                 <View style={[styles.locationImg, isSelected && styles.locationImgSelected]}>
-                    <Image source={require('../D1-2-assets/icons/location.png')} style={styles.locationIcon} />
+                    <Image source={require('../D1-2-assets/icons/locationB.png')} style={styles.locationIcon} />
                 </View>
                 <Text style={styles.locationText}>{locationName}</Text>
 

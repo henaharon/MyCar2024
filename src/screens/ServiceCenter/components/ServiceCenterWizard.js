@@ -4,6 +4,7 @@ import { launchCamera, launchImageLibrary } from 'react-native-image-picker';
 import ServiceHeader from '../components/ServiceHeader';
 import LocationOption from '../components/LocationOption';
 import ServiceButton from '../components/ServiceButton';
+import GradientButton from './GradientButton';
 import ServiceCenterModal from '../components/ServiceCenterModal';
 
 const windowWidth = Dimensions.get('window').width;
@@ -249,6 +250,13 @@ const ServiceCenterWizard = ({ modalVisible, setModalVisible, startStep }) => {
                     </View>
                     <View style={styles.textContainer}>
                         <Text style={styles.titleStep}>תמונות</Text>
+                        <ScrollView horizontal>
+                            {images.map((image, index) => (
+                                <View key={index} style={styles.imageContainer}>
+                                    <Image source={image} style={styles.thumbnail} />
+                                </View>
+                            ))}
+                        </ScrollView>
                     </View>
                     <View style={styles.textContainer}>
                         <Text style={styles.titleStep}>דרישות נוספות</Text>
@@ -267,32 +275,45 @@ const ServiceCenterWizard = ({ modalVisible, setModalVisible, startStep }) => {
                     </View>
                     <View style={styles.textContainer}>
                         <Text style={styles.titleStep}>תמונות</Text>
+                        <ScrollView horizontal>
+                            {images.map((image, index) => (
+                                <View key={index} style={styles.imageContainer}>
+                                    <Image source={image} style={styles.thumbnail} />
+                                </View>
+                            ))}
+                        </ScrollView>
                     </View>
                     <View style={styles.textContainer}>
                         <Text style={styles.titleStep}>פרטים כללים</Text>
                         <View style={styles.imgAndTextRow}>
-                            <Image source={require('../D1-2-assets/icons/Car.png')} style={styles.iconRow} />
+                            <View style={styles.imgCircle}>
+                                <Image source={require('../D1-2-assets/icons/CarB.png')} style={styles.iconDemand} />
+                            </View>
                             <Text>טיפול בתקלה ברכב</Text>
                         </View>
                         <View style={styles.imgAndTextRow}>
-                            <Image source={require('../D1-2-assets/icons/Car.png')} style={styles.iconRow} />
+                            <View style={styles.imgCircle}>
+                                <Image source={require('../D1-2-assets/icons/locationB.png')} style={styles.iconDemand} />
+                            </View>
                             <Text>טיפול בתקלה ברכב</Text>
                         </View>
                         <View style={styles.imgAndTextRow}>
-                            <Image source={require('../D1-2-assets/icons/Car.png')} style={styles.iconRow} />
+                            <View style={styles.imgCircle}>
+                                <Image source={require('../D1-2-assets/icons/CalendarB.png')} style={styles.iconDemand} />
+                            </View>
                             <Text>טיפול בתקלה ברכב</Text>
                         </View>
                     </View>
                     <View style={styles.warning}>
-                        <Image source={require('../D1-2-assets/icons/warningG.png')} style={styles.wrningIcon} />
+                        <View style={styles.awrningCircle}>
+                            <Image source={require('../D1-2-assets/icons/warningB.png')} style={styles.awrningIcon} />
+                        </View>
                         <View style={styles.warningMessage}>
                             <Text style={styles.titleStep}>לידיעתך</Text>
                             <Text>יום לפני המועד המבוקש תשלח הודעת תזכורת למכשירך.</Text>
                         </View>
                     </View>
-                    <TouchableOpacity style={styles.submitButton} onPress={() => setModalVisible(true)}>
-                        <Text style={styles.submitButtonText}>אישור ושליחה</Text>
-                    </TouchableOpacity>
+                    <GradientButton onPress={() => setModalVisible(true)} text="אישור ושליחה" />
                 </ScrollView>
             ),
         },
@@ -411,8 +432,8 @@ const styles = StyleSheet.create({
         height: '100%',
     },
     iconRow: {
-        width: 80,
-        height: 80,
+        width: windowHeight * 0.06,
+        height: windowHeight * 0.06,
     },
     buttonContainer: {
         flexDirection: 'row',
@@ -429,22 +450,44 @@ const styles = StyleSheet.create({
         flexDirection: 'row-reverse',
         justifyContent: 'space-between',
         alignItems: 'center',
-        width: '65%',
+        width: '55%',
+    },
+    imgCircle: {
+        marginVertical: windowWidth * 0.01,
+        width: windowWidth * 0.12,
+        height: windowWidth * 0.12,
+        backgroundColor: '#DDDCE1',
+        borderRadius: windowWidth * 0.5,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    iconDemand: {
+        width: windowWidth * 0.05,
+        height: windowWidth * 0.05,
     },
     warning: {
+        margin: windowHeight * 0.01,
+        padding: windowHeight * 0.02,
         flexDirection: 'row-reverse',
         justifyContent: 'space-between',
-        alignItems: 'center',
-        width: '65%',
+        width: '95%',
+        backgroundColor: '#F5EFDD',
+        borderRadius: windowWidth * 0.05,
     },
     warningMessage: {
-        justifyContent: 'space-between',
+        width: '80%',
+    },
+    awrningCircle: {
+        width: windowWidth * 0.12,
+        height: windowWidth * 0.12,
+        backgroundColor: '#F4BC00',
+        borderRadius: windowWidth * 0.5,
+        justifyContent: 'center',
         alignItems: 'center',
-        width: '65%',
-    }
-    ,
+    },
     awrningIcon: {
-
+        width: windowWidth * 0.06,
+        height: windowWidth * 0.06,
     }
 });
 

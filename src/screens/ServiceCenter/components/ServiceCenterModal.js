@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, Modal, TouchableOpacity, StyleSheet, Dimensions } from 'react-native';
-import LinearGradient from 'react-native-linear-gradient';
 import { useNavigation } from '@react-navigation/native';
+import GradientButton from './GradientButton';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -27,16 +27,7 @@ const ServiceCenterModal = ({ modalVisible, setModalVisible }) => {
                 <View style={styles.modalContainer}>
                     <Text style={styles.modalTitle}>תודה</Text>
                     <Text style={styles.modalMessage}>קריאה נשלחה בהצלחה!</Text>
-                    <LinearGradient
-                        colors={['#DD0370', '#E22D66', '#E7525F']}
-                        start={{ x: 0, y: 0 }}
-                        end={{ x: 1, y: 0 }}
-                        style={styles.modalButton}
-                    >
-                        <TouchableOpacity onPress={handleGoHome}>
-                            <Text style={styles.modalButtonText}>צפיה בסטטוס הקריאה</Text>
-                        </TouchableOpacity>
-                    </LinearGradient>
+                    <GradientButton onPress={handleGoHome} text="צפיה בסטטוס הקריאה" />
                     <TouchableOpacity style={styles.modalLink} onPress={handleGoHome}>
                         <Text style={styles.modalLinkText}>אישור</Text>
                     </TouchableOpacity>
@@ -71,17 +62,6 @@ const styles = StyleSheet.create({
         fontSize: windowWidth * 0.04,
         textAlign: 'center',
         marginBottom: '10%',
-    },
-    modalButton: {
-        paddingHorizontal: '10%',
-        paddingVertical: '5%',
-        borderRadius: 25,
-        marginBottom: '5%',
-    },
-    modalButtonText: {
-        color: '#fff',
-        fontSize: windowWidth * 0.04,
-        textAlign: 'center',
     },
     modalLink: {
         marginVertical: '5%',
