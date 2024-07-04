@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
 import { View, StyleSheet, Text, TextInput, Dimensions, TouchableOpacity, Image, ScrollView } from 'react-native';
+import { launchCamera, launchImageLibrary } from 'react-native-image-picker';
+import ServiceHeader from '../components/ServiceHeader';
+import LocationOption from '../components/LocationOption';
+import ServiceButton from '../components/ServiceButton';
 import ServiceCenterModal from '../components/ServiceCenterModal';
 
 const windowWidth = Dimensions.get('window').width;
@@ -9,12 +13,14 @@ const ServiceCenterWizard = ({ modalVisible, setModalVisible, startStep }) => {
     const [step, setStep] = useState(startStep);
     const [details, setDetails] = useState('');
     const [mileage, setMileage] = useState('');
-    const [location, setLocation] = useState('');
+    const [selectedLocation, setSelectedLocation] = useState('');
     const [date, setDate] = useState('');
-    const [demands, setDemands] = useState('');
+    const [demands, setDemands] = useState([]);
+    const [images, setImages] = useState([]);
+    const [isFocused, setIsFocused] = useState(false);
 
     const handleNext = () => {
-        if (step < 5) {
+        if (step < steps.length - 1) {
             setStep(step + 1);
         } else {
             setModalVisible(true);
@@ -31,152 +37,294 @@ const ServiceCenterWizard = ({ modalVisible, setModalVisible, startStep }) => {
         setModalVisible(false);
     };
 
+    const handleAddImage = () => {
+        launchImageLibrary({}, response => {
+            if (response.didCancel) {
+                console.log('User cancelled image picker');
+            } else if (response.error) {
+                console.log('ImagePicker Error: ', response.error);
+            } else {
+                const source = { uri: response.assets[0].uri };
+                setImages([...images, source]);
+            }
+        });
+    };
+
+    const handleCameraImage = () => {
+        launchCamera({}, response => {
+            if (response.didCancel) {
+                console.log('User cancelled camera');
+            } else if (response.error) {
+                console.log('Camera Error: ', response.error);
+            } else {
+                const source = { uri: response.assets[0].uri };
+                setImages([...images, source]);
+            }
+        });
+    };
+
+    const handleAdditionalDemandSelection = (demand) => {
+        setDemands(prevDemands => {
+            if (prevDemands.includes(demand)) {
+                return prevDemands.filter(item => item !== demand);
+            } else {
+                return [...prevDemands, demand];
+            }
+        });
+    };
+
+    const demandButtons = [
+        { icon: require('../D1-2-assets/icons/Lights.png'), text: 'נורות', demand: 'lights' },
+        { icon: require('../D1-2-assets/icons/Wipers.png'), text: 'מגבים', demand: 'wipers' },
+        { icon: require('../D1-2-assets/icons/Ac.png'), text: 'מזגן', demand: 'ac' },
+        { icon: require('../D1-2-assets/icons/Brakes.png'), text: 'בלמים', demand: 'brakes' },
+        { icon: require('../D1-2-assets/icons/Tires.png'), text: 'צמיגים', demand: 'tires' },
+    ];
+
     const steps = [
         {
             title: 'תקלה ברכב',
             content: (
-                <View style={styles.stepContainer}>
-                </View>
+                <ScrollView contentContainerStyle={styles.stepContainer}>
+                    <Image source={require('../D1-2-assets/icons/Car.png')} style={styles.coverCar} />
+                    <View style={styles.textContainer}>
+                        <Text style={styles.titleStep}>פרטים</Text>
+                        <Text style={styles.labelInput}>אחר</Text>
+                        <TextInput
+                            style={styles.inputLeb}
+                            placeholder='האם יש עוד משהו שתרצו שנבדוק שלא מצויין ברשימה למעלה?'
+                            value={details}
+                            onChangeText={setDetails}
+                            multiline
+                        />
+                    </View>
+                    <View style={styles.addImagesContainer}>
+                        <Text style={styles.titleStep}>הוספת תמונות</Text>
+                        <ScrollView horizontal>
+                            {images.length < 3 && (
+                                <>
+                                    <TouchableOpacity onPress={handleAddImage}>
+                                        <View style={styles.imageContainer}>
+                                            <Image source={require('../D1-2-assets/icons/img.png')} style={styles.iconGallery} />
+                                        </View>
+                                    </TouchableOpacity>
+                                    <TouchableOpacity onPress={handleCameraImage}>
+                                        <View style={styles.imageContainer}>
+                                            <Image source={require('../D1-2-assets/icons/Camera.png')} style={styles.iconCamera} />
+                                        </View>
+                                    </TouchableOpacity>
+                                </>
+                            )}
+                            {images.map((image, index) => (
+                                <View key={index} style={styles.imageContainer}>
+                                    <Image source={image} style={styles.thumbnail} />
+                                </View>
+                            ))}
+                        </ScrollView>
+                        <Text style={styles.subtitleStep}>עד 3 תמונות</Text>
+                    </View>
+                </ScrollView>
             ),
         },
         {
             title: "קילומטראז'",
             content: (
-                <View style={styles.stepContainer}>
+                <ScrollView contentContainerStyle={styles.stepContainer}>
                     <View style={styles.textContainer}>
                         <Text style={styles.titleStep}>מספר הקילומטרים ברכב</Text>
                         <Text style={styles.subtitleStep}>אנא הזן את מספר הקילומטרים הנוכחי ברכבך</Text>
                     </View>
-                    <Image source={require('../D1-2-assets/icons/Brakes.png')} style={styles.icon} />
+                    <Image source={require('../D1-2-assets/icons/elementsPageCover.png')} style={styles.iconCover} />
                     <TextInput
-                        style={styles.input}
+                        style={[styles.input, isFocused && styles.inputFocused]}
                         placeholder='ק"מ'
                         value={mileage}
                         onChangeText={setMileage}
                         keyboardType="numeric"
+                        onFocus={() => setIsFocused(true)}
+                        onBlur={() => setIsFocused(false)}
                     />
-                    <TouchableOpacity style={styles.button} onPress={handleNext}>
-                        <Text style={styles.buttonText}>אישור</Text>
-                    </TouchableOpacity>
-                </View>
+                </ScrollView>
             ),
         },
         {
             title: 'מיקום',
             content: (
-                <View style={styles.stepContainer}>
+                <ScrollView contentContainerStyle={styles.stepContainer}>
                     <View style={styles.textContainer}>
                         <Text style={styles.titleStep}>נקודות איסוף והחזרה</Text>
                         <Text style={styles.subtitleStep}>אנא בחר נקודת איסוף והחזרת הרכב</Text>
                     </View>
-                    <View style={styles.locationOption}>
-                        <Image source={require('../D1-2-assets/icons/location.png')} style={styles.locationIcon} />
-                        <Text style={styles.locationText}>אמדוקס רעננה</Text>
-                        <TouchableOpacity style={styles.button}>
-                            <Text style={styles.buttonText}>בחירה</Text>
-                        </TouchableOpacity>
-                    </View>
-                    <View style={styles.locationOption}>
-                        <Image source={require('../D1-2-assets/icons/location.png')} style={styles.locationIcon} />
-                        <Text style={styles.locationText}>אמדוקס צנרת</Text>
-                        <TouchableOpacity style={styles.button}>
-                            <Text style={styles.buttonText}>בחירה</Text>
-                        </TouchableOpacity>
-                    </View>
-                    <View style={styles.locationOption}>
-                        <Image source={require('../D1-2-assets/icons/location.png')} style={styles.locationIcon} />
-                        <Text style={styles.locationText}>אמדוקס שדרות</Text>
-                        <TouchableOpacity style={styles.button}>
-                            <Text style={styles.buttonText}>בחירה</Text>
-                        </TouchableOpacity>
-                    </View>
-                </View>
+                    {['אמדוקס רעננה', 'אמדוקס צנרת', 'אמדוקס שדרות'].map(location => (
+                        <LocationOption
+                            key={location}
+                            locationName={location}
+                            isSelected={selectedLocation === location}
+                            onPress={() => setSelectedLocation(location)}
+                        />
+                    ))}
+                </ScrollView>
             ),
         },
         {
             title: 'מועד הטיפול',
             content: (
                 <ScrollView contentContainerStyle={styles.stepContainer}>
+                    {/* Add content here */}
                 </ScrollView>
             ),
         },
         {
-            title: 'דריושות נוספות',
+            title: 'דרישות נוספות',
             content: (
-                <View style={styles.stepContainer}>
-                    <TextInput
-                        style={styles.input}
-                        placeholder="Enter demands"
-                        value={demands}
-                        onChangeText={setDemands}
-                    />
-                </View>
+                <ScrollView contentContainerStyle={styles.stepContainer}>
+                    <View style={styles.textContainer}>
+                        <Text style={styles.titleStep}>תרצה שנבדוק עוד משהו?</Text>
+                        <Text style={styles.subtitleStep}>(ניתן לבחור מספר אפשרויות)</Text>
+                    </View>
+                    <View style={styles.buttonContainer}>
+                        {demandButtons.map(button => (
+                            <ServiceButton
+                                key={button.text}
+                                icon={button.icon}
+                                text={button.text}
+                                style={styles.serviceButton}
+                                onPress={() => handleAdditionalDemandSelection(button.demand)}
+                            />
+                        ))}
+                    </View>
+                    <View style={styles.textContainer}>
+                        <Text style={styles.labelInput}>אחר</Text>
+                        <TextInput
+                            style={styles.inputLeb}
+                            placeholder='האם יש עוד משהו שתרצו שנבדוק שלא מצויין ברשימה למעלה?'
+                            value={details}
+                            onChangeText={setDetails}
+                            multiline
+                        />
+                    </View>
+                    <View style={styles.addImagesContainer}>
+                        <Text style={styles.titleStep}>הוספת תמונות</Text>
+                        <ScrollView horizontal>
+                            {images.length < 3 && (
+                                <>
+                                    <TouchableOpacity onPress={handleAddImage}>
+                                        <View style={styles.imageContainer}>
+                                            <Image source={require('../D1-2-assets/icons/img.png')} style={styles.iconGallery} />
+                                        </View>
+                                    </TouchableOpacity>
+                                    <TouchableOpacity onPress={handleCameraImage}>
+                                        <View style={styles.imageContainer}>
+                                            <Image source={require('../D1-2-assets/icons/Camera.png')} style={styles.iconCamera} />
+                                        </View>
+                                    </TouchableOpacity>
+                                </>
+                            )}
+                            {images.map((image, index) => (
+                                <View key={index} style={styles.imageContainer}>
+                                    <Image source={image} style={styles.thumbnail} />
+                                </View>
+                            ))}
+                        </ScrollView>
+                        <Text style={styles.subtitleStep}>עד 3 תמונות</Text>
+                    </View>
+                </ScrollView>
             ),
         },
         {
-            title: 'סיכום',
+            title: 'סיכום קריאה',
             content: (
-                <View style={styles.stepContainer}>
-                    <Text>Details: {details}</Text>
-                    <Text>Mileage: {mileage}</Text>
-                    <Text>Location: {location}</Text>
-                    <Text>Date: {date}</Text>
-                    <Text>Demands: {demands}</Text>
+                <ScrollView contentContainerStyle={styles.stepContainer}>
+                    <View style={styles.textContainer}>
+                        <Text style={styles.titleStep}>זימון שירותי מוסך</Text>
+                        <Text style={styles.subtitleStep}>לפניך פרטי הקריאה אנא בדוק שכל הפרטים נכונים לפני שליחה.</Text>
+                        <View style={styles.imgAndTextRow}>
+                            <Image source={require('../D1-2-assets/icons/Car.png')} style={styles.iconRow} />
+                            <Text>טיפול בתקלה ברכב</Text>
+                        </View>
+                    </View>
+                    <View style={styles.textContainer}>
+                        <Text style={styles.titleStep}>תיאור / הערות</Text>
+                        <Text style={styles.subtitleStep}>החלון הקדמי ימני תקועה</Text>
+                    </View>
+                    <View style={styles.textContainer}>
+                        <Text style={styles.titleStep}>תמונות</Text>
+                    </View>
+                    <View style={styles.textContainer}>
+                        <Text style={styles.titleStep}>דרישות נוספות</Text>
+                        <View style={styles.imgAndTextRow}>
+                            <Image source={require('../D1-2-assets/icons/Car.png')} style={styles.iconRow} />
+                            <Text>טיפול בתקלה ברכב</Text>
+                        </View>
+                        <View style={styles.imgAndTextRow}>
+                            <Image source={require('../D1-2-assets/icons/Car.png')} style={styles.iconRow} />
+                            <Text>טיפול בתקלה ברכב</Text>
+                        </View>
+                        <View style={styles.imgAndTextRow}>
+                            <Image source={require('../D1-2-assets/icons/Car.png')} style={styles.iconRow} />
+                            <Text>טיפול בתקלה ברכב</Text>
+                        </View>
+                    </View>
+                    <View style={styles.textContainer}>
+                        <Text style={styles.titleStep}>תמונות</Text>
+                    </View>
+                    <View style={styles.textContainer}>
+                        <Text style={styles.titleStep}>פרטים כללים</Text>
+                        <View style={styles.imgAndTextRow}>
+                            <Image source={require('../D1-2-assets/icons/Car.png')} style={styles.iconRow} />
+                            <Text>טיפול בתקלה ברכב</Text>
+                        </View>
+                        <View style={styles.imgAndTextRow}>
+                            <Image source={require('../D1-2-assets/icons/Car.png')} style={styles.iconRow} />
+                            <Text>טיפול בתקלה ברכב</Text>
+                        </View>
+                        <View style={styles.imgAndTextRow}>
+                            <Image source={require('../D1-2-assets/icons/Car.png')} style={styles.iconRow} />
+                            <Text>טיפול בתקלה ברכב</Text>
+                        </View>
+                    </View>
+                    <View style={styles.warning}>
+                        <Image source={require('../D1-2-assets/icons/warningG.png')} style={styles.wrningIcon} />
+                        <View style={styles.warningMessage}>
+                            <Text style={styles.titleStep}>לידיעתך</Text>
+                            <Text>יום לפני המועד המבוקש תשלח הודעת תזכורת למכשירך.</Text>
+                        </View>
+                    </View>
                     <TouchableOpacity style={styles.submitButton} onPress={() => setModalVisible(true)}>
-                        <Text style={styles.submitButtonText}>Submit</Text>
+                        <Text style={styles.submitButtonText}>אישור ושליחה</Text>
                     </TouchableOpacity>
-                </View>
+                </ScrollView>
             ),
         },
     ];
 
     return (
         <View style={styles.container}>
-            <View style={styles.header}>
-                {(step === 0 || step === 1 || step === 2) && (
-                    <TouchableOpacity onPress={handleBack}>
-                        <Image source={require('../D1-2-assets/icons/Back.png')} style={styles.navButtonImage} />
-                    </TouchableOpacity>
-                )}
-                <Text style={styles.title}>{steps[step].title}</Text>
-                {(step === 0 || step === 1 || step === 2 || step === 4 || step === 5) && (
-                    <TouchableOpacity onPress={handleNext}>
-                        <Image source={require('../D1-2-assets/icons/Next.png')} style={styles.navButtonImage} />
-                    </TouchableOpacity>
-                )}
-                {step === 3 && (
-                    <TouchableOpacity onPress={handleClose}>
-                        <Image source={require('../D1-2-assets/icons/Close.png')} style={styles.navButtonImage} />
-                    </TouchableOpacity>
-                )}
-            </View>
+            <ServiceHeader step={step} handleBack={handleBack} handleNext={handleNext} handleClose={handleClose} title={steps[step].title} />
             {steps[step].content}
             <ServiceCenterModal modalVisible={modalVisible} setModalVisible={setModalVisible} />
         </View>
     );
 };
+
 const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#000',
     },
-    header: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        padding: windowWidth * 0.05,
+    submitButton: {
+        backgroundColor: '#E8585E',
+        paddingVertical: Dimensions.get('window').width * 0.02,
+        paddingHorizontal: Dimensions.get('window').width * 0.04,
+        borderRadius: Dimensions.get('window').width * 0.05,
+        marginTop: Dimensions.get('window').width * 0.02,
     },
-    title: {
+    submitButtonText: {
         color: '#fff',
-        fontSize: windowWidth * 0.05,
-        textAlign: 'center',
-    },
-    navButtonImage: {
-        width: windowWidth * 0.08,
-        height: windowWidth * 0.08,
+        fontSize: Dimensions.get('window').width * 0.04,
     },
     stepContainer: {
-        flex: 1,
+        flexGrow: 1,
         alignItems: 'center',
         padding: windowWidth * 0.05,
         backgroundColor: '#fff',
@@ -184,38 +332,10 @@ const styles = StyleSheet.create({
         borderTopLeftRadius: windowWidth * 0.08,
         borderTopRightRadius: windowWidth * 0.08,
     },
-    subtitle: {
-        color: '#000',
-        fontSize: windowWidth * 0.04,
-        marginBottom: windowHeight * 0.02,
-    },
-    icon: {
-        width: windowWidth * 0.4,
-        height: windowWidth * 0.4,
-        marginBottom: windowHeight * 0.02,
-    },
-    input: {
-        borderWidth: 1,
-        borderColor: '#ccc',
-        padding: windowWidth * 0.03,
-        width: '100%',
-        marginBottom: windowHeight * 0.02,
-    },
-    buttonText: {
-        color: '#fff',
-        fontSize: windowWidth * 0.04,
-    },
-    button: {
-        backgroundColor: '#E8585E',
-        paddingVertical: windowWidth * 0.02,
-        paddingHorizontal: windowWidth * 0.04,
-        borderRadius: windowWidth * 0.05,
-        marginTop: windowWidth * 0.02,
-    },
     textContainer: {
         alignItems: 'flex-end',
         width: '90%',
-        margin: windowHeight * 0.01
+        margin: windowHeight * 0.01,
     },
     titleStep: {
         color: '#000',
@@ -227,66 +347,105 @@ const styles = StyleSheet.create({
         fontSize: windowWidth * 0.04,
         marginBottom: windowHeight * 0.02,
     },
-    locationOption: {
-        flexDirection: 'row-reverse',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        padding: windowWidth * 0.04,
+    iconCover: {
+        width: windowWidth * 0.7,
+        height: windowWidth * 0.5,
         marginBottom: windowHeight * 0.02,
+    },
+    input: {
+        borderWidth: 1,
+        borderColor: '#E0E0E2',
+        textAlign: 'center',
         borderRadius: windowWidth * 0.02,
-        width: '90%',
+        padding: windowWidth * 0.03,
+        width: '70%',
+        margin: windowHeight * 0.02,
+        backgroundColor: '#fff'
     },
-    locationText: {
-        fontSize: windowWidth * 0.04,
-        color: '#000',
+    inputFocused: {
+        borderColor: '#5064EB',
     },
-    chooseButton: {
-        color: '#FFF',
+    button: {
         backgroundColor: '#E8585E',
-        borderRadius: windowWidth * 0.5,
-        paddingVertical: windowHeight * 0.01,
+        paddingVertical: windowWidth * 0.02,
         paddingHorizontal: windowWidth * 0.04,
+        borderRadius: windowWidth * 0.05,
+        marginTop: windowWidth * 0.02,
     },
-    chooseButtonText: {
-        color: '#FFF',
+    buttonText: {
+        color: '#fff',
         fontSize: windowWidth * 0.04,
     },
-    locationIcon: {
-        width: windowWidth * 0.06,
-        height: windowWidth * 0.06,
+    coverCar: {
+        margin: windowWidth * 0.1,
+        width: windowWidth * 0.30,
+        height: windowWidth * 0.30,
     },
-    carIcon: {
-        width: windowWidth * 0.2,
-        height: windowWidth * 0.2,
-        marginBottom: windowHeight * 0.02,
+    addImagesContainer: {
+        alignItems: 'flex-end',
+        width: '90%',
+        margin: windowHeight * 0.01,
     },
-    detailsTitle: {
-        fontSize: windowWidth * 0.05,
-        color: '#000',
+    iconGallery: {
+        width: windowWidth * 0.1,
+        height: windowWidth * 0.1,
+    },
+    iconCamera: {
+        width: windowWidth * 0.1,
+        height: windowWidth * 0.1,
+    },
+    imageContainer: {
+        width: windowWidth * 0.25,
+        height: windowWidth * 0.35,
+        borderRadius: 8,
+        overflow: 'hidden',
+        marginVertical: 10,
+        marginHorizontal: 5,
+        borderWidth: 1,
+        borderColor: '#E0E0E2',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    thumbnail: {
+        width: '100%',
+        height: '100%',
+    },
+    iconRow: {
+        width: 80,
+        height: 80,
+    },
+    buttonContainer: {
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        justifyContent: 'space-between',
+        width: '100%',
+    },
+    serviceButton: {
+        flex: 1,
+        minWidth: '40%',
         marginBottom: windowHeight * 0.01,
     },
-    detailsInput: {
-        borderWidth: 1,
-        borderColor: '#ccc',
-        padding: windowWidth * 0.03,
-        width: '100%',
-        marginBottom: windowHeight * 0.02,
-        textAlign: 'right',
+    imgAndTextRow: {
+        flexDirection: 'row-reverse',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        width: '65%',
     },
-    imagesContainer: {
-        flexDirection: 'row',
-        justifyContent: 'space-around',
-        width: '100%',
+    warning: {
+        flexDirection: 'row-reverse',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        width: '65%',
     },
-    imageIcon: {
-        width: windowWidth * 0.15,
-        height: windowWidth * 0.15,
-    },
-    exampleImage: {
-        width: windowWidth * 0.15,
-        height: windowWidth * 0.15,
-        marginHorizontal: windowWidth * 0.02,
-    },
+    warningMessage: {
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        width: '65%',
+    }
+    ,
+    awrningIcon: {
+
+    }
 });
 
 export default ServiceCenterWizard;

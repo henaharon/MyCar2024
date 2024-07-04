@@ -6,10 +6,20 @@ const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
 const ServiceCenter = ({ navigation }) => {
+
+    const serviceButtons = [
+        { icon: require('./D1-2-assets/icons/Car.png'), text: 'תקלת ברכב', service: 'VehicleRepair' },
+        { icon: require('./D1-2-assets/icons/RoutineService.png'), text: 'טיפול תקופתי', service: 'RoutineService' },
+        { icon: require('./D1-2-assets/icons/Warning.png'), text: 'תאונה / נזק', service: 'Accident' },
+        { icon: require('./D1-2-assets/icons/Brakes.png'), text: 'ביקורת בטיחות', service: 'SafetyCheck' },
+        { icon: require('./D1-2-assets/icons/Other.png'), text: 'אחר', service: 'Other' },
+    ];
+
     const handleServiceSelection = (service) => {
-        if (service === 'VehicleRepair') {
+        if (service === 'VehicleRepair' || service === 'Other') {
             navigation.navigate('ServiceCenterProcess', { startStep: 0 });
-        } else {
+        }
+        else {
             navigation.navigate('ServiceCenterProcess', { startStep: 1 });
         }
     };
@@ -36,36 +46,15 @@ const ServiceCenter = ({ navigation }) => {
                     <Text style={styles.subtitle}>אנא בחר שירות</Text>
                 </View>
                 <View style={styles.buttonContainer}>
-                    <ServiceButton
-                        icon={require('./D1-2-assets/icons/Car.png')}
-                        text="תקלת ברכב"
-                        style={styles.serviceButton}
-                        onPress={() => handleServiceSelection('VehicleRepair')}
-                    />
-                    <ServiceButton
-                        icon={require('./D1-2-assets/icons/RoutineService.png')}
-                        text="טיפול תקופתי"
-                        style={styles.serviceButton}
-                        onPress={() => handleServiceSelection('RoutineService')}
-                    />
-                    <ServiceButton
-                        icon={require('./D1-2-assets/icons/Warning.png')}
-                        text="תאונה / נזק"
-                        style={styles.serviceButton}
-                        onPress={() => handleServiceSelection('Accident')}
-                    />
-                    <ServiceButton
-                        icon={require('./D1-2-assets/icons/Brakes.png')}
-                        text="ביקורת בטיחות"
-                        style={styles.serviceButton}
-                        onPress={() => handleServiceSelection('SafetyCheck')}
-                    />
-                    <ServiceButton
-                        icon={require('./D1-2-assets/icons/Brakes.png')}
-                        text="אחר"
-                        style={styles.serviceButton}
-                        onPress={() => handleServiceSelection('Other')}
-                    />
+                    {serviceButtons.map(button => (
+                        <ServiceButton
+                            key={button.text}
+                            icon={button.icon}
+                            text={button.text}
+                            style={styles.serviceButton}
+                            onPress={() => handleServiceSelection(button.service)}
+                        />
+                    ))}
                 </View>
             </View>
         </ScrollView>

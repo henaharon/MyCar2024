@@ -1,11 +1,19 @@
 import React from 'react';
 import { View, Text, Modal, TouchableOpacity, StyleSheet, Dimensions } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
+import { useNavigation } from '@react-navigation/native';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
 const ServiceCenterModal = ({ modalVisible, setModalVisible }) => {
+    const navigation = useNavigation();
+
+    const handleGoHome = () => {
+        setModalVisible(false);
+        navigation.navigate('HomeStack', { screen: 'HomePage' });
+    };
+
     return (
         <Modal
             animationType="slide"
@@ -25,11 +33,11 @@ const ServiceCenterModal = ({ modalVisible, setModalVisible }) => {
                         end={{ x: 1, y: 0 }}
                         style={styles.modalButton}
                     >
-                        <TouchableOpacity onPress={() => setModalVisible(!modalVisible)}>
+                        <TouchableOpacity onPress={handleGoHome}>
                             <Text style={styles.modalButtonText}>צפיה בסטטוס הקריאה</Text>
                         </TouchableOpacity>
                     </LinearGradient>
-                    <TouchableOpacity style={styles.modalLink} onPress={() => setModalVisible(!modalVisible)}>
+                    <TouchableOpacity style={styles.modalLink} onPress={handleGoHome}>
                         <Text style={styles.modalLinkText}>אישור</Text>
                     </TouchableOpacity>
                 </View>
@@ -46,35 +54,37 @@ const styles = StyleSheet.create({
         backgroundColor: 'rgba(0, 0, 0, 0.5)',
     },
     modalContainer: {
-        width: '80%',
+        width: '70%',
         padding: '5%',
         backgroundColor: 'white',
-        borderRadius: 10,
+        borderRadius: 50,
         alignItems: 'center',
     },
     modalTitle: {
+        color: '#000',
         fontSize: windowWidth * 0.05,
         fontWeight: 'bold',
         marginBottom: '2%',
     },
     modalMessage: {
+        color: '#000',
         fontSize: windowWidth * 0.04,
         textAlign: 'center',
-        marginBottom: '5%',
+        marginBottom: '10%',
     },
     modalButton: {
         paddingHorizontal: '10%',
-        paddingVertical: '4%',
+        paddingVertical: '5%',
         borderRadius: 25,
         marginBottom: '5%',
     },
     modalButtonText: {
-        color: 'white',
+        color: '#fff',
         fontSize: windowWidth * 0.04,
         textAlign: 'center',
     },
     modalLink: {
-        marginTop: '5%',
+        marginVertical: '5%',
     },
     modalLinkText: {
         color: '#0000FF',
