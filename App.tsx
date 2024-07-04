@@ -12,6 +12,7 @@ import DriversSideMenu from "./src/screens/DriversSideMenu/DriverSideMenu";
 import Walkthrough from './src/screens/Walkthrough/Walkthrough';
 import Login from './src/screens/Login/Login';
 import Onboarding from './src/screens/Onboarding/Onboarding';
+import SplashScreen from "react-native-splash-screen";
 
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -28,7 +29,7 @@ function HomeStack() {
 function LoginStack({ setIsLoggedIn }) {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="Walkthrough" component={Walkthrough}/>
+      <Stack.Screen name="Walkthrough" component={Walkthrough} />
       <Stack.Screen name="Login" component={Login} />
       <Stack.Screen name="Onboarding">
         {props => <Onboarding {...props} setIsLoggedIn={setIsLoggedIn} />}
@@ -56,10 +57,14 @@ function MyDrawer() {
 function App(): React.JSX.Element {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
+  useEffect(() => {
+    SplashScreen.hide();
+  }, []);
+
   return (
     <NavigationContainer>
       {/* <MyDrawer /> */}
-      {isLoggedIn ?  <MyDrawer /> : <LoginStack setIsLoggedIn={setIsLoggedIn}/>}
+      {isLoggedIn ? <MyDrawer /> : <LoginStack setIsLoggedIn={setIsLoggedIn} />}
     </NavigationContainer>
   );
 }
