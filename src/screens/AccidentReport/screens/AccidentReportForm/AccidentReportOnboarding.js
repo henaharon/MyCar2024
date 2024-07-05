@@ -11,9 +11,10 @@ import I5 from './I5';
 import I6 from './I6';
 import I7 from './I7';
 import SuccessScreen from '../Success/SuccessScreen';
+import Paginator from '../../components/Paginator';
 
 const pages = [
-  {id: '0', pageComponent: I3, headerTitle: 'פרטי האירוע'},
+  {id: '0',pageComponent: I3, headerTitle: 'פרטי האירוע'},
   {id: '1', pageComponent: I4, headerTitle: 'פרטי הנהג/ת'},
   {id: '2', pageComponent: I5, headerTitle: "צד ג'"},
   {id: '3', pageComponent: I6, headerTitle: 'נפגעים ועדים'},
@@ -35,6 +36,12 @@ const AccidentReportOnboarding = ({navigation}) => {
   return (
     <BaseView>
       <View style={styles.bodyContainer}>
+        <View style={styles.headerContainer}>
+        <FormHeader title={pages[currentIndex].headerTitle} />
+        </View>
+        <View style={styles.PaginatorContainer}>
+        <Paginator data={pages} pagesCount={4} scrollX={scrollX} />
+        </View>
         <FlatList
           data={pages}
           renderItem={({item}) => {
@@ -46,7 +53,7 @@ const AccidentReportOnboarding = ({navigation}) => {
             );
           }}
           horizontal
-          showsHorizontalScrollIndicator
+          showsHorizontalScrollIndicator={false}
           pagingEnabled
           bounces={false}
           keyExtractor={item => item.id}
@@ -58,6 +65,7 @@ const AccidentReportOnboarding = ({navigation}) => {
           onViewableItemsChanged={viewableItemsChanged}
           viewabilityConfig={viewConfig}
           ref={pagesRef}
+          inverted
         />
       </View>
     </BaseView>
@@ -75,5 +83,20 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     width: windowWidth,
+  },
+  PaginatorContainer: {
+    position: 'absolute',
+    top: windowHeight * 0.075,
+    justifyContent: 'center',
+    display: 'flex',
+    flexDirection: 'row',
+    zIndex: 2,
+  },
+  headerContainer: {
+    position: 'relative',
+    right: windowWidth * 0.5,
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
   },
 });
