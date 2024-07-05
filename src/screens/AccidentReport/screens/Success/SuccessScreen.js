@@ -1,7 +1,7 @@
 import React from 'react';
 import { Dimensions, Text, View, StyleSheet } from 'react-native';
 import {BaseView, BodyBaseView} from '../../../../uiKit/BaseView';
-import {Button} from '../../components/Button'
+import {GradientButton} from '../../components/GradientButton'
 import {Input} from '../../components/Input'
 import DateTimeInput from '../../components/DateTimeInput'
 
@@ -17,7 +17,7 @@ const SuccessScreen = () => {
             </View>
         </View>
         <View style={styles.buttonContainer}>
-            <Button title={"אישור"}/>
+            <GradientButton title={"אישור"}/>
         </View>
         {/* <DateTimeInput text={"תאריך"} width={0.5} type={"date"} required={true}/> */}
         {/* <Input placeholder={"טקסט"} required={true} width={0.5} type={""}/> */}

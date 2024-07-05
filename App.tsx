@@ -7,13 +7,14 @@ import SuccessScreen from './src/screens/AccidentReport/screens/Success/SuccessS
 import GeneralForm from './src/screens/AccidentReport/components/GeneralForm';
 import I10 from './src/screens/AccidentReport/screens/DamageReport/I10';
 import I6 from './src/screens/AccidentReport/screens/AccidentReportForm/I6';
+import AccidentReportOnboarding from './src/screens/AccidentReport/screens/AccidentReportForm/AccidentReportOnboarding';
 
 function App(): React.JSX.Element {
   return (
     <BaseView>
       {/* <AccidentReportIntro /> */}
       {/* <AccidentReportIntro /> */}
-      <I6 />
+      <AccidentReportOnboarding />
     </BaseView>
   );
 }
