@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { View, Text, TextInput, StyleSheet, TouchableOpacity, Alert } from 'react-native';
 import StarRat from '../commponents/feedback/StarRat';
 import YesNoSelect from '../commponents/feedback/YesNoSelect';
@@ -41,6 +41,11 @@ const FeedBack = () => {
   };
 
   const handleSubmit = async () => {
+    if (!allFieldsFilled()) {
+      Alert.alert('שגיאה', 'נא למלא את כל השדות לפני שליחה.');
+      return;
+    }
+
     const feedback = {
       star: ratings,
       yesno: yesNoAnswers,
@@ -59,6 +64,14 @@ const FeedBack = () => {
       Alert.alert('שגיאה בשליחת המשוב', error.message);
     }
   };
+
+  const allFieldsFilled = () => {
+    const starFilled = questions.star.every(star => ratings[star.id] !== undefined);
+    const yesNoFilled = questions.yesno.every(yesno => yesNoAnswers[yesno.id] !== undefined);
+
+    return starFilled && yesNoFilled;
+  };
+
 
   return (
     <View style={styles.container}>

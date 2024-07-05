@@ -1,4 +1,3 @@
-// StarRat.js
 import React from 'react';
 import { View, TouchableOpacity, Image, StyleSheet } from 'react-native';
 
