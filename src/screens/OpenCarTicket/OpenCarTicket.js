@@ -56,7 +56,7 @@ const OpenCarTicket = () => {
     <View style={styles.container}>
       <LinearGradient colors={["#05AC2F", "#05AC2F"]} style={styles.header}>
         <View style={styles.headerTopRow}>
-          <Pressable style={styles.iconButton} onPress={handleGoBack}>
+          <Pressable style={styles.iconButton} onPress={() => navigation.navigate('o5TicketCancel')}>
             <Image source={verticalThreeDotsIcon} style={styles.leftIcon} />
           </Pressable>
           <Text style={styles.headerText}>קריאה פתוחה</Text>
@@ -68,7 +68,7 @@ const OpenCarTicket = () => {
           <Image source={carWashIcon} style={styles.ticketIcon} />
           <Text style={styles.ticketType}>טיפול בתקלה ברכב</Text>
           <Text style={styles.ticketNumber}>82225</Text>
-          <Pressable style={styles.moreDetailsButton}>
+          <Pressable style={styles.moreDetailsButton} onPress={() => navigation.navigate('TicketInfo')}>
             <Text style={styles.moreDetailsButtonText}>פרטים נוספים</Text>
           </Pressable>
         </View>

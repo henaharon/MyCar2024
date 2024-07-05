@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { StyleSheet } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
@@ -11,6 +11,9 @@ import ElectricVehicle from "./src/screens/ElectricVehicle/ElectricVehicle";
 import DriversSideMenu from "./src/screens/DriversSideMenu/DriverSideMenu";
 import TicketStatus from "./src/screens/TicketStatus/TicketStatus";
 import OpenCarTicket from "./src/screens/OpenCarTicket/OpenCarTicket";
+import O5TicketOptionMenu from "./src/screens/OpenCarTicket/compenents/O5TicketOptionMenu";
+import CancelTicketModal from "./src/screens/OpenCarTicket/compenents/CancelTicketModal";
+import O3bTicketInfo from "./src/screens/OpenCarTicket/compenents/O3bTicketInfo";
 
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -22,14 +25,17 @@ function HomeStack() {
       <Stack.Screen name="HomePage" component={HomePage} />
       <Stack.Screen name="ElectricVehicle" component={ElectricVehicle} />
       <Stack.Screen name="OpenCarTicket" component={OpenCarTicket} />
+      <Stack.Screen name="TicketInfo" component={O3bTicketInfo} />
     </Stack.Navigator>
   );
 }
 
 function MyDrawer() {
+  
+
   return (
     <Drawer.Navigator
-      drawerContent={(props) => <DriversSideMenu {...props} />}
+     // drawerContent={(props) => <DriversSideMenu {...props} />}
       screenOptions={{ headerShown: false }}
     >
       <Drawer.Screen name="HomeStack" component={HomeStack} />
@@ -37,14 +43,19 @@ function MyDrawer() {
       <Drawer.Screen name="DriversCall" component={DriversCall} />
       <Drawer.Screen name="TimerScreen" component={TimerScreen} />
       <Drawer.Screen name="Profile" component={TimerScreen} />
+      <Drawer.Screen name="o5TicketCancel" component={O5TicketOptionMenu} />
+     
     </Drawer.Navigator>
   );
 }
 
 function App(): React.JSX.Element {
+  
   return (
     <NavigationContainer>
       <MyDrawer />
+     
+      
     </NavigationContainer>
   );
 }
