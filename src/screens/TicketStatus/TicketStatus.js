@@ -1,9 +1,14 @@
-// TicketStatus.js
+
 import React from 'react';
-import { View, Text, StyleSheet, ScrollView, Pressable, Image, Dimensions } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, Pressable, Image } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import TicketCard from './components/TicketCard';
 import XButtonIcon from '../../assets/icons/Xbutton.png';
+
+
+import routineServiceIcon from '../../assets/icons/elementsServiceIconsRoutineService.png';
+import inspectionIcon from '../../assets/icons/elementsServiceIconsInspection.png';
+import wipersIcon from '../../assets/icons/elementsServiceIconsWipers.png';
 
 const tickets = [
   {
@@ -15,7 +20,8 @@ const tickets = [
     phone: '054 7725112',
     vehicle: 'יונדאי איוניק 2022',
     vehicleNumber: '682 24 301',
-    status: 'פתוח'
+    status: 'פתוח',
+    iconSource: routineServiceIcon
   },
   {
     id: 2,
@@ -26,7 +32,8 @@ const tickets = [
     phone: '050 3921941',
     vehicle: 'קאיה פיקנטו',
     vehicleNumber: '931 21 024',
-    status: 'פתוח'
+    status: 'פתוח',
+    iconSource: inspectionIcon
   },
   {
     id: 3,
@@ -37,7 +44,8 @@ const tickets = [
     phone: '',
     vehicle: 'יונדאי אי 20',
     vehicleNumber: '',
-    status: 'פתוח'
+    status: 'פתוח',
+    iconSource: wipersIcon
   }
 ];
 
@@ -71,7 +79,7 @@ const TicketStatus = ({ navigation }) => {
           {tickets.map(ticket => (
             <TicketCard
               key={ticket.id}
-              navigation={navigation} // Pass navigation prop
+              navigation={navigation}
               type={ticket.type}
               date={ticket.date}
               number={ticket.number}
@@ -80,6 +88,7 @@ const TicketStatus = ({ navigation }) => {
               vehicle={ticket.vehicle}
               vehicleNumber={ticket.vehicleNumber}
               status={ticket.status}
+              iconSource={ticket.iconSource}
             />
           ))}
         </ScrollView>
@@ -137,7 +146,7 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
     paddingTop: 20,
-    marginTop: -20,  // To overlap the header
+    marginTop: -20,
   },
   tabs: {
     flexDirection: 'row',

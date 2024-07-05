@@ -1,9 +1,8 @@
-// src/components/TicketCard.js
+
 import React from 'react';
 import { View, Text, StyleSheet, Image, Pressable } from 'react-native';
-import routineServiceIcon from '../../../assets/icons/elementsServiceIconsRoutineService.png';
 
-const TicketCard = ({ navigation, type, date, number, contact, phone, vehicle, vehicleNumber, status }) => {
+const TicketCard = ({ navigation, type, date, number, contact, phone, vehicle, vehicleNumber, status, iconSource }) => {
   return (
     <Pressable style={styles.ticketCard} onPress={() => navigation.navigate('OpenCarTicket')}>
       <View style={styles.header}>
@@ -15,7 +14,7 @@ const TicketCard = ({ navigation, type, date, number, contact, phone, vehicle, v
           <Text style={styles.subtitle}>{date} | מספר קריאה {number}</Text>
         </View>
         <View style={styles.iconContainer}>
-          <Image source={routineServiceIcon} style={styles.icon} />
+          <Image source={iconSource} style={styles.icon} />
         </View>
       </View>
       <View style={styles.line} />

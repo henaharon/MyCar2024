@@ -1,24 +1,30 @@
-// OpenCarTicketItem.js
 import React from 'react';
 import { View, Text, StyleSheet, Pressable } from 'react-native';
 
-const OpenCarTicketItem = ({ date, type, description, showFeedbackButton, isActive }) => {
+const OpenCarTicketItem = ({ date, type, description, showFeedbackButton, isActive, isFirst, isLast }) => {
   return (
     <View style={styles.statusItem}>
-      <Text style={styles.statusDate}>{date}</Text>
       <View style={styles.contentContainer}>
-        <View style={styles.statusContent}>
-          <Text style={styles.statusType}>{type}</Text>
-          <Text style={styles.statusDescription}>{description}</Text>
-          {showFeedbackButton && (
-            <Pressable style={styles.responseButton}>
-              <Text style={styles.responseButtonText}>שליחת משוב</Text>
-            </Pressable>
-          )}
-        </View>
-        <View style={styles.timelineContainer}>
-          <View style={[styles.timelineIndicator, isActive && styles.activeIndicator]} />
-          <View style={styles.timelineLine} />
+        <Text style={styles.statusDate}>{date}</Text>
+        <View style={styles.typeAndTimelineContainer}>
+          <View style={styles.typeContainer}>
+            <Text style={styles.statusType}>{type}</Text>
+            <Text style={styles.statusDescription} numberOfLines={1} ellipsizeMode="tail">
+              {description}
+            </Text>
+            {showFeedbackButton && (
+              <Pressable style={styles.responseButton}>
+                <Text style={styles.responseButtonText}>שליחת משוב</Text>
+              </Pressable>
+            )}
+          </View>
+          <View style={styles.timelineContainer}>
+            {!isFirst && <View style={styles.timelineLineTop} />}
+            <View style={styles.timelineOuterRing}>
+              <View style={[styles.timelineIndicator, isActive && styles.activeIndicator]} />
+            </View>
+            {!isLast && <View style={styles.timelineLineBottom} />}
+          </View>
         </View>
       </View>
     </View>
@@ -27,70 +33,93 @@ const OpenCarTicketItem = ({ date, type, description, showFeedbackButton, isActi
 
 const styles = StyleSheet.create({
   statusItem: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
     marginBottom: 20,
   },
   contentContainer: {
-    flexDirection: 'row',
     flex: 1,
   },
-  timelineContainer: {
-    width: 20,
-    alignItems: 'center',
-    marginLeft: 10,
+  typeAndTimelineContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'flex-start',
   },
-  timelineIndicator: {
-    width: 20,
-    height: 20,
-    borderRadius: 10,
-    backgroundColor: '#E0E0E0',
-    zIndex: 1,
-  },
-  activeIndicator: {
-    backgroundColor: '#1E90FF', 
-  },
-  timelineLine: {
-    position: 'absolute',
-    top: 20,
-    bottom: -20,
-    width: 2,
-    backgroundColor: '#E0E0E0',
-  },
-  statusContent: {
+  typeContainer: {
     flex: 1,
     alignItems: 'flex-end',
+  },
+  timelineContainer: {
+    width: 24,
+    alignItems: 'center',
+    marginLeft: 10,
+    height: '100%',
+    minHeight: 60, 
+  },
+  timelineOuterRing: {
+    width: 24,
+    height: 24,
+    borderRadius: 12,
+    borderWidth: 2,
+    borderColor: '#E0E0E0',
+    alignItems: 'center',
+    justifyContent: 'center',
+    zIndex: 2,
+    backgroundColor: 'white',
+  },
+  timelineIndicator: {
+    width: 16,
+    height: 16,
+    borderRadius: 8,
+    backgroundColor: '#E0E0E0',
+  },
+  activeIndicator: {
+    backgroundColor: '#1E90FF',
+  },
+  timelineLineTop: {
+    position: 'absolute',
+    top: -20,
+    height: 32, 
+    width: 2,
+    backgroundColor: '#E0E0E0',
+    alignSelf: 'center',
+  },
+  timelineLineBottom: {
+    position: 'absolute',
+    top: 24,
+    bottom: -20, 
+    width: 2,
+    backgroundColor: '#E0E0E0',
+    alignSelf: 'center',
   },
   statusDate: {
     fontSize: 10,
     color: '#888',
     textAlign: 'left',
-    width: '30%', // Adjust as needed
+    marginBottom: 2,
   },
   statusType: {
     fontSize: 16,
     fontWeight: 'bold',
-    marginBottom: 5,
     textAlign: 'right',
   },
   statusDescription: {
     fontSize: 14,
     color: '#555',
     textAlign: 'right',
+    marginTop: 2,
   },
   responseButton: {
     backgroundColor: '#FFC107',
-    borderRadius: 50, // Increased border radius for more rounded corners
-    paddingVertical: 12, // Increased vertical padding
+    borderRadius: 50,
+    paddingVertical: 12,
     paddingHorizontal: 20,
     marginTop: 10,
-    alignSelf: 'stretch', // This will make the button stretch to the container's width
+    alignSelf: 'stretch',
   },
   responseButtonText: {
     color: '#000',
     fontWeight: 'bold',
-    textAlign: 'center', // Center the text
-    fontSize: 16, // Adjust font size if needed
+    textAlign: 'center',
+    fontSize: 16,
   },
 });
 
