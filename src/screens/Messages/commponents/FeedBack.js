@@ -85,6 +85,8 @@ const FeedBack = () => {
       ))}
       {questions.open.map(openQuestion => (
         <View key={openQuestion.id} style={styles.questionContainer}>
+                    <View style={styles.line}></View>
+
           <Text style={styles.question}>{openQuestion.text}</Text>
           <TextInput
             style={styles.openQuestionInput}
@@ -107,9 +109,9 @@ const FeedBack = () => {
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: -50,
-    marginRight: 20,
-    width: '95%',
+    marginTop: -60,
+    width: '90%',
+    marginLeft: 20,
   },
   line: {
     height: 1,

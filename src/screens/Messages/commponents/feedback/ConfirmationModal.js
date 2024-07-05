@@ -18,6 +18,7 @@ const ConfirmationModal = ({ visible, onClose }) => {
     >
       <View style={styles.modalOverlay}>
         <View style={styles.modalContent}>
+        <Text style={styles.modalTitle}>תודה</Text>
           <Text style={styles.modalText}>המשוב נשלח בהצלחה!</Text>
           <TouchableOpacity
             style={styles.button}
@@ -45,9 +46,15 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     alignItems: 'center',
   },
+  modalTitle:{
+    fontSize: 22,
+    fontWeight: 'bold',
+    color: '#000',
+    marginTop: 10,
+    marginBottom: 10,
+  },
   modalText: {
     fontSize: 18,
-    marginBottom: 20,
     color: '#000',
   },
   button: {
