@@ -16,7 +16,7 @@ const AllMessagesScreen = () => {
       </View>
       <View style={styles.whitePart}>
         <Text style={styles.text}>הודעות</Text>
-        <ScrollMessages direction='vertical' />
+        <ScrollMessages />
       </View>
     </View>
   );

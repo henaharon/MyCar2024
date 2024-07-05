@@ -30,15 +30,15 @@ const StarRat = ({ rating, onRatingChange }) => {
 const styles = StyleSheet.create({
   starsContainer: {
     flexDirection: 'row',
-    justifyContent: 'center', 
+    justifyContent: 'flex-end', 
   },
   stars: {
     flexDirection: 'row',
-    gap: 18,
+    gap: 16,
   },
   star: {
-    width: 55,
-    height: 55,
+    width: 50,
+    height: 50,
   },
 });
 

@@ -109,16 +109,18 @@ const styles = StyleSheet.create({
   container: {
     marginTop: -50,
     marginRight: 20,
+    width: '95%',
   },
   line: {
     height: 1,
-    width: '100%',
-    backgroundColor: '#ABABB9',
+    width: '95%',
+    backgroundColor: '#EEEEEF',
     alignSelf: 'center',
     margin: 15,
   },
   questionContainer: {
     marginBottom: 20,
+    flex: 1,
   },
   question: {
     fontSize: 18,
@@ -131,12 +133,11 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#ABABB9',
     padding: 10,
-    minHeight: 200,
+    minHeight: 150,
     textAlignVertical: 'top',
     borderRadius: 10,
-  },
-  buttoncontain: {
-    marginTop: 20,
+    alignSelf: 'flex-end',
+    width: '95%',
   },
   button: {
     borderRadius: 20,
@@ -144,6 +145,8 @@ const styles = StyleSheet.create({
     height: 50,
     justifyContent: 'center',
     marginTop: 20,
+    width: '95%',
+    alignSelf: 'flex-end',
   },
   buttontext: {
     textAlign: 'center',

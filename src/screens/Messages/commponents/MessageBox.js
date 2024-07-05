@@ -6,7 +6,6 @@ import images from '../helpers/images';
 export const MessageBox = ({ img, title, firstLine, onPress }) => {
   const [isPressed, setIsPressed] = useState(false);
 
-
   return (
     <TouchableOpacity onPress={onPress}
       onPressIn={() => setIsPressed(true)}
@@ -20,7 +19,6 @@ export const MessageBox = ({ img, title, firstLine, onPress }) => {
           />
         )}
         <View style={styles.containtext}>
-
           <Text style={[styles.text, isPressed && styles.textPressed]}>{title}</Text>
           <Text style={styles.firstLine}>{firstLine}</Text>
         </View>

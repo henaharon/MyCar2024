@@ -24,7 +24,7 @@ const YesNoSelect = ({ selectedOption, onSelect }) => {
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'flex-end',
   },
   option: {
     padding: 10,
@@ -33,6 +33,7 @@ const styles = StyleSheet.create({
     borderRadius: 30,
     width: 160,
     alignItems: 'center',
+    marginLeft: 10,
   },
   selected: {
     backgroundColor: 'rgb(240,92,98)',
