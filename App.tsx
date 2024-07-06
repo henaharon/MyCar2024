@@ -1,14 +1,18 @@
 import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import MyCar from './src/screens/MyCar/MyCar';
 
-import {BaseView} from './src/uiKit/BaseView';
-import TimerScreen from './src/screens/Timer/TimerScreen';
+const Stack = createStackNavigator();
 
-function App(): React.JSX.Element {
+const App = () => {
   return (
-    <BaseView>
-      <TimerScreen />
-    </BaseView>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="MyCar">
+        <Stack.Screen name="MyCar" component={MyCar} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
-}
+};
 
 export default App;
