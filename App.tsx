@@ -5,8 +5,8 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import TimerScreen from "./src/screens/Timer/TimerScreen";
 import HomePage from "./src/screens/homepage/HomePage";
-import CloseCarTicket from './src/screens/TicketsStatusClose/CloseCarTicket';
-import ClosedTicketsInfo from './src/screens/CloseCarTicket/ClosedTicketsInfo';
+import CloseCarTicket from "./src/screens/TicketsStatusClose/CloseCarTicket";
+import ClosedTicketsInfo from "./src/screens/CloseCarTicket/ClosedTicketsInfo";
 import DriversCall from "./src/screens/DriversCall/DriversCall";
 import DriversContactUs from "./src/screens/DriversContactUs/components/DriversContactUs";
 import ElectricVehicle from "./src/screens/ElectricVehicle/ElectricVehicle";
@@ -42,7 +42,7 @@ function ClosedTickets() {
 function MyDrawer() {
   return (
     <Drawer.Navigator
-      drawerContent={(props) => <DriversSideMenu {...props} />}
+      // drawerContent={(props) => <DriversSideMenu {...props} />}
       screenOptions={{ headerShown: false }}
     >
       <Drawer.Screen name="HomeStack" component={HomeStack} />
@@ -51,7 +51,6 @@ function MyDrawer() {
       <Drawer.Screen name="TimerScreen" component={TimerScreen} />
       <Drawer.Screen name="Profile" component={TimerScreen} />
       <Drawer.Screen name="CarTicket" component={ClosedTickets} />
-
     </Drawer.Navigator>
   );
 }
