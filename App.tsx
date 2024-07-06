@@ -1,5 +1,4 @@
 import React from "react";
-import { StyleSheet } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createDrawerNavigator } from "@react-navigation/drawer";
@@ -9,6 +8,7 @@ import DriversCall from "./src/screens/DriversCall/DriversCall";
 import DriversContactUs from "./src/screens/DriversContactUs/components/DriversContactUs";
 import ElectricVehicle from "./src/screens/ElectricVehicle/ElectricVehicle";
 import DriversSideMenu from "./src/screens/DriversSideMenu/DriverSideMenu";
+import MyProfile from "./src/screens/Profile/MyProfile";
 
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -40,7 +40,7 @@ function MyDrawer() {
       <Drawer.Screen name="DriversContactUs" component={DriversContactUs} />
       <Drawer.Screen name="DriversCall" component={DriversCall} />
       <Drawer.Screen name="TimerScreen" component={TimerScreen} />
-      <Drawer.Screen name="Profile" component={TimerScreen} />
+      <Drawer.Screen name="MyProfile" component={MyProfile} />
     </Drawer.Navigator>
   );
 }
@@ -52,11 +52,4 @@ function App(): React.JSX.Element {
     </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  baseView: {
-    flex: 1,
-  },
-});
-
 export default App;
