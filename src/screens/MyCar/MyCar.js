@@ -36,7 +36,7 @@ const MyCar = () => {
     <View style={styles.container}>
       {/* Static Top Section */}
       <View style={styles.topSection}>
-        <Image source={require('C:\Users\linoy\MyCar2024\src\screens\assets\icons\car.png')} style={styles.carImage} />
+        <Image source={require('../../assets/icons/car.png')} style={styles.carImage} />
         <Text style={styles.carInfo}>יונדאי איוניק 2022</Text>
         <Text style={styles.carInfo}>מספר רכב: 682 24 301</Text>
       </View>
@@ -49,13 +49,13 @@ const MyCar = () => {
 
       {/* Static Information Boxes */}
       <View style={styles.infoBoxes}>
-        <InfoBox title="אוגוסט 2022" imageSource={require('../../../assets/info1.jpg')} />
-        <InfoBox title="15,000 ק'מ" imageSource={require('../../../assets/info2.jpg')} />
+        <InfoBox title="אוגוסט 2022" imageSource={require('../../assets/icons/elementsServiceIconsRoutineService@3x.png')} />
+        <InfoBox title="15,000 ק'מ" imageSource={require('../../assets/icons/elementsServiceIconsRepair@3x.png')} />
         <TouchableOpacity style={styles.infoBox} onPress={() => setPopupVisible(true)}>
           <Text>לחץ אוויר קדמי</Text>
-          <Image source={require('../../../assets/info3.jpg')} style={styles.infoImage} />
+          <Image source={require('../../assets/icons/elementsServiceIconsTiresDown@3x.png')} style={styles.infoImage} />
         </TouchableOpacity>
-        <InfoBox title="לחץ אוויר אחורי" imageSource={require('../../../assets/info4.jpg')} />
+        <InfoBox title="לחץ אוויר אחורי" imageSource={require('../../assets/icons/elementsServiceIconsTiresUp@3x.png')} />
       </View>
 
       {/* Document Sharing Button */}
