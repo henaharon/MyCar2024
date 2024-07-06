@@ -97,6 +97,7 @@ const ServiceCenterWizard = ({ modalVisible, setModalVisible, startStep }) => {
                             value={details}
                             onChangeText={setDetails}
                             multiline
+                            placeholderTextColor='#68677E'
                         />
                     </View>
                     <View style={styles.addImagesContainer}>
@@ -144,6 +145,7 @@ const ServiceCenterWizard = ({ modalVisible, setModalVisible, startStep }) => {
                         keyboardType="numeric"
                         onFocus={() => setIsFocused(true)}
                         onBlur={() => setIsFocused(false)}
+                        placeholderTextColor='#68677E'
                     />
                 </ScrollView>
             ),
@@ -202,6 +204,7 @@ const ServiceCenterWizard = ({ modalVisible, setModalVisible, startStep }) => {
                             value={details}
                             onChangeText={setDetails}
                             multiline
+                            placeholderTextColor='#68677E'
                         />
                     </View>
                     <View style={styles.addImagesContainer}>
@@ -241,7 +244,7 @@ const ServiceCenterWizard = ({ modalVisible, setModalVisible, startStep }) => {
                         <Text style={styles.subtitleStep}>לפניך פרטי הקריאה אנא בדוק שכל הפרטים נכונים לפני שליחה.</Text>
                         <View style={styles.imgAndTextRow}>
                             <Image source={require('../D1-2-assets/icons/Car.png')} style={styles.iconRow} />
-                            <Text>טיפול בתקלה ברכב</Text>
+                            <Text style={styles.defaultText}>טיפול בתקלה ברכב</Text>
                         </View>
                     </View>
                     <View style={styles.textContainer}>
@@ -262,15 +265,15 @@ const ServiceCenterWizard = ({ modalVisible, setModalVisible, startStep }) => {
                         <Text style={styles.titleStep}>דרישות נוספות</Text>
                         <View style={styles.imgAndTextRow}>
                             <Image source={require('../D1-2-assets/icons/Car.png')} style={styles.iconRow} />
-                            <Text>טיפול בתקלה ברכב</Text>
+                            <Text style={styles.defaultText}>טיפול בתקלה ברכב</Text>
                         </View>
                         <View style={styles.imgAndTextRow}>
                             <Image source={require('../D1-2-assets/icons/Car.png')} style={styles.iconRow} />
-                            <Text>טיפול בתקלה ברכב</Text>
+                            <Text style={styles.defaultText}>טיפול בתקלה ברכב</Text>
                         </View>
                         <View style={styles.imgAndTextRow}>
                             <Image source={require('../D1-2-assets/icons/Car.png')} style={styles.iconRow} />
-                            <Text>טיפול בתקלה ברכב</Text>
+                            <Text style={styles.defaultText}>טיפול בתקלה ברכב</Text>
                         </View>
                     </View>
                     <View style={styles.textContainer}>
@@ -289,19 +292,19 @@ const ServiceCenterWizard = ({ modalVisible, setModalVisible, startStep }) => {
                             <View style={styles.imgCircle}>
                                 <Image source={require('../D1-2-assets/icons/CarB.png')} style={styles.iconDemand} />
                             </View>
-                            <Text>טיפול בתקלה ברכב</Text>
+                            <Text style={styles.defaultText}>טיפול בתקלה ברכב</Text>
                         </View>
                         <View style={styles.imgAndTextRow}>
                             <View style={styles.imgCircle}>
                                 <Image source={require('../D1-2-assets/icons/locationB.png')} style={styles.iconDemand} />
                             </View>
-                            <Text>טיפול בתקלה ברכב</Text>
+                            <Text style={styles.defaultText}>טיפול בתקלה ברכב</Text>
                         </View>
                         <View style={styles.imgAndTextRow}>
                             <View style={styles.imgCircle}>
                                 <Image source={require('../D1-2-assets/icons/CalendarB.png')} style={styles.iconDemand} />
                             </View>
-                            <Text>טיפול בתקלה ברכב</Text>
+                            <Text style={styles.defaultText}> טיפול בתקלה ברכב</Text>
                         </View>
                     </View>
                     <View style={styles.warning}>
@@ -310,7 +313,7 @@ const ServiceCenterWizard = ({ modalVisible, setModalVisible, startStep }) => {
                         </View>
                         <View style={styles.warningMessage}>
                             <Text style={styles.titleStep}>לידיעתך</Text>
-                            <Text>יום לפני המועד המבוקש תשלח הודעת תזכורת למכשירך.</Text>
+                            <Text style={styles.defaultText}>יום לפני המועד המבוקש תשלח הודעת תזכורת למכשירך.</Text>
                         </View>
                     </View>
                     <GradientButton onPress={() => setModalVisible(true)} text="אישור ושליחה" />
@@ -367,6 +370,9 @@ const styles = StyleSheet.create({
         color: '#68677E',
         fontSize: windowWidth * 0.04,
         marginBottom: windowHeight * 0.02,
+    },
+    defaultText: {
+        color: '#000',
     },
     iconCover: {
         width: windowWidth * 0.7,
