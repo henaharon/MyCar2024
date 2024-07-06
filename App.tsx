@@ -18,7 +18,7 @@ function HomeStack() {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name="HomePage" component={HomePage} />
-      <Stack.Screen name="SearchAndGo" component={SearchAndGo} />
+      <Stack.Screen name="ElectricVehicle" component={ElectricVehicle} />
     </Stack.Navigator>
   );
 }
@@ -34,11 +34,11 @@ function HomeStack() {
 function MyDrawer() {
   return (
     <Drawer.Navigator
-      drawerContent={(props) => <DriversSideMenu {...props} />}
+      // drawerContent={(props) => <DriversSideMenu {...props} />}
       screenOptions={{ headerShown: false }}
     >
-      <Drawer.Screen name="SearchAndGo" component={SearchAndGo} />
       <Drawer.Screen name="HomeStack" component={HomeStack} />
+      <Drawer.Screen name="SearchAndGo" component={SearchAndGo} />
       <Drawer.Screen name="DriversContactUs" component={DriversContactUs} />
       <Drawer.Screen name="DriversCall" component={DriversCall} />
       <Drawer.Screen name="TimerScreen" component={TimerScreen} />
