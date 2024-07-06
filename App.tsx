@@ -34,7 +34,7 @@ function HomeStack() {
 function MyDrawer() {
   return (
     <Drawer.Navigator
-      drawerContent={(props) => <DriversSideMenu {...props} />}
+      // drawerContent={(props) => <DriversSideMenu {...props} />}
       screenOptions={{ headerShown: false }}
     >
       <Drawer.Screen name="HomeStack" component={HomeStack} />
@@ -43,7 +43,6 @@ function MyDrawer() {
       <Drawer.Screen name="TimerScreen" component={TimerScreen} />
       <Drawer.Screen name="Profile" component={TimerScreen} />
       <Drawer.Screen name="Guides" component={GuidesScreen} />
-
     </Drawer.Navigator>
   );
 }
