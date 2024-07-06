@@ -1,61 +1,65 @@
-import React from 'react';
-import { Dimensions, Text, View, StyleSheet } from 'react-native';
-import {BaseView, BodyBaseView} from '../../../../uiKit/BaseView';
-import {GradientButton} from '../../components/GradientButton'
-import {Input} from '../../components/Input'
-import DateTimeInput from '../../components/DateTimeInput'
+import React from "react";
+import { Dimensions, Text, View, StyleSheet } from "react-native";
+import { BaseView, BodyBaseView } from "../../../../uiKit/BaseView";
+import { GradientButton } from "../../components/GradientButton";
+import { Input } from "../../components/Input";
+import DateTimeInput from "../../components/DateTimeInput";
+
+const pageTitle = "המסמך נשלח";
+const paragraphs = ["דוח תאונת הדרכים נשלח בהצלחה", "OirS@gmail.com למייל"];
+const buttonTitle = "אישור";
 
 const SuccessScreen = () => {
-    return (
-        <BaseView>
-        <BodyBaseView style={{alignItems: 'center'}}>
+  return (
+      <BodyBaseView style={styles.pageContailer}>
         <View style={styles.textContainer}>
-            <Text style={styles.headerText}>מסמך נשלחה</Text>
-            <View style={styles.centerText}>
-                <Text style={styles.confirmationText}>דוח תאונת הדרכים נשלח בהצלחה</Text>
-                <Text style={styles.confirmationText}>OirS@gmail.com למייל</Text>
-            </View>
+          <Text style={styles.headerText}>{pageTitle}</Text>
+          <View style={styles.centerText}>
+            <Text style={styles.confirmationText}>{paragraphs[0]}</Text>
+            <Text style={styles.confirmationText}>{paragraphs[1]}</Text>
+          </View>
         </View>
         <View style={styles.buttonContainer}>
-            <GradientButton title={"אישור"}/>
+          <GradientButton title={buttonTitle} />
         </View>
-        {/* <DateTimeInput text={"תאריך"} width={0.5} type={"date"} required={true}/> */}
-        {/* <Input placeholder={"טקסט"} required={true} width={0.5} type={""}/> */}
-        </BodyBaseView>
-        </BaseView>
-    );
+      </BodyBaseView>
+  );
 };
 
 export default SuccessScreen;
 
-const windowWidth = Dimensions.get('window').width;
-const windowHeight = Dimensions.get('window').height;
-
+const windowWidth = Dimensions.get("window").width;
+const windowHeight = Dimensions.get("window").height;
 
 const styles = StyleSheet.create({
-    headerText: {
-        fontSize: 20,
-        fontWeight: '900',
-        color: 'black',
-    },
-    confirmationText: {
-        fontSize: 16,
-        color: 'black',
-    },
-    textContainer: {
-        alignItems: 'center',
-        position: 'relative',
-        top: windowHeight * 0.3,
-        gap: 20,
-    },
-    buttonContainer: {
-        width: windowWidth,
-        position: 'relative',
-        alignItems: 'center',
-        top: windowHeight * 0.35,
-    },
-    centerText: {
-        width: windowWidth * 0.9,
-        alignItems: 'center',
-    }
+  pageContailer:{
+    alignItems: "center",
+    backgroundColor: "white",
+    borderRadius: 25,
+    marginTop: -windowHeight * 0.1,
+    paddingTop: windowHeight * 0.11,
+    zIndex: 2,
+    gap: windowHeight * 0.05,
+  },
+  headerText: {
+    fontSize: 20,
+    fontWeight: "900",
+    color: "black",
+  },
+  confirmationText: {
+    fontSize: 16,
+    color: "black",
+  },
+  textContainer: {
+    alignItems: "center",
+    position: "relative",
+    gap: windowHeight * 0.02,
+  },
+  buttonContainer: {
+    position: "relative",
+    alignItems: "center",
+  },
+  centerText: {
+    alignItems: "center",
+  },
 });

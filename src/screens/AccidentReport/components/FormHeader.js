@@ -1,24 +1,29 @@
 import React from 'react';
 import { Dimensions, StyleSheet, View } from 'react-native';
-
 import { TitleHeader } from './TitleHeader';
 import { HeaderButton } from './HeaderButton';
+import Paginator from './Paginator';
 
 const arrowRightGrey = require('../../../assets/icons/componentsNavBarXButtonsRoundedWhiteAlpha.png');
 const arrowLeftGradient = require('../../../assets/icons/componentsNavBarXButtonsRoundedBlack.png');
 
-export const FormHeader = ({ title }) => {
+const FormHeader = ({ title, data, pagesCount,currentPage, onNextPage, onPreviousPage}) => {
   return (
     <View style={styles.headerContainer}>
       <View style={styles.headerContent}>
         <HeaderButton
           container={styles.ButtonContainer}
           imageSource={arrowLeftGradient}
+          onPress={onNextPage}
         />
-        <TitleHeader title={title} />
+        <View style={styles.MiddleHeaderContainer}>
+          <TitleHeader title={title} />
+          <Paginator data={data} pagesCount={pagesCount} currentPage={currentPage} />
+        </View>
         <HeaderButton
           container={styles.ButtonContainer}
           imageSource={arrowRightGrey}
+          onPress={onPreviousPage}
         />
       </View>
     </View>
@@ -30,24 +35,27 @@ const windowHeight = Dimensions.get('window').height;
 
 const styles = StyleSheet.create({
   headerContainer: {
-    height: windowHeight * 0.15,
+    height: windowHeight * 0.1,
     zIndex: 2,
-    ...StyleSheet.absoluteFillObject,
     justifyContent: 'center',
     width: '100%',
     alignItems: 'center',
     backgroundColor: 'black',
   },
   headerContent: {
-    alignContent: 'center',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    height: windowHeight * 0.1,
     width: windowWidth * 0.93,
-    alignItems: 'flex-start',
+    alignItems: 'center',
   },
   ButtonContainer: {
     width: windowWidth * 0.08,
     height: windowWidth * 0.08,
   },
+  MiddleHeaderContainer: {
+    flexDirection: 'column',
+    gap: 5,
+  },
 });
+
+export default FormHeader;
