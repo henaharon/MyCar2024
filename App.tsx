@@ -12,6 +12,7 @@ import DriversContactUs from "./src/screens/DriversContactUs/components/DriversC
 import ElectricVehicle from "./src/screens/ElectricVehicle/ElectricVehicle";
 import DriversSideMenu from "./src/screens/DriversSideMenu/DriverSideMenu";
 import MyProfile from "./src/screens/Profile/MyProfile";
+import GuidesScreen from "./src/screens/Guides/GuidesScreen";
 
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -36,7 +37,7 @@ function HomeStack() {
 function MyDrawer() {
   return (
     <Drawer.Navigator
-      drawerContent={(props) => <DriversSideMenu {...props} />}
+      // drawerContent={(props) => <DriversSideMenu {...props} />}
       screenOptions={{ headerShown: false }}
     >
       <Drawer.Screen name="HomeStack" component={HomeStack} />
@@ -47,6 +48,7 @@ function MyDrawer() {
       <Drawer.Screen name="HardwareIntro" component={HardwareIntro} />
       <Drawer.Screen name="ConnectToChat" component={ConnectToChat} />
       <Drawer.Screen name="RoadsideAssistance" component={RoadsideAssistance} />
+      <Drawer.Screen name="Guides" component={GuidesScreen} />
     </Drawer.Navigator>
   );
 }
