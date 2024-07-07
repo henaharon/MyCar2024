@@ -25,12 +25,20 @@ const paragraphs = [
 
 const chooseEvent = 'אנא בחרו את סוג האירוע';
 
-const AccidentReportIntro = () => {
+const AccidentReportIntro = ({navigation}) => {
+  const handleAccidentWithOther = () => {
+    navigation.navigate('AccidentReportForm');
+  };
+
+  const handleDamage = () => {
+    navigation.navigate('DamageReport');
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView contentContainerStyle={styles.scrollViewContent}>
         <View style={styles.headerContainer}>
-          <Header />
+          <Header navigation={navigation}/>
         </View>
         <View style={styles.bodyContainer}>
           <Requirements />
@@ -42,6 +50,7 @@ const AccidentReportIntro = () => {
             />
             <GradientButton
               title={damageTitle}
+              onPress={handleDamage}
             />
           </View>
         </View>

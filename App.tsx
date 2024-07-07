@@ -13,7 +13,8 @@ import ElectricVehicle from "./src/screens/ElectricVehicle/ElectricVehicle";
 import DriversSideMenu from "./src/screens/DriversSideMenu/DriverSideMenu";
 import MyProfile from "./src/screens/Profile/MyProfile";
 import GuidesScreen from "./src/screens/Guides/GuidesScreen";
-// import AccidentReportIntro from './src/screens/AccidentReport/screens/AccidentReport/AccidentReportIntro';
+import AccidentReportIntro from './src/screens/AccidentReport/screens/AccidentReport/AccidentReportIntro';
+import CallDialogScreen from './src/screens/AccidentReport/screens/CallDialog/CallDialogScreen';
 // import I10 from './src/screens/AccidentReport/screens/DamageReport/I10';
 // import I11 from './src/screens/AccidentReport/screens/DamageReport/I11';
 // import I12 from './src/screens/AccidentReport/screens/DamageReport/I12';
@@ -24,13 +25,22 @@ const Drawer = createDrawerNavigator();
 
 function HomeStack() {
   return (
-    <Stack.Navigator screenOptions={{headerShown: false}}>
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name="HomePage" component={HomePage} />
       <Stack.Screen name="ElectricVehicle" component={ElectricVehicle} />
-      <Stack.Screen
-        name="AccidentReportIntro"
-        component={DamageReport}
-      />
+      <Stack.Screen name="AccidentReportIntro" component={DamageReport} />
+    </Stack.Navigator>
+  );
+}
+
+function AccidentReportStack() {
+  return (
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="AccidentReportIntro" component={AccidentReportIntro} />
+      <Stack.Screen name="HomePage" component={HomePage} />
+      <Stack.Screen name="CallDialog" component={CallDialogScreen} />
+      <Stack.Screen name="DamageReport" component={DamageReport} />
+      {/* <Stack.Screen name="AccidentReportForm" component={AccidentReportOnboarding} /> */}
     </Stack.Navigator>
   );
 }
@@ -57,7 +67,8 @@ function MyDrawer() {
 function App(): React.JSX.Element {
   return (
     <NavigationContainer>
-      <MyDrawer />
+      {/* <MyDrawer /> */}
+      <AccidentReportStack />
     </NavigationContainer>
   );
 }

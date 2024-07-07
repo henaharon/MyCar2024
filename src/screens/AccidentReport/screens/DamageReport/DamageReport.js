@@ -1,5 +1,5 @@
 import React, { useState, useRef, useCallback } from "react";
-import { Dimensions, StyleSheet, View, Animated} from "react-native";
+import { Dimensions, StyleSheet, View, Animated } from "react-native";
 import EventHeader from "../../components/EventHeader";
 import FormHeader from "../../components/FormHeader";
 import { BaseView, BodyBaseView } from "../../../../uiKit/BaseView";
@@ -17,27 +17,22 @@ const pages = [
 
 const DamageReport = ({ navigation }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [progress, setProgress] = useState(0);
-
-  const setProgressCallback = useCallback(
-    value => {
-      setProgress(value);
-    },
-    [setProgress],
-  );
 
   const goToNextPage = useCallback(() => {
     if (currentIndex < pages.length - 1) {
       setCurrentIndex(currentIndex + 1);
     }
   }, [currentIndex]);
-  
+
   const goToPreviousPage = useCallback(() => {
     if (currentIndex > 0) {
       setCurrentIndex(currentIndex - 1);
     }
+    else if (currentIndex === 0) {
+      navigation.navigate("AccidentReportIntro");
+    }
   }, [currentIndex]);
-  
+
 
   return (
     <BaseView>
@@ -50,12 +45,13 @@ const DamageReport = ({ navigation }) => {
             currentPage={currentIndex}
             onNextPage={goToNextPage}
             onPreviousPage={goToPreviousPage}
+            navigation={navigation}
           />
         </EventHeader>
-        {currentIndex === 0 && <I10 setProgress={setProgressCallback} />}
-        {currentIndex === 1 && <I11 setProgress={setProgressCallback} />}
-        {currentIndex === 2 && <I12 setProgress={setProgressCallback} />}
-        {currentIndex === 3 && <SuccessScreen setProgress={setProgressCallback} navigation={navigation} />}
+        {currentIndex === 0 && <I10 />}
+        {currentIndex === 1 && <I11 />}
+        {currentIndex === 2 && <I12 />}
+        {currentIndex === 3 && <SuccessScreen navigation={navigation} />}
       </View>
     </BaseView>
   );

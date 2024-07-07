@@ -4,7 +4,19 @@ import { GradientButton } from '../../components/GradientButton'
 
 const callIcon = require('../../../../assets/icons/calldialogicon.png');
 
-const CallDialogScreen = () => {
+const pageTitle = 'סיוע טלפוני';
+const fastCall = 'התקשרות מהירה';
+const police = 'משטרה';
+const ambulance = 'מד"א';
+const serviceCenter = 'מוקד שירות';
+const close = 'סגירה';
+
+const CallDialogScreen = ({ navigation }) => {
+
+  const handleClose = () => {
+    navigation.navigate('AccidentReportIntro');
+  };
+
   return (
     <BaseView>
       <BodyBaseView style={{ alignItems: 'center' }}>
@@ -12,16 +24,19 @@ const CallDialogScreen = () => {
           <Image style={styles.iconDisplay} source={callIcon} />
         </View>
         <View style={styles.textContainer}>
-          <Text style={styles.headerTitle}>סיוע טלפוני</Text>
-          <Text style={styles.infoText}>התקשרות מהירה</Text>
+          <Text style={styles.headerTitle}>{pageTitle}</Text>
+          <Text style={styles.infoText}>{fastCall}</Text>
         </View>
         <View style={styles.buttonsContainer}>
-          <GradientButton title='משטרה' phoneNumber={100} />
-          <GradientButton title='מד"א' phoneNumber={101} />
-          <GradientButton title='מוקד שירות' phoneNumber={1230} />
+          <GradientButton title={police} phoneNumber={100} />
+          <GradientButton title={ambulance} phoneNumber={101} />
+          <GradientButton title={serviceCenter} phoneNumber={1230} />
         </View>
-        <Pressable style={styles.backLink}>
-          <Text style={styles.linkText}>סגירה</Text>
+        <Pressable
+          style={styles.backLink}
+          onPress={handleClose}
+        >
+          <Text style={styles.linkText}>{close}</Text>
         </Pressable>
       </BodyBaseView>
     </BaseView>
