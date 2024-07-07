@@ -19,9 +19,6 @@ const policeStationPlaceholder = 'תחנת משטרה';
 const I3 = ({ setProgress }) => {
   const [policeInvolvement, setPoliceInvolvement] = useState(false);
   return (
-    // <BaseView>
-    //   <ScrollView contentContainerStyle={styles.scrollViewContent}>
-    //     <View style={styles.contentWrapper}>
           <BodyBaseView style={styles.bodyContainer}>
             <GeneralForm />
             <View style={styles.policeInvolvementContainer}>
@@ -52,9 +49,6 @@ const I3 = ({ setProgress }) => {
               )}
             </View>
           </BodyBaseView>
-    //     </View>
-    //   </ScrollView>
-    // </BaseView>
   );
 };
 
@@ -75,11 +69,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     backgroundColor: "white",
-    // borderRadius: 25,
-    // marginTop: -windowHeight * 0.1,
     paddingTop: windowHeight * 0.15,
-    // paddingBottom: windowHeight * 0.2,
-    // zIndex: 2,
     gap: 15,
   },
   policeInfoForm: {

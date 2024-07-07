@@ -36,12 +36,6 @@ const I6 = ({ setProgress }) => {
     const [witnesses, setWitnesses] = useState(false);
     const [injured, setInjured] = useState(false);
   return (
-    // <BaseView>
-    //   <ScrollView contentContainerStyle={styles.scrollViewContent}>
-    //     <View style={styles.contentWrapper}>
-          /* <EventHeader>
-            <FormHeader title={headerTitle}/>
-          </EventHeader> */
           <BodyBaseView style={styles.bodyContainer}>
             <Title title={affectedTitle} />
             <View style={{marginLeft: windowWidth * 0.08}}>
@@ -140,10 +134,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     backgroundColor: 'white',
-    // borderRadius: 25,
-    // marginTop: -windowHeight * 0.1,
     paddingTop: windowHeight * 0.05,
-    // paddingBottom: windowHeight * 0.2,
     zIndex: 2,
     gap: 20,
   },
