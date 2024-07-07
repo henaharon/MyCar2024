@@ -28,14 +28,6 @@ const styles = StyleSheet.create({
     paddingTop: windowHeight * 0.01, // Adjust as needed, depending on the height of your SVG curve
     paddingBottom: windowHeight * 0.1,
   },
-  svgCurve: {
-    height: 200,
-    width: '100%',
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-  },
 });
 
 export default EventHeader;
