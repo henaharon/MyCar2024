@@ -30,18 +30,18 @@ const policyNumberPlaceholder = 'מספר פוליסת ביטוח';
 const documentTitle = `מסמכים - נהג צד ג'`;
 const documentPlaceholder = 'הוספת מסמך';
 
-const I5 = () => {
+const I5 = ({ setProgress }) => {
     const [selectedFile, setSelectedFile] = useState([]);
     const handleSetFiles = useCallback((newFiles) => {
         setSelectedFile(newFiles);
     }, []);
   return (
-    <BaseView>
-      <ScrollView contentContainerStyle={styles.scrollViewContent}>
-        <View style={styles.contentWrapper}>
-          <EventHeader>
+    // <BaseView>
+    //   <ScrollView contentContainerStyle={styles.scrollViewContent}>
+    //     <View style={styles.contentWrapper}>
+          /* <EventHeader>
             <FormHeader title={headerTitle}/>
-          </EventHeader>
+          </EventHeader> */
           <BodyBaseView style={styles.bodyContainer}>
             <Title title={driverInfoTitle} />
             <Input
@@ -116,9 +116,9 @@ const I5 = () => {
             </View>
 
           </BodyBaseView>
-        </View>
-      </ScrollView>
-    </BaseView>
+    //     </View>
+    //   </ScrollView>
+    // </BaseView>
   );
 };
 
