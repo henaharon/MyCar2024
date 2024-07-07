@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, StyleSheet, Text, TextInput, Dimensions, TouchableOpacity, Image, ScrollView } from 'react-native';
 import { launchCamera, launchImageLibrary } from 'react-native-image-picker';
-import { Calendar } from 'react-native-calendars';
+import { CalendarList } from 'react-native-calendars';
 import ServiceHeader from '../components/ServiceHeader';
 import LocationOption from '../components/LocationOption';
 import ServiceButton from '../components/ServiceButton';
@@ -11,7 +11,7 @@ import ServiceCenterModal from '../components/ServiceCenterModal';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
-const ServiceCenterWizard = ({ modalVisible, setModalVisible, startStep }) => {
+const ServiceCenterWizard = ({ modalVisible, setModalVisible, startStep, selectedService }) => {
     const [step, setStep] = useState(startStep);
     const [details, setDetails] = useState('');
     const [moreDetails, setMoreDetails] = useState('');
@@ -21,19 +21,29 @@ const ServiceCenterWizard = ({ modalVisible, setModalVisible, startStep }) => {
     const [selectedDate, setSelectedDate] = useState(null);
     const [demands, setDemands] = useState([]);
     const [images, setImages] = useState([]);
+    const [moreImages, setMoreImages] = useState([]);
+    const [allImages, setAllImages] = useState([]);
     const [isFocused, setIsFocused] = useState(false);
+    const [selectedButtons, setSelectedButtons] = useState([]);
+    const [carDetails, setCarDetails] = useState({ name: 'Hyundai IONIQ', mileage: '23 441 32' });
 
     const handleNext = () => {
         if (step < steps.length - 1) {
             setStep(step + 1);
+            setAllImages([...images, ...moreImages]);
         } else {
+            setAllImages([...images, ...moreImages]);
             setModalVisible(true);
         }
     };
 
     const handleBack = () => {
         if (step > 0) {
-            setStep(step - 1);
+            if (selectedService.service === 'VehicleRepair' || selectedService.service === 'Other') {
+                setStep(step - 1);
+            } else if (step > 1) {
+                setStep(step - 1);
+            }
         }
     };
 
@@ -49,7 +59,11 @@ const ServiceCenterWizard = ({ modalVisible, setModalVisible, startStep }) => {
                 console.log('ImagePicker Error: ', response.error);
             } else {
                 const source = { uri: response.assets[0].uri };
-                setImages([...images, source]);
+                if (step === 0) {
+                    setImages([...images, source]);
+                } else if (step === 4) {
+                    setMoreImages([...moreImages, source]);
+                }
             }
         });
     };
@@ -62,17 +76,29 @@ const ServiceCenterWizard = ({ modalVisible, setModalVisible, startStep }) => {
                 console.log('Camera Error: ', response.error);
             } else {
                 const source = { uri: response.assets[0].uri };
-                setImages([...images, source]);
+                if (step === 0) {
+                    setImages([...images, source]);
+                } else if (step === 4) {
+                    setMoreImages([...moreImages, source]);
+                }
             }
         });
     };
 
-    const handleAdditionalDemandSelection = (demand) => {
+    const handleAdditionalDemandSelection = (button) => {
         setDemands(prevDemands => {
-            if (prevDemands.includes(demand)) {
-                return prevDemands.filter(item => item !== demand);
+            if (prevDemands.includes(button.demand)) {
+                return prevDemands.filter(item => item !== button.demand);
             } else {
-                return [...prevDemands, demand];
+                return [...prevDemands, button.demand];
+            }
+        });
+
+        setSelectedButtons(prevSelected => {
+            if (prevSelected.some(item => item.demand === button.demand)) {
+                return prevSelected.filter(item => item.demand !== button.demand);
+            } else {
+                return [...prevSelected, button];
             }
         });
     };
@@ -189,18 +215,38 @@ const ServiceCenterWizard = ({ modalVisible, setModalVisible, startStep }) => {
         {
             title: 'מועד הטיפול',
             content: (
-                <ScrollView contentContainerStyle={styles.stepContainer}>
+                <View style={styles.stepContainer}>
                     <View style={styles.textContainer}>
                         <Text style={styles.titleStep}>בחירת מועד לטיפול</Text>
                         <Text style={styles.subtitleStep}>אנא בחר תאריך לטיפול</Text>
                     </View>
-                    <Calendar
+                    <CalendarList
                         onDayPress={handleDayPress}
                         markedDates={{
                             [selectedDate]: { selected: true, marked: true, selectedColor: '#E8585E' },
                         }}
+                        pastScrollRange={1}
+                        futureScrollRange={3}
+                        scrollEnabled
+                        showScrollIndicator
+                        style={styles.calendar}
+                        theme={{
+                            calendarBackground: '#fff',
+                            textSectionTitleColor: '#b6c1cd',
+                            selectedDayBackgroundColor: '#E8585E',
+                            selectedDayTextColor: '#ffffff',
+                            todayTextColor: '#E8585E',
+                            dayTextColor: '#2d4150',
+                            textDisabledColor: '#d9e1e8',
+                            dotColor: '#E8585E',
+                            selectedDotColor: '#ffffff',
+                            arrowColor: 'orange',
+                            monthTextColor: '#000',
+                            indicatorColor: '#000',
+                        }}
                     />
-                </ScrollView>
+                </View>
+
             ),
         },
         {
@@ -217,9 +263,8 @@ const ServiceCenterWizard = ({ modalVisible, setModalVisible, startStep }) => {
                                 key={button.text}
                                 icon={button.icon}
                                 text={button.text}
-                                style={styles.serviceButton}
-                                onPress={() => handleAdditionalDemandSelection(button.demand)}
-                            />
+                                style={[styles.serviceButton, selectedButtons.some(item => item.demand === button.demand) && styles.selectedButton]}
+                                onPress={() => handleAdditionalDemandSelection(button)} />
                         ))}
                     </View>
                     <View style={styles.textContainer}>
@@ -228,8 +273,8 @@ const ServiceCenterWizard = ({ modalVisible, setModalVisible, startStep }) => {
                             <TextInput
                                 style={styles.inputLeb}
                                 placeholder="האם יש עוד משהו שתרצו שנבדוק שלא מצויין ברשימה למעלה?"
-                                value={details}
-                                onChangeText={setDetails}
+                                value={moreDetails}
+                                onChangeText={setMoreDetails}
                                 multiline
                                 onFocus={() => setIsFocused(true)}
                                 onBlur={() => setIsFocused(false)}
@@ -241,7 +286,7 @@ const ServiceCenterWizard = ({ modalVisible, setModalVisible, startStep }) => {
                     <View style={styles.addImagesContainer}>
                         <Text style={styles.titleStep}>הוספת תמונות</Text>
                         <ScrollView horizontal>
-                            {images.length < 3 && (
+                            {moreImages.length < 3 && (
                                 <>
                                     <TouchableOpacity onPress={handleAddImage}>
                                         <View style={styles.imageContainer}>
@@ -255,7 +300,7 @@ const ServiceCenterWizard = ({ modalVisible, setModalVisible, startStep }) => {
                                     </TouchableOpacity>
                                 </>
                             )}
-                            {images.map((image, index) => (
+                            {moreImages.map((image, index) => (
                                 <View key={index} style={styles.imageContainer}>
                                     <Image source={image} style={styles.thumbnail} />
                                 </View>
@@ -274,49 +319,48 @@ const ServiceCenterWizard = ({ modalVisible, setModalVisible, startStep }) => {
                         <Text style={styles.titleStep}>זימון שירותי מוסך</Text>
                         <Text style={styles.subtitleStep}>לפניך פרטי הקריאה אנא בדוק שכל הפרטים נכונים לפני שליחה.</Text>
                         <View style={styles.imgAndTextRow}>
-                            <Image source={require('../D1-2-assets/icons/Car.png')} style={styles.iconRow} />
-                            <Text style={styles.defaultText}>{details}</Text>
+                            <Image source={selectedService.icon} style={styles.iconRow} />
+                            <Text style={styles.defaultFerText}>{selectedService.text}</Text>
                         </View>
                     </View>
                     <View style={styles.textContainer}>
                         <Text style={styles.titleStep}>תיאור / הערות</Text>
-                        <Text style={styles.subtitleStep}>{ }</Text>
+                        <Text style={styles.subtitleStep}>{details}</Text>
                     </View>
                     <View style={styles.textContainer}>
                         <Text style={styles.titleStep}>תמונות</Text>
                         <ScrollView horizontal>
-                            {images.map((image, index) => (
+                            {allImages.map((image, index) => (
                                 <View key={index} style={styles.imageContainer}>
-                                    <Image source={image} style={styles.thumbnail} />
+                                    <Image source={{ uri: image.uri }} style={styles.thumbnail} />
                                 </View>
                             ))}
                         </ScrollView>
                     </View>
                     <View style={styles.textContainer}>
                         <Text style={styles.titleStep}>דרישות נוספות</Text>
-                        {/* <View style={styles.imgAndTextRow}>
-                            <Image source={require('../D1-2-assets/icons/Car.png')} style={styles.iconRow} />
-                            <Text style={styles.defaultText}>טיפול בתקלה ברכב</Text>
-                        </View>
-                        <View style={styles.imgAndTextRow}>
-                            <Image source={require('../D1-2-assets/icons/Car.png')} style={styles.iconRow} />
-                            <Text style={styles.defaultText}>טיפול בתקלה ברכב</Text>
-                        </View> */}
-                        <View style={styles.imgAndTextRow}>
-                            <Image source={require('../D1-2-assets/icons/Other.png')} style={styles.iconRow} />
-                            <View style={styles.defaultTextCol}>
-                                <Text style={styles.defaultText}>אחר</Text>
-                                <Text style={styles.defaultText}>{moreDetails}</Text>
+                        {selectedButtons.map((button, index) => (
+                            <View key={index} style={styles.imgAndTextRow}>
+                                <Image source={button.icon} style={styles.iconRow} />
+                                <Text style={styles.defaultFerText}>{button.text}</Text>
                             </View>
-
-                        </View>
+                        ))}
+                        {moreDetails ? (
+                            <View style={styles.imgAndTextRow}>
+                                <Image source={require('../D1-2-assets/icons/Other.png')} style={styles.iconRow} />
+                                <View style={styles.defaultTextCol}>
+                                    <Text style={styles.defaultFerText}>אחר</Text>
+                                    <Text style={styles.defaultSecText}>{moreDetails}</Text>
+                                </View>
+                            </View>
+                        ) : null}
                     </View>
                     <View style={styles.textContainer}>
-                        <Text style={styles.titleStep}>תמונות</Text>
+                        <Text style={styles.titleStep}>תמונות נוספות</Text>
                         <ScrollView horizontal>
-                            {images.map((image, index) => (
+                            {moreImages.map((image, index) => (
                                 <View key={index} style={styles.imageContainer}>
-                                    <Image source={image} style={styles.thumbnail} />
+                                    <Image source={{ uri: image.uri }} style={styles.thumbnail} />
                                 </View>
                             ))}
                         </ScrollView>
@@ -328,28 +372,26 @@ const ServiceCenterWizard = ({ modalVisible, setModalVisible, startStep }) => {
                                 <Image source={require('../D1-2-assets/icons/CarB.png')} style={styles.iconDemand} />
                             </View>
                             <View style={styles.defaultTextCol}>
-                                <Text style={styles.defaultText}>{ }</Text>
-                                <Text style={styles.defaultText}>{ }</Text>
+                                <Text style={styles.defaultFerText}>{carDetails.name}</Text>
+                                <Text style={styles.defaultSecText}>{carDetails.mileage}</Text>
                             </View>
-
                         </View>
                         <View style={styles.imgAndTextRow}>
                             <View style={styles.imgCircle}>
                                 <Image source={require('../D1-2-assets/icons/locationB.png')} style={styles.iconDemand} />
                             </View>
                             <View style={styles.defaultTextCol}>
-                                <Text style={styles.defaultText}>נקודות איסוף והחזרה</Text>
-                                <Text style={styles.defaultText}>{selectedLocation}</Text>
+                                <Text style={styles.defaultFerText}>נקודות איסוף והחזרה</Text>
+                                <Text style={styles.defaultSecText}>{selectedLocation}</Text>
                             </View>
-
                         </View>
                         <View style={styles.imgAndTextRow}>
                             <View style={styles.imgCircle}>
                                 <Image source={require('../D1-2-assets/icons/CalendarB.png')} style={styles.iconDemand} />
                             </View>
                             <View style={styles.defaultTextCol}>
-                                <Text style={styles.defaultText}>מועד טיפול</Text>
-                                <Text style={styles.defaultText}>{selectedDate}</Text>
+                                <Text style={styles.defaultFerText}>מועד טיפול</Text>
+                                <Text style={styles.defaultSecText}>{selectedDate}</Text>
                             </View>
                         </View>
                     </View>
@@ -365,7 +407,7 @@ const ServiceCenterWizard = ({ modalVisible, setModalVisible, startStep }) => {
                     <GradientButton onPress={() => setModalVisible(true)} text="אישור ושליחה" />
                 </ScrollView>
             ),
-        },
+        }
     ];
 
     return (
@@ -504,9 +546,8 @@ const styles = StyleSheet.create({
     },
     imgAndTextRow: {
         flexDirection: 'row-reverse',
-        justifyContent: 'space-between',
         alignItems: 'center',
-        width: '55%',
+        width: '100%',
     },
     imgCircle: {
         marginVertical: windowWidth * 0.01,
@@ -588,8 +629,22 @@ const styles = StyleSheet.create({
         paddingTop: windowHeight * 0.02,
         color: "#000",
     },
-    defaultTextCol: {
-        width: '80%',
+    selectedButton: {
+        backgroundColor: '#E8585E',
+        color: "#fff",
+    },
+    calendar: {
+        width: '100%',
+        height: windowHeight * 0.6,
+    },
+    defaultFerText: {
+        paddingRight: windowHeight * 0.01,
+        color: '#000',
+        fontWeight: 'bold',
+    },
+    defaultSecText: {
+        color: '#68677E',
+        paddingRight: windowHeight * 0.01,
     }
 });
 

@@ -3,12 +3,12 @@ import { View, StyleSheet } from 'react-native';
 import ServiceCenterWizard from './components/ServiceCenterWizard';
 
 const ServiceCenterProcess = ({ navigation, route }) => {
-    const { startStep } = route.params;
+    const { startStep, selectedService } = route.params;
     const [modalVisible, setModalVisible] = useState(false);
 
     return (
         <View style={styles.container}>
-            <ServiceCenterWizard modalVisible={modalVisible} setModalVisible={setModalVisible} startStep={startStep} />
+            <ServiceCenterWizard modalVisible={modalVisible} setModalVisible={setModalVisible} startStep={startStep} selectedService={selectedService} />
         </View>
     );
 };

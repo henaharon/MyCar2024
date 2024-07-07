@@ -15,12 +15,12 @@ const ServiceCenter = ({ navigation }) => {
         { icon: require('./D1-2-assets/icons/Other.png'), text: 'אחר', service: 'Other' },
     ];
 
-    const handleServiceSelection = (service) => {
-        if (service === 'VehicleRepair' || service === 'Other') {
-            navigation.navigate('ServiceCenterProcess', { startStep: 0 });
+    const handleServiceSelection = (button) => {
+        if (button.service === 'VehicleRepair' || button.service === 'Other') {
+            navigation.navigate('ServiceCenterProcess', { startStep: 0, selectedService: button });
         }
         else {
-            navigation.navigate('ServiceCenterProcess', { startStep: 1 });
+            navigation.navigate('ServiceCenterProcess', { startStep: 1, selectedService: button });
         }
     };
 
@@ -52,7 +52,7 @@ const ServiceCenter = ({ navigation }) => {
                             icon={button.icon}
                             text={button.text}
                             style={styles.serviceButton}
-                            onPress={() => handleServiceSelection(button.service)}
+                            onPress={() => handleServiceSelection(button)}
                         />
                     ))}
                 </View>
