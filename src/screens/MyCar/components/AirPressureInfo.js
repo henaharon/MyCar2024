@@ -4,7 +4,7 @@ import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 const AirPressureInfo = ({ navigation }) => {
   return (
     <View style={styles.container}>
-      <Image source={require('../../assets/images/tire_pressure.jpg')} style={styles.image} />
+      <Image source={require('../../assets/images/air.jpg')} style={styles.image} />
       <Text style={styles.title}>לחץ אוויר</Text>
       <Text style={styles.description}>
         לחץ אוויר נקבע בהתאם למספר פרמטרים כגון סוג הצמיג, כמות אנשים שנמצאים ברכב, האם הרכב גורר משא, תנאי מזג האוויר, רובן ועוד.
