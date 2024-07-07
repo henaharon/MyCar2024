@@ -1,17 +1,19 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import MyCar from '../screens/MyCar/MyCar';
-import DocumentSharingScreen from '../screens/MyCar/components/DocumentSharingScreen'; // אם יש לך את המסך הזה בקובץ אחר
+import DocumentSharingScreen from '../screens/MyCar/components/DocumentSharingScreen';
+import AirPressureInfo from '../screens/MyCar/components/AirPressureInfo'; // ייבוא מסך המידע על לחץ האוויר
 
 const Stack = createStackNavigator();
 
 const StackNavigator = () => {
-  return (
-    <Stack.Navigator>
-      <Stack.Screen name="MyCar" component={MyCar} options={{ title: 'פרטי רכב' }} />
-      <Stack.Screen name="DocumentSharing" component={DocumentSharingScreen} options={{ title: 'שיתוף מסמכים' }} />
-    </Stack.Navigator>
-  );
+    return (
+        <Stack.Navigator>
+            <Stack.Screen name="MyCar" component={MyCar} options={{ headerShown: false }} />
+            <Stack.Screen name="DocumentSharing" component={DocumentSharingScreen} options={{ title: 'שיתוף מסמכים' }} />
+            <Stack.Screen name="AirPressureInfo" component={AirPressureInfo} options={{ title: 'לחץ אוויר' }} />
+        </Stack.Navigator>
+    );
 };
 
 export default StackNavigator;

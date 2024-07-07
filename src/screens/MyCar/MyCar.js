@@ -32,10 +32,16 @@ const MyCar = () => {
     }
   };
 
+  const closeScreen = () => {
+    // Implement the logic to close the screen, e.g., navigation.goBack()
+  };
+
   return (
     <View style={styles.container}>
-      {/* Static Top Section */}
       <View style={styles.topSection}>
+        <TouchableOpacity style={styles.closeButton} onPress={closeScreen}>
+          <Image source={require('../../assets/icons/NavBUtton.png')} style={styles.closeIcon} />
+        </TouchableOpacity>
         <Image source={require('../../assets/icons/car.png')} style={styles.carImage} />
         <Text style={styles.carModel}>יונדאי איוניק 2022</Text>
         <View style={styles.carDetails}>
@@ -52,27 +58,40 @@ const MyCar = () => {
         </View>
       </View>
 
-      {/* Expandable Driver List */}
-      <TouchableOpacity onPress={() => setExpanded(!expanded)}>
-        <Text style={styles.driverSection}>נהגים מורשים</Text>
-      </TouchableOpacity>
+      {/* Expandable Driver List and Document Button */}
+      <View style={styles.actionsContainer}>
+        <TouchableOpacity onPress={() => setExpanded(!expanded)} style={styles.actionButton}>
+          <Text style={styles.actionButtonText}>נהגים מורשים</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => setDocModalVisible(true)} style={styles.actionButton}>
+          <Text style={styles.actionButtonText}>מסמכים</Text>
+        </TouchableOpacity>
+      </View>
       {expanded && <DriverList />}
 
       {/* Static Information Boxes */}
       <View style={styles.infoBoxes}>
-        <InfoBox title="אוגוסט 2022" imageSource={require('../../assets/icons/Calendar.png')} />
-        <InfoBox title="15,000 ק'מ" imageSource={require('../../assets/icons/Repair.png')} />
-        <TouchableOpacity style={styles.infoBox} onPress={() => setPopupVisible(true)}>
-          <Text>לחץ אוויר קדמי</Text>
-          <Image source={require('../../assets/icons/upwheel.png')} style={styles.infoImage} />
+        <TouchableOpacity style={styles.infoBox}>
+          <Image source={require('../../assets/icons/Repair.png')} style={styles.infoImage} />
+          <Text style={styles.infoTextSmall}>מרווח טיפולים</Text>
+          <Text style={styles.infoTextLarge}>15,000 ק'מ</Text>
         </TouchableOpacity>
-        <InfoBox title="לחץ אוויר אחורי" imageSource={require('../../assets/icons/down wheel.png')} />
+        <TouchableOpacity style={styles.infoBox}>
+          <Image source={require('../../assets/icons/Calendar.png')} style={styles.infoImage} />
+          <Text style={styles.infoTextSmall}>עליה לכביש</Text>
+          <Text style={styles.infoTextLarge}>אוגוסט 2022</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.infoBox}>
+          <Image source={require('../../assets/icons/upwheel.png')} style={styles.infoImage} />
+          <Text style={styles.infoTextSmall}>לחץ אוויר אחורי</Text>
+          <Text style={styles.infoTextLarge}>32-34</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.infoBox} onPress={() => setPopupVisible(true)}>
+          <Image source={require('../../assets/icons/downwheel.png')} style={styles.infoImage} />
+          <Text style={styles.infoTextSmall}>לחץ אוויר קדמי</Text>
+          <Text style={styles.infoTextLarge}>32-34</Text>
+        </TouchableOpacity>
       </View>
-
-      {/* Document Sharing Button */}
-      <TouchableOpacity style={styles.shareButton} onPress={() => setDocModalVisible(true)}>
-        <Text style={styles.shareButtonText}>מסמכים</Text>
-      </TouchableOpacity>
 
       {/* Document Modal */}
       <Modal
@@ -119,13 +138,18 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 10,
-    backgroundColor: '#f8f8f8',
+    backgroundColor: '#ff4081',
   },
   topSection: {
     alignItems: 'center',
     padding: 20,
-    backgroundColor: '#ff4081',
-    borderRadius: 10,
+  },
+  closeButton: {
+    alignSelf: 'flex-end',
+  },
+  closeIcon: {
+    width: 24,
+    height: 24,
   },
   carImage: {
     width: 150,
@@ -154,11 +178,21 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: '#fff',
   },
-  driverSection: {
-    fontSize: 18,
-    fontWeight: 'bold',
+  actionsContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
     marginVertical: 10,
-    textAlign: 'center',
+  },
+  actionButton: {
+    backgroundColor: '#007BFF',
+    padding: 10,
+    borderRadius: 5,
+    alignItems: 'center',
+    width: '45%',
+  },
+  actionButtonText: {
+    color: '#fff',
+    fontSize: 16,
   },
   infoBoxes: {
     flexDirection: 'row',
@@ -175,7 +209,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#ccc',
     borderRadius: 10,
-    backgroundColor: '#fff',
+    backgroundColor: 'rgba(255, 255, 255, 0.5)',
     padding: 10,
   },
   infoImage: {
@@ -183,12 +217,25 @@ const styles = StyleSheet.create({
     height: 40,
     marginVertical: 5,
   },
+  infoTextSmall: {
+    fontSize: 14,
+    color: '#333',
+    textAlign: 'center',
+  },
+  infoTextLarge: {
+    fontSize: 16,
+    color: '#333',
+    textAlign: 'center',
+    fontWeight: 'bold',
+  },
   shareButton: {
     backgroundColor: '#007BFF',
     padding: 10,
     borderRadius: 5,
     alignItems: 'center',
     marginVertical: 10,
+    width: '45%',
+    alignSelf: 'center',
   },
   shareButtonText: {
     color: '#fff',
