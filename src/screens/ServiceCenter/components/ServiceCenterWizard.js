@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { View, StyleSheet, Text, TextInput, Dimensions, TouchableOpacity, Image, ScrollView } from 'react-native';
 import { launchCamera, launchImageLibrary } from 'react-native-image-picker';
+import { Calendar } from 'react-native-calendars';
 import ServiceHeader from '../components/ServiceHeader';
 import LocationOption from '../components/LocationOption';
 import ServiceButton from '../components/ServiceButton';
@@ -13,9 +14,11 @@ const windowHeight = Dimensions.get('window').height;
 const ServiceCenterWizard = ({ modalVisible, setModalVisible, startStep }) => {
     const [step, setStep] = useState(startStep);
     const [details, setDetails] = useState('');
+    const [moreDetails, setMoreDetails] = useState('');
     const [mileage, setMileage] = useState('');
     const [selectedLocation, setSelectedLocation] = useState('');
     const [date, setDate] = useState('');
+    const [selectedDate, setSelectedDate] = useState(null);
     const [demands, setDemands] = useState([]);
     const [images, setImages] = useState([]);
     const [isFocused, setIsFocused] = useState(false);
@@ -82,6 +85,14 @@ const ServiceCenterWizard = ({ modalVisible, setModalVisible, startStep }) => {
         { icon: require('../D1-2-assets/icons/Tires.png'), text: 'צמיגים', demand: 'tires' },
     ];
 
+    const handleDayPress = (day) => {
+        if (selectedDate === day.dateString) {
+            handleNext();
+        } else {
+            setSelectedDate(day.dateString);
+        }
+    };
+
     const steps = [
         {
             title: 'תקלה ברכב',
@@ -97,7 +108,10 @@ const ServiceCenterWizard = ({ modalVisible, setModalVisible, startStep }) => {
                             value={details}
                             onChangeText={setDetails}
                             multiline
-                            placeholderTextColor='#68677E'
+                            onFocus={() => setIsFocused(true)}
+                            onBlur={() => setIsFocused(false)}
+                            isFocused={isFocused}
+                            placeholderTextColor={styles.placeholderTextColor.color}
                         />
                     </View>
                     <View style={styles.addImagesContainer}>
@@ -145,7 +159,8 @@ const ServiceCenterWizard = ({ modalVisible, setModalVisible, startStep }) => {
                         keyboardType="numeric"
                         onFocus={() => setIsFocused(true)}
                         onBlur={() => setIsFocused(false)}
-                        placeholderTextColor='#68677E'
+                        isFocused={isFocused}
+                        placeholderTextColor={styles.placeholderTextColor.color}
                     />
                 </ScrollView>
             ),
@@ -173,7 +188,16 @@ const ServiceCenterWizard = ({ modalVisible, setModalVisible, startStep }) => {
             title: 'מועד הטיפול',
             content: (
                 <ScrollView contentContainerStyle={styles.stepContainer}>
-                    {/* Add content here */}
+                    <View style={styles.textContainer}>
+                        <Text style={styles.titleStep}>בחירת מועד לטיפול</Text>
+                        <Text style={styles.subtitleStep}>אנא בחר תאריך לטיפול</Text>
+                    </View>
+                    <Calendar
+                        onDayPress={handleDayPress}
+                        markedDates={{
+                            [selectedDate]: { selected: true, marked: true, selectedColor: 'red' },
+                        }}
+                    />
                 </ScrollView>
             ),
         },
@@ -201,10 +225,12 @@ const ServiceCenterWizard = ({ modalVisible, setModalVisible, startStep }) => {
                         <TextInput
                             style={styles.inputLeb}
                             placeholder='האם יש עוד משהו שתרצו שנבדוק שלא מצויין ברשימה למעלה?'
-                            value={details}
-                            onChangeText={setDetails}
+                            value={moreDetails}
+                            onChangeText={setMoreDetails}
                             multiline
-                            placeholderTextColor='#68677E'
+                            onBlur={() => setIsFocused(false)}
+                            isFocused={isFocused}
+                            placeholderTextColor={styles.placeholderTextColor.color}
                         />
                     </View>
                     <View style={styles.addImagesContainer}>
@@ -244,12 +270,12 @@ const ServiceCenterWizard = ({ modalVisible, setModalVisible, startStep }) => {
                         <Text style={styles.subtitleStep}>לפניך פרטי הקריאה אנא בדוק שכל הפרטים נכונים לפני שליחה.</Text>
                         <View style={styles.imgAndTextRow}>
                             <Image source={require('../D1-2-assets/icons/Car.png')} style={styles.iconRow} />
-                            <Text style={styles.defaultText}>טיפול בתקלה ברכב</Text>
+                            <Text style={styles.defaultText}>{details}</Text>
                         </View>
                     </View>
                     <View style={styles.textContainer}>
                         <Text style={styles.titleStep}>תיאור / הערות</Text>
-                        <Text style={styles.subtitleStep}>החלון הקדמי ימני תקועה</Text>
+                        <Text style={styles.subtitleStep}>{details}</Text>
                     </View>
                     <View style={styles.textContainer}>
                         <Text style={styles.titleStep}>תמונות</Text>
@@ -272,8 +298,9 @@ const ServiceCenterWizard = ({ modalVisible, setModalVisible, startStep }) => {
                             <Text style={styles.defaultText}>טיפול בתקלה ברכב</Text>
                         </View>
                         <View style={styles.imgAndTextRow}>
-                            <Image source={require('../D1-2-assets/icons/Car.png')} style={styles.iconRow} />
-                            <Text style={styles.defaultText}>טיפול בתקלה ברכב</Text>
+                            <Image source={require('../D1-2-assets/icons/Other.png')} style={styles.iconRow} />
+                            <Text style={styles.defaultText}>אחר</Text>
+                            <Text style={styles.defaultText}>{moreDetails}</Text>
                         </View>
                     </View>
                     <View style={styles.textContainer}>
@@ -292,19 +319,22 @@ const ServiceCenterWizard = ({ modalVisible, setModalVisible, startStep }) => {
                             <View style={styles.imgCircle}>
                                 <Image source={require('../D1-2-assets/icons/CarB.png')} style={styles.iconDemand} />
                             </View>
-                            <Text style={styles.defaultText}>טיפול בתקלה ברכב</Text>
+                            <Text style={styles.defaultText}>{ }</Text>
+                            <Text style={styles.defaultText}>{ }</Text>
                         </View>
                         <View style={styles.imgAndTextRow}>
                             <View style={styles.imgCircle}>
                                 <Image source={require('../D1-2-assets/icons/locationB.png')} style={styles.iconDemand} />
                             </View>
-                            <Text style={styles.defaultText}>טיפול בתקלה ברכב</Text>
+                            <Text style={styles.defaultText}>נקודות איסוף והחזרה</Text>
+                            <Text style={styles.defaultText}>{selectedLocation}</Text>
                         </View>
                         <View style={styles.imgAndTextRow}>
                             <View style={styles.imgCircle}>
                                 <Image source={require('../D1-2-assets/icons/CalendarB.png')} style={styles.iconDemand} />
                             </View>
-                            <Text style={styles.defaultText}> טיפול בתקלה ברכב</Text>
+                            <Text style={styles.defaultText}>מועד טיפול</Text>
+                            <Text style={styles.defaultText}>{selectedDate}</Text>
                         </View>
                     </View>
                     <View style={styles.warning}>
@@ -387,10 +417,14 @@ const styles = StyleSheet.create({
         padding: windowWidth * 0.03,
         width: '70%',
         margin: windowHeight * 0.02,
+        color: '#000',
         backgroundColor: '#fff'
     },
     inputFocused: {
         borderColor: '#5064EB',
+    },
+    placeholderTextColor: {
+        color: '#68677E',
     },
     button: {
         backgroundColor: '#E8585E',
@@ -472,7 +506,7 @@ const styles = StyleSheet.create({
         height: windowWidth * 0.05,
     },
     warning: {
-        margin: windowHeight * 0.01,
+        margin: windowHeight * 0.04,
         padding: windowHeight * 0.02,
         flexDirection: 'row-reverse',
         justifyContent: 'space-between',
@@ -494,7 +528,23 @@ const styles = StyleSheet.create({
     awrningIcon: {
         width: windowWidth * 0.06,
         height: windowWidth * 0.06,
-    }
+    },
+    dateButton: {
+        backgroundColor: '#5064EB',
+        padding: windowHeight * 0.02,
+        borderRadius: windowWidth * 0.05,
+        marginTop: windowHeight * 0.02,
+    },
+    dateButtonText: {
+        color: '#fff',
+        textAlign: 'center',
+        fontSize: windowWidth * 0.04,
+    },
+    selectedDateText: {
+        marginTop: windowHeight * 0.02,
+        color: '#000',
+        fontSize: windowWidth * 0.04,
+    },
 });
 
 export default ServiceCenterWizard;
