@@ -8,13 +8,14 @@ import GeneralForm from './src/screens/AccidentReport/components/GeneralForm';
 import I10 from './src/screens/AccidentReport/screens/DamageReport/I10';
 import I6 from './src/screens/AccidentReport/screens/AccidentReportForm/I6';
 import AccidentReportOnboarding from './src/screens/AccidentReport/screens/AccidentReportForm/AccidentReportOnboarding';
+import DamageReport from './src/screens/AccidentReport/screens/DamageReport/DamageReport';
 
 function App(): React.JSX.Element {
   return (
     <BaseView>
       {/* <AccidentReportIntro /> */}
-      {/* <AccidentReportIntro /> */}
-      <AccidentReportOnboarding />
+      {/* <AccidentReportOnboarding /> */}
+      <DamageReport />
     </BaseView>
   );
 }

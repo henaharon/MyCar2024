@@ -1,24 +1,21 @@
 import React from 'react';
-import {View, Animated, StyleSheet, useWindowDimensions} from 'react-native';
+import { View, Animated, StyleSheet, useWindowDimensions } from 'react-native';
 
-const Paginator = ({currentPage, onPageChange, pagesCount, data, scrollX}) => {
-  const {width} = useWindowDimensions();
+const Paginator = ({ currentPage, pagesCount, data }) => {
+  const { width } = useWindowDimensions();
 
   if (pagesCount) {
     data = data.slice(0, pagesCount);
   }
 
   const dots = data.map((_, i) => {
-    const dotColor = scrollX.interpolate({
-      inputRange: [width * i, width * (i + 1)],
-      outputRange: ['#191d43', '#3652f8'],
-      extrapolate: 'clamp',
-    });
+    const isActive = i <= currentPage; 
+    const dotColor = isActive ? '#3652f8' : '#191d43'; 
 
     return (
       <Animated.View
         key={i.toString()}
-        style={[styles.dot, {backgroundColor: dotColor}]}
+        style={[styles.dot, { backgroundColor: dotColor }]}
       />
     );
   });
@@ -30,9 +27,7 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row-reverse',
     justifyContent: 'center',
-    width: '100%',
-    marginBottom: '9%',
-  },
+    width: '100%',  },
   dot: {
     height: 10,
     borderRadius: 5,

@@ -3,11 +3,11 @@ import { Dimensions, StyleSheet, View, } from 'react-native';
 import Title from '../../../components/Title';
 import Requirement from './Requirement';
 
-const policeIcon = require('../../../../../assets/i1-assets/elements24PxIconsPolice3x.png');
-const handshakeIcon = require('../../../../../assets/i1-assets/elements24PxIconsHandshake3x.png');
-const cameraIcon = require('../../../../../assets/i1-assets/elements24PxIconsCamera3x.png');
-const toolIcon = require('../../../../../assets/i1-assets/elements24PxIconsTool3x.png');
-const messageIcon = require('../../../../../assets/i1-assets/elements24PxIconsMessageExclamation3x.png');
+const policeIcon = require('../../../../../assets/icons/elements24PxIconsPolice3x.png');
+const handshakeIcon = require('../../../../../assets/icons/elements24PxIconsHandshake3x.png');
+const cameraIcon = require('../../../../../assets/icons/elements24PxIconsCamera3x.png');
+const toolIcon = require('../../../../../assets/icons/elements24PxIconsTool3x.png');
+const messageIcon = require('../../../../../assets/icons/elements24PxIconsMessageExclamation3x.png');
 
 const policeParagraph = 'במקרה של תאונה עם נפגעים, יש לדווח למוקד 100 של המשטרה.';
 const handshakeParagraph = 'אין לתת התחייבות כלשהי בכתב או בעל פה.';
