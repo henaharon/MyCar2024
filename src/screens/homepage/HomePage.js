@@ -33,7 +33,7 @@ const texts = {
   services: [
     { title: "שטיפת רכב", image: first, navigateTo: "TimerScreen" },
     { title: "רכב חשמלי", image: second, navigateTo: "ElectricVehicle" },
-    { title: "צמיגים ופנצריות", image: third, navigateTo: "TimerScreen" },
+    { title: "צמיגים ופנצריות", image: third, navigateTo: "Tires" },
     { title: "אביזרים", image: forth, navigateTo: "TimerScreen" },
     { title: "זימון שירותי מוסך", image: fith, navigateTo: "TimerScreen" },
     { title: "תקלות בדרך", image: six, navigateTo: "TimerScreen" },

@@ -9,6 +9,8 @@ import DriversCall from "./src/screens/DriversCall/DriversCall";
 import DriversContactUs from "./src/screens/DriversContactUs/components/DriversContactUs";
 import ElectricVehicle from "./src/screens/ElectricVehicle/ElectricVehicle";
 import DriversSideMenu from "./src/screens/DriversSideMenu/DriverSideMenu";
+import Tires from "./src/screens/Tires/Tires";
+import RoadsideAssistance from "./src/screens/Tires/RoadsideAssistance";
 
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -18,6 +20,8 @@ function HomeStack() {
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name="HomePage" component={HomePage} />
       <Stack.Screen name="ElectricVehicle" component={ElectricVehicle} />
+      <Stack.Screen name="Tires" component={Tires} />
+      <Stack.Screen name="RoadsideAssistance" component={RoadsideAssistance} />
     </Stack.Navigator>
   );
 }
