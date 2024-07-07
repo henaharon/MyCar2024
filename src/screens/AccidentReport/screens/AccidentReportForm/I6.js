@@ -32,16 +32,16 @@ const additionalInjuredTitle = 'נפגעים נוספים';
 const additionalInjuredPlaceholder = 'במידה ויש נפגעים נוספים אנא עדכן כאן, יש להקפיד למלא את שמם המלא, ת.ז, כתובת וטלפון של כל הנפגעים הנוספים.';
 const injuredPhotosTitle = 'הוספת תמונות נפגעים';
 
-const I6 = () => {
+const I6 = ({ setProgress }) => {
     const [witnesses, setWitnesses] = useState(false);
     const [injured, setInjured] = useState(false);
   return (
-    <BaseView>
-      <ScrollView contentContainerStyle={styles.scrollViewContent}>
-        <View style={styles.contentWrapper}>
-          <EventHeader>
+    // <BaseView>
+    //   <ScrollView contentContainerStyle={styles.scrollViewContent}>
+    //     <View style={styles.contentWrapper}>
+          /* <EventHeader>
             <FormHeader title={headerTitle}/>
-          </EventHeader>
+          </EventHeader> */
           <BodyBaseView style={styles.bodyContainer}>
             <Title title={affectedTitle} />
             <View style={{marginLeft: windowWidth * 0.08}}>
@@ -117,9 +117,9 @@ const I6 = () => {
             </View>
             )}
           </BodyBaseView>
-        </View>
-      </ScrollView>
-    </BaseView>
+    //     </View>
+    //   </ScrollView>
+    // </BaseView>
   );
 };
 

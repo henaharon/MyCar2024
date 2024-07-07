@@ -1,10 +1,5 @@
 import React, {useState} from 'react';
-import {
-  Dimensions,
-  StyleSheet,
-  View,
-  ScrollView,
-} from 'react-native';
+import {Dimensions, StyleSheet, View, ScrollView} from 'react-native';
 
 import EventHeader from '../../components/EventHeader';
 import {FormHeader} from '../../components/FormHeader';
@@ -21,44 +16,45 @@ const policeInfoTitle = 'פרטי המשטרה';
 const policeNamePlaceholder = 'שם השוטר';
 const policeStationPlaceholder = 'תחנת משטרה';
 
-const I3 = () => {
-    const [policeInvolvement, setPoliceInvolvement] = useState(false);
+const I3 = ({ setProgress }) => {
+  const [policeInvolvement, setPoliceInvolvement] = useState(false);
   return (
-    <BaseView>
-      <ScrollView contentContainerStyle={styles.scrollViewContent}>
-        <View style={styles.contentWrapper}>
-          <EventHeader>
-            <FormHeader title={headerTitle}/>
-          </EventHeader>
+    // <BaseView>
+    //   <ScrollView contentContainerStyle={styles.scrollViewContent}>
+    //     <View style={styles.contentWrapper}>
           <BodyBaseView style={styles.bodyContainer}>
             <GeneralForm />
             <View style={styles.policeInvolvementContainer}>
-            <Title title={policeInvolvementTitle} />
-            <ChoiceInput optionF={"לא היתה"} optionT={"כן, היתה"} setChoice={setPoliceInvolvement}/>
-            {policeInvolvement && (
+              <Title title={policeInvolvementTitle} />
+              <ChoiceInput
+                optionF={'לא היתה'}
+                optionT={'כן, היתה'}
+                setChoice={setPoliceInvolvement}
+              />
+              {policeInvolvement && (
                 <View style={styles.policeInfoContainer}>
-                <Title title={policeInfoTitle} />
-                <View style={styles.policeInfoForm}>
+                  <Title title={policeInfoTitle} />
+                  <View style={styles.policeInfoForm}>
                     <Input
-                    placeholder={policeStationPlaceholder}
-                    required={false}
-                    width={0.9}
-                    type={''}
+                      placeholder={policeStationPlaceholder}
+                      required={false}
+                      width={0.9}
+                      type={''}
                     />
                     <Input
-                    placeholder={policeNamePlaceholder}
-                    required={false}
-                    width={0.9}
-                    type={''}
+                      placeholder={policeNamePlaceholder}
+                      required={false}
+                      width={0.9}
+                      type={''}
                     />
+                  </View>
                 </View>
-            </View>
-            )}
+              )}
             </View>
           </BodyBaseView>
-        </View>
-      </ScrollView>
-    </BaseView>
+    //     </View>
+    //   </ScrollView>
+    // </BaseView>
   );
 };
 
@@ -77,8 +73,8 @@ const styles = StyleSheet.create({
   },
   bodyContainer: {
     flex: 1,
-    alignItems: 'center',
-    backgroundColor: 'white',
+    alignItems: "center",
+    backgroundColor: "white",
     borderRadius: 25,
     marginTop: -windowHeight * 0.1,
     paddingTop: windowHeight * 0.15,
@@ -101,5 +97,5 @@ const styles = StyleSheet.create({
     position: 'relative',
     top: windowHeight * 0.12,
     marginLeft: windowWidth * 0.1,
-  }
+  },
 });

@@ -26,12 +26,12 @@ const I7 = () => {
     const [carDamage, setCarDamage] = useState(false);
     const [associativeDamage, setAssosiativeDamage] = useState(false);
   return (
-    <BaseView>
-      <ScrollView contentContainerStyle={styles.scrollViewContent}>
-        <View style={styles.contentWrapper}>
-          <EventHeader>
+    // <BaseView>
+    //   <ScrollView contentContainerStyle={styles.scrollViewContent}>
+    //     <View style={styles.contentWrapper}>
+          /* <EventHeader>
             <FormHeader title={headerTitle}/>
-          </EventHeader>
+          </EventHeader> */
           <BodyBaseView style={styles.bodyContainer}>
             <View style={styles.carDamageForm}>
                 <Title title={damageTitle}/>
@@ -58,9 +58,9 @@ const I7 = () => {
                 )}
             </View>
           </BodyBaseView>
-        </View>
-      </ScrollView>
-    </BaseView>
+    //     </View>
+    //   </ScrollView>
+    // </BaseView>
   );
 };
 

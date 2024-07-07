@@ -14,8 +14,8 @@ function App(): React.JSX.Element {
   return (
     <BaseView>
       {/* <AccidentReportIntro /> */}
-      {/* <AccidentReportOnboarding /> */}
-      <DamageReport />
+      <AccidentReportOnboarding />
+      {/* <DamageReport /> */}
     </BaseView>
   );
 }
