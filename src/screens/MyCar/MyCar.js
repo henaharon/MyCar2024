@@ -1,36 +1,10 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, Image, TouchableOpacity, Modal, Button } from 'react-native';
+import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import DriverList from './components/DriverList';
 import InfoBox from './components/InfoBox';
-import DocumentPicker from 'react-native-document-picker';
-import Share from 'react-native-share';
 
-const MyCar = () => {
+const MyCar = ({ navigation }) => {
   const [expanded, setExpanded] = useState(false);
-  const [popupVisible, setPopupVisible] = useState(false);
-  const [selectedDoc, setSelectedDoc] = useState(null);
-  const [docModalVisible, setDocModalVisible] = useState(false);
-
-  const selectDocument = async () => {
-    try {
-      const res = await DocumentPicker.pick({
-        type: [DocumentPicker.types.allFiles],
-      });
-      setSelectedDoc(res);
-    } catch (err) {
-      if (DocumentPicker.isCancel(err)) {
-        console.log('User cancelled the picker');
-      } else {
-        throw err;
-      }
-    }
-  };
-
-  const shareDocument = async () => {
-    if (selectedDoc) {
-      await Share.open({ url: selectedDoc.uri });
-    }
-  };
 
   const closeScreen = () => {
     // Implement the logic to close the screen, e.g., navigation.goBack()
@@ -63,7 +37,7 @@ const MyCar = () => {
         <TouchableOpacity onPress={() => setExpanded(!expanded)} style={styles.actionButton}>
           <Text style={styles.actionButtonText}>נהגים מורשים</Text>
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => setDocModalVisible(true)} style={styles.actionButton}>
+        <TouchableOpacity onPress={() => navigation.navigate('DocumentSharing')} style={styles.actionButton}>
           <Text style={styles.actionButtonText}>מסמכים</Text>
         </TouchableOpacity>
       </View>
@@ -86,50 +60,12 @@ const MyCar = () => {
           <Text style={styles.infoTextSmall}>לחץ אוויר אחורי</Text>
           <Text style={styles.infoTextLarge}>32-34</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.infoBox} onPress={() => setPopupVisible(true)}>
+        <TouchableOpacity style={styles.infoBox} onPress={() => navigation.navigate('AirPressureInfo')}>
           <Image source={require('../../assets/icons/downwheel.png')} style={styles.infoImage} />
           <Text style={styles.infoTextSmall}>לחץ אוויר קדמי</Text>
           <Text style={styles.infoTextLarge}>32-34</Text>
         </TouchableOpacity>
       </View>
-
-      {/* Document Modal */}
-      <Modal
-        animationType="slide"
-        transparent={true}
-        visible={docModalVisible}
-        onRequestClose={() => {
-          setDocModalVisible(!docModalVisible);
-        }}
-      >
-        <View style={styles.modalView}>
-          <Text style={styles.modalText}>בחר מסמך לשיתוף</Text>
-          <TouchableOpacity style={styles.pickButton} onPress={selectDocument}>
-            <Text style={styles.pickButtonText}>בחר מסמכים</Text>
-          </TouchableOpacity>
-          {selectedDoc && (
-            <TouchableOpacity style={styles.shareButton} onPress={shareDocument}>
-              <Text style={styles.shareButtonText}>שיתוף מסמכים</Text>
-            </TouchableOpacity>
-          )}
-          <Button title="סגור" onPress={() => setDocModalVisible(!docModalVisible)} />
-        </View>
-      </Modal>
-
-      {/* Popup Dialog */}
-      <Modal
-        animationType="slide"
-        transparent={true}
-        visible={popupVisible}
-        onRequestClose={() => {
-          setPopupVisible(!popupVisible);
-        }}
-      >
-        <View style={styles.modalView}>
-          <Text style={styles.modalText}>מידע על לחץ אוויר...</Text>
-          <Button title="הבנתי" onPress={() => setPopupVisible(false)} />
-        </View>
-      </Modal>
     </View>
   );
 };
@@ -227,52 +163,6 @@ const styles = StyleSheet.create({
     color: '#333',
     textAlign: 'center',
     fontWeight: 'bold',
-  },
-  shareButton: {
-    backgroundColor: '#007BFF',
-    padding: 10,
-    borderRadius: 5,
-    alignItems: 'center',
-    marginVertical: 10,
-    width: '45%',
-    alignSelf: 'center',
-  },
-  shareButtonText: {
-    color: '#fff',
-    fontSize: 18,
-  },
-  modalView: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    margin: 20,
-    backgroundColor: 'white',
-    borderRadius: 20,
-    padding: 35,
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-    elevation: 5,
-  },
-  modalText: {
-    marginBottom: 15,
-    textAlign: 'center',
-    fontSize: 18,
-  },
-  pickButton: {
-    backgroundColor: '#007BFF',
-    padding: 10,
-    borderRadius: 5,
-    alignItems: 'center',
-    marginVertical: 10,
-  },
-  pickButtonText: {
-    color: '#fff',
-    fontSize: 18,
   },
 });
 

@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, TouchableOpacity, Modal, FlatList } from 'react
 
 const DriverList = () => {
   const [modalVisible, setModalVisible] = useState(false);
-  const drivers = ['נהג 1', 'נהג 2', 'נהג 3', 'נהג 4']; // רשימה לדוגמה של נהגים מורשים
+  const drivers = ['אביב שחר', 'רוני נבו', 'דנה שחר']; // רשימה לדוגמה של נהגים מורשים
 
   const handleDriverPress = () => {
     setModalVisible(true);

@@ -2,7 +2,7 @@ import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import MyCar from '../screens/MyCar/MyCar';
 import DocumentSharingScreen from '../screens/MyCar/components/DocumentSharingScreen';
-import AirPressureInfo from '../screens/MyCar/components/AirPressureInfo'; // ייבוא מסך המידע על לחץ האוויר
+import AirPressureInfo from '../screens/MyCar/components/AirPressureInfo';
 
 const Stack = createStackNavigator();
 

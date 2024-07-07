@@ -1,17 +1,20 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, TextInput, Alert } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, TextInput, FlatList, Image, Button } from 'react-native';
 import DocumentPicker from 'react-native-document-picker';
+import Share from 'react-native-share';
+import { useNavigation } from '@react-navigation/native';
 
 const DocumentSharingScreen = () => {
+  const [documents, setDocuments] = useState([]);
   const [email, setEmail] = useState('');
-  const [selectedDocuments, setSelectedDocuments] = useState([]);
+  const navigation = useNavigation();
 
-  const handleDocumentPick = async () => {
+  const selectDocument = async () => {
     try {
-      const results = await DocumentPicker.pickMultiple({
-        type: [DocumentPicker.types.pdf, DocumentPicker.types.doc],
+      const res = await DocumentPicker.pick({
+        type: [DocumentPicker.types.allFiles],
       });
-      setSelectedDocuments(results);
+      setDocuments([...documents, res]);
     } catch (err) {
       if (DocumentPicker.isCancel(err)) {
         console.log('User cancelled the picker');
@@ -21,32 +24,61 @@ const DocumentSharingScreen = () => {
     }
   };
 
-  const handleSendDocuments = () => {
-    // Logic to send documents to the entered email
-    Alert.alert('Documents Sent', 'The documents have been sent successfully.');
+  const shareDocument = async () => {
+    if (email) {
+      // Logic to share documents via email
+      const documentUris = documents.map(doc => doc.uri);
+      await Share.open({
+        urls: documentUris,
+        email,
+        subject: 'Document Sharing',
+        message: 'Please find the attached documents.',
+      });
+    } else {
+      alert('Please enter an email address');
+    }
   };
+
+  const renderItem = ({ item }) => (
+    <View style={styles.documentItem}>
+      <Text style={styles.documentName}>{item.name}</Text>
+      <Text style={styles.documentDate}>24.06.2020</Text>
+    </View>
+  );
 
   return (
     <View style={styles.container}>
-      <TouchableOpacity style={styles.pickButton} onPress={handleDocumentPick}>
-        <Text style={styles.pickButtonText}>בחר מסמכים</Text>
+      <Text style={styles.title}>שיתוף המסמכים שלי</Text>
+      <FlatList
+        data={documents}
+        renderItem={renderItem}
+        keyExtractor={item => item.uri}
+        style={styles.documentList}
+      />
+      <TouchableOpacity style={styles.addButton} onPress={selectDocument}>
+        <Text style={styles.addButtonText}>הוסף צילום</Text>
       </TouchableOpacity>
-      {selectedDocuments.length > 0 && (
-        <View style={styles.selectedDocuments}>
-          {selectedDocuments.map((doc, index) => (
-            <Text key={index} style={styles.documentName}>{doc.name}</Text>
-          ))}
-        </View>
-      )}
       <TextInput
         style={styles.emailInput}
-        placeholder="הכנס כתובת מייל"
+        placeholder="כתובת מייל לשיתוף המסמכים"
         value={email}
         onChangeText={setEmail}
       />
-      <TouchableOpacity style={styles.sendButton} onPress={handleSendDocuments}>
-        <Text style={styles.sendButtonText}>שלח מסמכים</Text>
+      <TouchableOpacity style={styles.sendButton} onPress={shareDocument}>
+        <Text style={styles.sendButtonText}>שליחה</Text>
       </TouchableOpacity>
+      <Text style={styles.infoTitle}>מידע שימושי</Text>
+      <Text style={styles.infoSubtitle}>נוחיותך אגדנו מספר מדריכים לתפעול הרכב</Text>
+      <View style={styles.infoBoxes}>
+        <TouchableOpacity style={styles.infoBox}>
+          <Image source={require('../../../assets/icons/wheel.png')} style={styles.infoIcon} />
+          <Text style={styles.infoText}>מדריך החלפת גלגל</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.infoBox} onPress={() => navigation.navigate('GuideLights')}>
+          <Image source={require('../../../assets/icons/important.png')} style={styles.infoIcon} />
+          <Text style={styles.infoText}>מדריך נורית חיווי</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };
@@ -57,40 +89,92 @@ const styles = StyleSheet.create({
     padding: 20,
     backgroundColor: '#fff',
   },
-  pickButton: {
-    backgroundColor: '#007bff',
-    padding: 15,
-    borderRadius: 10,
+  title: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginBottom: 20,
+    textAlign: 'center',
+  },
+  documentList: {
+    flexGrow: 0,
+    marginBottom: 20,
+  },
+  documentItem: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
     alignItems: 'center',
-    marginVertical: 20,
-  },
-  pickButtonText: {
-    color: '#fff',
-    fontSize: 18,
-  },
-  selectedDocuments: {
-    marginVertical: 20,
+    padding: 10,
+    borderBottomWidth: 1,
+    borderBottomColor: '#ddd',
   },
   documentName: {
     fontSize: 16,
-    marginVertical: 5,
+  },
+  documentDate: {
+    fontSize: 14,
+    color: '#888',
+  },
+  addButton: {
+    backgroundColor: '#007BFF',
+    padding: 10,
+    borderRadius: 5,
+    alignItems: 'center',
+    marginBottom: 20,
+  },
+  addButtonText: {
+    color: '#fff',
+    fontSize: 18,
   },
   emailInput: {
     borderWidth: 1,
     borderColor: '#ccc',
+    borderRadius: 5,
     padding: 10,
-    borderRadius: 10,
-    marginVertical: 20,
+    marginBottom: 20,
   },
   sendButton: {
-    backgroundColor: '#28a745',
-    padding: 15,
-    borderRadius: 10,
+    backgroundColor: '#ff4081',
+    padding: 10,
+    borderRadius: 5,
     alignItems: 'center',
+    marginBottom: 20,
   },
   sendButtonText: {
     color: '#fff',
     fontSize: 18,
+  },
+  infoTitle: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    marginBottom: 10,
+    textAlign: 'center',
+  },
+  infoSubtitle: {
+    fontSize: 14,
+    color: '#555',
+    marginBottom: 10,
+    textAlign: 'center',
+  },
+  infoBoxes: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+  },
+  infoBox: {
+    width: '45%',
+    padding: 10,
+    borderWidth: 1,
+    borderColor: '#ccc',
+    borderRadius: 5,
+    alignItems: 'center',
+  },
+  infoIcon: {
+    width: 40,
+    height: 40,
+    marginBottom: 10,
+  },
+  infoText: {
+    fontSize: 16,
+    textAlign: 'center',
   },
 });
 
