@@ -1,0 +1,154 @@
+[33mcommit 59cf08ab22a4032f5ffdd214488b2d61ba263f5a[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32md1-2-Drivers-service-center[m[33m)[m
+Author: noy2611 <noyr2611@gmail.com>
+Date:   Sun Jul 7 01:25:21 2024 +0300
+
+    update D2
+
+[33mcommit 0237d1900ed14a4a1d64317ca7e9b10c2d51f7fa[m[33m ([m[1;31morigin/d1-2-Drivers-service-center[m[33m)[m
+Author: Tslil <tslil1234334@gmail.com>
+Date:   Sun Jul 7 00:08:33 2024 +0300
+
+    Updated Summary UI
+
+[33mcommit ddd9c8b8b1557c444b6f271a1bb3371833ff5cf2[m
+Author: Tslil <tslil1234334@gmail.com>
+Date:   Thu Jul 4 16:33:26 2024 +0300
+
+    Updated Summary UI update, General button,  components and added new assets
+
+[33mcommit f3c57c3dfeaf56523f339dc94384f4ae2c29ed1f[m
+Author: Tslil <tslil1234334@gmail.com>
+Date:   Thu Jul 4 15:20:36 2024 +0300
+
+    Updated Service Center components and added new assets
+
+[33mcommit 7147b257dcef5a22e1452b181b4bf266db3f1a5b[m[33m ([m[1;31morigin/b1-home-screen[m[33m)[m
+Author: Tslil <tslil1234334@gmail.com>
+Date:   Sun Jun 30 16:51:42 2024 +0300
+
+    Service Center Wizard
+
+[33mcommit ed5c6a1f17ff31baa117f6f8baa777b0c7f3bef9[m
+Merge: d9bb4c7 3fad94f
+Author: Tslil <tslil1234334@gmail.com>
+Date:   Wed Jun 26 15:52:47 2024 +0300
+
+    Resolved merge conflicts and completed merge with main
+
+[33mcommit 3fad94fe1f49dd21ba7e148a3cfe0fa1bf3cf9f1[m
+Merge: 3aff00c 2111f04
+Author: henaharon <37577083+henaharon@users.noreply.github.com>
+Date:   Wed Jun 26 12:24:27 2024 +0300
+
+    Merge pull request #4 from henaharon/s1-t1-drivers-call-plus-contact-us
+    
+    S1 t1 drivers call plus contact us
+
+[33mcommit 2111f04ca128ed9fbb7f0ab0c213e6310e820284[m[33m ([m[1;31morigin/s1-t1-drivers-call-plus-contact-us[m[33m)[m
+Author: Daniel98bbzz <102686490+Daniel98bbzz@users.noreply.github.com>
+Date:   Wed Jun 26 12:23:20 2024 +0300
+
+    Delete src/screens/DriversCall/DriversCall.jsx
+
+[33mcommit 816f0281dac69c1db3bbafaa383cc1d44fec8650[m
+Author: Daniel98bbzz <102686490+Daniel98bbzz@users.noreply.github.com>
+Date:   Wed Jun 26 12:22:45 2024 +0300
+
+    Delete src/screens/DriversContactUs/components/DriversContactUs.jsx
+
+[33mcommit c46376206d4a70cc3fccd4f8c4b8f61cfde64a12[m
+Merge: 3f5ddf2 3aff00c
+Author: Daniel Buzaglo <daniel98bbzz@gmail.com>
+Date:   Tue Jun 25 18:13:20 2024 +0300
+
+    Add S1+T1 Integration
+
+[33mcommit d9bb4c7e3c034d9827b7dff35c93e6669fd08815[m
+Merge: f2b178e 4aa849b
+Author: Tslil <tslil1234334@gmail.com>
+Date:   Mon Jun 24 22:02:22 2024 +0300
+
+    Resolved merge conflict in App.tsx
+
+[33mcommit f2b178e0ba0a14edf9480d96f9549e83f03ae683[m
+Author: Tslil <tslil1234334@gmail.com>
+Date:   Mon Jun 24 21:57:05 2024 +0300
+
+    Save local changes to App.tsx
+
+[33mcommit 3aff00cd22b8fb9db8f13862e8bfb25d3153a679[m
+Author: Hen Aharon <hen.a@anm.software>
+Date:   Mon Jun 24 19:25:34 2024 +0300
+
+    Add Navigation Library
+
+[33mcommit b6b5b4d5e897d69288f8e463cf58fed9ee5fe134[m
+Merge: 2650293 4aa849b
+Author: henaharon <37577083+henaharon@users.noreply.github.com>
+Date:   Mon Jun 24 16:06:37 2024 +0300
+
+    Merge pull request #1 from henaharon/b1-home-screen
+    
+    B1 home screen
+
+[33mcommit 4aa849b7c90dedd03b117d75de052fff87c5bec0[m
+Author: Naim <naimreem1@gmail.com>
+Date:   Sun Jun 23 22:36:13 2024 +0300
+
+    FinalSubmitV1
+
+[33mcommit bb7a778ef09b6fd61c0affacf1230de31adaf098[m
+Author: Naim <naimreem1@gmail.com>
+Date:   Sat Jun 22 00:20:22 2024 +0300
+
+    Fixed sizes
+
+[33mcommit 3f5ddf255c5acbd4be9c2776c764a16ce62a1bc1[m
+Author: Daniel <Daniel98bbzz@gmail.com>
+Date:   Wed Jun 19 22:02:41 2024 +0300
+
+    init
+
+[33mcommit 350af24944174fec482cf3e0357f5379504a9ee8[m
+Author: Tslil <tslil1234334@gmail.com>
+Date:   Wed Jun 19 12:38:08 2024 +0300
+
+    Service Center - Screen and buttons and images
+
+[33mcommit 2bcb18d81cdd08cf1571717332de13f6f2968303[m
+Author: Naim <naimreem1@gmail.com>
+Date:   Sat Jun 15 02:44:32 2024 +0300
+
+    Final-Sumbit
+    
+    Final
+
+[33mcommit 092287c75c76e295e33f31bff7ef5e0725549c63[m
+Author: Naim <naimreem1@gmail.com>
+Date:   Sat Jun 15 01:54:21 2024 +0300
+
+    Final
+
+[33mcommit 67ae712de22260828af9fb8667d24f87a2b505ac[m
+Author: Naim <naimreem1@gmail.com>
+Date:   Fri Jun 14 21:58:48 2024 +0300
+
+    First_HomeScreene
+
+[33mcommit 2650293cfbcf59cb40681c6caa1dab7ac4de03d4[m
+Author: hena_klips <hena@klips.com>
+Date:   Mon Jun 10 18:58:08 2024 +0300
+
+    Add New TimerScreen
+
+[33mcommit bec8cf4d8e74b38f1d18e39ae7d344abb2c1630f[m
+Author: hena_klips <hena@klips.com>
+Date:   Mon Jun 3 19:15:28 2024 +0300
+
+    Add new BaseView and App
+
+[33mcommit 4058492b4af883078f60472eb0d69fb8d4643f3d[m
+Author: hena_klips <hena@klips.com>
+Date:   Mon Jun 3 14:25:24 2024 +0300
+
+    first commit
