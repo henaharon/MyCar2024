@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity, FlatList, Modal, Button } from 'react-native';
 import DriverList from './components/DriverList';
 import InfoBox from './components/InfoBox';
-import Dialog from 'react-native-popup-dialog';
 import DocumentPicker from 'react-native-document-picker';
 import Share from 'react-native-share';
+import Dialog from 'react-native-popup-dialog';
 
 const MyCar = () => {
   const [expanded, setExpanded] = useState(false);
@@ -49,13 +49,13 @@ const MyCar = () => {
 
       {/* Static Information Boxes */}
       <View style={styles.infoBoxes}>
-        <InfoBox title="אוגוסט 2022" imageSource={require('../../assets/icons/elementsServiceIconsRoutineService@3x.png')} />
-        <InfoBox title="15,000 ק'מ" imageSource={require('../../assets/icons/elementsServiceIconsRepair@3x.png')} />
+        <InfoBox title="אוגוסט 2022" imageSource={require('../../assets/icons/Repair.png')} />
+        <InfoBox title="15,000 ק'מ" imageSource={require('../../assets/icons/Repair.png')} />
         <TouchableOpacity style={styles.infoBox} onPress={() => setPopupVisible(true)}>
           <Text>לחץ אוויר קדמי</Text>
-          <Image source={require('../../assets/icons/elementsServiceIconsTiresDown@3x.png')} style={styles.infoImage} />
+          <Image source={require('../../assets/icons/Repair.png')} style={styles.infoImage} />
         </TouchableOpacity>
-        <InfoBox title="לחץ אוויר אחורי" imageSource={require('../../assets/icons/elementsServiceIconsTiresUp@3x.png')} />
+        <InfoBox title="לחץ אוויר אחורי" imageSource={require('../../assets/icons/Repair.png')} />
       </View>
 
       {/* Document Sharing Button */}

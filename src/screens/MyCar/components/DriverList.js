@@ -1,35 +1,102 @@
-// import React from 'react';
-// import { View, Image, StyleSheet, FlatList } from 'react-native';
-// import { ListItem } from 'react-native-elements';
+import React, { useState } from 'react';
+import { View, Text, StyleSheet, TouchableOpacity, Modal, FlatList } from 'react-native';
 
-// const drivers = [
-//   { id: '1', name: 'Driver 1', image: require('../../../assets/driver1.jpg') },
-//   { id: '2', name: 'Driver 2', image: require('../../../assets/driver2.jpg') },
-//   // Add more drivers as needed
-// ];
+const DriverList = () => {
+  const [modalVisible, setModalVisible] = useState(false);
+  const drivers = ['נהג 1', 'נהג 2', 'נהג 3', 'נהג 4']; // רשימה לדוגמה של נהגים מורשים
 
-// const DriverList = () => {
-//   return (
-//     <FlatList
-//       data={drivers}
-//       keyExtractor={(item) => item.id}
-//       renderItem={({ item }) => (
-//         <ListItem bottomDivider>
-//           <Image source={item.image} style={styles.driverImage} />
-//           <ListItem.Content>
-//             <ListItem.Title>{item.name}</ListItem.Title>
-//           </ListItem.Content>
-//         </ListItem>
-//       )}
-//     />
-//   );
-// };
+  const handleDriverPress = () => {
+    setModalVisible(true);
+  };
 
-// const styles = StyleSheet.create({
-//   driverImage: {
-//     width: 50,
-//     height: 50,
-//   },
-// });
+  return (
+    <View style={styles.container}>
+      <TouchableOpacity onPress={handleDriverPress}>
+        <Text style={styles.driverName}>אביב שחר</Text>
+      </TouchableOpacity>
+      <Text style={styles.driverTitle}>נהג מורשה:</Text>
 
-// export default DriverList;
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => {
+          setModalVisible(!modalVisible);
+        }}
+      >
+        <View style={styles.modalView}>
+          <FlatList
+            data={drivers}
+            keyExtractor={(item) => item}
+            renderItem={({ item }) => (
+              <View style={styles.driverItem}>
+                <Text style={styles.driverText}>{item}</Text>
+              </View>
+            )}
+          />
+          <TouchableOpacity
+            style={styles.closeButton}
+            onPress={() => setModalVisible(!modalVisible)}
+          >
+            <Text style={styles.closeButtonText}>סגור</Text>
+          </TouchableOpacity>
+        </View>
+      </Modal>
+    </View>
+  );
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginVertical: 20,
+  },
+  driverName: {
+    fontSize: 18,
+    color: '#007bff',
+  },
+  driverTitle: {
+    fontSize: 18,
+    marginLeft: 10,
+  },
+  modalView: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    margin: 20,
+    backgroundColor: 'white',
+    borderRadius: 20,
+    padding: 35,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
+  },
+  driverItem: {
+    padding: 10,
+    borderBottomWidth: 1,
+    borderBottomColor: '#ccc',
+  },
+  driverText: {
+    fontSize: 18,
+  },
+  closeButton: {
+    backgroundColor: '#2196F3',
+    borderRadius: 20,
+    padding: 10,
+    elevation: 2,
+    marginTop: 20,
+  },
+  closeButtonText: {
+    color: 'white',
+    fontSize: 18,
+    textAlign: 'center',
+  },
+});
+
+export default DriverList;

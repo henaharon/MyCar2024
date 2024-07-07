@@ -1,17 +1,15 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-import MyCar from './src/screens/MyCar/MyCar';
-
-const Stack = createStackNavigator();
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import StackNavigator from './src/navigation/StackNavigator';
 
 const App = () => {
   return (
-    <NavigationContainer>
-      <Stack.Navigator initialRouteName="MyCar">
-        <Stack.Screen name="MyCar" component={MyCar} />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <SafeAreaProvider>
+      <NavigationContainer>
+        <StackNavigator />
+      </NavigationContainer>
+    </SafeAreaProvider>
   );
 };
 
