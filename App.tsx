@@ -15,9 +15,7 @@ import MyProfile from "./src/screens/Profile/MyProfile";
 import GuidesScreen from "./src/screens/Guides/GuidesScreen";
 import AccidentReportIntro from './src/screens/AccidentReport/screens/AccidentReport/AccidentReportIntro';
 import CallDialogScreen from './src/screens/AccidentReport/screens/CallDialog/CallDialogScreen';
-// import I10 from './src/screens/AccidentReport/screens/DamageReport/I10';
-// import I11 from './src/screens/AccidentReport/screens/DamageReport/I11';
-// import I12 from './src/screens/AccidentReport/screens/DamageReport/I12';
+import AccidentReportOnboarding from './src/screens/AccidentReport/screens/AccidentReportForm/AccidentReportOnboarding';
 import DamageReport from './src/screens/AccidentReport/screens/DamageReport/DamageReport';
 
 const Stack = createNativeStackNavigator();
@@ -40,7 +38,7 @@ function AccidentReportStack() {
       <Stack.Screen name="HomePage" component={HomePage} />
       <Stack.Screen name="CallDialog" component={CallDialogScreen} />
       <Stack.Screen name="DamageReport" component={DamageReport} />
-      {/* <Stack.Screen name="AccidentReportForm" component={AccidentReportOnboarding} /> */}
+      <Stack.Screen name="AccidentReportForm" component={AccidentReportOnboarding} />
     </Stack.Navigator>
   );
 }

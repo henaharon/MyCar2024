@@ -16,12 +16,9 @@ const policeInfoTitle = 'פרטי המשטרה';
 const policeNamePlaceholder = 'שם השוטר';
 const policeStationPlaceholder = 'תחנת משטרה';
 
-const I3 = ({ setProgress }) => {
+const I3 = () => {
   const [policeInvolvement, setPoliceInvolvement] = useState(false);
   return (
-    // <BaseView>
-    //   <ScrollView contentContainerStyle={styles.scrollViewContent}>
-    //     <View style={styles.contentWrapper}>
           <BodyBaseView style={styles.bodyContainer}>
             <GeneralForm />
             <View style={styles.policeInvolvementContainer}>
@@ -52,9 +49,6 @@ const I3 = ({ setProgress }) => {
               )}
             </View>
           </BodyBaseView>
-    //     </View>
-    //   </ScrollView>
-    // </BaseView>
   );
 };
 

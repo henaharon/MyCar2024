@@ -11,8 +11,6 @@ import {Header} from '../../components/Header';
 import Requirements from './components/Requirements';
 import Information from '../../components/Information';
 import {GradientButton} from '../../components/GradientButton';
-import CallDialogScreen from '../CallDialog/CallDialogScreen';
-import HomePage from '../../../homepage/HomePage';
 
 const informationTitle = 'לפני מילוי הדוח חשוב לדעת:';
 const accidentTitle = 'תאונת דרכים עם צד ג';
@@ -47,6 +45,7 @@ const AccidentReportIntro = ({navigation}) => {
             <Text style={styles.eventType}>{chooseEvent}</Text>
             <GradientButton
               title={accidentTitle}
+              onPress={handleAccidentWithOther}
             />
             <GradientButton
               title={damageTitle}

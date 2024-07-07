@@ -23,14 +23,6 @@ const pages = [
 
 const AccidentReportOnboarding = ({ navigation }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [progress, setProgress] = useState(0);
-
-  const setProgressCallback = useCallback(
-    value => {
-      setProgress(value);
-    },
-    [setProgress],
-  );
 
   const goToNextPage = useCallback(() => {
     if (currentIndex < pages.length - 1) {
@@ -42,9 +34,11 @@ const AccidentReportOnboarding = ({ navigation }) => {
     if (currentIndex > 0) {
       setCurrentIndex(currentIndex - 1);
     }
+    else if (currentIndex === 0) {
+      navigation.navigate("AccidentReportIntro");
+    }
   }, [currentIndex]);
   
-
   return (
     <BaseView>
       <View style={styles.contentWrapper}>
@@ -58,12 +52,12 @@ const AccidentReportOnboarding = ({ navigation }) => {
             onPreviousPage={goToPreviousPage}
           />
         </EventHeader>
-        {currentIndex === 0 && <I3 setProgress={setProgressCallback} />}
-        {currentIndex === 1 && <I4 setProgress={setProgressCallback} />}
-        {currentIndex === 2 && <I5 setProgress={setProgressCallback} />}
-        {currentIndex === 3 && <I6 setProgress={setProgressCallback} />}
-        {currentIndex === 4 && <I7 setProgress={setProgressCallback} />}
-        {currentIndex === 5 && <SuccessScreen setProgress={setProgressCallback} navigation={navigation} />}
+        {currentIndex === 0 && <I3 />}
+        {currentIndex === 1 && <I4 />}
+        {currentIndex === 2 && <I5 />}
+        {currentIndex === 3 && <I6 />}
+        {currentIndex === 4 && <I7 />}
+        {currentIndex === 5 && <SuccessScreen navigation={navigation} />}
       </View>
     </BaseView>
   );

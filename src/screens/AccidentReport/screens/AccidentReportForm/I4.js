@@ -17,13 +17,8 @@ const IDNumberPlaceholder = 'מספר ת.ז';
 const licenseNumberPlaceholder = 'מספר רשיון נהיגה';
 const phonePlaceholder = 'טלפון';
 
-const I4 = ({ setProgress }) => {
+const I4 = () => {
   return (
-    // <BaseView>
-    //     <View style={styles.contentWrapper}>
-          /* <EventHeader>
-            <FormHeader title={headerTitle} />
-          </EventHeader> */
           <BodyBaseView style={styles.bodyContainer}>
             <View style={styles.driverInvolvementContainer}>
               <Title title={driverInvolvementTitle} />
@@ -59,8 +54,6 @@ const I4 = ({ setProgress }) => {
               </View>
             </View>
           </BodyBaseView>
-    //     </View>
-    // </BaseView>
   );
 };
 
