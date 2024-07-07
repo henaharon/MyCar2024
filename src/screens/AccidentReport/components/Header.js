@@ -15,6 +15,7 @@ const headerImage = require('../../../assets/images/elementsPageCoversAccidentRe
 const phoneIcon = require('../../../assets/icons/elements24PxIconsCall3x.png');
 const xIcon = require('../../../assets/icons/componentsNavBarXButtonsRoundedWhiteAlpha3x.png');
 const headerTitle = 'דיווח תאונה';
+
 export const Header = () => {
   return (
     <View style={styles.headerImgContainter}>

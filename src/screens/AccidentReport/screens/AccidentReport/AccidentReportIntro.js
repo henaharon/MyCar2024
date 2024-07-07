@@ -23,6 +23,7 @@ const paragraphs = [
   'ניתן לקבל עזרה טלפונית בלחיצה על כפתור ה"עזרה" בראש המסך.',
 ];
 
+const chooseEvent = 'אנא בחרו את סוג האירוע';
 
 const AccidentReportIntro = () => {
   return (
@@ -35,7 +36,7 @@ const AccidentReportIntro = () => {
           <Requirements />
           <Information title={informationTitle} paragraph={paragraphs} />
           <View style={styles.eventContainer}>
-            <Text style={styles.eventType}>אנא בחרו את סוג האירוע</Text>
+            <Text style={styles.eventType}>{chooseEvent}</Text>
             <GradientButton
               title={accidentTitle}
             />
