@@ -7,7 +7,7 @@ import Paginator from './Paginator';
 const arrowRightGrey = require('../../../assets/icons/componentsNavBarXButtonsRoundedWhiteAlpha.png');
 const arrowLeftGradient = require('../../../assets/icons/componentsNavBarXButtonsRoundedBlack.png');
 
-const FormHeader = ({ title, data, pagesCount,currentPage, onNextPage, onPreviousPage}) => {
+const FormHeader = ({ title, data, pagesCount,currentPage, onNextPage, onPreviousPage, navigation}) => {
   return (
     <View style={styles.headerContainer}>
       <View style={styles.headerContent}>

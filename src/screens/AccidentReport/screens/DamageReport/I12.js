@@ -17,7 +17,7 @@ const paragraphs = [
   "לאחר קבלת המסמך במייל אנחנו ממליצים להעביר אותו כפי שהוא לחברת הביטוח.",
 ];
 
-const I12 = ({ setProgress }) => {
+const I12 = () => {
   return (
     <BodyBaseView style={styles.bodyContainer}>
       <FinalConfirm

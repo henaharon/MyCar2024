@@ -9,7 +9,7 @@ import { BaseView, BodyBaseView } from "../../../../uiKit/BaseView";
 
 const headerTitle = "פרטי האירוע";
 
-const I10 = ({ setProgress }) => {
+const I10 = () => {
   return (
     <BodyBaseView style={styles.bodyContainer}>
       <GeneralForm />

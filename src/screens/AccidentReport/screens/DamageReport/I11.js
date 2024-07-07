@@ -12,7 +12,7 @@ const damageInfoTitle = "פרטי הנזק לרכב שלי";
 const textareaPlaceholder = "תיאור הנזק";
 const imagesTitle = "הוספת תמונות מהאירוע";
 
-const I11 = ({ setProgress }) => {
+const I11 = () => {
   return (
     <BodyBaseView style={styles.bodyContainer}>
       <CarDamageInputs

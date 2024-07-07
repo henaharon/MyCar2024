@@ -9,7 +9,11 @@ const pageTitle = "המסמך נשלח";
 const paragraphs = ["דוח תאונת הדרכים נשלח בהצלחה", "OirS@gmail.com למייל"];
 const buttonTitle = "אישור";
 
-const SuccessScreen = () => {
+const SuccessScreen = ({navigation}) => {
+  const handleSuccess = () => {
+    navigation.navigate("AccidentReportIntro");
+  }
+
   return (
       <BodyBaseView style={styles.pageContailer}>
         <View style={styles.textContainer}>
@@ -20,7 +24,7 @@ const SuccessScreen = () => {
           </View>
         </View>
         <View style={styles.buttonContainer}>
-          <GradientButton title={buttonTitle} />
+          <GradientButton title={buttonTitle} onPress={handleSuccess}/>
         </View>
       </BodyBaseView>
   );

@@ -27,6 +27,3 @@ const styles = StyleSheet.create({
   },
 });
 
-BaseView.defaultProps = {
-  style: {},
-};

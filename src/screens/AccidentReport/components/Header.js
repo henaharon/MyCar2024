@@ -16,7 +16,16 @@ const phoneIcon = require('../../../assets/icons/elements24PxIconsCall3x.png');
 const xIcon = require('../../../assets/icons/componentsNavBarXButtonsRoundedWhiteAlpha3x.png');
 const headerTitle = 'דיווח תאונה';
 
-export const Header = () => {
+export const Header = ({navigation}) => {
+
+  const handleHelpPress = () => {
+    navigation.navigate('CallDialog');
+  };
+
+  const handleXPress = () => {
+    navigation.navigate('HomePage');
+  };
+
   return (
     <View style={styles.headerImgContainter}>
       <Image
@@ -25,7 +34,7 @@ export const Header = () => {
       />
       <View style={styles.headerContainer}>
         <View style={styles.headerContent}>
-          <Pressable>
+          <Pressable onPress={handleHelpPress}>
             <LinearGradient
               colors={['#E50075', '#F05C62']}
               style={styles.helpButton}
@@ -39,9 +48,10 @@ export const Header = () => {
             </LinearGradient>
           </Pressable>
           <TitleHeader title={headerTitle} />
-          <HeaderButton
+          <HeaderButton 
             container={styles.xButtonContainer}
             imageSource={xIcon}
+            onPress={handleXPress}
           />
         </View>
       </View>
