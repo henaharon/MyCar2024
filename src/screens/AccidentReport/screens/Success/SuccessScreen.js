@@ -39,8 +39,6 @@ const styles = StyleSheet.create({
   pageContailer:{
     alignItems: "center",
     backgroundColor: "white",
-    borderRadius: 25,
-    marginTop: -windowHeight * 0.1,
     paddingTop: windowHeight * 0.11,
     zIndex: 2,
     gap: windowHeight * 0.05,

@@ -16,39 +16,39 @@ const policeInfoTitle = 'פרטי המשטרה';
 const policeNamePlaceholder = 'שם השוטר';
 const policeStationPlaceholder = 'תחנת משטרה';
 
-const I3 = () => {
+const I3 = ({setProgress}) => {
   const [policeInvolvement, setPoliceInvolvement] = useState(false);
   return (
-          <BodyBaseView style={styles.bodyContainer}>
-            <GeneralForm />
-            <View style={styles.policeInvolvementContainer}>
-              <Title title={policeInvolvementTitle} />
-              <ChoiceInput
-                optionF={'לא היתה'}
-                optionT={'כן, היתה'}
-                setChoice={setPoliceInvolvement}
+    <BodyBaseView style={styles.bodyContainer}>
+      <GeneralForm />
+      <View style={styles.policeInvolvementContainer}>
+        <Title title={policeInvolvementTitle} />
+        <ChoiceInput
+          optionF={'לא היתה'}
+          optionT={'כן, היתה'}
+          setChoice={setPoliceInvolvement}
+        />
+        {policeInvolvement && (
+          <View style={styles.policeInfoContainer}>
+            <Title title={policeInfoTitle} />
+            <View style={styles.policeInfoForm}>
+              <Input
+                placeholder={policeStationPlaceholder}
+                required={false}
+                width={0.9}
+                type={''}
               />
-              {policeInvolvement && (
-                <View style={styles.policeInfoContainer}>
-                  <Title title={policeInfoTitle} />
-                  <View style={styles.policeInfoForm}>
-                    <Input
-                      placeholder={policeStationPlaceholder}
-                      required={false}
-                      width={0.9}
-                      type={''}
-                    />
-                    <Input
-                      placeholder={policeNamePlaceholder}
-                      required={false}
-                      width={0.9}
-                      type={''}
-                    />
-                  </View>
-                </View>
-              )}
+              <Input
+                placeholder={policeNamePlaceholder}
+                required={false}
+                width={0.9}
+                type={''}
+              />
             </View>
-          </BodyBaseView>
+          </View>
+        )}
+      </View>
+    </BodyBaseView>
   );
 };
 
@@ -67,13 +67,9 @@ const styles = StyleSheet.create({
   },
   bodyContainer: {
     flex: 1,
-    alignItems: "center",
-    backgroundColor: "white",
-    borderRadius: 25,
-    marginTop: -windowHeight * 0.1,
+    alignItems: 'center',
+    backgroundColor: 'white',
     paddingTop: windowHeight * 0.15,
-    paddingBottom: windowHeight * 0.2,
-    zIndex: 2,
     gap: 15,
   },
   policeInfoForm: {
