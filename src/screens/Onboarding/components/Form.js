@@ -6,6 +6,7 @@ import DateInput from './DateInput';
 import GradiantButton from '../../Login/components/GradiantButton';
 import FileInput from './FileInput';
 import AlertModal from '../../Login/components/AlertModal';
+import SuccessModal from './SuccessModal'; 
 
 const Form = ({navigation, setIsLoggedIn }) => {
     const [firstName, setFirstName] = useState('');
@@ -21,6 +22,7 @@ const Form = ({navigation, setIsLoggedIn }) => {
     const [alertVisible, setAlertVisible] = useState(false);
     const [alertTitle, setAlertTitle] = useState('');
     const [alertMessage, setAlertMessage] = useState('');
+    const [successModalVisible, setSuccessModalVisible] = useState(false); 
 
     const handleSetFirstName = useCallback((newValue) => {
         setFirstName(newValue);
@@ -83,8 +85,7 @@ const Form = ({navigation, setIsLoggedIn }) => {
             setAlertVisible(true);
             return;
         }
-        setIsLoggedIn(true);
-        navigation.navigate('HomePage');
+        setSuccessModalVisible(true);
     }, [firstName, lastName, employeeId, birthDate, email, phone, drivingLicense, drivingLicenseDate, drivingLicenseType, files]);
 
     return (
@@ -118,6 +119,13 @@ const Form = ({navigation, setIsLoggedIn }) => {
                 message={alertMessage}
                 onClose={() => setAlertVisible(false)}
                 onBackdropPress={() => setAlertVisible(false)}
+            />
+            <SuccessModal
+                visible={successModalVisible}
+                onClose={() => {
+                    setSuccessModalVisible(false);
+                    setIsLoggedIn(true);  
+                }}
             />
         </View>
     );

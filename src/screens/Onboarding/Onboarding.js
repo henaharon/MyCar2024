@@ -23,7 +23,6 @@ const Onboarding = ({navigation, setIsLoggedIn  }) => {
             <View style={styles.container}>
                 {!progress && <Intro setProgress={() => setProgressCallback(true)} />}
                 {progress && (<ScrollView>
-                    {/* Add the rest of the screens here */}
                     <Header />
                     <Form navigation={navigation} setIsLoggedIn={setIsLoggedIn} />
                 </ScrollView>
