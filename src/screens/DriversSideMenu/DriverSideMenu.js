@@ -1,11 +1,10 @@
 // DriverSideMenu.js
-import React from 'react';
-import { ScrollView, StyleSheet } from 'react-native';
-import ProfileSection from './components/ProfileSection';
-import MenuSection from './components/MenuSection';
-import ContactSection from './components/ContactSection';
-import LogoSection from './components/LogoSection';
-
+import React from "react";
+import { ScrollView, StyleSheet } from "react-native";
+import ProfileSection from "./components/ProfileSection";
+import MenuSection from "./components/MenuSection";
+import ContactSection from "./components/ContactSection";
+import LogoSection from "./components/LogoSection";
 
 const SideMenu = () => {
   return (
