@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createDrawerNavigator } from "@react-navigation/drawer";
@@ -13,6 +13,10 @@ import ElectricVehicle from "./src/screens/ElectricVehicle/ElectricVehicle";
 import DriversSideMenu from "./src/screens/DriversSideMenu/DriverSideMenu";
 import MyProfile from "./src/screens/Profile/MyProfile";
 import GuidesScreen from "./src/screens/Guides/GuidesScreen";
+import Walkthrough from "./src/screens/Walkthrough/Walkthrough";
+import Login from "./src/screens/Login/Login";
+import Onboarding from "./src/screens/Onboarding/Onboarding";
+import SplashScreen from "react-native-splash-screen";
 
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -26,18 +30,27 @@ function HomeStack() {
   );
 }
 
-// function LoginStack() {
-//   return (
-//     // <Stack.Navigator screenOptions={{ headerShown: false }}>
-//     //   <Stack.Screen name="HomePage" component={HomePage} />
-//     // </Stack.Navigator>
-//   );
-// }
+function LoginStack({
+  setIsLoggedIn,
+}: {
+  setIsLoggedIn: (value: boolean) => void;
+}) {
+  return (
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="Walkthrough" component={Walkthrough} />
+      <Stack.Screen name="Login" component={Login} />
+      <Stack.Screen name="Onboarding">
+        {(props) => <Onboarding {...props} setIsLoggedIn={setIsLoggedIn} />}
+      </Stack.Screen>
+      <Stack.Screen name="HomePage" component={HomePage} />
+    </Stack.Navigator>
+  );
+}
 
 function MyDrawer() {
   return (
     <Drawer.Navigator
-      // drawerContent={(props) => <DriversSideMenu {...props} />}
+      drawerContent={(props) => <DriversSideMenu {...props} />}
       screenOptions={{ headerShown: false }}
     >
       <Drawer.Screen name="HomeStack" component={HomeStack} />
@@ -54,9 +67,16 @@ function MyDrawer() {
 }
 
 function App(): React.JSX.Element {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    SplashScreen.hide();
+  }, []);
+
   return (
     <NavigationContainer>
-      <MyDrawer />
+      {/* <MyDrawer /> */}
+      {isLoggedIn ? <MyDrawer /> : <LoginStack setIsLoggedIn={setIsLoggedIn} />}
     </NavigationContainer>
   );
 }
