@@ -18,6 +18,8 @@ import MyProfile from "./src/screens/Profile/MyProfile";
 import AllMessagesScreen from "./src/screens/Messages/screens/AllMessagesScreen";
 import ScreenMessage from "./src/screens/Messages/screens/ScreenMessage";
 import GuidesScreen from "./src/screens/Guides/GuidesScreen";
+import ServiceCenter from "./src/screens/ServiceCenter/ServiceCenter";
+import ServiceCenterProcess from "./src/screens/ServiceCenter/ServiceCenterProcess";
 import Walkthrough from "./src/screens/Walkthrough/Walkthrough";
 import Login from "./src/screens/Login/Login";
 import Onboarding from "./src/screens/Onboarding/Onboarding";
@@ -40,8 +42,13 @@ function HomeStack() {
         component={AccidentReportStack}
       />
       <Stack.Screen name="ElectricVehicle" component={ElectricVehicle} />
-      <Drawer.Screen name="AllMessages" component={AllMessagesScreen} />
-      <Drawer.Screen name="MessageDetails" component={ScreenMessage} />
+      <Stack.Screen name="ServiceCenter" component={ServiceCenter} />
+      <Stack.Screen
+        name="ServiceCenterProcess"
+        component={ServiceCenterProcess}
+      />
+      <Stack.Screen name="AllMessages" component={AllMessagesScreen} />
+      <Stack.Screen name="MessageDetails" component={ScreenMessage} />
       <Stack.Screen name="AccidentReportIntro" component={DamageReport} />
     </Stack.Navigator>
   );
@@ -71,13 +78,7 @@ function ClosedTickets() {
     </Stack.Navigator>
   );
 }
-// function LoginStack() {
-//   return (
-//     // <Stack.Navigator screenOptions={{ headerShown: false }}>
-//     //   <Stack.Screen name="HomePage" component={HomePage} />
-//     // </Stack.Navigator>
-//   );
-// }
+
 function AccidentReportStack() {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
