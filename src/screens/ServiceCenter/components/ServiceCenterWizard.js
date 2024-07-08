@@ -1,12 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, StyleSheet, Text, TextInput, Dimensions, TouchableOpacity, Image, ScrollView } from 'react-native';
 import { launchCamera, launchImageLibrary } from 'react-native-image-picker';
-import { CalendarList } from 'react-native-calendars';
+import { CalendarList, LocaleConfig } from 'react-native-calendars';
+import moment from 'moment';
+import 'moment/locale/he';
 import ServiceHeader from '../components/ServiceHeader';
 import LocationOption from '../components/LocationOption';
 import ServiceButton from '../components/ServiceButton';
 import GradientButton from './GradientButton';
 import ServiceCenterModal from '../components/ServiceCenterModal';
+
+LocaleConfig.locales['he'] = {
+    monthNames: ['ינואר', 'פברואר', 'מרץ', 'אפריל', 'מאי', 'יוני', 'יולי', 'אוגוסט', 'ספטמבר', 'אוקטובר', 'נובמבר', 'דצמבר'],
+    monthNamesShort: ['ינו', 'פבר', 'מרץ', 'אפר', 'מאי', 'יונ', 'יול', 'אוג', 'ספט', 'אוק', 'נוב', 'דצמ'],
+    dayNames: ['יום ראשון', 'יום שני', 'יום שלישי', 'יום רביעי', 'יום חמישי', 'יום שישי', 'שבת'],
+    dayNamesShort: ['א', 'ב', 'ג', 'ד', 'ה', 'ו', 'ש'],
+    today: 'היום'
+};
+LocaleConfig.defaultLocale = 'he';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -102,6 +113,7 @@ const ServiceCenterWizard = ({ modalVisible, setModalVisible, startStep, selecte
             }
         });
     };
+
 
     const demandButtons = [
         { icon: require('../D1-2-assets/icons/Lights.png'), text: 'נורות', demand: 'lights' },
@@ -263,7 +275,8 @@ const ServiceCenterWizard = ({ modalVisible, setModalVisible, startStep, selecte
                                 key={button.text}
                                 icon={button.icon}
                                 text={button.text}
-                                style={[styles.serviceButton, selectedButtons.some(item => item.demand === button.demand) && styles.selectedButton]}
+                                isActive={selectedButtons.some(item => item.demand === button.demand)}
+                                style={styles.serviceButton}
                                 onPress={() => handleAdditionalDemandSelection(button)} />
                         ))}
                     </View>
@@ -548,6 +561,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row-reverse',
         alignItems: 'center',
         width: '100%',
+        marginBottom: windowHeight * 0.01,
     },
     imgCircle: {
         marginVertical: windowWidth * 0.01,
@@ -631,11 +645,13 @@ const styles = StyleSheet.create({
     },
     selectedButton: {
         backgroundColor: '#E8585E',
-        color: "#fff",
     },
     calendar: {
         width: '100%',
         height: windowHeight * 0.6,
+    },
+    defaultTextCol: {
+        paddingVertical: windowWidth * 0.02,
     },
     defaultFerText: {
         paddingRight: windowHeight * 0.01,

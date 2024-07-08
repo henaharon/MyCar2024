@@ -4,16 +4,14 @@ import { TouchableOpacity, Text, StyleSheet, Image, Dimensions, Animated } from 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
-const ServiceButton = ({ icon, text, onPress, style }) => {
+const ServiceButton = ({ icon, text, onPress, style, isActive }) => {
     const [scaleValue] = useState(new Animated.Value(1));
-    const [isActive, setIsActive] = useState(false);
 
     const handlePressIn = () => {
         Animated.spring(scaleValue, {
             toValue: 0.95,
             useNativeDriver: true,
         }).start();
-        setIsActive(true);
     };
 
     const handlePressOut = () => {
@@ -21,11 +19,6 @@ const ServiceButton = ({ icon, text, onPress, style }) => {
             toValue: 1,
             useNativeDriver: true,
         }).start();
-        setIsActive(false);
-    };
-
-    const handlePress = () => {
-        onPress();
     };
 
     return (
@@ -34,7 +27,7 @@ const ServiceButton = ({ icon, text, onPress, style }) => {
                 style={styles.innerButton}
                 onPressIn={handlePressIn}
                 onPressOut={handlePressOut}
-                onPress={handlePress}
+                onPress={onPress}
             >
                 <Image source={icon} style={styles.icon} />
                 <Text style={[styles.text, isActive && styles.textPressed]}>{text}</Text>

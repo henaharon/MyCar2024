@@ -6,6 +6,7 @@ const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
 const ServiceCenter = ({ navigation }) => {
+    const [selectedService, setSelectedService] = useState(null);
 
     const serviceButtons = [
         { icon: require('./D1-2-assets/icons/Car.png'), text: 'תקלת ברכב', service: 'VehicleRepair' },
@@ -16,6 +17,7 @@ const ServiceCenter = ({ navigation }) => {
     ];
 
     const handleServiceSelection = (button) => {
+        setSelectedService(button.service);
         if (button.service === 'VehicleRepair' || button.service === 'Other') {
             navigation.navigate('ServiceCenterProcess', { startStep: 0, selectedService: button });
         }
@@ -51,6 +53,7 @@ const ServiceCenter = ({ navigation }) => {
                             key={button.text}
                             icon={button.icon}
                             text={button.text}
+                            isActive={selectedService === button.service}
                             style={styles.serviceButton}
                             onPress={() => handleServiceSelection(button)}
                         />
