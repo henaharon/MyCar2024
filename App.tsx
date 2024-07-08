@@ -13,10 +13,10 @@ import ElectricVehicle from "./src/screens/ElectricVehicle/ElectricVehicle";
 import DriversSideMenu from "./src/screens/DriversSideMenu/DriverSideMenu";
 import MyProfile from "./src/screens/Profile/MyProfile";
 import GuidesScreen from "./src/screens/Guides/GuidesScreen";
-import AccidentReportIntro from './src/screens/AccidentReport/AccidentReportIntro';
-import CallDialogScreen from './src/screens/AccidentReport/CallDialog/CallDialogScreen';
-import AccidentReportOnboarding from './src/screens/AccidentReport/AccidentReportForm/AccidentReportOnboarding';
-import DamageReport from './src/screens/AccidentReport/DamageReport/DamageReport';
+import AccidentReportIntro from "./src/screens/AccidentReport/AccidentReportIntro";
+import CallDialogScreen from "./src/screens/AccidentReport/CallDialog/CallDialogScreen";
+import AccidentReportOnboarding from "./src/screens/AccidentReport/AccidentReportForm/AccidentReportOnboarding";
+import DamageReport from "./src/screens/AccidentReport/DamageReport/DamageReport";
 
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -25,6 +25,10 @@ function HomeStack() {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name="HomePage" component={HomePage} />
+      <Stack.Screen
+        name="AccidentReportStack"
+        component={AccidentReportStack}
+      />
       <Stack.Screen name="ElectricVehicle" component={ElectricVehicle} />
       <Stack.Screen name="AccidentReportIntro" component={DamageReport} />
     </Stack.Navigator>
@@ -34,11 +38,16 @@ function HomeStack() {
 function AccidentReportStack() {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="AccidentReportIntro" component={AccidentReportIntro} />
-      <Stack.Screen name="HomePage" component={HomePage} />
+      <Stack.Screen
+        name="AccidentReportIntro"
+        component={AccidentReportIntro}
+      />
       <Stack.Screen name="CallDialog" component={CallDialogScreen} />
       <Stack.Screen name="DamageReport" component={DamageReport} />
-      <Stack.Screen name="AccidentReportForm" component={AccidentReportOnboarding} />
+      <Stack.Screen
+        name="AccidentReportForm"
+        component={AccidentReportOnboarding}
+      />
     </Stack.Navigator>
   );
 }
@@ -64,10 +73,9 @@ function MyDrawer() {
 
 function App(): React.JSX.Element {
   return (
-      <NavigationContainer>
-        {/* <MyDrawer /> */}
-        <AccidentReportStack />
-      </NavigationContainer>
+    <NavigationContainer>
+      <MyDrawer />
+    </NavigationContainer>
   );
 }
 export default App;
