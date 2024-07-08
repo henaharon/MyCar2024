@@ -13,6 +13,10 @@ import ElectricVehicle from "./src/screens/ElectricVehicle/ElectricVehicle";
 import DriversSideMenu from "./src/screens/DriversSideMenu/DriverSideMenu";
 import MyProfile from "./src/screens/Profile/MyProfile";
 import GuidesScreen from "./src/screens/Guides/GuidesScreen";
+import SelectService from "./src/screens/SelectService/SelectService";
+import ServiceDetailsScreen from "./src/screens/ServiceDetailsScreen/ServiceDetailsScreen";
+import SummaryScreen from "./src/screens/Summary/SummaryScreen";
+
 
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -22,6 +26,9 @@ function HomeStack() {
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name="HomePage" component={HomePage} />
       <Stack.Screen name="ElectricVehicle" component={ElectricVehicle} />
+      <Stack.Screen name="SelectService" component={SelectService} />
+      <Stack.Screen name="ServiceDetailsScreen" component={ServiceDetailsScreen} />
+      <Stack.Screen name="SummaryScreen" component={SummaryScreen} />
     </Stack.Navigator>
   );
 }
