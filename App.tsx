@@ -13,6 +13,10 @@ import DriversCall from "./src/screens/DriversCall/DriversCall";
 import DriversContactUs from "./src/screens/DriversContactUs/components/DriversContactUs";
 import ElectricVehicle from "./src/screens/ElectricVehicle/ElectricVehicle";
 import DriversSideMenu from "./src/screens/DriversSideMenu/DriverSideMenu";
+import TicketStatus from "./src/screens/TicketStatus/TicketStatus";
+import OpenCarTicket from "./src/screens/OpenCarTicket/OpenCarTicket";
+import O5TicketOptionMenu from "./src/screens/OpenCarTicket/compenents/O5TicketOptionMenu";
+import CancelTicketModal from "./src/screens/OpenCarTicket/compenents/CancelTicketModal";
 import SearchAndGo from "./src/screens/SearchAndGo/SearchAndGo";
 import MyProfile from "./src/screens/Profile/MyProfile";
 import AllMessagesScreen from "./src/screens/Messages/screens/AllMessagesScreen";
@@ -38,13 +42,18 @@ const Drawer = createDrawerNavigator();
 
 function HomeStack() {
   return (
-    <Stack.Navigator screenOptions={{ headerShown: false }}>
+    <Stack.Navigator
+      screenOptions={{ headerShown: false }}
+      initialRouteName="TicketStatus"
+    >
+      <Stack.Screen name="TicketStatus" component={TicketStatus} />
       <Stack.Screen name="HomePage" component={HomePage} />
       <Stack.Screen
         name="AccidentReportStack"
         component={AccidentReportStack}
       />
       <Stack.Screen name="ElectricVehicle" component={ElectricVehicle} />
+      <Stack.Screen name="OpenCarTicket" component={OpenCarTicket} />
       <Stack.Screen name="SelectService" component={SelectService} />
       <Stack.Screen
         name="ServiceDetailsScreen"
@@ -108,7 +117,7 @@ function AccidentReportStack() {
 function MyDrawer() {
   return (
     <Drawer.Navigator
-      drawerContent={(props) => <DriversSideMenu {...props} />}
+      // drawerContent={(props) => <DriversSideMenu {...props} />}
       screenOptions={{ headerShown: false }}
     >
       <Drawer.Screen name="HomeStack" component={HomeStack} />
@@ -117,6 +126,7 @@ function MyDrawer() {
       <Drawer.Screen name="DriversCall" component={DriversCall} />
       <Drawer.Screen name="GuidesAndTips" component={GuidesAndTips} />
       <Drawer.Screen name="TimerScreen" component={TimerScreen} />
+      <Drawer.Screen name="o5TicketCancel" component={O5TicketOptionMenu} />
       <Drawer.Screen name="MyProfile" component={MyProfile} />
       <Drawer.Screen name="HardwareIntro" component={HardwareIntro} />
       <Drawer.Screen name="ConnectToChat" component={ConnectToChat} />
