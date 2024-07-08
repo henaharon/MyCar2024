@@ -1,8 +1,8 @@
 import React, { useState, useRef, useCallback } from "react";
-import { Dimensions, StyleSheet, View, Animated } from "react-native";
-import EventHeader from "../../components/EventHeader";
-import FormHeader from "../../components/FormHeader";
-import { BaseView, BodyBaseView } from "../../../../uiKit/BaseView";
+import { Dimensions, StyleSheet, View, Animated, ScrollView } from "react-native";
+import EventHeader from "../components/EventHeader";
+import FormHeader from "../components/FormHeader";
+import { BaseView, BodyBaseView } from "../../../uiKit/BaseView";
 import I10 from "./I10";
 import I11 from "./I11";
 import I12 from "./I12";
@@ -37,21 +37,25 @@ const DamageReport = ({ navigation }) => {
   return (
     <BaseView>
       <View style={styles.contentWrapper}>
-        <EventHeader>
-          <FormHeader
-            title={pages[currentIndex].headerTitle}
-            data={pages}
-            pagesCount={pages.length}
-            currentPage={currentIndex}
-            onNextPage={goToNextPage}
-            onPreviousPage={goToPreviousPage}
-            navigation={navigation}
-          />
-        </EventHeader>
-        {currentIndex === 0 && <I10 />}
-        {currentIndex === 1 && <I11 />}
-        {currentIndex === 2 && <I12 />}
-        {currentIndex === 3 && <SuccessScreen navigation={navigation} />}
+        {currentIndex !== 3 && (
+          <EventHeader>
+            <FormHeader
+              title={pages[currentIndex].headerTitle}
+              data={pages}
+              pagesCount={pages.length}
+              currentPage={currentIndex}
+              onNextPage={goToNextPage}
+              onPreviousPage={goToPreviousPage}
+              navigation={navigation}
+            />
+          </EventHeader>
+        )}
+        <ScrollView contentContainerStyle={styles.scrollViewContent}>
+          {currentIndex === 0 && <I10 />}
+          {currentIndex === 1 && <I11 />}
+          {currentIndex === 2 && <I12 />}
+          {currentIndex === 3 && <SuccessScreen navigation={navigation} />}
+        </ScrollView>
       </View>
     </BaseView>
   );
@@ -65,5 +69,8 @@ const windowHeight = Dimensions.get('window').height;
 const styles = StyleSheet.create({
   contentWrapper: {
     flex: 1,
+  },
+  scrollViewContent: {
+    flexGrow: 1,
   },
 });

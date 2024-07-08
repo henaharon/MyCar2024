@@ -1,13 +1,13 @@
 import React, {useState, useCallback} from 'react';
 import {Dimensions, StyleSheet, View, ScrollView} from 'react-native';
 
-import EventHeader from '../../components/EventHeader';
-import {FormHeader} from '../../components/FormHeader';
-import Title from '../../components/Title';
-import {Input} from '../../components/Input';
-import FileInput from '../../components/FileInput';
+import EventHeader from '../components/EventHeader';
+import {FormHeader} from '../components/FormHeader';
+import Title from '../components/Title';
+import {Input} from '../components/Input';
+import FileInput from '../components/FileInput';
 
-import {BaseView, BodyBaseView} from '../../../../uiKit/BaseView';
+import {BaseView, BodyBaseView} from '../../../uiKit/BaseView';
 
 const headerTitle = "צד ג'";
 const driverInfoTitle = "פרטי נהג צד ג'";
@@ -25,7 +25,7 @@ const policyNumberPlaceholder = 'מספר פוליסת ביטוח';
 const documentTitle = "מסמכים - נהג צד ג'";
 const documentPlaceholder = 'הוספת מסמך';
 
-const I5 = ({setProgress}) => {
+const I5 = () => {
   const [selectedFile, setSelectedFile] = useState([]);
   const handleSetFiles = useCallback(newFiles => {
     setSelectedFile(newFiles);

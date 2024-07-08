@@ -1,15 +1,15 @@
 import React, {useState} from 'react';
 import {Dimensions, StyleSheet, View, ScrollView} from 'react-native';
 
-import EventHeader from '../../components/EventHeader';
-import {FormHeader} from '../../components/FormHeader';
-import Title from '../../components/Title';
-import ChoiceInput from '../../components/ChoiceInput';
-import {Input} from '../../components/Input';
-import {TextareaInput} from '../../components/TextareaInput';
-import ImageInput from '../../components/ImageInput';
+import EventHeader from '../components/EventHeader';
+import {FormHeader} from '../components/FormHeader';
+import Title from '../components/Title';
+import ChoiceInput from '../components/ChoiceInput';
+import {Input} from '../components/Input';
+import {TextareaInput} from '../components/TextareaInput';
+import ImageInput from '../components/ImageInput';
 
-import {BaseView, BodyBaseView} from '../../../../uiKit/BaseView';
+import {BaseView, BodyBaseView} from '../../../uiKit/BaseView';
 
 const headerTitle = 'נפגעים ועדים';
 const affectedTitle = 'האם היו נפגעים באירוע?';
@@ -29,7 +29,7 @@ const additionalInjuredPlaceholder =
   'במידה ויש נפגעים נוספים אנא עדכן כאן, יש להקפיד למלא את שמם המלא, ת.ז, כתובת וטלפון של כל הנפגעים הנוספים.';
 const injuredPhotosTitle = 'הוספת תמונות נפגעים';
 
-const I6 = ({setProgress}) => {
+const I6 = () => {
   const [witnesses, setWitnesses] = useState(false);
   const [injured, setInjured] = useState(false);
   return (
@@ -123,9 +123,6 @@ const I6 = ({setProgress}) => {
         </View>
       )}
     </BodyBaseView>
-    //     </View>
-    //   </ScrollView>
-    // </BaseView>
   );
 };
 

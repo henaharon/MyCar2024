@@ -13,10 +13,10 @@ import ElectricVehicle from "./src/screens/ElectricVehicle/ElectricVehicle";
 import DriversSideMenu from "./src/screens/DriversSideMenu/DriverSideMenu";
 import MyProfile from "./src/screens/Profile/MyProfile";
 import GuidesScreen from "./src/screens/Guides/GuidesScreen";
-import AccidentReportIntro from './src/screens/AccidentReport/screens/AccidentReport/AccidentReportIntro';
-import CallDialogScreen from './src/screens/AccidentReport/screens/CallDialog/CallDialogScreen';
-import AccidentReportOnboarding from './src/screens/AccidentReport/screens/AccidentReportForm/AccidentReportOnboarding';
-import DamageReport from './src/screens/AccidentReport/screens/DamageReport/DamageReport';
+import AccidentReportIntro from './src/screens/AccidentReport/AccidentReportIntro';
+import CallDialogScreen from './src/screens/AccidentReport/CallDialog/CallDialogScreen';
+import AccidentReportOnboarding from './src/screens/AccidentReport/AccidentReportForm/AccidentReportOnboarding';
+import DamageReport from './src/screens/AccidentReport/DamageReport/DamageReport';
 
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -64,10 +64,10 @@ function MyDrawer() {
 
 function App(): React.JSX.Element {
   return (
-    <NavigationContainer>
-      {/* <MyDrawer /> */}
-      <AccidentReportStack />
-    </NavigationContainer>
+      <NavigationContainer>
+        {/* <MyDrawer /> */}
+        <AccidentReportStack />
+      </NavigationContainer>
   );
 }
 export default App;

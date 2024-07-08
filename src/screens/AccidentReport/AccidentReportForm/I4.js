@@ -1,13 +1,13 @@
 import React, {useState} from 'react';
 import {Dimensions, StyleSheet, View} from 'react-native';
 
-import EventHeader from '../../components/EventHeader';
-import {FormHeader} from '../../components/FormHeader';
+import EventHeader from '../components/EventHeader';
+import {FormHeader} from '../components/FormHeader';
 
-import {BaseView, BodyBaseView} from '../../../../uiKit/BaseView';
-import Title from '../../components/Title';
-import ChoiceInput from '../../components/ChoiceInput';
-import {Input} from '../../components/Input';
+import {BaseView, BodyBaseView} from '../../../uiKit/BaseView';
+import Title from '../components/Title';
+import ChoiceInput from '../components/ChoiceInput';
+import {Input} from '../components/Input';
 
 const headerTitle = 'פרטי הנהג/ת';
 const driverInvolvementTitle = 'מי נהג ברכב בזמן הארוע?';
@@ -17,7 +17,7 @@ const IDNumberPlaceholder = 'מספר ת.ז';
 const licenseNumberPlaceholder = 'מספר רשיון נהיגה';
 const phonePlaceholder = 'טלפון';
 
-const I4 = ({setProgress}) => {
+const I4 = () => {
   return (
     <BodyBaseView style={styles.bodyContainer}>
       <View style={styles.driverInvolvementContainer}>

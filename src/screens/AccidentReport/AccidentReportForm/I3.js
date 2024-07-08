@@ -1,14 +1,14 @@
 import React, {useState} from 'react';
 import {Dimensions, StyleSheet, View, ScrollView} from 'react-native';
 
-import EventHeader from '../../components/EventHeader';
-import {FormHeader} from '../../components/FormHeader';
-import GeneralForm from '../../components/GeneralForm';
+import EventHeader from '../components/EventHeader';
+import {FormHeader} from '../components/FormHeader';
+import GeneralForm from '../components/GeneralForm';
 
-import {BaseView, BodyBaseView} from '../../../../uiKit/BaseView';
-import Title from '../../components/Title';
-import ChoiceInput from '../../components/ChoiceInput';
-import {Input} from '../../components/Input';
+import {BaseView, BodyBaseView} from '../../../uiKit/BaseView';
+import Title from '../components/Title';
+import ChoiceInput from '../components/ChoiceInput';
+import {Input} from '../components/Input';
 
 const headerTitle = 'פרטי האירוע';
 const policeInvolvementTitle = 'האם היתה מוערבות משטרה באירוע?';
@@ -16,7 +16,7 @@ const policeInfoTitle = 'פרטי המשטרה';
 const policeNamePlaceholder = 'שם השוטר';
 const policeStationPlaceholder = 'תחנת משטרה';
 
-const I3 = ({setProgress}) => {
+const I3 = () => {
   const [policeInvolvement, setPoliceInvolvement] = useState(false);
   return (
     <BodyBaseView style={styles.bodyContainer}>
@@ -70,6 +70,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: 'white',
     paddingTop: windowHeight * 0.15,
+    paddingBottom: windowHeight * 0.2,
     gap: 15,
   },
   policeInfoForm: {

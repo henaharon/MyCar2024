@@ -1,9 +1,9 @@
 import React from "react";
 import { Dimensions, Text, View, StyleSheet } from "react-native";
-import { BaseView, BodyBaseView } from "../../../../uiKit/BaseView";
-import { GradientButton } from "../../components/GradientButton";
-import { Input } from "../../components/Input";
-import DateTimeInput from "../../components/DateTimeInput";
+import { BaseView, BodyBaseView } from "../../../uiKit/BaseView";
+import { GradientButton } from "../components/GradientButton";
+import { Input } from "../components/Input";
+import DateTimeInput from "../components/DateTimeInput";
 
 const pageTitle = "המסמך נשלח";
 const paragraphs = ["דוח תאונת הדרכים נשלח בהצלחה", "OirS@gmail.com למייל"];

@@ -1,8 +1,8 @@
 import { Dimensions, StyleSheet, Text, View, Image, Pressable } from 'react-native';
-import { BaseView, BodyBaseView } from '../../../../uiKit/BaseView.js';
-import { GradientButton } from '../../components/GradientButton'
+import { BaseView, BodyBaseView } from '../../../uiKit/BaseView.js';
+import { GradientButton } from '../components/GradientButton.js'
 
-const callIcon = require('../../../../assets/icons/calldialogicon.png');
+const callIcon = require('../../../assets/icons/calldialogicon.png');
 
 const pageTitle = 'סיוע טלפוני';
 const fastCall = 'התקשרות מהירה';

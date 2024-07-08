@@ -1,13 +1,13 @@
 import React, {useState} from 'react';
 import {Dimensions, StyleSheet, View, ScrollView} from 'react-native';
 
-import EventHeader from '../../components/EventHeader';
-import {FormHeader} from '../../components/FormHeader';
-import {CarDamageInputs} from '../../components/CarDamageInputs';
-import ChoiceInput from '../../components/ChoiceInput';
-import Title from '../../components/Title';
+import EventHeader from '../components/EventHeader';
+import {FormHeader} from '../components/FormHeader';
+import {CarDamageInputs} from '../components/CarDamageInputs';
+import ChoiceInput from '../components/ChoiceInput';
+import Title from '../components/Title';
 
-import {BaseView, BodyBaseView} from '../../../../uiKit/BaseView';
+import {BaseView, BodyBaseView} from '../../../uiKit/BaseView';
 
 const headerTitle = 'נזקים';
 const damageTitle = 'האם הרכב שלך ניזוק?';

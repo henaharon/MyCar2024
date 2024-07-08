@@ -1,8 +1,8 @@
 import React, {useState, useRef, useCallback} from 'react';
 import {Dimensions, StyleSheet, View, Animated, ScrollView} from 'react-native';
-import EventHeader from '../../components/EventHeader';
-import FormHeader from '../../components/FormHeader';
-import {BaseView, BodyBaseView} from '../../../../uiKit/BaseView';
+import EventHeader from '../components/EventHeader';
+import FormHeader from '../components/FormHeader';
+import {BaseView, BodyBaseView} from '../../../uiKit/BaseView';
 import I3 from './I3';
 import I4 from './I4';
 import I5 from './I5';
@@ -22,14 +22,6 @@ const pages = [
 
 const AccidentReportOnboarding = ({navigation}) => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [progress, setProgress] = useState(0);
-
-  const setProgressCallback = useCallback(
-    value => {
-      setProgress(value);
-    },
-    [setProgress],
-  );
 
   const goToNextPage = useCallback(() => {
     if (currentIndex < pages.length - 1) {
@@ -40,6 +32,9 @@ const AccidentReportOnboarding = ({navigation}) => {
   const goToPreviousPage = useCallback(() => {
     if (currentIndex > 0) {
       setCurrentIndex(currentIndex - 1);
+    }
+    else if (currentIndex === 0) {
+      navigation.navigate("AccidentReportIntro");
     }
   }, [currentIndex]);
 
@@ -55,18 +50,18 @@ const AccidentReportOnboarding = ({navigation}) => {
               currentPage={currentIndex}
               onNextPage={goToNextPage}
               onPreviousPage={goToPreviousPage}
+              navigation={navigation}
             />
           </EventHeader>
         )}
         <ScrollView>
-          {currentIndex === 0 && <I3 setProgress={setProgressCallback} />}
-          {currentIndex === 1 && <I4 setProgress={setProgressCallback} />}
-          {currentIndex === 2 && <I5 setProgress={setProgressCallback} />}
-          {currentIndex === 3 && <I6 setProgress={setProgressCallback} />}
-          {currentIndex === 4 && <I7 setProgress={setProgressCallback} />}
+          {currentIndex === 0 && <I3 />}
+          {currentIndex === 1 && <I4 />}
+          {currentIndex === 2 && <I5 />}
+          {currentIndex === 3 && <I6 />}
+          {currentIndex === 4 && <I7 />}
           {currentIndex === 5 && (
             <SuccessScreen
-              setProgress={setProgressCallback}
               navigation={navigation}
             />
           )}

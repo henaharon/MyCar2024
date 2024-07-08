@@ -7,10 +7,10 @@ import {
   ScrollView,
   SafeAreaView,
 } from 'react-native';
-import {Header} from '../../components/Header';
+import {Header} from './components/Header';
 import Requirements from './components/Requirements';
-import Information from '../../components/Information';
-import {GradientButton} from '../../components/GradientButton';
+import Information from './components/Information';
+import {GradientButton} from './components/GradientButton';
 
 const informationTitle = 'לפני מילוי הדוח חשוב לדעת:';
 const accidentTitle = 'תאונת דרכים עם צד ג';
