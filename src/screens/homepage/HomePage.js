@@ -9,6 +9,7 @@ import {
   Pressable,
   Dimensions,
 } from "react-native";
+import ScrollMessages from "../Messages/commponents/ScrollMessages"
 
 const backgroundShape = require("../../assets/images/backgorund3.png");
 const backgroundShape1 = require("../../assets/images/backgroundShape1.png");
@@ -116,7 +117,7 @@ const HomePage = ({ navigation }) => {
           <View style={styles.bottomContainer}>
             <Text style={styles.bottomText}>{texts.updatesTitle}</Text>
           </View>
-          <CampainsList />
+          <ScrollMessages direction="horizontal"/> 
           <DashedLine />
           <View style={styles.SbottomContainer}>
             <Image source={arrow} style={styles.logo} />
@@ -261,7 +262,7 @@ const styles = StyleSheet.create({
     width: "100%",
     alignItems: "flex-end",
     padding: 10,
-    backgroundColor: "gray",
+    backgroundColor: "#fff",
     borderRadius: 10,
     marginVertical: 20,
   },
