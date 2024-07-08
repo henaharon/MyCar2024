@@ -9,6 +9,7 @@ import {
   Pressable,
   Dimensions,
 } from "react-native";
+import ScrollMessages from "../Messages/commponents/ScrollMessages"
 
 const backgroundShape = require("../../assets/images/backgorund3.png");
 const backgroundShape1 = require("../../assets/images/backgroundShape1.png");
@@ -42,7 +43,7 @@ const texts = {
   updatesTitle: "עדכונים וחדשות",
   campaignTitle: "כותרת הודעה / קמפיין",
   rental: "השאלת רכבים",
-  emergency: "תאונות וחירום",
+  emergency: { title: "תאונות וחירום", navigateTo: "AccidentReportStack" },
 };
 
 const DashedLine = () => {
@@ -116,7 +117,7 @@ const HomePage = ({ navigation }) => {
           <View style={styles.bottomContainer}>
             <Text style={styles.bottomText}>{texts.updatesTitle}</Text>
           </View>
-          <CampainsList />
+          <ScrollMessages direction="horizontal"/> 
           <DashedLine />
           <View style={styles.SbottomContainer}>
             <Image source={arrow} style={styles.logo} />
@@ -124,11 +125,14 @@ const HomePage = ({ navigation }) => {
             <Image source={Rental} style={styles.Image} />
           </View>
           <DashedLine />
-          <View style={styles.SbottomContainer}>
+          <Pressable
+            style={styles.SbottomContainer}
+            onPress={() => navigation.navigate(texts.emergency.navigateTo)}
+          >
             <Image source={arrow} style={styles.logo} />
-            <Text style={styles.SbottomText}>{texts.emergency}</Text>
+            <Text style={styles.SbottomText}>{texts.emergency.title}</Text>
             <Image source={accedent} style={styles.Image} />
-          </View>
+          </Pressable>
           <Image source={sunImage} style={styles.sun} />
         </View>
       </ImageBackground>
@@ -258,7 +262,7 @@ const styles = StyleSheet.create({
     width: "100%",
     alignItems: "flex-end",
     padding: 10,
-    backgroundColor: "gray",
+    backgroundColor: "#fff",
     borderRadius: 10,
     marginVertical: 20,
   },

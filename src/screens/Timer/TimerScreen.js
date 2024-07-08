@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Button, Dimensions, StyleSheet, Text, View } from "react-native";
-import { BaseView, BodyBaseView } from "../../uiKit/BaseView";
+import { BaseView, BodyBaseView } from "../../uiKit/BaseView.js";
 import { Header } from "../../uiKit/Header";
 import { Buttons } from "./components/Buttons";
 
