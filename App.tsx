@@ -18,6 +18,9 @@ import MyProfile from "./src/screens/Profile/MyProfile";
 import AllMessagesScreen from "./src/screens/Messages/screens/AllMessagesScreen";
 import ScreenMessage from "./src/screens/Messages/screens/ScreenMessage";
 import GuidesScreen from "./src/screens/Guides/GuidesScreen";
+import SelectService from "./src/screens/SelectService/SelectService";
+import ServiceDetailsScreen from "./src/screens/ServiceDetailsScreen/ServiceDetailsScreen";
+import SummaryScreen from "./src/screens/Summary/SummaryScreen";
 import ServiceCenter from "./src/screens/ServiceCenter/ServiceCenter";
 import ServiceCenterProcess from "./src/screens/ServiceCenter/ServiceCenterProcess";
 import Walkthrough from "./src/screens/Walkthrough/Walkthrough";
@@ -42,6 +45,9 @@ function HomeStack() {
         component={AccidentReportStack}
       />
       <Stack.Screen name="ElectricVehicle" component={ElectricVehicle} />
+      <Stack.Screen name="SelectService" component={SelectService} />
+      <Stack.Screen name="ServiceDetailsScreen" component={ServiceDetailsScreen} />
+      <Stack.Screen name="SummaryScreen" component={SummaryScreen} />
       <Stack.Screen name="ServiceCenter" component={ServiceCenter} />
       <Stack.Screen
         name="ServiceCenterProcess"
