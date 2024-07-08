@@ -11,6 +11,8 @@ import DriversCall from "./src/screens/DriversCall/DriversCall";
 import DriversContactUs from "./src/screens/DriversContactUs/components/DriversContactUs";
 import ElectricVehicle from "./src/screens/ElectricVehicle/ElectricVehicle";
 import DriversSideMenu from "./src/screens/DriversSideMenu/DriverSideMenu";
+import SearchAndGo from "./src/screens/SearchAndGo/SearchAndGo";
+
 import MyProfile from "./src/screens/Profile/MyProfile";
 import GuidesScreen from "./src/screens/Guides/GuidesScreen";
 import Walkthrough from "./src/screens/Walkthrough/Walkthrough";
@@ -18,6 +20,7 @@ import Login from "./src/screens/Login/Login";
 import Onboarding from "./src/screens/Onboarding/Onboarding";
 import SplashScreen from "react-native-splash-screen";
 import GuidesAndTips from "./src/screens/GuidesAndTips/GuidesAndTips";
+
 
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -51,10 +54,11 @@ function LoginStack({
 function MyDrawer() {
   return (
     <Drawer.Navigator
-      drawerContent={(props) => <DriversSideMenu {...props} />}
+      // drawerContent={(props) => <DriversSideMenu {...props} />}
       screenOptions={{ headerShown: false }}
     >
       <Drawer.Screen name="HomeStack" component={HomeStack} />
+      <Drawer.Screen name="SearchAndGo" component={SearchAndGo} />
       <Drawer.Screen name="DriversContactUs" component={DriversContactUs} />
       <Drawer.Screen name="DriversCall" component={DriversCall} />
       <Drawer.Screen name="GuidesAndTips" component={GuidesAndTips} />
