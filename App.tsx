@@ -23,6 +23,10 @@ import Login from "./src/screens/Login/Login";
 import Onboarding from "./src/screens/Onboarding/Onboarding";
 import SplashScreen from "react-native-splash-screen";
 import GuidesAndTips from "./src/screens/GuidesAndTips/GuidesAndTips";
+import AccidentReportIntro from "./src/screens/AccidentReport/AccidentReportIntro";
+import CallDialogScreen from "./src/screens/AccidentReport/CallDialog/CallDialogScreen";
+import AccidentReportOnboarding from "./src/screens/AccidentReport/AccidentReportForm/AccidentReportOnboarding";
+import DamageReport from "./src/screens/AccidentReport/DamageReport/DamageReport";
 
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -31,9 +35,14 @@ function HomeStack() {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name="HomePage" component={HomePage} />
+      <Stack.Screen
+        name="AccidentReportStack"
+        component={AccidentReportStack}
+      />
       <Stack.Screen name="ElectricVehicle" component={ElectricVehicle} />
       <Drawer.Screen name="AllMessages" component={AllMessagesScreen} />
       <Drawer.Screen name="MessageDetails" component={ScreenMessage} />
+      <Stack.Screen name="AccidentReportIntro" component={DamageReport} />
     </Stack.Navigator>
   );
 }
@@ -69,6 +78,22 @@ function ClosedTickets() {
 //     // </Stack.Navigator>
 //   );
 // }
+function AccidentReportStack() {
+  return (
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Screen
+        name="AccidentReportIntro"
+        component={AccidentReportIntro}
+      />
+      <Stack.Screen name="CallDialog" component={CallDialogScreen} />
+      <Stack.Screen name="DamageReport" component={DamageReport} />
+      <Stack.Screen
+        name="AccidentReportForm"
+        component={AccidentReportOnboarding}
+      />
+    </Stack.Navigator>
+  );
+}
 
 function MyDrawer() {
   return (
@@ -103,7 +128,6 @@ function App(): React.JSX.Element {
 
   return (
     <NavigationContainer>
-      {/* <MyDrawer /> */}
       {isLoggedIn ? <MyDrawer /> : <LoginStack setIsLoggedIn={setIsLoggedIn} />}
     </NavigationContainer>
   );
