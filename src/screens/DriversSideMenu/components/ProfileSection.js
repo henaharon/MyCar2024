@@ -32,12 +32,15 @@ const styles = StyleSheet.create({
   profileSection: {
     flexDirection: "row",
     alignItems: "center",
-    marginBottom: 0.2 * windowWidth,
-    justifyContent: "flex-end", // Align items to the end of container (right side)
+    marginBottom: 0.1 * windowWidth,
+    justifyContent: "flex-end",
+    paddingRight: 0.025 * windowWidth,
+    marginTop: 0.05 * windowWidth,
   },
+
   textContainer: {
     flexDirection: "column",
-    alignItems: "flex-end", // Align items to the end of container (right side)
+    alignItems: "flex-end",
     marginRight: 0.05 * windowWidth,
   },
   icon: {
@@ -50,7 +53,7 @@ const styles = StyleSheet.create({
     color: "white",
   },
   smallText: {
-    fontSize: 16, // Set the size for the additional text
+    fontSize: 16,
     color: "white",
   },
 });

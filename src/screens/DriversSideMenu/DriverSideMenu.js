@@ -5,22 +5,29 @@ import ProfileSection from "./components/ProfileSection";
 import MenuSection from "./components/MenuSection";
 import ContactSection from "./components/ContactSection";
 import LogoSection from "./components/LogoSection";
+import LinearGradient from "react-native-linear-gradient";
 
 const SideMenu = () => {
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      <ProfileSection />
-      <MenuSection />
-      <ContactSection />
-      <LogoSection />
+      <LinearGradient
+        colors={["#DD0370", "#E22D66", "#E7525F"]}
+        start={{ x: 0, y: 0 }}
+        end={{ x: 1, y: 0 }}
+        style={styles.gradient}
+      >
+        <ProfileSection />
+        <MenuSection />
+        <ContactSection />
+        <LogoSection />
+      </LinearGradient>
     </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    flexGrow: 1,
-    padding: 10,
+    // padding: 10,
   },
 });
 

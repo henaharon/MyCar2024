@@ -1,13 +1,11 @@
-// LogoSection.js
 import React from 'react';
 import { View, Image, StyleSheet, Dimensions } from 'react-native';
 const windowWidth = Dimensions.get('window').width;
 
-
 const LogoSection = () => {
   return (
     <View style={styles.logoSection}>
-      <Image source={require('../../../assets/k1_icons/amdocs.png')} style={styles.logo} />
+      <Image source={require('../../../assets/k1_icons/amdocs.png')} style={[styles.logo]} />
       <Image source={require('../../../assets/k1_icons/mobile_app.png')} style={styles.logo} />
     </View>
   );

@@ -46,7 +46,10 @@ function HomeStack() {
       />
       <Stack.Screen name="ElectricVehicle" component={ElectricVehicle} />
       <Stack.Screen name="SelectService" component={SelectService} />
-      <Stack.Screen name="ServiceDetailsScreen" component={ServiceDetailsScreen} />
+      <Stack.Screen
+        name="ServiceDetailsScreen"
+        component={ServiceDetailsScreen}
+      />
       <Stack.Screen name="SummaryScreen" component={SummaryScreen} />
       <Stack.Screen name="ServiceCenter" component={ServiceCenter} />
       <Stack.Screen
@@ -105,7 +108,7 @@ function AccidentReportStack() {
 function MyDrawer() {
   return (
     <Drawer.Navigator
-      // drawerContent={(props) => <DriversSideMenu {...props} />}
+      drawerContent={(props) => <DriversSideMenu {...props} />}
       screenOptions={{ headerShown: false }}
     >
       <Drawer.Screen name="HomeStack" component={HomeStack} />
