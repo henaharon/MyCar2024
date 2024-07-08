@@ -15,6 +15,8 @@ import ElectricVehicle from "./src/screens/ElectricVehicle/ElectricVehicle";
 import DriversSideMenu from "./src/screens/DriversSideMenu/DriverSideMenu";
 import SearchAndGo from "./src/screens/SearchAndGo/SearchAndGo";
 import MyProfile from "./src/screens/Profile/MyProfile";
+import AllMessagesScreen from "./src/screens/Messages/screens/AllMessagesScreen";
+import ScreenMessage from "./src/screens/Messages/screens/ScreenMessage";
 import GuidesScreen from "./src/screens/Guides/GuidesScreen";
 import Walkthrough from "./src/screens/Walkthrough/Walkthrough";
 import Login from "./src/screens/Login/Login";
@@ -30,6 +32,8 @@ function HomeStack() {
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name="HomePage" component={HomePage} />
       <Stack.Screen name="ElectricVehicle" component={ElectricVehicle} />
+      <Drawer.Screen name="AllMessages" component={AllMessagesScreen} />
+      <Drawer.Screen name="MessageDetails" component={ScreenMessage} />
     </Stack.Navigator>
   );
 }
@@ -84,6 +88,8 @@ function MyDrawer() {
       <Drawer.Screen name="RoadsideAssistance" component={RoadsideAssistance} />
       <Drawer.Screen name="Guides" component={GuidesScreen} />
       <Drawer.Screen name="CarTicket" component={ClosedTickets} />
+      <Drawer.Screen name="AllMessages" component={AllMessagesScreen} />
+      <Drawer.Screen name="MessageDetails" component={ScreenMessage} />
     </Drawer.Navigator>
   );
 }
