@@ -1,16 +1,19 @@
-import { Image, StyleSheet, Text, View } from "react-native";
+import { Image, StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import React from "react";
+import { useNavigation } from '@react-navigation/native';
 
 const HeaderTitle = ({title}) => {
+  const navigation = useNavigation();
+
   return (
     <View style={styles.headerView}>
-      <View style={styles.imageContainer} />
-      <Text style={styles.textStyle}>{title}</Text>
-      <View style={styles.imageContainer}>
+      <TouchableOpacity style={styles.imageContainer} onPress={() => navigation.goBack()}>
         <Image
           source={require("../../../assets/icons/componentsNavBarXButtonsRoundedWhiteAlpha.png")}
         />
-      </View>
+      </TouchableOpacity>
+      <Text style={styles.textStyle}>{title}</Text>
+      <View style={styles.imageContainer} />
     </View>
   );
 };
