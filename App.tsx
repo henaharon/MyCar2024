@@ -13,7 +13,7 @@ import TicketStatus from "./src/screens/TicketStatus/TicketStatus";
 import OpenCarTicket from "./src/screens/OpenCarTicket/OpenCarTicket";
 import O5TicketOptionMenu from "./src/screens/OpenCarTicket/compenents/O5TicketOptionMenu";
 import CancelTicketModal from "./src/screens/OpenCarTicket/compenents/CancelTicketModal";
-import O3bTicketInfo from "./src/screens/OpenCarTicket/compenents/O3bTicketInfo";
+
 
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -25,7 +25,7 @@ function HomeStack() {
       <Stack.Screen name="HomePage" component={HomePage} />
       <Stack.Screen name="ElectricVehicle" component={ElectricVehicle} />
       <Stack.Screen name="OpenCarTicket" component={OpenCarTicket} />
-      <Stack.Screen name="TicketInfo" component={O3bTicketInfo} />
+      
     </Stack.Navigator>
   );
 }
