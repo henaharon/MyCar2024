@@ -7,12 +7,13 @@ import HardwareIntro from "./src/screens/E1/HardwareIntro";
 import ConnectToChat from "./src/screens/E1/HardwareConnectToChat";
 import HomePage from "./src/screens/homepage/HomePage";
 import RoadsideAssistance from "./src/screens/E1/RoadsideAssistance";
+import CloseCarTicket from "./src/screens/TicketsStatusClose/CloseCarTicket";
+import ClosedTicketsInfo from "./src/screens/CloseCarTicket/ClosedTicketsInfo";
 import DriversCall from "./src/screens/DriversCall/DriversCall";
 import DriversContactUs from "./src/screens/DriversContactUs/components/DriversContactUs";
 import ElectricVehicle from "./src/screens/ElectricVehicle/ElectricVehicle";
 import DriversSideMenu from "./src/screens/DriversSideMenu/DriverSideMenu";
 import SearchAndGo from "./src/screens/SearchAndGo/SearchAndGo";
-
 import MyProfile from "./src/screens/Profile/MyProfile";
 import GuidesScreen from "./src/screens/Guides/GuidesScreen";
 import Walkthrough from "./src/screens/Walkthrough/Walkthrough";
@@ -20,7 +21,6 @@ import Login from "./src/screens/Login/Login";
 import Onboarding from "./src/screens/Onboarding/Onboarding";
 import SplashScreen from "react-native-splash-screen";
 import GuidesAndTips from "./src/screens/GuidesAndTips/GuidesAndTips";
-
 
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -50,6 +50,21 @@ function LoginStack({
     </Stack.Navigator>
   );
 }
+function ClosedTickets() {
+  return (
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="CloseCarTicket" component={CloseCarTicket} />
+      <Stack.Screen name="ClosedTicketsInfo" component={ClosedTicketsInfo} />
+    </Stack.Navigator>
+  );
+}
+// function LoginStack() {
+//   return (
+//     // <Stack.Navigator screenOptions={{ headerShown: false }}>
+//     //   <Stack.Screen name="HomePage" component={HomePage} />
+//     // </Stack.Navigator>
+//   );
+// }
 
 function MyDrawer() {
   return (
@@ -68,6 +83,7 @@ function MyDrawer() {
       <Drawer.Screen name="ConnectToChat" component={ConnectToChat} />
       <Drawer.Screen name="RoadsideAssistance" component={RoadsideAssistance} />
       <Drawer.Screen name="Guides" component={GuidesScreen} />
+      <Drawer.Screen name="CarTicket" component={ClosedTickets} />
     </Drawer.Navigator>
   );
 }
