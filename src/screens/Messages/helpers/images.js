@@ -4,7 +4,6 @@ const images = {
     img3: require("../../../assets/J1_media/img3.png"),
     img4: require("../../../assets/J1_media/img4.png"),
     ms1: require("../../../assets/J1_media/ms1.png"),
-    ms3: require("../../../assets/J1_media/ms3.mp4"),
+    ms3: "mq8T5LJBC-I"
 };
-
 export default images;

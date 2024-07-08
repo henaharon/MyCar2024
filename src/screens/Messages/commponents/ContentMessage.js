@@ -1,15 +1,10 @@
-import React, { useState } from 'react';
-import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
-import Video from 'react-native-video';
+import React from 'react';
+import { View, Text, StyleSheet, Image } from 'react-native';
 import images from '../helpers/images';
+import YoutubePlayer from 'react-native-youtube-iframe';
+
 
 const ContentMessage = ({ content }) => {
-  const [isPlay, setIsPlay] = useState(true);
-
-  const toggleStop = () => {
-    setIsPlay(!isPlay);
-  };
-
   return (
     <View style={styles.ViewContent}>
       <Text style={styles.title}>{content.title}</Text>
@@ -22,22 +17,11 @@ const ContentMessage = ({ content }) => {
         content.md && (
           content.type === "msv" ? (
             <View style={styles.videoContainer}>
-              <Video
-                source={images[content.md]}
-                style={styles.md}
-                volume={1.0}
-                muted={false}
-                paused={isPlay}
-                repeat={true}
+              <YoutubePlayer
+                height={300}
+                videoId={images[content.md]}
               />
-              <TouchableOpacity onPress={toggleStop} style={styles.playButton}>
-                {isPlay ? (
-                  <Image
-                    source={require("../../../assets/icons/video-play.png")}
-                    style={styles.playButtonImage}
-                  />
-                ) : null}
-              </TouchableOpacity>
+
             </View>
           ) : (
             <Image
@@ -85,24 +69,6 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     overflow: 'hidden',
     position: 'relative',
-  },
-  md: {
-    width: 350,
-    height: 200,
-    borderRadius: 20,
-  },
-  playButton: {
-    position: 'absolute',
-    left: 80,
-    width: 200,
-    height: 200,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  playButtonImage: {
-    width: 50,
-    height: 50,
-    borderRadius: 15
   },
 });
 
