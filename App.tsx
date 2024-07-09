@@ -13,6 +13,7 @@ import DriversCall from "./src/screens/DriversCall/DriversCall";
 import DriversContactUs from "./src/screens/DriversContactUs/components/DriversContactUs";
 import ElectricVehicle from "./src/screens/ElectricVehicle/ElectricVehicle";
 import DriversSideMenu from "./src/screens/DriversSideMenu/DriverSideMenu";
+import Tires from "./src/screens/Tires/Tires";
 import TicketStatus from "./src/screens/TicketStatus/TicketStatus";
 import OpenCarTicket from "./src/screens/OpenCarTicket/OpenCarTicket";
 import O5TicketOptionMenu from "./src/screens/OpenCarTicket/compenents/O5TicketOptionMenu";
@@ -53,6 +54,8 @@ function HomeStack() {
         component={AccidentReportStack}
       />
       <Stack.Screen name="ElectricVehicle" component={ElectricVehicle} />
+      <Stack.Screen name="Tires" component={Tires} />
+      <Stack.Screen name="RoadsideAssistance" component={RoadsideAssistance} />
       <Stack.Screen name="OpenCarTicket" component={OpenCarTicket} />
       <Stack.Screen name="SelectService" component={SelectService} />
       <Stack.Screen

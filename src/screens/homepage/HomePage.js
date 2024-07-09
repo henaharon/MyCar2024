@@ -9,7 +9,7 @@ import {
   Pressable,
   Dimensions,
 } from "react-native";
-import ScrollMessages from "../Messages/commponents/ScrollMessages"
+import ScrollMessages from "../Messages/commponents/ScrollMessages";
 
 const backgroundShape = require("../../assets/images/backgorund3.png");
 const backgroundShape1 = require("../../assets/images/backgroundShape1.png");
@@ -34,7 +34,7 @@ const texts = {
   services: [
     { title: "שטיפת רכב", image: first, navigateTo: "TimerScreen" },
     { title: "רכב חשמלי", image: second, navigateTo: "ElectricVehicle" },
-    { title: "צמיגים ופנצריות", image: third, navigateTo: "TimerScreen" },
+    { title: "צמיגים ופנצריות", image: third, navigateTo: "Tires" },
     { title: "אביזרים", image: forth, navigateTo: "HardwareIntro" },
     { title: "זימון שירותי מוסך", image: fith, navigateTo: "ServiceCenter" },
     { title: "תקלות בדרך", image: six, navigateTo: "TimerScreen" },
@@ -117,7 +117,7 @@ const HomePage = ({ navigation }) => {
           <View style={styles.bottomContainer}>
             <Text style={styles.bottomText}>{texts.updatesTitle}</Text>
           </View>
-          <ScrollMessages direction="horizontal"/> 
+          <ScrollMessages direction="horizontal" />
           <DashedLine />
           <View style={styles.SbottomContainer}>
             <Image source={arrow} style={styles.logo} />
