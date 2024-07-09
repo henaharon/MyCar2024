@@ -16,7 +16,7 @@ const ContentMessage = ({ content }) => {
       {
         content.md && (
           content.type === "msv" ? (
-            <View style={styles.videoContainer}>
+            <View style={styles.md}>
               <YoutubePlayer
                 height={300}
                 videoId={images[content.md]}
@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: '#000'
   },
-  videoContainer: {
+  md: {
     width: 350,
     height: 200,
     borderRadius: 20,

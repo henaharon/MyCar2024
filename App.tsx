@@ -12,7 +12,8 @@ import DriversContactUs from "./src/screens/DriversContactUs/components/DriversC
 import ElectricVehicle from "./src/screens/ElectricVehicle/ElectricVehicle";
 import DriversSideMenu from "./src/screens/DriversSideMenu/DriverSideMenu";
 import AllMessagesScreen from "./src/screens/Messages/screens/AllMessagesScreen";
-import ScreenMessage from "./src/screens/Messages/screens/ScreenMessage";import MyProfile from "./src/screens/Profile/MyProfile";
+import ScreenMessage from "./src/screens/Messages/screens/ScreenMessage";
+import MyProfile from "./src/screens/Profile/MyProfile";
 import GuidesScreen from "./src/screens/Guides/GuidesScreen";
 
 const Stack = createNativeStackNavigator();
@@ -23,8 +24,8 @@ function HomeStack() {
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name="HomePage" component={HomePage} />
       <Stack.Screen name="ElectricVehicle" component={ElectricVehicle} />
-      <Drawer.Screen name="AllMessages" component={AllMessagesScreen} />
-      <Drawer.Screen name="MessageDetails" component={ScreenMessage} />
+      <Stack.Screen name="AllMessages" component={AllMessagesScreen} />
+      <Stack.Screen name="MessageDetails" component={ScreenMessage} />
     </Stack.Navigator>
   );
 }
@@ -49,7 +50,7 @@ function MyDrawer() {
       <Drawer.Screen name="AllMessages" component={AllMessagesScreen} />
       <Drawer.Screen name="MessageDetails" component={ScreenMessage} />
 
-
+      
     </Drawer.Navigator>
 
 

@@ -11,12 +11,12 @@ const ScreenMessage = () => {
   const navigation = useNavigation();
   const { messageId } = route.params;
   const message = messagesData[messageId];
-
+ 
   return (
     <View style={styles.container}>
       <View style={styles.header}>
         <Image source={images[message.img]} style={styles.headerImage} />
-        <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButtonContainer}>
+        <TouchableOpacity onPress={() => navigation.navigate('AllMessages')} style={styles.backButtonContainer}>
           <Image source={require('../../../assets/icons/arrowRight.png')} style={styles.backButton} />
         </TouchableOpacity>
       </View>
