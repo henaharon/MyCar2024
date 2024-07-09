@@ -1,30 +1,46 @@
-import React from 'react';
-import { View, Text, Image, StyleSheet, Dimensions } from 'react-native';
+import React from "react";
+import {
+  View,
+  Text,
+  Image,
+  StyleSheet,
+  Dimensions,
+  Pressable,
+} from "react-native";
 
-const windowWidth = Dimensions.get('window').width;
+const windowWidth = Dimensions.get("window").width;
 
-const ProfileSection = () => {
+const ProfileSection = ({ navigation }) => {
   return (
-    <View style={styles.profileSection}>
+    <Pressable
+      onPress={() => navigation.navigate("MyProfile")}
+      style={styles.profileSection}
+    >
       <View style={styles.textContainer}>
         <Text style={styles.smallText}>שלום,</Text>
         <Text style={styles.text}>עומר פורטנוי</Text>
       </View>
-      <Image source={require('../../../assets/k1_icons/my_profile.png')} style={styles.icon} />
-    </View>
+      <Image
+        source={require("../../../assets/k1_icons/my_profile.png")}
+        style={styles.icon}
+      />
+    </Pressable>
   );
 };
 
 const styles = StyleSheet.create({
   profileSection: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 0.2 * windowWidth,
-    justifyContent: 'flex-end', // Align items to the end of container (right side)
+    flexDirection: "row",
+    alignItems: "center",
+    marginBottom: 0.1 * windowWidth,
+    justifyContent: "flex-end",
+    paddingRight: 0.025 * windowWidth,
+    marginTop: 0.05 * windowWidth,
   },
+
   textContainer: {
-    flexDirection: 'column',
-    alignItems: 'flex-end', // Align items to the end of container (right side)
+    flexDirection: "column",
+    alignItems: "flex-end",
     marginRight: 0.05 * windowWidth,
   },
   icon: {
@@ -34,11 +50,11 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 24,
-    color: 'white',
+    color: "white",
   },
   smallText: {
-    fontSize: 16, // Set the size for the additional text
-    color: 'white',
+    fontSize: 16,
+    color: "white",
   },
 });
 
