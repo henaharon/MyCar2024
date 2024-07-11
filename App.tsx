@@ -37,6 +37,8 @@ import AccidentReportIntro from "./src/screens/AccidentReport/AccidentReportIntr
 import CallDialogScreen from "./src/screens/AccidentReport/CallDialog/CallDialogScreen";
 import AccidentReportOnboarding from "./src/screens/AccidentReport/AccidentReportForm/AccidentReportOnboarding";
 import DamageReport from "./src/screens/AccidentReport/DamageReport/DamageReport";
+import AppNavigator from "./src/Components/AppNavigator";
+
 
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -138,6 +140,7 @@ function MyDrawer() {
       <Drawer.Screen name="CarTicket" component={ClosedTickets} />
       <Drawer.Screen name="AllMessages" component={AllMessagesScreen} />
       <Drawer.Screen name="MessageDetails" component={ScreenMessage} />
+      <Drawer.Screen name="AppNavigator" component={AppNavigator} />
     </Drawer.Navigator>
   );
 }
