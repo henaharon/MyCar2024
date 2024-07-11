@@ -1,17 +1,41 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, Image, TouchableOpacity, TextInput, ScrollView } from 'react-native';
 import DriverList from './components/DriverList';
-import InfoBox from './components/InfoBox';
+import DocumentPicker from 'react-native-document-picker';
+import Share from 'react-native-share';
 
 const MyCar = ({ navigation }) => {
   const [expanded, setExpanded] = useState(false);
+  const [selectedDoc, setSelectedDoc] = useState(null);
+  const [email, setEmail] = useState('');
+
+  const selectDocument = async () => {
+    try {
+      const res = await DocumentPicker.pick({
+        type: [DocumentPicker.types.allFiles],
+      });
+      setSelectedDoc(res);
+    } catch (err) {
+      if (DocumentPicker.isCancel(err)) {
+        console.log('User cancelled the picker');
+      } else {
+        throw err;
+      }
+    }
+  };
+
+  const shareDocument = async () => {
+    if (selectedDoc) {
+      await Share.open({ url: selectedDoc.uri });
+    }
+  };
 
   const closeScreen = () => {
     // Implement the logic to close the screen, e.g., navigation.goBack()
   };
 
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       <View style={styles.topSection}>
         <TouchableOpacity style={styles.closeButton} onPress={closeScreen}>
           <Image source={require('../../assets/icons/NavBUtton.png')} style={styles.closeIcon} />
@@ -32,18 +56,17 @@ const MyCar = ({ navigation }) => {
         </View>
       </View>
 
-      {/* Expandable Driver List and Document Button */}
       <View style={styles.actionsContainer}>
-        <TouchableOpacity onPress={() => setExpanded(!expanded)} style={styles.actionButton}>
-          <Text style={styles.actionButtonText}>נהגים מורשים</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => navigation.navigate('DocumentSharing')} style={styles.actionButton}>
-          <Text style={styles.actionButtonText}>מסמכים</Text>
+        <TouchableOpacity onPress={() => setExpanded(!expanded)} style={styles.driverButton}>
+          <Text style={styles.driverButtonText}>נהג מורשה: <Text style={styles.driverName}>אביב שחר</Text></Text>
         </TouchableOpacity>
       </View>
-      {expanded && <DriverList />}
+      {expanded && (
+        <View style={styles.driverListContainer}>
+          <DriverList />
+        </View>
+      )}
 
-      {/* Static Information Boxes */}
       <View style={styles.infoBoxes}>
         <TouchableOpacity style={styles.infoBox}>
           <Image source={require('../../assets/icons/Repair.png')} style={styles.infoImage} />
@@ -66,7 +89,38 @@ const MyCar = ({ navigation }) => {
           <Text style={styles.infoTextLarge}>32-34</Text>
         </TouchableOpacity>
       </View>
-    </View>
+
+      <View style={styles.documentSection}>
+        <Text style={styles.sectionTitle}>מסמכים</Text>
+        <TouchableOpacity style={styles.addButton} onPress={selectDocument}>
+          <Text style={styles.addButtonText}>+</Text>
+        </TouchableOpacity>
+        <TextInput
+          style={styles.emailInput}
+          placeholder="כתובת מייל לשיתוף המסמכים"
+          value={email}
+          onChangeText={setEmail}
+        />
+        <TouchableOpacity style={styles.shareButton} onPress={shareDocument}>
+          <Text style={styles.shareButtonText}>שיתוף המסמכים</Text>
+        </TouchableOpacity>
+      </View>
+
+      <View style={styles.usefulInfoSection}>
+        <Text style={styles.infoTitle}>מידע שימושי</Text>
+        <Text style={styles.infoSubtitle}>נווטיך באמצעות מספר מדריכים לתפעול הרכב</Text>
+        <View style={styles.infoBoxes}>
+          <TouchableOpacity style={styles.infoBox}>
+            <Image source={require('../../assets/icons/wheel.png')} style={styles.infoImage} />
+            <Text style={styles.infoText}>מדריך החלפת גלגל</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.infoBox} onPress={() => navigation.navigate('GuideLights')}>
+            <Image source={require('../../assets/icons/important.png')} style={styles.infoImage} />
+            <Text style={styles.infoText}>מדריך נורית חיווי</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+    </ScrollView>
   );
 };
 
@@ -119,16 +173,23 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
     marginVertical: 10,
   },
-  actionButton: {
-    backgroundColor: '#007BFF',
+  driverButton: {
+    backgroundColor: 'transparent',
     padding: 10,
-    borderRadius: 5,
     alignItems: 'center',
-    width: '45%',
+    width: '100%',
   },
-  actionButtonText: {
-    color: '#fff',
+  driverButtonText: {
+    color: '#000',
     fontSize: 16,
+  },
+  driverName: {
+    color: '#007BFF',
+    textDecorationLine: 'underline',
+  },
+  driverListContainer: {
+    marginVertical: 10,
+    paddingHorizontal: 20,
   },
   infoBoxes: {
     flexDirection: 'row',
@@ -163,6 +224,68 @@ const styles = StyleSheet.create({
     color: '#333',
     textAlign: 'center',
     fontWeight: 'bold',
+  },
+  documentSection: {
+    marginVertical: 20,
+    padding: 10,
+    backgroundColor: 'white',
+    borderRadius: 10,
+    alignItems: 'center',
+  },
+  sectionTitle: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginBottom: 10,
+  },
+  addButton: {
+    backgroundColor: '#007BFF',
+    padding: 10,
+    borderRadius: 5,
+    alignItems: 'center',
+    width: '45%',
+    marginVertical: 10,
+  },
+  addButtonText: {
+    color: '#fff',
+    fontSize: 18,
+  },
+  emailInput: {
+    borderWidth: 1,
+    borderColor: '#ccc',
+    borderRadius: 5,
+    padding: 10,
+    width: '100%',
+    marginVertical: 10,
+  },
+  shareButton: {
+    backgroundColor: '#007BFF',
+    padding: 10,
+    borderRadius: 5,
+    alignItems: 'center',
+    width: '45%',
+    alignSelf: 'center',
+  },
+  shareButtonText: {
+    color: '#fff',
+    fontSize: 18,
+  },
+  usefulInfoSection: {
+    marginVertical: 20,
+    padding: 10,
+    backgroundColor: 'white',
+    borderRadius: 10,
+    alignItems: 'center',
+  },
+  infoTitle: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginBottom: 10,
+  },
+  infoSubtitle: {
+    fontSize: 14,
+    color: '#333',
+    textAlign: 'center',
+    marginBottom: 10,
   },
 });
 

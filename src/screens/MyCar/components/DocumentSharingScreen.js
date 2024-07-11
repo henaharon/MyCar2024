@@ -1,13 +1,11 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, TextInput, FlatList, Image, Button } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, TextInput, FlatList, Image, ScrollView } from 'react-native';
 import DocumentPicker from 'react-native-document-picker';
 import Share from 'react-native-share';
-import { useNavigation } from '@react-navigation/native';
 
-const DocumentSharingScreen = () => {
+const DocumentSharingScreen = ({ navigation }) => {
   const [documents, setDocuments] = useState([]);
   const [email, setEmail] = useState('');
-  const navigation = useNavigation();
 
   const selectDocument = async () => {
     try {
@@ -26,7 +24,6 @@ const DocumentSharingScreen = () => {
 
   const shareDocument = async () => {
     if (email) {
-      // Logic to share documents via email
       const documentUris = documents.map(doc => doc.uri);
       await Share.open({
         urls: documentUris,
@@ -43,11 +40,14 @@ const DocumentSharingScreen = () => {
     <View style={styles.documentItem}>
       <Text style={styles.documentName}>{item.name}</Text>
       <Text style={styles.documentDate}>24.06.2020</Text>
+      <TouchableOpacity style={styles.addButton} onPress={selectDocument}>
+        <Image source={require('../../../assets/icons/plus.png')} style={styles.infoIcon} />
+      </TouchableOpacity>
     </View>
   );
 
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       <Text style={styles.title}>שיתוף המסמכים שלי</Text>
       <FlatList
         data={documents}
@@ -56,7 +56,7 @@ const DocumentSharingScreen = () => {
         style={styles.documentList}
       />
       <TouchableOpacity style={styles.addButton} onPress={selectDocument}>
-        <Text style={styles.addButtonText}>הוסף צילום</Text>
+        <Image source={require('../../../assets/icons/plus.png')} style={styles.infoIcon} />
       </TouchableOpacity>
       <TextInput
         style={styles.emailInput}
@@ -70,16 +70,16 @@ const DocumentSharingScreen = () => {
       <Text style={styles.infoTitle}>מידע שימושי</Text>
       <Text style={styles.infoSubtitle}>נוחיותך אגדנו מספר מדריכים לתפעול הרכב</Text>
       <View style={styles.infoBoxes}>
-        <TouchableOpacity style={styles.infoBox}>
-          <Image source={require('../../../assets/icons/wheel.png')} style={styles.infoIcon} />
-          <Text style={styles.infoText}>מדריך החלפת גלגל</Text>
-        </TouchableOpacity>
         <TouchableOpacity style={styles.infoBox} onPress={() => navigation.navigate('GuideLights')}>
-          <Image source={require('../../../assets/icons/important.png')} style={styles.infoIcon} />
+          <Image source={require('../../../assets/icons/wheel.png')} style={styles.infoIcon} />
           <Text style={styles.infoText}>מדריך נורית חיווי</Text>
         </TouchableOpacity>
+        <TouchableOpacity style={styles.infoBox}>
+          <Image source={require('../../../assets/icons/important.png')} style={styles.infoIcon} />
+          <Text style={styles.infoText}>מדריך החלפת גלגל</Text>
+        </TouchableOpacity>
       </View>
-    </View>
+    </ScrollView>
   );
 };
 
