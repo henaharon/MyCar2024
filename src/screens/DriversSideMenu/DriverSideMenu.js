@@ -7,7 +7,7 @@ import ContactSection from "./components/ContactSection";
 import LogoSection from "./components/LogoSection";
 import LinearGradient from "react-native-linear-gradient";
 
-const SideMenu = () => {
+const SideMenu = ({ navigation }) => {
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <LinearGradient
@@ -17,7 +17,7 @@ const SideMenu = () => {
         style={styles.gradient}
       >
         <ProfileSection />
-        <MenuSection />
+        <MenuSection navigation={navigation} />
         <ContactSection />
         <LogoSection />
       </LinearGradient>
