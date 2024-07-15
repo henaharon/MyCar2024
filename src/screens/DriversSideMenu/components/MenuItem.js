@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
   menuItem: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'flex-end', // Align items to the end of container (right side)
+    justifyContent: 'flex-end', 
     marginBottom: 0.03 * windowWidth,
   },
   icon: {
@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 16,
-    textAlign: 'right', // Align text to the right
+    textAlign: 'right', 
     color: 'white',
   },
 });

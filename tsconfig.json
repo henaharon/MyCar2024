@@ -28,3 +28,11 @@
   ],
   "extends": "expo/tsconfig.base"
 }
+
+// before merge
+// {
+//   "compilerOptions": {
+//     "jsx": "react"
+//   },
+//   "extends": "@react-native/typescript-config/tsconfig.json"
+// }
