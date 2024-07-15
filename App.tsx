@@ -45,7 +45,7 @@ function HomeStack() {
   return (
     <Stack.Navigator
       screenOptions={{ headerShown: false }}
-      initialRouteName="TicketStatus"
+      initialRouteName="HomePage"
     >
       <Stack.Screen name="TicketStatus" component={TicketStatus} />
       <Stack.Screen name="HomePage" component={HomePage} />
@@ -120,7 +120,7 @@ function AccidentReportStack() {
 function MyDrawer() {
   return (
     <Drawer.Navigator
-      // drawerContent={(props) => <DriversSideMenu {...props} />}
+      drawerContent={(props) => <DriversSideMenu {...props} />}
       screenOptions={{ headerShown: false }}
     >
       <Drawer.Screen name="HomeStack" component={HomeStack} />
